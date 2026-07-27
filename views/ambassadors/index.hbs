@@ -1,0 +1,75 @@
+{{> page-header eyebrow="Animalife Ambassadors" heading="Elite Riders. Extraordinary Partnerships." subheading="United by passion. Driven by excellence. Our ambassadors represent the best in every discipline."}}
+
+<section class="section">
+  <p class="max-w-3xl text-sm leading-relaxed text-al-ink/75">We are honored to partner with an exceptional group of riders, trainers, veterinarians, and equine professionals who share our passion for helping horses live healthier, happier, and more successful lives. Our ambassadors are more than accomplished competitors&mdash;they are trusted educators, advocates, and horsemen who believe in treating the whole horse through science-backed nutrition and natural wellness.</p>
+
+  <div class="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+    {{#each disciplines}}
+    <div class="card flex flex-col items-center gap-3 p-6 text-center">
+      <div class="flex h-14 w-14 items-center justify-center rounded-full bg-al-orange/10 text-al-orange">{{{icon "horse" "w-7 h-7"}}}</div>
+      <p class="font-display text-sm font-medium text-al-navy">{{this.name}}</p>
+    </div>
+    {{/each}}
+  </div>
+</section>
+
+<section class="bg-al-navy text-white" id="become-ambassador">
+  <div class="section grid gap-12 lg:grid-cols-2">
+    <div>
+      <div class="eyebrow !text-al-orange-light">Become an Ambassador</div>
+      <h2 class="font-display mt-4 text-3xl font-medium sm:text-4xl">Ride with purpose. Partner with Animalife.</h2>
+      <p class="mt-5 text-sm leading-relaxed text-white/70">If you're a competitive rider, trainer, or equine professional who believes in root-cause, science-backed nutrition, we'd love to hear your story. Tell us about your discipline, your horses, and why you'd like to represent Animalife.</p>
+      <ul class="mt-8 space-y-3 text-sm text-white/80">
+        <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange-light shrink-0"}}}Complimentary product &amp; personalized feeding plans</li>
+        <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange-light shrink-0"}}}Co-marketing &amp; social features across Animalife channels</li>
+        <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange-light shrink-0"}}}Direct access to our science &amp; nutrition team</li>
+      </ul>
+    </div>
+
+    <div class="rounded-2xl bg-white p-7 text-al-ink sm:p-8">
+      {{#if submitted}}
+      <div class="flex h-full flex-col items-center justify-center py-10 text-center">
+        <div class="flex h-14 w-14 items-center justify-center rounded-full bg-al-orange/10 text-al-orange">{{{icon "check" "w-7 h-7"}}}</div>
+        <p class="font-display mt-5 text-xl font-medium text-al-navy">Thank you, {{submittedName}}!</p>
+        <p class="mt-2 text-sm text-al-ink/65">Your ambassador application has been received. Our team will be in touch within 5&ndash;10 business days.</p>
+      </div>
+      {{else}}
+      <p class="font-display text-lg font-medium text-al-navy">Ambassador Application</p>
+      <form action="/ambassadors/apply" method="post" class="mt-6 space-y-5">
+        <div>
+          <label class="field-label" for="fullName">Full Name</label>
+          <input id="fullName" name="fullName" type="text" required class="input-field" />
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label class="field-label" for="email">Email Address</label>
+            <input id="email" name="email" type="email" required class="input-field" />
+          </div>
+          <div>
+            <label class="field-label" for="phone">Mobile Phone</label>
+            <input id="phone" name="phone" type="tel" class="input-field" />
+          </div>
+        </div>
+        <div>
+          <label class="field-label" for="discipline">Primary Discipline</label>
+          <select id="discipline" name="discipline" required class="input-field">
+            {{#each disciplines}}
+            <option value="{{this.slug}}">{{this.name}}</option>
+            {{/each}}
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label" for="socialHandle">Instagram / Social Handle</label>
+          <input id="socialHandle" name="socialHandle" type="text" class="input-field" placeholder="@yourhandle" />
+        </div>
+        <div>
+          <label class="field-label" for="message">Tell us about you &amp; your horses</label>
+          <textarea id="message" name="message" rows="4" required class="input-field"></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full">Submit Application</button>
+      </form>
+      {{/if}}
+    </div>
+  </div>
+</section>

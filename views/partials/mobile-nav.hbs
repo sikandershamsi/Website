@@ -1,0 +1,19 @@
+<div data-mobile-nav class="fixed inset-0 z-50 hidden">
+  <div class="absolute inset-0 bg-al-ink/50" data-mobile-nav-close></div>
+  <div class="absolute right-0 top-0 flex h-full w-[85%] max-w-sm flex-col bg-al-cream px-6 py-6 shadow-xl">
+    <div class="flex items-center justify-between">
+      {{> brand-logo}}
+      <button type="button" data-mobile-nav-close aria-label="Close menu">{{{icon "close" "w-6 h-6"}}}</button>
+    </div>
+    <nav class="mt-10 flex flex-col gap-1 text-lg font-display text-al-navy">
+      <a href="/the-science" class="border-b border-al-line py-4">The Science</a>
+      <a href="/shop" class="border-b border-al-line py-4">Shop</a>
+      <a href="/about" class="border-b border-al-line py-4">About Us</a>
+      <a href="/ambassadors" class="border-b border-al-line py-4">Ambassadors</a>
+      <a href="/professionals" class="border-b border-al-line py-4">Professionals</a>
+      <a href="/horse-iq" class="border-b border-al-line py-4">Horse IQ</a>
+      <a href="/account" class="border-b border-al-line py-4">Account</a>
+    </nav>
+    <div class="mt-auto text-xs text-al-navy/60">Supporting the Life of Every Animal™</div>
+  </div>
+</div>

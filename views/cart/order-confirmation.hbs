@@ -1,0 +1,24 @@
+{{> page-header eyebrow="Order Confirmed" heading="Thank you for your order!"}}
+
+<section class="section flex justify-center">
+  <div class="card flex max-w-lg flex-col items-center px-8 py-16 text-center">
+    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-al-orange/10 text-al-orange">{{{icon "check" "w-8 h-8"}}}</div>
+    <p class="font-display mt-6 text-2xl font-medium text-al-navy">Order #{{orderNumber}}</p>
+    <p class="mt-3 text-sm text-al-ink/65">A confirmation email is on its way. This is a demo order &mdash; no payment was processed.</p>
+
+    <div class="mt-8 w-full space-y-3 border-t border-al-line pt-6 text-left">
+      {{#each lines}}
+      <div class="flex justify-between text-sm text-al-ink/70">
+        <span>{{this.name}} &times; {{this.qty}}</span>
+        <span class="font-semibold text-al-navy">{{currency this.price}}</span>
+      </div>
+      {{/each}}
+      <div class="flex justify-between border-t border-al-line pt-3 text-sm font-semibold text-al-navy">
+        <span>Total</span>
+        <span>{{currency subtotal}}</span>
+      </div>
+    </div>
+
+    <a href="/shop" class="btn-primary mt-8">Continue Shopping</a>
+  </div>
+</section>

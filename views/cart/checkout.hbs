@@ -1,0 +1,48 @@
+{{> page-header eyebrow="Checkout" heading="Checkout"}}
+
+<section class="section">
+  {{#if isEmpty}}
+  <div class="card flex flex-col items-center px-8 py-20 text-center">
+    <p class="text-sm text-al-ink/65">Your cart is empty.</p>
+    <a href="/shop" class="btn-primary mt-6">Shop All Products</a>
+  </div>
+  {{else}}
+  <div class="grid gap-10 lg:grid-cols-[1fr_360px]">
+    <form action="/checkout/place-order" method="post" class="space-y-8">
+      <div>
+        <h2 class="font-display text-lg font-medium text-al-navy">Shipping Information</h2>
+        <div class="mt-5 grid gap-5 sm:grid-cols-2">
+          <div><label class="field-label" for="fullName">Full Name</label><input id="fullName" name="fullName" required class="input-field" /></div>
+          <div><label class="field-label" for="email">Email</label><input id="email" name="email" type="email" required class="input-field" /></div>
+          <div class="sm:col-span-2"><label class="field-label" for="address">Address</label><input id="address" name="address" required class="input-field" /></div>
+          <div><label class="field-label" for="city">City</label><input id="city" name="city" required class="input-field" /></div>
+          <div><label class="field-label" for="state">State</label><input id="state" name="state" required class="input-field" /></div>
+          <div><label class="field-label" for="zip">Zip Code</label><input id="zip" name="zip" required class="input-field" /></div>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-dashed border-al-line bg-al-cream-dark/30 p-5 text-sm text-al-ink/65">
+        This is a demo checkout &mdash; no payment is processed and no charge will be made. Placing an order simply confirms this flow works end-to-end.
+      </div>
+
+      <button type="submit" class="btn-primary w-full sm:w-auto">Place Order</button>
+    </form>
+
+    <div class="card h-max p-6">
+      <p class="font-display text-lg font-medium text-al-navy">Order Summary</p>
+      <div class="mt-4 space-y-3">
+        {{#each lines}}
+        <div class="flex justify-between text-sm text-al-ink/70">
+          <span>{{this.name}} &times; {{this.qty}}</span>
+          <span class="font-semibold text-al-navy">{{currency this.price}}</span>
+        </div>
+        {{/each}}
+      </div>
+      <div class="mt-4 flex items-center justify-between border-t border-al-line pt-4 text-sm text-al-ink/70">
+        <span>Subtotal</span>
+        <span class="font-display text-base font-medium text-al-navy">{{currency subtotal}}</span>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+</section>

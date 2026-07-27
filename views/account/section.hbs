@@ -1,0 +1,11 @@
+{{> page-header eyebrow="My Account" heading=heading}}
+
+<section class="section grid gap-8 lg:grid-cols-[240px_1fr]">
+  {{> account-sidebar}}
+
+  <div class="card flex flex-col items-center justify-center px-8 py-16 text-center">
+    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-al-navy/5 text-al-navy">{{{icon "check" "w-6 h-6"}}}</div>
+    <p class="mt-5 max-w-sm text-sm text-al-ink/65">{{emptyText}}</p>
+    <a href="{{ctaHref}}" class="btn-primary mt-6">{{ctaText}}</a>
+  </div>
+</section>

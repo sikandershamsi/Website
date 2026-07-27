@@ -1,0 +1,38 @@
+{{> page-header eyebrow="Nature. Research. Results." heading="The Science Behind Performance" subheading="We combine the wisdom of nature with advanced nutritional science to create targeted formulations that deliver real, measurable results."}}
+{{> science-subnav}}
+
+<section class="section">
+  <p class="max-w-3xl text-sm leading-relaxed text-al-ink/75">Great products don't happen by accident&mdash;they begin with exceptional ingredients. Every Animalife formula is built on decades of research into the relationship between nutrition, physiology, and long-term health. The table below highlights the science behind each Animalife formulation and demonstrates how every ingredient contributes to measurable performance and long-term wellness benefits.</p>
+
+  <div class="mt-10 overflow-x-auto rounded-2xl border border-al-line">
+    <table class="w-full min-w-[900px] border-collapse text-left text-sm">
+      <thead>
+        <tr class="bg-al-navy text-white">
+          <th class="px-5 py-4 font-semibold">Product</th>
+          <th class="px-5 py-4 font-semibold">Ingredients</th>
+          <th class="px-5 py-4 font-semibold">Ingredient Benefits</th>
+          <th class="px-5 py-4 font-semibold">Performance Benefits</th>
+          <th class="px-5 py-4 font-semibold">Long-Term Health &amp; Wellness</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products}}
+        {{#with (lookup this.ingredientBenefits 0) as |row|}}
+        <tr class="border-t border-al-line align-top odd:bg-white even:bg-al-cream-dark/30">
+          <td class="px-5 py-5 font-display font-medium text-al-navy">
+            <a href="/shop/product/{{../slug}}" class="hover:text-al-orange">{{../trademark}}</a>
+            <p class="mt-1 text-[11px] font-sans font-normal uppercase tracking-wide text-al-ink/50">{{../category}}</p>
+          </td>
+          <td class="px-5 py-5 text-al-ink/70">{{row.ingredient}}</td>
+          <td class="px-5 py-5 text-al-ink/70">{{row.benefit}}</td>
+          <td class="px-5 py-5 text-al-ink/70">{{row.performance}}</td>
+          <td class="px-5 py-5 text-al-ink/70">{{row.wellness}}</td>
+        </tr>
+        {{/with}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  <a href="/the-science/ingredients" class="btn-outline mt-10">Explore the Ingredient Library</a>
+</section>
