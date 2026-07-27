@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Fraunces", "Georgia", serif;
-  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Playfair Display", "Georgia", serif;
+  --font-sans: "Work Sans", "Helvetica Neue", Arial, sans-serif;
 
-  --color-al-navy: #142238;
-  --color-al-navy-light: #1f3252;
+  --color-al-navy: #161513;
+  --color-al-navy-light: #2b2925;
   --color-al-orange: #e2662a;
   --color-al-orange-light: #f0955f;
-  --color-al-cream: #f6f2ea;
-  --color-al-cream-dark: #eee6d8;
-  --color-al-forest: #1f3b2c;
-  --color-al-ink: #23241f;
-  --color-al-line: #ded4c2;
+  --color-al-cream: #faf9f7;
+  --color-al-cream-dark: #f0eeea;
+  --color-al-forest: #201d1a;
+  --color-al-ink: #171613;
+  --color-al-line: #e5e2dc;
 }
 
 @layer base {

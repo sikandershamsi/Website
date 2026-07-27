@@ -19,6 +19,7 @@ export interface Product {
   price: number;
   size: string;
   heroStat: string;
+  image: string;
   description: string;
   keyIngredients: string[];
   supports: string[];
@@ -78,6 +79,7 @@ export const products: Product[] = [
     price: 79,
     size: '500g / 25 Days',
     heroStat: 'Hydrolyzed Collagen Type II',
+    image: '/images/products/vetroflex-tub.webp',
     accent: 'orange',
     description:
       'Healthy movement begins with healthy joints. VetroFlex® is scientifically formulated to support the horse’s natural ability to repair cartilage, strengthen connective tissue, and support the structural integrity of the musculoskeletal system. By promoting long-term joint health rather than simply masking discomfort, VetroFlex helps horses move more freely, recover more effectively, and remain sound throughout every stage of life.',
@@ -156,6 +158,7 @@ export const products: Product[] = [
     price: 69,
     size: '105g / 30 Days',
     heroStat: 'Scutellaria Baicalensis + Acacia Catechu',
+    image: '/images/products/vetrofen-tub.webp',
     accent: 'red',
     description:
       'VetroFen® combines powerful plant-derived ingredients with advanced nutritional science to help manage inflammation and discomfort naturally. Designed as a long-term alternative to routine NSAID use, VetroFen supports mobility, comfort, and recovery while working in harmony with the body’s natural healing processes — helping horses remain active, comfortable, and performing at their best.',
@@ -223,6 +226,7 @@ export const products: Product[] = [
     price: 59,
     size: '20ml Syringe',
     heroStat: 'Omega-3 + Superoxide Dismutase',
+    image: '/images/products/vetrofit-syringe.webp',
     accent: 'gold',
     description:
       'The kidney is one of the most overlooked performance organs in the horse. VetroFit is scientifically formulated to nourish the physiological processes behind oxygen transport, fluid regulation, electrolyte balance, and recovery — helping horses maximize endurance, accelerate recovery, and maintain peak performance naturally.',

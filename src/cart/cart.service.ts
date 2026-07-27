@@ -6,6 +6,7 @@ export interface CartLine {
   name: string;
   price: number;
   size: string;
+  image: string;
   qty: number;
 }
 
@@ -38,7 +39,14 @@ export class CartService {
     if (existing) {
       existing.qty += qty;
     } else {
-      lines.push({ slug, name: product.name, price: product.price, size: product.size, qty });
+      lines.push({
+        slug,
+        name: product.name,
+        price: product.price,
+        size: product.size,
+        image: product.image,
+        qty,
+      });
     }
   }
 
