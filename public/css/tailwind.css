@@ -428,6 +428,9 @@
   .h-max {
     height: max-content;
   }
+  .max-h-\[70vh\] {
+    max-height: 70vh;
+  }
   .max-h-\[520px\] {
     max-height: 520px;
   }
@@ -870,6 +873,9 @@
   }
   .object-cover {
     object-fit: cover;
+  }
+  .object-center {
+    object-position: center;
   }
   .p-1 {
     padding: var(--spacing);

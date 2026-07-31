@@ -1,22 +1,17 @@
 <section class="panel-white">
-  <div class="section grid gap-10 lg:grid-cols-2 lg:items-center">
-    <div>
-      <div class="eyebrow">Affiliate Reward Program</div>
-      <h1 class="font-display mt-4 text-4xl font-medium text-al-navy sm:text-5xl">Partner with Purpose. Rewarding Results.</h1>
-      <p class="mt-5 text-sm leading-relaxed text-al-ink/75">Join a trusted network of equine professionals and earn generous rewards while making a real difference in horses' lives.</p>
-    </div>
-    <div class="overflow-hidden rounded-2xl">
-      <img src="/images/affiliates/hero-horse.jpg" alt="Affiliate partner program" class="aspect-[4/3] w-full object-cover" />
+  <div class="section">
+    <div class="eyebrow">Affiliate Reward Program</div>
+    <h1 class="font-display mt-4 max-w-3xl text-4xl font-medium text-al-navy sm:text-5xl">Partner with Purpose. Rewarding Results.</h1>
+    <p class="mt-5 max-w-2xl text-sm leading-relaxed text-al-ink/75">Join a trusted network of equine professionals and earn generous rewards while making a real difference in horses' lives.</p>
+    <div class="mt-10 overflow-hidden rounded-2xl border border-al-line bg-white">
+      <img src="/images/affiliates/roles-strip.jpg" alt="Animalife Affiliate Rewards Program" class="w-full object-contain" />
     </div>
   </div>
 </section>
 
 <section class="panel-grey">
   <div class="section">
-    <div class="overflow-hidden rounded-2xl bg-white">
-      <img src="/images/affiliates/roles-strip.jpg" alt="Affiliate audience roles" class="w-full object-contain" />
-    </div>
-    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
       {{#each affiliateAudiences}}
       <div class="rounded-xl bg-white p-5 text-center shadow-sm">
         <p class="text-xs font-semibold uppercase tracking-wide text-al-orange">{{this.title}}</p>

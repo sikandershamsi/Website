@@ -1,4 +1,6 @@
-{{> page-header eyebrow="The Science" heading="The Science Behind Performance" subheading="Nature. Research. Results." image="/images/science/lab-banner.jpg"}}
+<section class="relative overflow-hidden">
+  <img src="/images/science/lab-banner.jpg" alt="The Science Behind Performance — Nature. Research. Results." class="w-full object-cover" />
+</section>
 {{> science-subnav}}
 
 <section class="panel-white">
@@ -13,38 +15,13 @@
 
 <section class="panel-grey">
   <div class="section">
-    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-      <div>
-        <h2 class="font-display text-3xl font-medium uppercase tracking-wide text-al-navy sm:text-4xl">Targeted Support</h2>
-        <p class="mt-4 text-sm font-semibold text-al-navy">Targeted support for the systems that power performance, recovery, and long-term health.</p>
-        <p class="mt-4 text-sm leading-relaxed text-al-ink/75">Our science-backed solutions work in harmony with your horse's body to support what matters most.</p>
-        <div class="mt-8 space-y-4">
-          <a href="/shop/category/cartilage-joint-connective-tissue" class="flex items-center gap-4 rounded-xl bg-white p-4 transition-shadow hover:shadow-md">
-            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-al-orange/15 text-al-orange">{{{icon "horseshoe" "w-5 h-5"}}}</span>
-            <div>
-              <p class="text-sm font-semibold text-al-navy">VetroFlex™ Cartilage &amp; Connective Tissue</p>
-              <p class="text-xs text-al-ink/55">Joint • Connective tissue repair</p>
-            </div>
-          </a>
-          <a href="/shop/category/inflammation-pain-management" class="flex items-center gap-4 rounded-xl bg-white p-4 transition-shadow hover:shadow-md">
-            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-sky-100 text-sky-700">{{{icon "bolt" "w-5 h-5"}}}</span>
-            <div>
-              <p class="text-sm font-semibold text-al-navy">VetroFen™ Inflammation &amp; Pain Relief</p>
-              <p class="text-xs text-al-ink/55">NSAID alternative support</p>
-            </div>
-          </a>
-          <a href="/shop/category/kidney-homeostasis-oxygen-recovery" class="flex items-center gap-4 rounded-xl bg-white p-4 transition-shadow hover:shadow-md">
-            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-700">{{{icon "heart" "w-5 h-5"}}}</span>
-            <div>
-              <p class="text-sm font-semibold text-al-navy">VetroFit™ Kidney Homeostasis Management</p>
-              <p class="text-xs text-al-ink/55">Oxygen transport &amp; recovery</p>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="overflow-hidden rounded-2xl bg-white p-4">
-        <img src="/images/science/targeted-horse.png" alt="Targeted equine support systems" class="mx-auto max-h-[520px] w-auto object-contain" />
-      </div>
+    <a href="/shop" class="block overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md">
+      <img src="/images/science/targeted-support.jpg" alt="Targeted support for VetroFlex, VetroFen, and VetroFit" class="w-full object-contain" />
+    </a>
+    <div class="mt-6 flex flex-wrap justify-center gap-4">
+      <a href="/shop/category/cartilage-joint-connective-tissue" class="btn-outline !px-5 !py-2 text-xs">VetroFlex™</a>
+      <a href="/shop/category/inflammation-pain-management" class="btn-outline !px-5 !py-2 text-xs">VetroFen™</a>
+      <a href="/shop/category/kidney-homeostasis-oxygen-recovery" class="btn-outline !px-5 !py-2 text-xs">VetroFit™</a>
     </div>
   </div>
 </section>
@@ -53,35 +30,8 @@
   <div class="section">
     <h2 class="font-display text-3xl font-medium text-al-navy sm:text-4xl">Product Science Comparison</h2>
     <p class="mt-4 max-w-3xl text-sm text-al-ink/70">Every Animalife formula combines premium natural ingredients with science-backed nutritional research to deliver measurable physiological benefits.</p>
-    <div class="mt-10 overflow-x-auto rounded-2xl border border-al-line">
-      <table class="w-full min-w-[900px] border-collapse text-left text-sm">
-        <thead>
-          <tr class="bg-al-navy-light text-white">
-            <th class="px-5 py-4 font-semibold">Product Name</th>
-            <th class="px-5 py-4 font-semibold">Ingredients</th>
-            <th class="px-5 py-4 font-semibold">Ingredient Benefits</th>
-            <th class="px-5 py-4 font-semibold">Performance Benefits</th>
-            <th class="px-5 py-4 font-semibold">Long-Term Health &amp; Wellness</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each products}}
-          {{#with (lookup this.ingredientBenefits 0) as |row|}}
-          <tr class="border-t border-al-line align-top odd:bg-white even:bg-al-panel">
-            <td class="px-5 py-5 font-display font-medium text-al-navy">
-              <a href="/shop/product/{{../slug}}" class="hover:text-al-orange">{{../trademark}}</a>
-              <p class="mt-1 text-[11px] font-sans font-normal uppercase tracking-wide text-al-ink/50">{{../category}}</p>
-              <img src="{{../image}}" alt="{{../trademark}}" class="mt-3 h-20 w-auto object-contain" />
-            </td>
-            <td class="px-5 py-5 text-al-ink/70">{{row.ingredient}}</td>
-            <td class="px-5 py-5 text-al-ink/70">{{row.benefit}}</td>
-            <td class="px-5 py-5 text-al-ink/70">{{row.performance}}</td>
-            <td class="px-5 py-5 text-al-ink/70">{{row.wellness}}</td>
-          </tr>
-          {{/with}}
-          {{/each}}
-        </tbody>
-      </table>
+    <div class="mt-10 overflow-hidden rounded-2xl border border-al-line bg-white">
+      <img src="/images/science/comparison-panel.jpg" alt="VetroFlex, VetroFen, and VetroFit science comparison" class="w-full object-contain" />
     </div>
     <div class="mt-10 flex flex-wrap gap-4">
       <a href="/the-science/ingredients" class="btn-outline">Explore the Ingredient Library</a>
