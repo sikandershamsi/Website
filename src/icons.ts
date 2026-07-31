@@ -38,8 +38,11 @@ export const icons: Record<string, string> = {
   heart: '<path d="M12 20s-7-4.4-9.2-8.2C1 9.2 2.2 6 5.4 6c1.9 0 3.1 1.1 3.8 2.1C10 7.1 11.2 6 13.1 6c3.2 0 4.4 3.2 2.6 5.8C19 15.6 12 20 12 20Z"/>',
   'shield-plus': '<path d="M12 3l7 3v6c0 4.8-3 8.4-7 9-4-.6-7-4.2-7-9V6l7-3Z"/><path d="M12 9v6"/><path d="M9 12h6"/>',
   refresh: '<path d="M20 11a8 8 0 1 1-2.2-5.5"/><path d="M20 4v5h-5"/><path d="M12 8v4l2.5 1.5"/>',
+  'repair-cycle': '<path d="M12 8v8"/><path d="M8 12h8"/><path d="M19.4 10A8 8 0 1 0 18 16.5"/><path d="M19.4 6.5V10H16"/>',
   chart: '<path d="M4 19h16"/><path d="M7 16V11"/><path d="M12 16V7"/><path d="M17 16v-4"/><path d="m14 9 3-3 2 2"/>',
   orbit: '<circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="12" r="6.5" stroke-dasharray="1.6 2.2"/><circle cx="12" cy="12" r="10" stroke-dasharray="1.2 2.8"/>',
+  crosshair: '<circle cx="12" cy="12" r="7"/><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="1.6"/>',
+  clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/><path d="m16.5 7.5 1.2-1.2"/>',
 };
 
 export function renderIcon(name: string, className = 'w-6 h-6'): string {

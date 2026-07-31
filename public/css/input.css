@@ -110,6 +110,115 @@
   .about-hero-blend {
     @apply min-h-[420px] rounded-none sm:min-h-[480px] lg:min-h-[540px];
   }
+  .science-hero {
+    @apply relative isolate overflow-hidden bg-white;
+  }
+  .science-hero__stage {
+    @apply relative mx-auto min-h-[320px] max-w-7xl sm:min-h-[380px] lg:min-h-[440px];
+  }
+  .science-hero__media {
+    @apply absolute inset-0 h-full w-full object-cover object-[68%_center] sm:object-[62%_center] lg:object-[58%_center];
+  }
+  .science-hero__copy {
+    @apply relative z-10 flex h-full max-w-xl flex-col justify-center px-6 py-12 sm:px-8 sm:py-14 lg:max-w-[42%] lg:px-10 lg:py-16;
+  }
+  .science-pillars {
+    @apply border-t border-al-line bg-white;
+  }
+  .science-pillars__grid {
+    @apply mx-auto grid max-w-7xl divide-y divide-al-line sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-3 xl:grid-cols-6 xl:divide-x;
+  }
+  .science-pillar {
+    @apply bg-white px-5 py-8 text-center transition-colors duration-200 hover:bg-al-panel;
+  }
+  .science-pillar__icon {
+    @apply mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[#2f4a3a]/35 text-[#2f4a3a] transition-all duration-200;
+  }
+  .science-pillar:hover .science-pillar__icon {
+    @apply scale-110 text-al-orange;
+  }
+  .science-pillar__title {
+    @apply mt-4 text-[11px] font-semibold uppercase tracking-wide text-[#2f4a3a] transition-colors;
+  }
+  .science-pillar:hover .science-pillar__title {
+    @apply text-al-orange;
+  }
+  .inflammation-panel {
+    @apply overflow-hidden rounded-2xl border border-al-line bg-white;
+  }
+  .inflammation-panel__stage {
+    @apply relative min-h-[320px] sm:min-h-[400px] lg:min-h-[480px];
+  }
+  .inflammation-panel__media {
+    @apply absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-[68%_center] lg:object-[64%_center];
+  }
+  .inflammation-panel__copy {
+    @apply relative z-10 flex h-full max-w-md flex-col justify-center px-6 py-10 sm:px-8 sm:py-12 lg:max-w-[40%] lg:px-10 lg:py-14;
+  }
+  .inflammation-benefits {
+    @apply border-t border-al-line bg-white;
+  }
+  .inflammation-benefits__grid {
+    @apply grid divide-y divide-al-line sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x;
+  }
+  .inflammation-benefit {
+    @apply flex items-center gap-3 px-5 py-5 transition-colors duration-200 hover:bg-al-panel;
+  }
+  .inflammation-benefit__icon {
+    @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-al-navy text-white;
+  }
+  .feel-difference {
+    @apply relative overflow-hidden rounded-2xl bg-al-navy;
+  }
+  .feel-difference__panels {
+    @apply grid grid-cols-2 lg:grid-cols-4;
+  }
+  .feel-difference__panel {
+    @apply relative min-h-[180px] overflow-hidden sm:min-h-[220px] lg:min-h-[280px];
+  }
+  .feel-difference__panel + .feel-difference__panel {
+    @apply lg:-ml-6;
+  }
+  .feel-difference__panel img {
+    @apply absolute inset-0 h-full w-full object-cover transition-transform duration-500;
+  }
+  .feel-difference__panel:hover img {
+    @apply scale-105;
+  }
+  .feel-difference__panel:nth-child(1) {
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+  }
+  .feel-difference__panel:nth-child(2),
+  .feel-difference__panel:nth-child(3) {
+    clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+  }
+  .feel-difference__panel:nth-child(4) {
+    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  @media (max-width: 1023px) {
+    .feel-difference__panel:nth-child(1),
+    .feel-difference__panel:nth-child(2),
+    .feel-difference__panel:nth-child(3),
+    .feel-difference__panel:nth-child(4) {
+      clip-path: none;
+    }
+    .feel-difference__panel + .feel-difference__panel {
+      margin-left: 0;
+    }
+  }
+  .feel-difference__title {
+    @apply pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4 text-center text-[clamp(1.75rem,5vw,3.75rem)] font-bold lowercase leading-none tracking-tight text-white;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+  }
+  .discipline-chip {
+    @apply text-center transition-transform duration-200 hover:-translate-y-0.5;
+  }
+  .discipline-chip__icon {
+    @apply mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-al-orange/40 text-al-orange transition-colors duration-200;
+  }
+  .discipline-chip:hover .discipline-chip__icon {
+    @apply border-al-orange bg-al-orange text-white;
+  }
   .slider-track {
     @apply flex transition-transform duration-500 ease-out;
   }

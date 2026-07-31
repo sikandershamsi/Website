@@ -1,3 +1,10 @@
+export const inflammationBenefits = [
+  { title: 'Target', body: 'Inflammation at the Source', icon: 'crosshair' },
+  { title: 'Reduce', body: 'Swelling & Discomfort', icon: 'shield-check' },
+  { title: 'Restore', body: 'Natural Mobility & Flexibility', icon: 'horse' },
+  { title: 'Support', body: 'Long-Term Joint Health', icon: 'clock' },
+];
+
 export const sciencePillars = [
   {
     title: 'Support Natural Regulation',
@@ -12,7 +19,7 @@ export const sciencePillars = [
   {
     title: 'Support Natural Repair',
     body: 'Nourish tissues and systems so the body can repair and rebuild.',
-    icon: 'refresh',
+    icon: 'repair-cycle',
   },
   {
     title: 'Support Physiological Balance',
