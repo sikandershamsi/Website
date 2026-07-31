@@ -44,21 +44,28 @@
 
 <!-- MISSION + INGREDIENTS combined panel -->
 <section class="panel-grey">
-  <div class="section grid gap-10 lg:grid-cols-2 lg:items-center">
-    <div>
+  <div class="section grid items-start gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
+    <div class="max-w-xl">
       <div class="eyebrow">Our Mission</div>
-      <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Perform. Recover. Thrive.</h2>
-      <p class="mt-5 text-sm leading-relaxed text-al-ink/75">Our mission is to redefine animal wellness through innovative nutritional science designed to treat root causes and support the body's natural ability to heal, perform, recover, and thrive. By focusing on the biological systems that drive long-term wellness&mdash;not simply masking symptoms&mdash;we help animals achieve lasting health through nature-inspired, science-backed nutrition.</p>
-      <p class="mt-4 text-sm leading-relaxed text-al-ink/75">Since 2005, Animalife has helped thousands of horses perform at their best, recover faster, and enjoy healthier, more active lives.</p>
+      <h2 class="font-display mt-5 text-4xl font-medium leading-tight text-al-navy sm:text-5xl">Perform. Recover. Thrive.</h2>
+      <p class="mt-6 text-sm leading-relaxed text-al-ink/75">Our mission is to redefine animal wellness through innovative nutritional science designed to treat root causes and support the body's natural ability to heal, perform, recover, and thrive. By focusing on the biological systems that drive long-term wellness&mdash;not simply masking symptoms&mdash;we help animals achieve lasting health through nature-inspired, science-backed nutrition.</p>
+      <p class="mt-5 text-sm leading-relaxed text-al-ink/75">Since 2005, Animalife has helped thousands of horses perform at their best, recover faster, and enjoy healthier, more active lives.</p>
     </div>
-    <div class="overflow-hidden rounded-2xl border border-al-line bg-white">
-      <img src="/images/home/ingredients-photo.jpg" alt="Natural botanical ingredients and formulations used in Animalife products" class="aspect-[4/3] w-full object-cover object-center" />
-      <div class="grid grid-cols-2 gap-4 border-t border-al-line p-6 sm:grid-cols-3">
+
+    <div class="overflow-hidden rounded-[1.25rem] border border-al-line bg-white shadow-sm">
+      <div class="aspect-[5/4] overflow-hidden bg-white">
+        <img
+          src="/images/home/ingredients-photo.jpg"
+          alt="Natural botanical ingredients used in Animalife formulations"
+          class="h-full w-full object-cover object-[center_72%]"
+        />
+      </div>
+      <div class="grid grid-cols-3 gap-x-3 gap-y-6 border-t border-al-line px-5 py-6 sm:gap-y-7 sm:px-6 sm:py-7">
         {{#each featuredIngredients}}
         <div class="text-center">
-          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-al-panel text-al-navy">{{{icon this.icon "w-6 h-6"}}}</div>
-          <p class="mt-2 text-xs font-semibold text-al-navy">{{this.name}}</p>
-          <p class="text-[11px] text-al-ink/50">{{this.origin}}</p>
+          <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-al-panel text-al-navy">{{{icon this.icon "w-5 h-5"}}}</div>
+          <p class="mt-2.5 text-[11px] font-semibold leading-snug text-al-navy sm:text-xs">{{this.name}}</p>
+          <p class="mt-0.5 text-[10px] leading-snug text-al-ink/45">{{this.origin}}</p>
         </div>
         {{/each}}
       </div>
