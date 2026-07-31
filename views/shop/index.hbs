@@ -1,26 +1,37 @@
 {{> page-header eyebrow="Shop Animalife" heading="Root-cause nutrition for every stage of performance." subheading="Three targeted systems. One science-backed philosophy."}}
 
-<section class="section">
-  <div class="grid gap-6 md:grid-cols-3">
-    {{#each categories}}
-    <a href="/shop/category/{{this.slug}}" class="card group flex flex-col p-7 transition-shadow hover:shadow-lg">
-      <p class="text-xs font-semibold uppercase tracking-wide text-al-orange">{{this.strapline}}</p>
-      <p class="font-display mt-3 text-xl font-medium text-al-navy">{{this.short}}</p>
-      <p class="mt-3 flex-1 text-sm text-al-ink/65">{{this.summary}}</p>
-      <span class="mt-5 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-al-navy group-hover:text-al-orange">Shop Category {{{icon "arrow-right" "w-4 h-4"}}}</span>
-    </a>
-    {{/each}}
+<section class="panel-grey">
+  <div class="section">
+    <div class="grid gap-6 md:grid-cols-3">
+      {{#each categories}}
+      <a href="/shop/category/{{this.slug}}" class="group overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-lg">
+        <div class="relative aspect-[4/3] overflow-hidden bg-al-navy">
+          <img src="{{this.image}}" alt="{{this.short}}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 p-5 text-white">
+            <p class="font-display text-2xl font-medium">{{this.short}}</p>
+            <p class="mt-1 text-[11px] font-semibold uppercase tracking-wide text-white/80">{{this.strapline}}</p>
+          </div>
+        </div>
+        <div class="p-5">
+          <p class="text-sm text-al-ink/70">{{this.summary}}</p>
+          <span class="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-al-orange">Link to Product Information {{{icon "arrow-right" "w-4 h-4"}}}</span>
+        </div>
+      </a>
+      {{/each}}
+    </div>
   </div>
 </section>
 
-<section class="bg-al-cream-dark/60">
+<section class="panel-white">
   <div class="section">
     <div class="eyebrow">Product Selection</div>
     <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Shop All Products</h2>
+    <p class="mt-3 text-sm text-al-ink/60">Select <span class="font-semibold text-al-navy">Inflammation &amp; Pain Relief</span> or <span class="font-semibold text-al-navy">Kidney Homeostasis Management</span> above, or browse every formula below.</p>
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {{#each products}}
       <div class="card flex flex-col overflow-hidden">
-        <a href="/shop/product/{{this.slug}}" class="flex aspect-[4/5] items-center justify-center bg-al-cream-dark/50 p-8">
+        <a href="/shop/product/{{this.slug}}" class="flex aspect-[4/5] items-center justify-center bg-al-panel p-8">
           <img src="{{this.image}}" alt="{{this.trademark}}" class="h-full w-auto object-contain" />
         </a>
         <div class="flex flex-1 flex-col p-6">

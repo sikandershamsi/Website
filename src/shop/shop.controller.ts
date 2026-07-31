@@ -1,6 +1,6 @@
 import { Controller, Get, NotFoundException, Param, Render } from '@nestjs/common';
 import { categories, findProduct, productsByCategory, products } from '../content/products.data';
-import { testimonials } from '../content/site.data';
+import { testimonials, vetrofitTestimonials } from '../content/site.data';
 
 @Controller('shop')
 export class ShopController {
@@ -39,6 +39,7 @@ export class ShopController {
       product,
       related: products.filter((p) => p.slug !== slug),
       reviews: testimonials.filter((t) => t.product.toLowerCase() === product.name.toLowerCase()),
+      vetrofitTestimonials,
     };
   }
 }

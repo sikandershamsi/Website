@@ -12,8 +12,16 @@ export class HomeController {
       activeNav: 'home',
       horseTruths,
       standards,
-      testimonials: testimonials.slice(0, 6),
+      testimonials: testimonials.slice(0, 8),
       products,
+      featuredIngredients: [
+        { name: 'Hyaluronic Acid', origin: 'Origin: Global', icon: 'beaker' },
+        { name: 'Collagen Type II', origin: 'Origin: Brazil', icon: 'leaf' },
+        { name: 'MSM', origin: 'Origin: Global', icon: 'flask' },
+        { name: 'Glucosamine', origin: 'Origin: Global', icon: 'shield-check' },
+        { name: 'ACV Chondroitin', origin: 'Origin: France', icon: 'flask' },
+        { name: 'Biotin', origin: 'Origin: Switzerland', icon: 'horseshoe' },
+      ],
     };
   }
 }

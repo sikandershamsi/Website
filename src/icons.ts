@@ -18,6 +18,7 @@ export const icons: Record<string, string> = {
   star: '<path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.7Z"/>',
   check: '<path d="m5 13 4 4 10-10"/>',
   'arrow-right': '<path d="M4 12h16"/><path d="m13 5 7 7-7 7"/>',
+  'arrow-left': '<path d="M20 12H4"/><path d="m11 5-7 7 7 7"/>',
   instagram: '<rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/>',
   facebook: '<path d="M14 21v-8h2.8l.4-3.4H14V7.4c0-1 .3-1.7 1.8-1.7H17V2.6C16.7 2.5 15.6 2.4 14.4 2.4c-2.6 0-4.4 1.6-4.4 4.5v2.7H7v3.4h3v8Z"/>',
   youtube: '<rect x="2.5" y="6" width="19" height="12" rx="3.5"/><path d="m10.5 9.7 5 2.3-5 2.3Z"/>',
@@ -31,6 +32,7 @@ export const icons: Record<string, string> = {
   calculator: '<rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M8 6.5h8"/><path d="M8 11h.01"/><path d="M12 11h.01"/><path d="M16 11h.01"/><path d="M8 15h.01"/><path d="M12 15h.01"/><path d="M16 15v3"/><path d="M8 19h.01"/><path d="M12 19h.01"/>',
   handshake: '<path d="m2 12 4-3 3 2 3-3 4 4 4-3 2 3-5 5-4-2-3 3-5-4Z"/>',
   bolt: '<path d="M13 2 5 14h5l-1 8 9-13h-6Z"/>',
+  heart: '<path d="M12 20s-7-4.4-9.2-8.2C1 9.2 2.2 6 5.4 6c1.9 0 3.1 1.1 3.8 2.1C10 7.1 11.2 6 13.1 6c3.2 0 4.4 3.2 2.6 5.8C19 15.6 12 20 12 20Z"/>',
 };
 
 export function renderIcon(name: string, className = 'w-6 h-6'): string {

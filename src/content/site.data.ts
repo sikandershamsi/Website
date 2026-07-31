@@ -101,9 +101,16 @@ export const disciplines = [
 ];
 
 export const affiliateAudiences = [
-  { title: 'Trainers', body: 'Building performance and potential.' },
-  { title: 'Veterinarians', body: 'Supporting health and longevity.' },
+  { title: 'Trainers', body: 'Boosting performance and potential.' },
+  { title: 'Veterinarians', body: 'Supporting health with integrity.' },
   { title: 'Equine Therapists', body: 'Enhancing comfort, mobility and recovery.' },
   { title: 'Nutritionists', body: 'Fueling health through targeted nutrition.' },
   { title: 'Equestrian Influencers & Content Creators', body: 'Inspiring and connecting the equestrian community.' },
+];
+
+export const vetrofitTestimonials = [
+  { quote: 'Thank you John. We gave her a whole tube this morning 4 hours before her prep breeze and another tube right afterward. She gained 2 seconds from her last breeze at the farm — from 49.90 to 48.20.', author: 'Racehorse Owner — Trainer' },
+  { quote: 'We use VetroFit before every work. The horses recover cleaner and come back stronger the next day.', author: 'Thoroughbred Trainer' },
+  { quote: 'Oxygen and recovery support we can actually see in the clocker stand. It has become part of our pre-race protocol.', author: 'Racing Stable Manager' },
+  { quote: 'No stimulants, just better physiology. That is exactly what we want heading into competition.', author: 'Equine Nutritionist' },
 ];

@@ -1,13 +1,18 @@
 import { Controller, Get, Render } from '@nestjs/common';
 import { products } from '../content/products.data';
-import { ingredientLibrary } from '../content/site.data';
+import { ingredientLibrary, vetrofitTestimonials } from '../content/site.data';
 
 @Controller('the-science')
 export class ScienceController {
   @Get()
-  @Render('science/philosophy')
-  philosophy() {
-    return { title: 'Our Philosophy', activeNav: 'science', scienceTab: 'philosophy' };
+  @Render('science/performance')
+  index() {
+    return {
+      title: 'The Science Behind Performance',
+      activeNav: 'science',
+      scienceTab: 'performance',
+      products,
+    };
   }
 
   @Get('philosophy')
@@ -35,6 +40,27 @@ export class ScienceController {
       activeNav: 'science',
       scienceTab: 'ingredients',
       ingredientLibrary,
+    };
+  }
+
+  @Get('racing')
+  @Render('science/racing')
+  racing() {
+    return {
+      title: 'Racing — The Industry Reality',
+      activeNav: 'science',
+      scienceTab: 'racing',
+    };
+  }
+
+  @Get('kidney-homeostasis')
+  @Render('science/kidney')
+  kidney() {
+    return {
+      title: 'Kidney Homeostasis',
+      activeNav: 'science',
+      scienceTab: 'kidney',
+      testimonials: vetrofitTestimonials,
     };
   }
 }

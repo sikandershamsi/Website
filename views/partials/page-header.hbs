@@ -1,7 +1,13 @@
-<section class="bg-al-navy text-white">
-  <div class="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-10">
-    {{#if eyebrow}}<div class="eyebrow !text-al-orange-light">{{eyebrow}}</div>{{/if}}
-    <h1 class="font-display mt-4 max-w-2xl text-4xl font-medium leading-tight sm:text-5xl">{{heading}}</h1>
-    {{#if subheading}}<p class="mt-5 max-w-xl text-sm text-white/70 sm:text-base">{{subheading}}</p>{{/if}}
+<section class="relative overflow-hidden bg-al-panel text-al-navy">
+  {{#if image}}
+  <div class="absolute inset-0">
+    <img src="{{image}}" alt="" class="h-full w-full object-cover opacity-90" />
+    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/30"></div>
+  </div>
+  {{/if}}
+  <div class="relative mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+    {{#if eyebrow}}<div class="eyebrow">{{eyebrow}}</div>{{/if}}
+    <h1 class="font-display mt-4 max-w-3xl text-4xl font-medium leading-tight sm:text-5xl">{{heading}}</h1>
+    {{#if subheading}}<p class="mt-5 max-w-2xl text-sm text-al-ink/70 sm:text-base">{{subheading}}</p>{{/if}}
   </div>
 </section>

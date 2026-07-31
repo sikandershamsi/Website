@@ -27,7 +27,7 @@
     });
   });
 
-  // Generic tabs: [data-tabs] wraps [data-tab-btn="key"] triggers and [data-tab-panel="key"] panels
+  // Generic tabs
   document.querySelectorAll('[data-tabs]').forEach(function (group) {
     var buttons = group.querySelectorAll('[data-tab-btn]');
     var panels = group.querySelectorAll('[data-tab-panel]');
@@ -44,7 +44,7 @@
     });
   });
 
-  // Accordion: [data-accordion-item] toggles [data-accordion-panel]
+  // Accordion
   document.querySelectorAll('[data-accordion-item]').forEach(function (item) {
     var trigger = item.querySelector('[data-accordion-trigger]');
     var panel = item.querySelector('[data-accordion-panel]');
@@ -55,6 +55,85 @@
       panel.classList.toggle('hidden', isOpen);
       icon && icon.classList.toggle('rotate-180', !isOpen);
     });
+  });
+
+  // Hero media stitch / fade
+  var heroSlides = document.querySelectorAll('[data-hero-slide]');
+  if (heroSlides.length > 1) {
+    var heroIndex = 0;
+    setInterval(function () {
+      heroSlides[heroIndex].classList.remove('opacity-100');
+      heroSlides[heroIndex].classList.add('opacity-0');
+      heroIndex = (heroIndex + 1) % heroSlides.length;
+      heroSlides[heroIndex].classList.remove('opacity-0');
+      heroSlides[heroIndex].classList.add('opacity-100');
+    }, 4500);
+  }
+
+  function initPairSlider(options) {
+    var track = document.querySelector(options.track);
+    var slides = document.querySelectorAll(options.slide);
+    var prev = document.querySelector(options.prev);
+    var next = document.querySelector(options.next);
+    var dotsWrap = options.dots ? document.querySelector(options.dots) : null;
+    if (!track || !slides.length) return;
+
+    var index = 0;
+    function perView() {
+      return window.innerWidth >= 768 ? 2 : 1;
+    }
+    function maxIndex() {
+      return Math.max(0, slides.length - perView());
+    }
+    function renderDots() {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = '';
+      var pages = maxIndex() + 1;
+      for (var i = 0; i < pages; i++) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'slider-dot' + (i === index ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Go to slide group ' + (i + 1));
+        (function (page) {
+          dot.addEventListener('click', function () {
+            index = page;
+            update();
+          });
+        })(i);
+        dotsWrap.appendChild(dot);
+      }
+    }
+    function update() {
+      if (index > maxIndex()) index = maxIndex();
+      var pct = (100 / perView()) * index;
+      track.style.transform = 'translateX(-' + pct + '%)';
+      renderDots();
+    }
+    prev && prev.addEventListener('click', function () {
+      index = Math.max(0, index - 1);
+      update();
+    });
+    next && next.addEventListener('click', function () {
+      index = Math.min(maxIndex(), index + 1);
+      update();
+    });
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  initPairSlider({
+    track: '[data-truth-track]',
+    slide: '[data-truth-slide]',
+    prev: '[data-truth-prev]',
+    next: '[data-truth-next]',
+    dots: '[data-truth-dots]',
+  });
+
+  initPairSlider({
+    track: '[data-testimonial-track]',
+    slide: '[data-testimonial-slide]',
+    prev: '[data-testimonial-prev]',
+    next: '[data-testimonial-next]',
   });
 
   // Affiliate earnings calculator

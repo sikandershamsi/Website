@@ -1,11 +1,16 @@
 <section class="section grid gap-12 lg:grid-cols-2 lg:items-start">
-  <div class="flex aspect-[4/5] items-center justify-center rounded-2xl bg-al-cream-dark/50 p-12 lg:sticky lg:top-28">
+  <div class="flex aspect-[4/5] items-center justify-center rounded-2xl bg-al-panel p-12 lg:sticky lg:top-28">
     <img src="{{product.image}}" alt="{{product.trademark}}" class="h-full w-auto max-w-full object-contain" />
   </div>
 
   <div>
+    {{#ifCond product.slug "vetrofit"}}
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-orange">2–4 Hours Before Competition</p>
+    {{else}}
     <p class="text-xs font-semibold uppercase tracking-wide text-al-orange">{{product.category}}</p>
-    <h1 class="font-display mt-3 text-3xl font-medium text-al-navy sm:text-4xl">{{product.tagline}}</h1>
+    {{/ifCond}}
+    <h1 class="font-display mt-3 text-3xl font-medium text-al-navy sm:text-4xl">{{product.trademark}}</h1>
+    <p class="mt-2 text-lg text-al-ink/70">{{product.tagline}}</p>
     <div class="mt-4 flex items-center gap-1 text-al-orange">
       {{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}
       <span class="ml-2 text-xs font-semibold text-al-ink/60">{{reviews.length}} reviews</span>
@@ -18,6 +23,7 @@
       <label class="field-label sr-only" for="qty">Quantity</label>
       <input id="qty" type="number" name="qty" value="1" min="1" class="input-field w-20 text-center" />
       <button type="submit" class="btn-primary">Add to Cart</button>
+      <a href="/shop/product/{{product.slug}}#ingredients" class="btn-outline">Learn More</a>
     </form>
 
     <div class="mt-8">
@@ -40,7 +46,52 @@
   </div>
 </section>
 
-<section class="bg-al-cream-dark/40">
+{{#ifCond product.slug "vetrofit"}}
+<section class="panel-grey">
+  <div class="section">
+    <div class="overflow-hidden rounded-2xl">
+      <img src="/images/vetrofit/page-panel-a.jpg" alt="VetroFit banner and product story" class="w-full object-contain" />
+    </div>
+  </div>
+</section>
+
+<section class="panel-white">
+  <div class="section">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <div class="eyebrow">Testimonials</div>
+        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy">What riders &amp; trainers are saying</h2>
+      </div>
+      <div class="flex gap-2">
+        <button type="button" data-testimonial-prev class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line" aria-label="Previous">{{{icon "arrow-left" "w-4 h-4"}}}</button>
+        <button type="button" data-testimonial-next class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
+      </div>
+    </div>
+    <div class="mt-8 overflow-hidden" data-testimonial-slider>
+      <div class="slider-track" data-testimonial-track>
+        {{#each vetrofitTestimonials}}
+        <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
+          <div class="card h-full bg-al-panel p-6">
+            <p class="text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
+            <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}}</p>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel-grey">
+  <div class="section">
+    <div class="overflow-hidden rounded-2xl bg-white">
+      <img src="/images/vetrofit/page-panel-b.jpg" alt="VetroFit primary ingredients and science" class="w-full object-contain" />
+    </div>
+  </div>
+</section>
+{{/ifCond}}
+
+<section class="panel-grey" id="ingredients">
   <div class="section">
     <div data-tabs>
       <div class="flex gap-8 overflow-x-auto border-b border-al-line">

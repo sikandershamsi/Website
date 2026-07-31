@@ -4,15 +4,17 @@
   --font-display: "Playfair Display", "Georgia", serif;
   --font-sans: "Work Sans", "Helvetica Neue", Arial, sans-serif;
 
-  --color-al-navy: #161513;
-  --color-al-navy-light: #2b2925;
+  --color-al-navy: #1a1a1a;
+  --color-al-navy-light: #3a3a3a;
   --color-al-orange: #e2662a;
   --color-al-orange-light: #f0955f;
-  --color-al-cream: #faf9f7;
-  --color-al-cream-dark: #f0eeea;
-  --color-al-forest: #201d1a;
-  --color-al-ink: #171613;
-  --color-al-line: #e5e2dc;
+  --color-al-cream: #ffffff;
+  --color-al-cream-dark: #f3f3f3;
+  --color-al-panel: #f7f7f7;
+  --color-al-panel-alt: #eeeeee;
+  --color-al-forest: #2c2c2c;
+  --color-al-ink: #222222;
+  --color-al-line: #e6e6e6;
 }
 
 @layer base {
@@ -47,10 +49,19 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-semibold tracking-wide uppercase transition-colors duration-200 border border-white/70 text-white hover:bg-white hover:text-al-navy;
   }
   .section {
-    @apply mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-10;
+    @apply mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-10 lg:py-20;
+  }
+  .panel-white {
+    @apply bg-white;
+  }
+  .panel-grey {
+    @apply bg-al-panel;
+  }
+  .panel-grey-alt {
+    @apply bg-al-panel-alt;
   }
   .card {
-    @apply rounded-2xl border border-al-line bg-white/70 shadow-sm;
+    @apply rounded-2xl border border-al-line bg-white shadow-sm;
   }
   .tag-pill {
     @apply rounded-full bg-al-cream-dark px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-al-navy;
@@ -72,5 +83,25 @@
   }
   .field-label {
     @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-al-navy/70;
+  }
+  .hero-media {
+    @apply relative min-h-[58vh] overflow-hidden bg-al-navy text-white sm:min-h-[68vh];
+  }
+  .hero-media img,
+  .hero-media video {
+    @apply absolute inset-0 h-full w-full object-cover;
+  }
+  .hero-media::after {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent;
+  }
+  .slider-track {
+    @apply flex transition-transform duration-500 ease-out;
+  }
+  .slider-dot {
+    @apply h-2.5 w-2.5 rounded-full bg-al-navy/20 transition-colors;
+  }
+  .slider-dot.is-active {
+    @apply bg-al-orange;
   }
 }

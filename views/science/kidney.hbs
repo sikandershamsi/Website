@@ -1,0 +1,71 @@
+{{> science-subnav}}
+
+<section class="panel-white">
+  <div class="section">
+    <div class="eyebrow">The Unsung Hero of Equine Performance</div>
+    <h1 class="font-display mt-4 text-4xl font-medium text-al-navy sm:text-5xl">Kidney Homeostasis</h1>
+    <div class="mt-8 overflow-hidden rounded-2xl">
+      <img src="/images/kidney/hero.jpg" alt="Kidney homeostasis and equine performance" class="w-full object-cover" />
+    </div>
+    <p class="mx-auto mt-8 max-w-3xl text-center text-sm leading-relaxed text-al-ink/75">Performance is usually viewed through lungs and muscles. The kidneys are the master regulator—balancing oxygen transport, hydration, electrolytes, acid-base status, and recovery.</p>
+  </div>
+</section>
+
+<section class="panel-grey">
+  <div class="section max-w-3xl text-center">
+    <h2 class="font-display text-3xl font-medium text-al-navy">Homeostasis</h2>
+    <p class="mt-5 text-sm leading-relaxed text-al-ink/75">Homeostasis is the body’s ability to maintain internal balance under stress. When kidney function is supported, horses sustain energy, clear metabolic waste, and recover more efficiently between works.</p>
+  </div>
+</section>
+
+<section class="panel-white">
+  <div class="section">
+    <div class="rounded-2xl bg-al-panel px-6 py-4 text-center text-sm font-semibold uppercase tracking-wide text-al-navy">
+      Balance — Performance — Recovery — Long-Term Health
+    </div>
+    <div class="mt-8 overflow-hidden rounded-2xl border border-al-line bg-white">
+      <img src="/images/kidney/homeostasis-panel.jpg" alt="Kidney homeostasis educational panel" class="w-full object-contain" />
+    </div>
+  </div>
+</section>
+
+<section class="panel-grey">
+  <div class="section max-w-3xl text-center">
+    <h2 class="font-display text-3xl font-medium text-red-800">Kidney Distress</h2>
+    <p class="mt-5 text-sm leading-relaxed text-al-ink/75">Intense racing places extraordinary physiological demands on the kidneys. Heat stress, metabolic acidosis, and reduced oxygen delivery compound quickly—turning peak performance into decline.</p>
+  </div>
+</section>
+
+<section class="panel-white">
+  <div class="section max-w-3xl text-center">
+    <p class="font-display text-2xl font-medium leading-snug text-al-navy sm:text-3xl">As the master regulator of the body's physiological systems, a healthy kidney helps maintain the homeostasis required for peak performance, efficient recovery, and long-term athletic health.</p>
+    <a href="/shop/product/vetrofit" class="btn-primary mt-10">Shop VetroFit®</a>
+  </div>
+</section>
+
+<section class="panel-grey">
+  <div class="section">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <div class="eyebrow">VetroFit®</div>
+        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy">4 Testimonials</h2>
+      </div>
+      <div class="flex gap-2">
+        <button type="button" data-testimonial-prev class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line bg-white" aria-label="Previous">{{{icon "arrow-left" "w-4 h-4"}}}</button>
+        <button type="button" data-testimonial-next class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line bg-white" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
+      </div>
+    </div>
+    <div class="mt-8 overflow-hidden" data-testimonial-slider>
+      <div class="slider-track" data-testimonial-track>
+        {{#each testimonials}}
+        <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
+          <div class="card h-full p-6">
+            <p class="text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
+            <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}}</p>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>

@@ -43,27 +43,30 @@ export const categories = [
     slug: 'cartilage-joint-connective-tissue',
     name: 'Cartilage – Joint – Connective Tissue Repair',
     short: 'Cartilage Repair',
-    strapline: 'Strength. Mobility. Longevity.',
+    strapline: 'Joint • Connective Tissue Repair',
     summary:
       'Healthy movement begins with healthy joints. Scientifically formulated to support the horse’s natural ability to repair cartilage, strengthen connective tissue, and support the structural integrity of the musculoskeletal system.',
+    image: '/images/shop/cartilage-horse.jpg',
     icons: ['Repair Damaged Cartilage', 'Rebuild Stronger Connective Tissue', 'Protect Long-Term Joint Health', 'Perform Better Mobility & Performance'],
   },
   {
     slug: 'inflammation-pain-management',
-    name: 'Inflammation & Pain Management',
+    name: 'Inflammation & Pain Relief (NSAID Alternative)',
     short: 'Inflammation Relief',
-    strapline: 'Comfort. Mobility. Performance.',
+    strapline: 'Inflammation & Pain Management',
     summary:
       'Lasting comfort begins by supporting the body’s natural inflammatory response. A long-term, natural alternative to routine NSAID use that supports mobility, comfort and recovery.',
+    image: '/images/shop/inflammation-horse.jpg',
     icons: ['Target Inflammation at the Source', 'Reduce Swelling & Discomfort', 'Restore Natural Mobility & Flexibility', 'Support Long-Term Joint Health'],
   },
   {
     slug: 'kidney-homeostasis-oxygen-recovery',
-    name: 'Kidney Homeostasis – Oxygen Transport & Recovery',
-    short: 'Oxygen & Recovery',
-    strapline: 'Support. Balance. Performance.',
+    name: 'Kidney Homeostasis Management',
+    short: 'Oxygen. Endurance. Recovery.',
+    strapline: 'Kidney Homeostasis • Oxygen Transport & Recovery',
     summary:
       'Performance begins long before the muscles go to work. The kidneys regulate red blood cell count, oxygen transport, fluid regulation, electrolyte balance, and recovery.',
+    image: '/images/shop/oxygen-horse.jpg',
     icons: ['Optimize Kidney Function at the Source', 'Enhance Oxygen Delivery & Endurance', 'Speed Recovery Between Rounds & Races', 'Support Peak Performance & Lasting Stamina'],
   },
 ];

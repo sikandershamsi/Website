@@ -1,138 +1,81 @@
-<!-- HERO -->
-<section class="relative overflow-hidden bg-al-navy text-white">
-  <div class="pointer-events-none absolute -right-24 top-0 h-full w-[60%] text-white/5">
-    {{> horse-mark class="h-full w-full"}}
+<!-- HERO: stitch 3 media clips (image stand-ins from mockup until video assets are provided) -->
+<section class="hero-media" data-hero-slider>
+  <div class="absolute inset-0">
+    <img data-hero-slide class="opacity-100 transition-opacity duration-700" src="/images/racing/hero.jpg" alt="Racehorses in competition" />
+    <img data-hero-slide class="opacity-0 transition-opacity duration-700" src="/images/shop/oxygen-horse.jpg" alt="Equine performance" />
+    <img data-hero-slide class="opacity-0 transition-opacity duration-700" src="/images/about/hero-field.jpg" alt="Horse in nature" />
   </div>
   <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1.5 bg-gradient-to-r from-al-orange via-al-orange-light to-al-orange"></div>
-  <div class="relative mx-auto max-w-7xl px-6 pb-24 pt-20 sm:px-8 lg:px-10 lg:pb-32 lg:pt-28">
-    <p class="text-xs font-semibold uppercase tracking-[0.25em] text-al-orange-light">Long Term Equine Wellness Starts Here</p>
-    <h1 class="font-display mt-5 max-w-3xl text-5xl font-medium leading-[1.05] sm:text-6xl lg:text-7xl">Feel the difference.</h1>
-    <p class="mt-6 max-w-xl text-base text-white/70 sm:text-lg">Root-cause equine nutrition that treats the biology, optimizes performance, and extends long-term wellness — trusted by riders, trainers, and veterinarians since 2005.</p>
-    <div class="mt-9 flex flex-wrap gap-4">
+  <div class="relative z-10 mx-auto flex min-h-[58vh] max-w-7xl flex-col justify-end px-6 pb-16 sm:min-h-[68vh] sm:px-8 lg:px-10 lg:pb-24">
+    <p class="text-xs font-semibold uppercase tracking-[0.25em] text-white/90">Long Term Equine Wellness Starts Here</p>
+    <h1 class="font-display mt-4 max-w-3xl text-5xl font-medium leading-[1.05] text-white sm:text-6xl lg:text-7xl">Feel the difference</h1>
+    <div class="mt-8 flex flex-wrap gap-4">
       <a href="/shop" class="btn-primary">Shop All Products</a>
       <a href="/the-science" class="btn-outline-light">Our Philosophy</a>
     </div>
   </div>
 </section>
 
-<!-- HORSE TRUTHS -->
-<section class="section">
-  <div class="eyebrow">Horse Truths</div>
-  <h2 class="font-display mt-4 max-w-2xl text-3xl font-medium text-al-navy sm:text-4xl">Seven truths behind every Animalife formulation.</h2>
-  <div class="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2">
-    {{#each horseTruths}}
-    <div class="flex gap-5 border-b border-al-line pb-8">
-      <span class="font-display shrink-0 text-3xl font-medium text-al-orange/40">{{#if (gt this.n 9)}}{{this.n}}{{else}}0{{this.n}}{{/if}}</span>
-      <div>
-        <p class="font-display text-lg font-medium text-al-navy">{{this.title}}</p>
-        <p class="mt-2 text-sm leading-relaxed text-al-ink/70">{{this.body}}</p>
-      </div>
+<!-- HORSE TRUTHS: sliding bar, 2 at a time -->
+<section class="panel-white section">
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <div class="eyebrow">Horse Truths</div>
+      <h2 class="font-display mt-4 max-w-2xl text-3xl font-medium text-al-navy sm:text-4xl">Seven truths behind every Animalife formulation.</h2>
     </div>
-    {{/each}}
+    <div class="flex gap-2">
+      <button type="button" data-truth-prev class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line text-al-navy hover:border-al-orange hover:text-al-orange" aria-label="Previous">{{{icon "arrow-left" "w-4 h-4"}}}</button>
+      <button type="button" data-truth-next class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line text-al-navy hover:border-al-orange hover:text-al-orange" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
+    </div>
   </div>
+  <div class="mt-10 overflow-hidden" data-truth-slider>
+    <div class="slider-track" data-truth-track>
+      {{#each horseTruths}}
+      <div class="w-full shrink-0 px-1 md:w-1/2 md:px-3" data-truth-slide>
+        <div class="h-full border-b border-al-line pb-8 md:border-b-0 md:border-r md:pr-8">
+          <span class="font-display text-3xl font-medium text-al-orange/40">{{#if (gt this.n 9)}}{{this.n}}{{else}}0{{this.n}}{{/if}}</span>
+          <p class="font-display mt-3 text-lg font-medium text-al-navy">{{this.title}}</p>
+          <p class="mt-2 text-sm leading-relaxed text-al-ink/70">{{this.body}}</p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="mt-6 flex justify-center gap-2" data-truth-dots></div>
 </section>
 
-<!-- MISSION -->
-<section class="bg-al-cream-dark/60">
-  <div class="section grid gap-12 lg:grid-cols-2 lg:items-center">
+<!-- MISSION + INGREDIENTS combined panel -->
+<section class="panel-grey">
+  <div class="section grid gap-10 lg:grid-cols-2 lg:items-center">
     <div>
       <div class="eyebrow">Our Mission</div>
       <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Perform. Recover. Thrive.</h2>
       <p class="mt-5 text-sm leading-relaxed text-al-ink/75">Our mission is to redefine animal wellness through innovative nutritional science designed to treat root causes and support the body's natural ability to heal, perform, recover, and thrive. By focusing on the biological systems that drive long-term wellness&mdash;not simply masking symptoms&mdash;we help animals achieve lasting health through nature-inspired, science-backed nutrition.</p>
-      <p class="mt-4 text-sm leading-relaxed text-al-ink/75">Since 2005, Animalife has helped thousands of horses perform at their best, recover faster, and enjoy healthier, more active lives. Today, our commitment remains unchanged: to deliver innovative nutritional solutions that improve quality of life and redefine what's possible in animal health.</p>
+      <p class="mt-4 text-sm leading-relaxed text-al-ink/75">Since 2005, Animalife has helped thousands of horses perform at their best, recover faster, and enjoy healthier, more active lives.</p>
     </div>
-    <div class="card p-8">
-      <p class="eyebrow">Inspired by Nature. Proven by Science.</p>
-      <p class="font-display mt-3 text-2xl font-medium text-al-navy">Powerful ingredients. Purposeful nutrition.</p>
-      <p class="mt-3 text-sm text-al-ink/70">We combine nature's most powerful compounds with advanced nutritional science to create solutions that work with your animal's body&mdash;not against it.</p>
-      <div class="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3">
+    <div class="overflow-hidden rounded-2xl bg-white">
+      <img src="/images/home/ingredients-photo.jpg" alt="Natural ingredients used in Animalife formulations" class="aspect-[4/3] w-full object-cover" />
+      <div class="grid grid-cols-2 gap-4 p-6 sm:grid-cols-3">
+        {{#each featuredIngredients}}
         <div class="text-center">
-          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-al-navy/5 text-al-navy">{{{icon "leaf" "w-6 h-6"}}}</div>
-          <p class="mt-2 text-xs font-semibold text-al-navy">Collagen Type II</p>
-          <p class="text-[11px] text-al-ink/50">Origin: Brazil</p>
+          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-al-panel text-al-navy">{{{icon this.icon "w-6 h-6"}}}</div>
+          <p class="mt-2 text-xs font-semibold text-al-navy">{{this.name}}</p>
+          <p class="text-[11px] text-al-ink/50">{{this.origin}}</p>
         </div>
-        <div class="text-center">
-          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-al-navy/5 text-al-navy">{{{icon "flask" "w-6 h-6"}}}</div>
-          <p class="mt-2 text-xs font-semibold text-al-navy">ACV Chondroitin</p>
-          <p class="text-[11px] text-al-ink/50">Origin: France</p>
-        </div>
-        <div class="text-center">
-          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-al-navy/5 text-al-navy">{{{icon "beaker" "w-6 h-6"}}}</div>
-          <p class="mt-2 text-xs font-semibold text-al-navy">FOS Prebiotic</p>
-          <p class="text-[11px] text-al-ink/50">Origin: Belgium</p>
-        </div>
-        <div class="text-center">
-          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-al-navy/5 text-al-navy">{{{icon "shield-check" "w-6 h-6"}}}</div>
-          <p class="mt-2 text-xs font-semibold text-al-navy">Manganese, Copper & Zinc</p>
-          <p class="text-[11px] text-al-ink/50">Origin: Global</p>
-        </div>
-        <div class="text-center">
-          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-al-navy/5 text-al-navy">{{{icon "horseshoe" "w-6 h-6"}}}</div>
-          <p class="mt-2 text-xs font-semibold text-al-navy">Biotin</p>
-          <p class="text-[11px] text-al-ink/50">Origin: Switzerland</p>
-        </div>
+        {{/each}}
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED PRODUCTS -->
-<section class="section">
-  <div class="flex flex-wrap items-end justify-between gap-4">
-    <div>
-      <div class="eyebrow">Featured Products</div>
-      <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Three systems. One philosophy.</h2>
-    </div>
-    <a href="/shop" class="btn-outline">Shop All Products</a>
-  </div>
-  <div class="mt-12 grid gap-8 md:grid-cols-3">
-    {{#each products}}
-    <a href="/shop/product/{{this.slug}}" class="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lg">
-      <div class="flex aspect-[4/5] items-center justify-center bg-al-cream-dark/50 p-8">
-        <img src="{{this.image}}" alt="{{this.trademark}}" class="h-full w-auto object-contain" />
-      </div>
-      <div class="flex flex-1 flex-col p-6">
-        <div class="flex items-baseline justify-between gap-2">
-          <p class="font-display text-lg font-semibold text-al-navy">{{this.trademark}}</p>
-          <p class="text-xs uppercase tracking-wider text-al-ink/45">{{this.size}}</p>
-        </div>
-        <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-orange">{{this.category}}</p>
-        <p class="font-display mt-2 text-lg font-medium text-al-navy">{{this.tagline}}</p>
-        <p class="mt-3 flex-1 text-sm text-al-ink/65">{{this.heroStat}}</p>
-        <div class="mt-5 flex items-center justify-between">
-          <span class="font-display text-lg font-medium text-al-navy">{{currency this.price}}</span>
-          <span class="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-al-navy group-hover:text-al-orange">Learn More {{{icon "arrow-right" "w-4 h-4"}}}</span>
-        </div>
-      </div>
-    </a>
-    {{/each}}
-  </div>
-</section>
-
-<!-- INSPIRED BY NATURE -->
-<section class="section">
-  <div class="grid overflow-hidden rounded-2xl lg:grid-cols-2">
-    <div class="bg-al-forest px-8 py-16 text-white sm:px-12">
-      <div class="eyebrow !text-al-orange-light">Inspired by Nature</div>
-      <h2 class="font-display mt-5 text-4xl font-medium leading-tight">Inspired by nature.</h2>
-      <p class="mt-6 text-sm leading-relaxed text-white/75">Inspired by our founder's enduring passion for horses and a simple belief that nature often holds the answers modern medicine overlooks, Animalife was founded to explore the extraordinary healing potential of botanicals.</p>
-      <p class="mt-4 text-sm leading-relaxed text-white/75">By combining nature's most powerful ingredients with advanced nutritional science, we create innovative formulations that address the root causes of disease and dysfunction&mdash;empowering horses to perform with greater strength, recover more naturally, and enjoy longer, healthier and happier lives.</p>
-      <a href="/about" class="btn-outline-light mt-8">Our Story</a>
-    </div>
-    <div class="relative flex items-center justify-center bg-al-cream-dark p-12 text-al-navy/15">
-      {{> horse-mark class="h-56 w-56 sm:h-72 sm:w-72"}}
     </div>
   </div>
 </section>
 
 <!-- OUR STANDARDS -->
-<section class="bg-al-cream-dark/60">
+<section class="panel-white">
   <div class="section text-center">
     <h2 class="font-display text-3xl font-medium text-al-navy sm:text-4xl">Our Standards</h2>
     <div class="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-10 sm:grid-cols-5">
       {{#each standards}}
       <div>
-        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white text-al-navy shadow-sm">{{{icon this.icon "w-6 h-6"}}}</div>
+        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-al-panel text-al-navy">{{{icon this.icon "w-6 h-6"}}}</div>
         <p class="mt-3 text-sm font-semibold text-al-navy">{{this.title}}</p>
       </div>
       {{/each}}
@@ -141,28 +84,127 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="section">
-  <div class="eyebrow">Testimonials</div>
-  <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Trusted by riders who expect results.</h2>
-  <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-    {{#each testimonials}}
-    <div class="card p-6">
-      <div class="flex gap-0.5 text-al-orange">
-        {{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}
+<!-- FEATURED PRODUCTS + benefits table -->
+<section class="panel-grey">
+  <div class="section">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <div class="eyebrow">Featured Products</div>
+        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Three systems. One philosophy.</h2>
       </div>
-      <p class="mt-4 text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
-      <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}} <span class="text-al-ink/40">&middot; {{this.product}}</span></p>
+      <a href="/shop" class="btn-outline">Shop All Products</a>
     </div>
-    {{/each}}
+    <div class="mt-12 grid gap-8 md:grid-cols-3">
+      {{#each products}}
+      <a href="/shop/product/{{this.slug}}" class="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lg">
+        <div class="flex aspect-[4/5] items-center justify-center bg-al-panel p-8">
+          <img src="{{this.image}}" alt="{{this.trademark}}" class="h-full w-auto object-contain" />
+        </div>
+        <div class="flex flex-1 flex-col p-6">
+          <div class="flex items-baseline justify-between gap-2">
+            <p class="font-display text-lg font-semibold text-al-navy">{{this.trademark}}</p>
+            <p class="text-xs uppercase tracking-wider text-al-ink/45">{{this.size}}</p>
+          </div>
+          <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-orange">{{this.category}}</p>
+          <p class="font-display mt-2 text-lg font-medium text-al-navy">{{this.tagline}}</p>
+          <div class="mt-5 flex items-center justify-between">
+            <span class="font-display text-lg font-medium text-al-navy">{{currency this.price}}</span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-al-navy group-hover:text-al-orange">Learn More {{{icon "arrow-right" "w-4 h-4"}}}</span>
+          </div>
+        </div>
+      </a>
+      {{/each}}
+    </div>
+
+    <div class="mt-14">
+      <h3 class="font-display text-2xl font-medium text-al-navy">Ingredients &amp; Benefits</h3>
+      <div class="mt-6 overflow-x-auto rounded-2xl border border-al-line bg-white">
+        <table class="w-full min-w-[900px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="bg-al-navy-light text-white">
+              <th class="px-5 py-4 font-semibold">Product</th>
+              <th class="px-5 py-4 font-semibold">Ingredients</th>
+              <th class="px-5 py-4 font-semibold">Ingredient Benefits</th>
+              <th class="px-5 py-4 font-semibold">Performance Benefits</th>
+              <th class="px-5 py-4 font-semibold">Long-Term Wellness</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each products}}
+            {{#with (lookup this.ingredientBenefits 0) as |row|}}
+            <tr class="border-t border-al-line align-top odd:bg-white even:bg-al-panel">
+              <td class="px-5 py-5 font-display font-medium text-al-navy">{{../trademark}}</td>
+              <td class="px-5 py-5 text-al-ink/70">{{row.ingredient}}</td>
+              <td class="px-5 py-5 text-al-ink/70">{{row.benefit}}</td>
+              <td class="px-5 py-5 text-al-ink/70">{{row.performance}}</td>
+              <td class="px-5 py-5 text-al-ink/70">{{row.wellness}}</td>
+            </tr>
+            {{/with}}
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FEEL THE DIFFERENCE / DISCIPLINES CTA -->
-<section class="relative overflow-hidden bg-al-navy py-20 text-center text-white">
-  <div class="relative mx-auto max-w-3xl px-6">
-    <p class="font-display text-4xl font-semibold sm:text-5xl">feel the difference</p>
-    <p class="mt-5 text-sm text-white/70">From show jumping to racing, dressage to reining&mdash;Animalife supports elite performance in every discipline.</p>
-    <a href="/ambassadors" class="btn-primary mt-8">Meet Our Ambassadors</a>
+<!-- INSPIRED BY NATURE -->
+<section class="panel-white">
+  <div class="section">
+    <div class="grid overflow-hidden rounded-2xl lg:grid-cols-2">
+      <div class="bg-al-panel px-8 py-16 sm:px-12">
+        <div class="eyebrow">Inspired by Nature</div>
+        <h2 class="font-display mt-5 text-4xl font-medium leading-tight text-al-navy">Inspired by nature.</h2>
+        <p class="mt-6 text-sm leading-relaxed text-al-ink/75">Inspired by our founder's enduring passion for horses and a simple belief that nature often holds the answers modern medicine overlooks, Animalife was founded to explore the extraordinary healing potential of botanicals.</p>
+        <p class="mt-4 text-sm leading-relaxed text-al-ink/75">By combining nature's most powerful ingredients with advanced nutritional science, we create innovative formulations that address the root causes of disease and dysfunction&mdash;empowering horses to perform with greater strength, recover more naturally, and enjoy longer, healthier and happier lives.</p>
+        <a href="/about" class="btn-outline mt-8">Our Story</a>
+      </div>
+      <div class="relative min-h-[320px]">
+        <img src="/images/home/inspired-nature.jpg" alt="White horse inspired by nature" class="absolute inset-0 h-full w-full object-cover" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS slider 2 at a time -->
+<section class="panel-grey">
+  <div class="section">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <div class="eyebrow">Testimonials</div>
+        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Trusted by riders who expect results.</h2>
+      </div>
+      <div class="flex gap-2">
+        <button type="button" data-testimonial-prev class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line bg-white text-al-navy hover:border-al-orange hover:text-al-orange" aria-label="Previous">{{{icon "arrow-left" "w-4 h-4"}}}</button>
+        <button type="button" data-testimonial-next class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line bg-white text-al-navy hover:border-al-orange hover:text-al-orange" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
+      </div>
+    </div>
+    <div class="mt-10 overflow-hidden" data-testimonial-slider>
+      <div class="slider-track gap-0" data-testimonial-track>
+        {{#each testimonials}}
+        <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
+          <div class="card h-full p-6">
+            <div class="flex gap-0.5 text-al-orange">
+              {{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}
+            </div>
+            <p class="mt-4 text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
+            <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}} <span class="text-al-ink/40">&middot; {{this.product}}</span></p>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCIPLINES PANEL IMAGE -->
+<section class="relative overflow-hidden">
+  <img src="/images/home/disciplines-panel.jpg" alt="Equestrian disciplines" class="min-h-[280px] w-full object-cover" />
+  <div class="absolute inset-0 flex items-center justify-center bg-black/35">
+    <div class="px-6 text-center text-white">
+      <p class="font-display text-4xl font-semibold sm:text-5xl">feel the difference</p>
+      <p class="mt-4 text-sm text-white/80">From show jumping to racing, dressage to reining&mdash;Animalife supports elite performance in every discipline.</p>
+      <a href="/ambassadors" class="btn-primary mt-8">Meet Our Ambassadors</a>
+    </div>
   </div>
 </section>
