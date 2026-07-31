@@ -1,5 +1,5 @@
-<section class="relative overflow-hidden">
-  <img src="/images/science/lab-banner.jpg" alt="The Science Behind Performance — Nature. Research. Results." class="w-full object-cover" />
+<section class="relative overflow-hidden bg-white">
+  <img src="/images/science/lab-banner.jpg" alt="The Science Behind Performance — Nature. Research. Results." class="mx-auto w-full max-w-7xl object-contain" />
 </section>
 {{> science-subnav}}
 
@@ -15,7 +15,7 @@
 
 <section class="panel-grey">
   <div class="section">
-    <a href="/shop" class="block overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md">
+    <a href="/shop" class="block overflow-hidden rounded-2xl border border-al-line bg-white shadow-sm transition-shadow hover:shadow-md">
       <img src="/images/science/targeted-support.jpg" alt="Targeted support for VetroFlex, VetroFen, and VetroFit" class="w-full object-contain" />
     </a>
     <div class="mt-6 flex flex-wrap justify-center gap-4">
@@ -30,8 +30,37 @@
   <div class="section">
     <h2 class="font-display text-3xl font-medium text-al-navy sm:text-4xl">Product Science Comparison</h2>
     <p class="mt-4 max-w-3xl text-sm text-al-ink/70">Every Animalife formula combines premium natural ingredients with science-backed nutritional research to deliver measurable physiological benefits.</p>
-    <div class="mt-10 overflow-hidden rounded-2xl border border-al-line bg-white">
-      <img src="/images/science/comparison-panel.jpg" alt="VetroFlex, VetroFen, and VetroFit science comparison" class="w-full object-contain" />
+    <div class="mt-10 overflow-x-auto rounded-2xl border border-al-line">
+      <table class="w-full min-w-[960px] border-collapse text-left text-sm">
+        <thead>
+          <tr class="bg-al-navy text-white">
+            <th class="px-5 py-4 font-semibold">Product Name</th>
+            <th class="px-5 py-4 font-semibold">Ingredients</th>
+            <th class="px-5 py-4 font-semibold">Ingredient Benefits</th>
+            <th class="px-5 py-4 font-semibold">Performance Benefits</th>
+            <th class="px-5 py-4 font-semibold">Long-Term Health &amp; Wellness</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each products}}
+          {{#with (lookup this.ingredientBenefits 0) as |row|}}
+          <tr class="border-t border-al-line align-top odd:bg-white even:bg-al-panel">
+            <td class="px-5 py-5">
+              <div class="mb-3 flex h-28 w-28 items-center justify-center rounded-xl bg-[#111] p-3">
+                <img src="{{../image}}" alt="{{../trademark}}" class="max-h-full max-w-full object-contain" />
+              </div>
+              <a href="/shop/product/{{../slug}}" class="font-display font-medium text-al-navy hover:text-al-orange">{{../trademark}}</a>
+              <p class="mt-1 text-[11px] font-sans font-normal uppercase tracking-wide text-al-ink/50">{{../category}}</p>
+            </td>
+            <td class="px-5 py-5 text-al-ink/70">{{row.ingredient}}</td>
+            <td class="px-5 py-5 text-al-ink/70">{{row.benefit}}</td>
+            <td class="px-5 py-5 text-al-ink/70">{{row.performance}}</td>
+            <td class="px-5 py-5 text-al-ink/70">{{row.wellness}}</td>
+          </tr>
+          {{/with}}
+          {{/each}}
+        </tbody>
+      </table>
     </div>
     <div class="mt-10 flex flex-wrap gap-4">
       <a href="/the-science/ingredients" class="btn-outline">Explore the Ingredient Library</a>

@@ -95,6 +95,21 @@
     content: "";
     @apply absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent;
   }
+  .inspired-blend {
+    @apply relative isolate min-h-[420px] overflow-hidden rounded-[1.75rem] bg-white sm:min-h-[460px] lg:min-h-[520px];
+  }
+  .inspired-blend__media {
+    @apply absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-[68%_center] lg:object-right;
+  }
+  .inspired-blend__veil {
+    @apply absolute inset-0 bg-gradient-to-r from-white from-[0%] via-white via-[38%] to-transparent to-[72%] sm:via-[42%] sm:to-[68%] lg:via-[46%] lg:to-[64%];
+  }
+  .inspired-blend__copy {
+    @apply relative z-10 flex max-w-xl flex-col justify-center px-8 py-12 sm:px-12 sm:py-16 lg:max-w-[48%] lg:px-14 lg:py-20;
+  }
+  .about-hero-blend {
+    @apply min-h-[420px] rounded-none sm:min-h-[480px] lg:min-h-[540px];
+  }
   .slider-track {
     @apply flex transition-transform duration-500 ease-out;
   }

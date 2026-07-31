@@ -23,4 +23,12 @@ export function registerHelpers(hbsInstance: unknown) {
       return a === b ? options.fn(this) : options.inverse(this);
     },
   );
+  hbs.registerHelper('truncate', (str: unknown, len: unknown) => {
+    if (typeof str !== 'string') return str;
+    const limit = typeof len === 'number' ? len : 140;
+    if (str.length <= limit) return str;
+    const cut = str.slice(0, limit);
+    const lastSpace = cut.lastIndexOf(' ');
+    return `${(lastSpace > 60 ? cut.slice(0, lastSpace) : cut).trim()}…`;
+  });
 }
