@@ -1,22 +1,30 @@
 <section class="panel-white">
-  <div class="section">
-    <div class="eyebrow">Affiliate Reward Program</div>
-    <h1 class="font-display mt-4 max-w-3xl text-4xl font-medium text-al-navy sm:text-5xl">Partner with Purpose. Rewarding Results.</h1>
-    <p class="mt-5 max-w-2xl text-sm leading-relaxed text-al-ink/75">Join a trusted network of equine professionals and earn generous rewards while making a real difference in horses' lives.</p>
-    <div class="mt-10 overflow-hidden rounded-2xl border border-al-line bg-white">
-      <img src="/images/affiliates/roles-strip.jpg" alt="Animalife Affiliate Rewards Program" class="w-full object-contain" />
+  <div class="section grid items-center gap-10 lg:grid-cols-2">
+    <div>
+      <div class="eyebrow">Affiliate Rewards Program</div>
+      <h1 class="font-display mt-4 text-4xl font-medium text-al-navy sm:text-5xl">Partner with Purpose. Rewarding Results.</h1>
+      <p class="mt-5 max-w-xl text-sm leading-relaxed text-al-ink/75">Join a trusted network of equine professionals and earn <span class="font-semibold text-al-navy">generous rewards</span> while making a real difference in horses' lives.</p>
+    </div>
+    <div class="overflow-hidden rounded-2xl">
+      <img src="/images/affiliates/hero-horse-clean.jpg" alt="Animalife affiliate partner horse" class="aspect-[5/3] w-full object-cover object-[center_30%]" />
     </div>
   </div>
 </section>
 
 <section class="panel-grey">
   <div class="section">
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
       {{#each affiliateAudiences}}
-      <div class="rounded-xl bg-white p-5 text-center shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-wide text-al-orange">{{this.title}}</p>
-        <p class="mt-2 text-sm text-al-ink/65">{{this.body}}</p>
-      </div>
+      <article class="overflow-hidden rounded-2xl border border-al-line bg-white shadow-sm">
+        <div class="aspect-[5/4] overflow-hidden">
+          <img src="{{this.image}}" alt="{{this.title}}" class="h-full w-full object-cover" />
+        </div>
+        <div class="px-4 py-5 text-center">
+          <div class="mx-auto flex h-10 w-10 items-center justify-center text-al-orange">{{{icon this.icon "w-6 h-6"}}}</div>
+          <h2 class="mt-3 text-[11px] font-semibold uppercase tracking-wide text-al-orange">{{this.title}}</h2>
+          <p class="mt-2 text-sm leading-snug text-al-ink/65">{{this.body}}</p>
+        </div>
+      </article>
       {{/each}}
     </div>
   </div>

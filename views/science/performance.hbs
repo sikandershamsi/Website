@@ -1,5 +1,45 @@
-<section class="relative overflow-hidden bg-white">
-  <img src="/images/science/lab-banner.jpg" alt="The Science Behind Performance — Nature. Research. Results." class="mx-auto w-full max-w-7xl object-contain" />
+<section class="overflow-hidden bg-white">
+  <div class="section grid items-center gap-10 py-12 lg:grid-cols-2 lg:gap-6 lg:py-16">
+    <div class="relative z-10 max-w-xl">
+      <h1 class="font-display text-4xl font-medium leading-tight text-al-navy sm:text-5xl lg:text-[3.4rem]">
+        The Science Behind
+        <span class="mt-1 block italic text-al-orange">Performance</span>
+      </h1>
+      <div class="mt-5 h-px w-16 bg-al-orange" aria-hidden="true"></div>
+      <p class="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-al-navy">Nature. Research. Results.</p>
+      <p class="mt-5 max-w-md text-sm leading-relaxed text-al-ink/70">We combine the wisdom of nature with advanced nutritional science to create targeted formulations that deliver real, measurable results.</p>
+    </div>
+
+    <div class="relative min-h-[280px] sm:min-h-[340px] lg:min-h-[400px]">
+      <div class="pointer-events-none absolute inset-0 rounded-full border border-al-line/70 opacity-60" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-[12%] rounded-full border border-al-line/50 opacity-50" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-[24%] rounded-full border border-al-line/40 opacity-40" aria-hidden="true"></div>
+      <img
+        src="/images/science/hero-horse.jpg"
+        alt="Racehorse in full stride"
+        class="relative z-[1] mx-auto h-full max-h-[420px] w-auto object-contain transition-transform duration-500 hover:scale-[1.02]"
+      />
+      <img
+        src="/images/science/hero-lab.jpg"
+        alt="Botanical research and laboratory formulations"
+        class="absolute bottom-0 right-0 z-[2] hidden w-[42%] max-w-[220px] object-contain drop-shadow-sm sm:block lg:w-[46%] lg:max-w-[260px]"
+      />
+    </div>
+  </div>
+
+  <div class="border-t border-al-line bg-white">
+    <div class="section grid gap-px bg-al-line sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+      {{#each sciencePillars}}
+      <article class="group bg-white px-5 py-8 text-center transition-colors duration-200 hover:bg-al-panel focus-within:bg-al-panel">
+        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-al-navy/15 text-al-navy transition-all duration-200 group-hover:border-al-orange group-hover:text-al-orange group-hover:scale-110">
+          {{{icon this.icon "w-6 h-6"}}}
+        </div>
+        <h2 class="mt-4 text-[11px] font-semibold uppercase tracking-wide text-al-navy transition-colors group-hover:text-al-orange">{{this.title}}</h2>
+        <p class="mt-3 text-xs leading-relaxed text-al-ink/65">{{this.body}}</p>
+      </article>
+      {{/each}}
+    </div>
+  </div>
 </section>
 {{> science-subnav}}
 
@@ -46,7 +86,7 @@
           {{#with (lookup this.ingredientBenefits 0) as |row|}}
           <tr class="border-t border-al-line align-top odd:bg-white even:bg-al-panel">
             <td class="px-5 py-5">
-              <div class="mb-3 flex h-28 w-28 items-center justify-center rounded-xl bg-[#111] p-3">
+              <div class="mb-3 flex h-28 w-28 items-center justify-center rounded-xl border border-al-line bg-white p-3">
                 <img src="{{../image}}" alt="{{../trademark}}" class="max-h-full max-w-full object-contain" />
               </div>
               <a href="/shop/product/{{../slug}}" class="font-display font-medium text-al-navy hover:text-al-orange">{{../trademark}}</a>

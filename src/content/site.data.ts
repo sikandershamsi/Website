@@ -1,3 +1,36 @@
+export const sciencePillars = [
+  {
+    title: 'Support Natural Regulation',
+    body: "Promote balance through the body's own intelligent systems.",
+    icon: 'leaf',
+  },
+  {
+    title: "Enhance the Body's Defenses",
+    body: 'Strengthen resilience and help reduce the impact of daily stress.',
+    icon: 'shield-plus',
+  },
+  {
+    title: 'Support Natural Repair',
+    body: 'Nourish tissues and systems so the body can repair and rebuild.',
+    icon: 'refresh',
+  },
+  {
+    title: 'Support Physiological Balance',
+    body: 'Reestablish optimal function for improved performance and recovery.',
+    icon: 'horse',
+  },
+  {
+    title: 'Drive Long-Term Results',
+    body: 'Sustainable health today for a stronger, healthier tomorrow and beyond.',
+    icon: 'chart',
+  },
+  {
+    title: 'Backed by Science & Nature',
+    body: 'Formulated with proven research and the finest natural ingredients.',
+    icon: 'orbit',
+  },
+];
+
 export const horseTruths = [
   {
     n: 1,
@@ -101,11 +134,36 @@ export const disciplines = [
 ];
 
 export const affiliateAudiences = [
-  { title: 'Trainers', body: 'Boosting performance and potential.' },
-  { title: 'Veterinarians', body: 'Supporting health with integrity.' },
-  { title: 'Equine Therapists', body: 'Enhancing comfort, mobility and recovery.' },
-  { title: 'Nutritionists', body: 'Fueling health through targeted nutrition.' },
-  { title: 'Equestrian Influencers & Content Creators', body: 'Inspiring and connecting the equestrian community.' },
+  {
+    title: 'Trainers',
+    body: 'Boosting performance and potential.',
+    image: '/images/affiliates/roles/trainers.jpg',
+    icon: 'horse',
+  },
+  {
+    title: 'Veterinarians',
+    body: 'Supporting health with integrity.',
+    image: '/images/affiliates/roles/veterinarians.jpg',
+    icon: 'stethoscope',
+  },
+  {
+    title: 'Equine Therapists',
+    body: 'Enhancing comfort, mobility and recovery.',
+    image: '/images/affiliates/roles/therapists.jpg',
+    icon: 'hands',
+  },
+  {
+    title: 'Nutritionists',
+    body: 'Fueling health through targeted nutrition.',
+    image: '/images/affiliates/roles/nutritionists.jpg',
+    icon: 'leaf',
+  },
+  {
+    title: 'Equestrian Influencers & Content Creators',
+    body: 'Inspiring and connecting the equestrian community.',
+    image: '/images/affiliates/roles/influencers.jpg',
+    icon: 'camera',
+  },
 ];
 
 export const vetrofitTestimonials = [

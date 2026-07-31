@@ -29,10 +29,17 @@ export const icons: Record<string, string> = {
   image: '<rect x="3" y="4.5" width="18" height="15" rx="2.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="m4 17 5-5 4 4 3-3 4 4"/>',
   quote: '<path d="M8 9c-2 0-3.5 1.6-3.5 4S6 17 8 17c1 0 1.6-.5 1.6-.5S8 20 4.5 20"/><path d="M17 9c-2 0-3.5 1.6-3.5 4s1.5 4 3.5 4c1 0 1.6-.5 1.6-.5S17 20 13.5 20"/>',
   horse: '<path d="M16 4c1.8 0 3 1.4 3 3 0 1.1-.5 1.9-1.2 2.6L20 12l-2.3 1-.2 3-1.5 5h-2l.6-4.6-2-1.4-3 1-3.5 5H4l3-6-1-3.3C5.4 10.6 5 9.4 5 8c0-2.8 2.4-5 5.5-5 1.6 0 2.8.6 3.6 1.4C14.7 4.2 15.3 4 16 4Z"/>',
+  stethoscope: '<path d="M6 4v7a4 4 0 0 0 8 0V4"/><path d="M6 4H4.5"/><path d="M14 4h1.5"/><path d="M18 12v2.5a3.5 3.5 0 1 1-7 0V13"/><circle cx="18" cy="8.5" r="2.5"/>',
+  camera: '<path d="M4.5 8.5h2l1.4-2h8.2l1.4 2H19.5A1.5 1.5 0 0 1 21 10v8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18v-8a1.5 1.5 0 0 1 1.5-1.5Z"/><circle cx="12" cy="14" r="3.2"/>',
+  hands: '<path d="M8 11V7.5a1.5 1.5 0 0 1 3 0V11"/><path d="M11 10.5V6.8a1.5 1.5 0 0 1 3 0V11"/><path d="M14 10V7.2a1.5 1.5 0 0 1 3 0V13c0 3.2-2.2 5.5-5 6.5-2.8-1-5-3.3-5-6.5v-1"/><path d="M8 13.5c-1.2-.2-2-.9-2-2V9.2a1.2 1.2 0 0 1 2.4 0V12"/>',
   calculator: '<rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M8 6.5h8"/><path d="M8 11h.01"/><path d="M12 11h.01"/><path d="M16 11h.01"/><path d="M8 15h.01"/><path d="M12 15h.01"/><path d="M16 15v3"/><path d="M8 19h.01"/><path d="M12 19h.01"/>',
   handshake: '<path d="m2 12 4-3 3 2 3-3 4 4 4-3 2 3-5 5-4-2-3 3-5-4Z"/>',
   bolt: '<path d="M13 2 5 14h5l-1 8 9-13h-6Z"/>',
   heart: '<path d="M12 20s-7-4.4-9.2-8.2C1 9.2 2.2 6 5.4 6c1.9 0 3.1 1.1 3.8 2.1C10 7.1 11.2 6 13.1 6c3.2 0 4.4 3.2 2.6 5.8C19 15.6 12 20 12 20Z"/>',
+  'shield-plus': '<path d="M12 3l7 3v6c0 4.8-3 8.4-7 9-4-.6-7-4.2-7-9V6l7-3Z"/><path d="M12 9v6"/><path d="M9 12h6"/>',
+  refresh: '<path d="M20 11a8 8 0 1 1-2.2-5.5"/><path d="M20 4v5h-5"/><path d="M12 8v4l2.5 1.5"/>',
+  chart: '<path d="M4 19h16"/><path d="M7 16V11"/><path d="M12 16V7"/><path d="M17 16v-4"/><path d="m14 9 3-3 2 2"/>',
+  orbit: '<circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="12" r="6.5" stroke-dasharray="1.6 2.2"/><circle cx="12" cy="12" r="10" stroke-dasharray="1.2 2.8"/>',
 };
 
 export function renderIcon(name: string, className = 'w-6 h-6'): string {
