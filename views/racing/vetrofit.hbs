@@ -1,0 +1,64 @@
+{{> racing-subnav}}
+
+<section class="panel-white">
+  <div class="section grid items-center gap-10 lg:grid-cols-2">
+    <div>
+      <div class="eyebrow">VetroFit&reg;</div>
+      <h1 class="font-display mt-4 text-4xl font-medium text-al-navy sm:text-5xl">Fast-Acting. Targeted. Results.</h1>
+      <p class="mt-6 text-sm leading-relaxed text-al-ink/75">Developed for elite performance horses, VetroFit&reg; is a fast-acting proprietary formulation designed to be administered just <span class="font-semibold text-al-navy">2&ndash;4 hours</span> before competition.</p>
+      <p class="mt-4 text-sm leading-relaxed text-al-ink/75">Its highly bioavailable blend of vitamins, minerals, trace elements, amino acids, and antioxidants provides targeted nutritional support for <span class="font-semibold text-al-navy">healthy kidney function</span>, helping maintain the physiological balance required for peak performance and efficient recovery.</p>
+      <div class="mt-8 grid grid-cols-3 gap-4">
+        <div class="text-center">
+          <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-al-panel text-al-navy">{{{icon "scale" "w-5 h-5"}}}</div>
+          <p class="mt-2 text-xs font-semibold text-al-navy">Supports Healthy Kidney Function</p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-al-panel text-al-navy">{{{icon "scale" "w-5 h-5"}}}</div>
+          <p class="mt-2 text-xs font-semibold text-al-navy">Maintains Physiological Balance</p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-al-panel text-al-navy">{{{icon "horse" "w-5 h-5"}}}</div>
+          <p class="mt-2 text-xs font-semibold text-al-navy">Supports Peak Performance &amp; Efficient Recovery</p>
+        </div>
+      </div>
+      <a href="/shop/product/vetrofit" class="btn-primary mt-8">Shop VetroFit&reg;</a>
+    </div>
+    <div class="mx-auto overflow-hidden rounded-2xl bg-al-panel">
+      <img src="/images/racing/vetrofit-action.jpg" alt="Jockey and racehorse at speed" class="h-full w-full object-cover" />
+    </div>
+  </div>
+</section>
+
+<section class="panel-grey">
+  <div class="section max-w-3xl text-center">
+    <h2 class="font-display text-3xl font-medium text-al-navy sm:text-4xl">From Physiology to Formulation</h2>
+    <p class="mt-6 text-sm leading-relaxed text-al-ink/75">Every ingredient in VetroFit&reg; is selected for a defined physiological purpose. Together, they form a highly bioavailable nutritional system that supports healthy kidney homeostasis&mdash;the foundation for efficient oxygen transport, cardiovascular performance, metabolic balance, hydration, and recovery.</p>
+  </div>
+</section>
+
+<section class="panel-white">
+  <div class="section">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <div class="eyebrow">Testimonials</div>
+        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy">North America Product Trials</h2>
+      </div>
+      <div class="flex gap-2">
+        <button type="button" data-testimonial-prev class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line" aria-label="Previous">{{{icon "arrow-left" "w-4 h-4"}}}</button>
+        <button type="button" data-testimonial-next class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
+      </div>
+    </div>
+    <div class="mt-8 overflow-hidden" data-testimonial-slider>
+      <div class="slider-track" data-testimonial-track>
+        {{#each testimonials}}
+        <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
+          <div class="card h-full p-6">
+            <p class="text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
+            <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}}</p>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>

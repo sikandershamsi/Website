@@ -1,0 +1,88 @@
+{{> racing-subnav}}
+
+<section class="panel-white">
+  <div class="section max-w-3xl text-center">
+    <h1 class="font-display text-4xl font-medium text-al-navy sm:text-5xl">The Industry Reality</h1>
+    <p class="mt-6 text-sm leading-relaxed text-al-ink/75">Elite performance pushes a horse's body to its physiological limits. When oxygen demand outpaces supply, a predictable cascade of performance-limiting events begins&mdash;reducing speed, increasing injury risk, and shortening careers.</p>
+  </div>
+</section>
+
+<section class="panel-grey">
+  <div class="section">
+    <h2 class="font-display text-center text-2xl font-medium text-al-navy sm:text-3xl">Phases of Performance Decline in an 8 Furlong Race</h2>
+    <p class="mt-2 text-center text-sm font-semibold uppercase tracking-wide text-red-600">Due to Insufficient Oxygen to the Muscles</p>
+    <p class="mx-auto mt-3 max-w-2xl text-center text-sm text-al-ink/65">As oxygen demand exceeds supply, a physiological cascade is triggered, leading to fatigue, stress, and decline.</p>
+
+    <div class="mt-10 overflow-x-auto rounded-2xl border border-al-line bg-white">
+      <table class="w-full min-w-[900px] border-collapse text-left text-sm">
+        <thead>
+          <tr class="bg-al-navy text-white">
+            <th class="px-4 py-3 font-semibold">Phase</th>
+            <th class="px-4 py-3 font-semibold">Race Progress</th>
+            <th class="px-4 py-3 font-semibold">What's Happening</th>
+            <th class="px-4 py-3 font-semibold">Physiological Cascade</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each performanceCascade}}
+          <tr class="border-t border-al-line align-top odd:bg-white even:bg-al-panel">
+            <td class="px-4 py-4 font-display text-lg font-medium text-al-orange">{{this.phase}}</td>
+            <td class="px-4 py-4">
+              <p class="font-semibold text-al-navy">{{this.name}}</p>
+              <p class="text-xs uppercase tracking-wide text-al-ink/50">{{this.range}}</p>
+            </td>
+            <td class="px-4 py-4 text-al-ink/70">{{this.body}}</td>
+            <td class="px-4 py-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.tag}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-8 overflow-hidden rounded-2xl border border-al-line bg-white p-6 sm:p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-al-navy">Relative Performance Level</p>
+      <div class="mt-5 flex items-end gap-2 sm:gap-4">
+        {{#each performanceCascade}}
+        <div class="flex flex-1 flex-col items-center gap-2">
+          <div class="flex h-32 w-full items-end overflow-hidden rounded-md bg-al-panel">
+            <div class="w-full rounded-md bg-gradient-to-t from-red-600 to-al-orange" style="height: {{this.level}}%"></div>
+          </div>
+          <p class="text-[11px] font-semibold text-al-navy">{{this.level}}%</p>
+          <p class="text-center text-[10px] uppercase tracking-wide text-al-ink/50">Furlong {{this.phase}}</p>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel-white">
+  <div class="section max-w-3xl">
+    <h2 class="font-display text-center text-3xl font-medium text-al-navy">The Effects</h2>
+    <ul class="mt-8 space-y-4 text-sm text-al-ink/80">
+      {{#each industryEffects}}
+      <li class="flex gap-3"><span class="font-semibold text-al-orange">{{this.stat}}</span> {{this.body}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</section>
+
+<section class="panel-grey">
+  <div class="section">
+    <div class="mx-auto max-w-4xl rounded-2xl border border-al-line bg-white p-8 sm:p-10">
+      <p class="text-xs font-semibold uppercase tracking-wide text-al-orange">Owners &amp; Trainers</p>
+      <p class="font-display mt-2 text-3xl font-semibold text-al-navy">Face</p>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2">
+        {{#each ownersTrainersFace}}
+        <div class="flex items-start gap-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-al-orange/40 text-al-orange">{{{icon this.icon "w-5 h-5"}}}</div>
+          <p class="pt-2.5 text-sm font-medium text-al-navy">{{this.title}}</p>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="mt-8 text-center">
+      <a href="/racing/kidney-homeostasis" class="btn-primary">See Kidney Homeostasis</a>
+    </div>
+  </div>
+</section>

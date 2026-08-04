@@ -1,0 +1,77 @@
+{{> racing-subnav}}
+
+<section class="panel-white">
+  <div class="section max-w-3xl">
+    <div class="eyebrow !text-red-600">Kidney Distress</div>
+    <h1 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">The Cost of Physiological Stress</h1>
+    <p class="mt-6 text-sm leading-relaxed text-al-ink/75">During intense racing and training, the kidneys face extraordinary demands to regulate blood pressure, fluid balance, electrolytes, acid-base balance, and oxygen transport. When the kidney can no longer maintain optimal homeostasis under extreme athletic stress, the body's performance systems begin to lose efficiency&mdash;often long before visible signs of fatigue or injury appear.</p>
+  </div>
+</section>
+
+<section class="panel-grey">
+  <div class="section max-w-3xl">
+    <h2 class="font-display text-2xl font-medium text-al-navy sm:text-3xl">Why Kidney Health Matters</h2>
+    <p class="mt-5 text-sm leading-relaxed text-al-ink/75">The outward signs of fatigue, slower recovery, reduced oxygen delivery, and declining performance are reflections of changes occurring within the kidney itself. Comparing a healthy kidney with one under extreme physiological stress helps explain why maintaining homeostasis is essential for peak athletic performance.</p>
+  </div>
+</section>
+
+<section class="panel-white">
+  <div class="section">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="rounded-2xl border border-green-700/25 bg-green-50 p-7">
+        <p class="font-display text-2xl font-semibold text-green-800">{{comparison.normal.label}}</p>
+        <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-green-700">{{comparison.normal.tagline}}</p>
+        <ul class="mt-6 space-y-4">
+          {{#each comparison.normal.points}}
+          <li class="flex items-start gap-3">
+            {{{icon "check" "w-5 h-5 mt-0.5 shrink-0 text-green-700"}}}
+            <div>
+              <p class="text-sm font-semibold text-al-navy">{{this.title}}</p>
+              <p class="text-xs text-al-ink/65">{{this.body}}</p>
+            </div>
+          </li>
+          {{/each}}
+        </ul>
+        <div class="mt-6 rounded-xl bg-white p-5">
+          <p class="text-xs font-semibold uppercase tracking-wide text-green-700">Result: Optimal Performance</p>
+          <ul class="mt-2 space-y-1 text-xs text-al-ink/70">
+            {{#each comparison.normal.result}}
+            <li>&bull; {{this}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-red-700/25 bg-red-50 p-7">
+        <p class="font-display text-2xl font-semibold text-red-800">{{comparison.stress.label}}</p>
+        <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-red-700">{{comparison.stress.tagline}}</p>
+        <ul class="mt-6 space-y-4">
+          {{#each comparison.stress.points}}
+          <li class="flex items-start gap-3">
+            {{{icon "close" "w-5 h-5 mt-0.5 shrink-0 text-red-700"}}}
+            <div>
+              <p class="text-sm font-semibold text-al-navy">{{this.title}}</p>
+              <p class="text-xs text-al-ink/65">{{this.body}}</p>
+            </div>
+          </li>
+          {{/each}}
+        </ul>
+        <div class="mt-6 rounded-xl bg-white p-5">
+          <p class="text-xs font-semibold uppercase tracking-wide text-red-700">Result: Reduced Performance &amp; Recovery</p>
+          <ul class="mt-2 space-y-1 text-xs text-al-ink/70">
+            {{#each comparison.stress.result}}
+            <li>&bull; {{this}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel-grey">
+  <div class="section text-center">
+    <p class="font-display mx-auto max-w-2xl text-2xl font-medium leading-snug text-al-navy sm:text-3xl">As the master regulator of the body's physiological systems, a healthy kidney helps maintain the homeostasis required for peak performance, efficient recovery, and long-term athletic health.</p>
+    <a href="/racing/vetrofit" class="btn-primary mt-10">Shop VetroFit&reg;</a>
+  </div>
+</section>

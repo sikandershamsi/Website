@@ -1,6 +1,6 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Redirect, Render } from '@nestjs/common';
 import { products } from '../content/products.data';
-import { ingredientLibrary, inflammationBenefits, sciencePillars, vetrofitTestimonials } from '../content/site.data';
+import { ingredientLibrary, inflammationBenefits, sciencePillars } from '../content/site.data';
 
 @Controller('the-science')
 export class ScienceController {
@@ -47,24 +47,12 @@ export class ScienceController {
     };
   }
 
+  // Racing & Kidney content moved to their own top-level /racing section.
   @Get('racing')
-  @Render('science/racing')
-  racing() {
-    return {
-      title: 'Racing — The Industry Reality',
-      activeNav: 'science',
-      scienceTab: 'racing',
-    };
-  }
+  @Redirect('/racing/industry-reality', 301)
+  racingRedirect() {}
 
   @Get('kidney-homeostasis')
-  @Render('science/kidney')
-  kidney() {
-    return {
-      title: 'Kidney Homeostasis',
-      activeNav: 'science',
-      scienceTab: 'kidney',
-      testimonials: vetrofitTestimonials,
-    };
-  }
+  @Redirect('/racing/kidney-homeostasis', 301)
+  kidneyRedirect() {}
 }

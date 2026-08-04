@@ -9,6 +9,26 @@ export interface FaqItem {
   answer: string;
 }
 
+export interface ProductWhatItIs {
+  summary: string;
+  points: string[];
+}
+
+export interface ProductOutcomes {
+  summary: string;
+  points: string[];
+}
+
+export interface ProductImpact {
+  summary?: string;
+  points: string[];
+}
+
+export interface PhysiologyPanel {
+  heading: string;
+  body: string;
+}
+
 export interface Product {
   slug: string;
   name: string;
@@ -21,6 +41,11 @@ export interface Product {
   heroStat: string;
   image: string;
   description: string;
+  whatItIs: ProductWhatItIs;
+  outcomes: ProductOutcomes;
+  impact: ProductImpact;
+  animalifeDifference: string;
+  physiologyPanel: PhysiologyPanel;
   keyIngredients: string[];
   supports: string[];
   ingredientBenefits: {
@@ -86,6 +111,35 @@ export const products: Product[] = [
     accent: 'orange',
     description:
       'Healthy movement begins with healthy joints. VetroFlex® is scientifically formulated to support the horse’s natural ability to repair cartilage, strengthen connective tissue, and support the structural integrity of the musculoskeletal system. By promoting long-term joint health rather than simply masking discomfort, VetroFlex helps horses move more freely, recover more effectively, and remain sound throughout every stage of life.',
+    whatItIs: {
+      summary: 'Root-cause focused nutraceutical that repairs cartilage and strengthens connective tissue.',
+      points: [
+        'Hydrolyzed collagen peptides match native equine collagen',
+        'Stimulates endogenous collagen synthesis',
+        'Competition-safe, non-prescriptive, repeat-use',
+      ],
+    },
+    outcomes: {
+      summary: 'Structural repair vs. symptom masking.',
+      points: [
+        'Rebuilds damaged cartilage & connective tissue',
+        'Improves joint, tendon, ligament & spinal resilience',
+        'Reduces oxidative stress and degeneration',
+        'Extends soundness under sustained competitive load',
+      ],
+    },
+    impact: {
+      points: [
+        'Extends competitive lifespan & peak earning years',
+        'Reduces reliance on injections, drugs, vet intervention',
+      ],
+    },
+    animalifeDifference:
+      'All competitors manage symptoms and offer short term fixes. VetroFlex supports the horse’s natural ability to repair cartilage and strengthen connective tissue throughout the body.',
+    physiologyPanel: {
+      heading: 'Supporting the Physiology of Soundness',
+      body: 'Cartilage and connective tissues are constantly adapting to the demands of training and competition. VetroFlex® provides the nutritional building blocks needed to support healthy cartilage repair, collagen synthesis, connective tissue integrity, and joint mobility. The chart below illustrates how these physiological systems contribute to athletic performance and long-term musculoskeletal health.',
+    },
     keyIngredients: [
       'Hydrolyzed Collagen Peptides (Type II)',
       'Prebiotic FOS (Fructooligosaccharides)',
@@ -165,6 +219,34 @@ export const products: Product[] = [
     accent: 'red',
     description:
       'VetroFen® combines powerful plant-derived ingredients with advanced nutritional science to help manage inflammation and discomfort naturally. Designed as a long-term alternative to routine NSAID use, VetroFen supports mobility, comfort, and recovery while working in harmony with the body’s natural healing processes — helping horses remain active, comfortable, and performing at their best.',
+    whatItIs: {
+      summary:
+        'A natural, competition-safe alternative to NSAIDs designed to reduce chronic inflammation at the cellular level—enabling faster healing, mobility, and performance continuity, with no side effects.',
+      points: [],
+    },
+    outcomes: {
+      summary: 'Inflammation control without performance trade-offs.',
+      points: [
+        'Reduces chronic and exercise-induced inflammation',
+        'Supports joint comfort, mobility, and freedom of movement',
+        'Enables cellular repair processes to activate',
+        'Improves willingness to train and compete consistently',
+      ],
+    },
+    impact: {
+      points: [
+        'Reduces reliance on pharmaceutical intervention (NSAIDs)',
+        'Lowers frequency of injections and drug use',
+        'Supports preventative, daily-use compliance',
+        'Improves training continuity and competitive availability',
+      ],
+    },
+    animalifeDifference:
+      'Unlike NSAIDs and steroids, VetroFen controls inflammation without compromising tissue repair, gastric health, or competition eligibility—making it suitable for continuous, long-term use.',
+    physiologyPanel: {
+      heading: "Supporting Physiology. Not Simply Managing Symptoms.",
+      body: 'VetroFen® was developed to support the body’s natural inflammatory processes rather than simply masking their effects. By targeting the physiological systems involved in inflammation, tissue protection, cellular resilience, and recovery, its carefully balanced formulation helps promote comfort, mobility, athletic performance, and long-term wellness. The following chart demonstrates how this physiology-first approach supports the horse at every level.',
+    },
     keyIngredients: ['Scutellaria baicalensis extract', 'Acacia catechu extract', 'SOBF Bioavailability Technology'],
     supports: ['Healthy Inflammatory Response', 'Comfort & Mobility', 'Recovery Following Exercise', 'Performance Longevity', 'Overall Wellness'],
     ingredientBenefits: [
@@ -233,6 +315,35 @@ export const products: Product[] = [
     accent: 'gold',
     description:
       'The kidney is one of the most overlooked performance organs in the horse. VetroFit is scientifically formulated to nourish the physiological processes behind oxygen transport, fluid regulation, electrolyte balance, and recovery — helping horses maximize endurance, accelerate recovery, and maintain peak performance naturally.',
+    whatItIs: {
+      summary:
+        'VetroFit® supports healthy kidney homeostasis - the efficient function of the interconnected systems responsible for monitoring & regulating seven key functions.',
+      points: [],
+    },
+    outcomes: {
+      summary: 'Healthy kidney homeostasis supports:',
+      points: [
+        'Oxygen transport and aerobic endurance',
+        'Cardiovascular performance and circulation',
+        'Fluid and electrolyte balance',
+        'Acid-base regulation',
+      ],
+    },
+    impact: {
+      summary: "When the body's physiological systems work together efficiently, performance naturally follows.",
+      points: [
+        'Perform at their highest potential',
+        'Recover more efficiently',
+        'Train more consistently',
+        'Maintain long-term athletic health',
+      ],
+    },
+    animalifeDifference:
+      'Most supplements support one system. VetroFit® supports the system that helps regulate them all.',
+    physiologyPanel: {
+      heading: 'Every Ingredient Has a Purpose. Every Purpose Supports Performance.',
+      body: 'Unlike traditional supplements that emphasize isolated ingredients, VetroFit® is formulated as an integrated nutritional system. Each ingredient is selected for its specific physiological role, working synergistically to support healthy kidney homeostasis and the interconnected biological processes that power performance, recovery, and long-term athletic health.',
+    },
     keyIngredients: ['Omega-3 (Linseed Oil)', 'Superoxide Dismutase (Melon Extract)', 'Chelated Iron, Copper, Manganese, Zinc, Selenium', 'Amino Acids (Lysine, Methionine)', 'B-Vitamins'],
     supports: ['Oxygen Delivery', 'Recovery', 'Cardiovascular Efficiency', 'Electrolyte Balance', 'Energy Production', 'Kidney Function', 'Competitive Performance'],
     ingredientBenefits: [

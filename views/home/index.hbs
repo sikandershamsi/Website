@@ -1,16 +1,12 @@
-<!-- HERO: 3 stitched video clips (racing · jumping · cross-country) -->
-<section class="hero-media" data-hero-slider>
-  <div class="absolute inset-0">
-    <video data-hero-slide class="opacity-100 transition-opacity duration-700" src="/videos/racing.mp4" muted playsinline loop preload="auto" aria-label="Thoroughbred racing"></video>
-    <video data-hero-slide class="opacity-0 transition-opacity duration-700" src="/videos/jumping.mp4" muted playsinline loop preload="metadata" aria-label="Show jumping"></video>
-    <video data-hero-slide class="opacity-0 transition-opacity duration-700" src="/videos/cross-country.mp4" muted playsinline loop preload="metadata" aria-label="Cross-country equestrian"></video>
+<!-- HERO -->
+<section class="relative overflow-hidden bg-al-navy text-white">
+  <div class="pointer-events-none absolute -right-24 top-0 h-full w-[60%] text-white/5">
+    {{> horse-mark class="h-full w-full"}}
   </div>
   <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1.5 bg-gradient-to-r from-al-orange via-al-orange-light to-al-orange"></div>
-  <div class="relative z-10 mx-auto flex min-h-[58vh] max-w-7xl flex-col justify-end px-6 pb-16 sm:min-h-[68vh] sm:px-8 lg:px-10 lg:pb-24">
-    <div class="mt-8 flex flex-wrap gap-4">
-      <a href="/shop" class="btn-primary">Shop All Products</a>
-      <a href="/the-science" class="btn-outline-light">Our Philosophy</a>
-    </div>
+  <div class="relative z-10 mx-auto flex min-h-[58vh] max-w-7xl flex-col justify-center px-6 py-20 sm:min-h-[62vh] sm:px-8 lg:px-10">
+    <p class="text-xs font-semibold uppercase tracking-[0.25em] text-al-orange-light">Long Term Equine Performance Starts Here</p>
+    <h1 class="font-display mt-5 max-w-2xl text-5xl font-medium leading-[1.05] sm:text-6xl lg:text-7xl">Feel the Difference</h1>
   </div>
 </section>
 
@@ -26,7 +22,7 @@
       <button type="button" data-truth-next class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line text-al-navy hover:border-al-orange hover:text-al-orange" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
     </div>
   </div>
-  <div class="mt-10 overflow-hidden" data-truth-slider>
+  <div class="mt-10 overflow-hidden" data-truth-slider data-auto-slider>
     <div class="slider-track" data-truth-track>
       {{#each horseTruths}}
       <div class="w-full shrink-0 px-1 md:w-1/2 md:px-3" data-truth-slide>
@@ -53,13 +49,11 @@
     </div>
 
     <div class="overflow-hidden rounded-[1.25rem] border border-al-line bg-white shadow-sm">
-      <div class="aspect-[5/4] overflow-hidden bg-white">
-        <img
-          src="/images/home/ingredients-photo.jpg"
-          alt="Natural botanical ingredients used in Animalife formulations"
-          class="h-full w-full object-cover object-[center_72%]"
-        />
-      </div>
+      <img
+        src="/images/home/ingredients-photo.jpg"
+        alt="Natural botanical ingredients used in Animalife formulations"
+        class="w-full object-contain"
+      />
       <div class="grid grid-cols-3 gap-x-3 gap-y-6 border-t border-al-line px-5 py-6 sm:gap-y-7 sm:px-6 sm:py-7">
         {{#each featuredIngredients}}
         <div class="text-center">
@@ -95,27 +89,24 @@
     <div class="flex flex-wrap items-end justify-between gap-4">
       <div>
         <div class="eyebrow">Featured Products</div>
-        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Three systems. One philosophy.</h2>
+        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Natural &ndash; Safe &ndash; FEI Clean Sport Compliant</h2>
       </div>
       <a href="/shop" class="btn-outline">Shop All Products</a>
     </div>
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {{#each products}}
-      <a href="/shop/product/{{this.slug}}" class="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lg">
-        <div class="flex aspect-[4/5] items-center justify-center bg-al-panel p-8">
+      <a href="/shop/product/{{this.slug}}" class="card group flex flex-col items-center overflow-hidden p-6 text-center transition-shadow hover:shadow-lg">
+        <div class="flex aspect-[4/5] w-full items-center justify-center">
           <img src="{{this.image}}" alt="{{this.trademark}}" class="h-full w-auto object-contain" />
         </div>
-        <div class="flex flex-1 flex-col p-6">
-          <div class="flex items-baseline justify-between gap-2">
-            <p class="font-display text-lg font-semibold text-al-navy">{{this.trademark}}</p>
-            <p class="text-xs uppercase tracking-wider text-al-ink/45">{{this.size}}</p>
-          </div>
+        <div class="flex flex-1 flex-col items-center pt-2">
+          <p class="font-display text-lg font-semibold text-al-navy">{{this.trademark}}</p>
           <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-orange">{{this.category}}</p>
           <p class="font-display mt-2 text-lg font-medium text-al-navy">{{this.tagline}}</p>
-          <div class="mt-5 flex items-center justify-between">
-            <span class="font-display text-lg font-medium text-al-navy">{{currency this.price}}</span>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-al-navy group-hover:text-al-orange">Learn More {{{icon "arrow-right" "w-4 h-4"}}}</span>
+          <div class="mt-3 flex justify-center gap-0.5 text-al-ink">
+            {{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}
           </div>
+          <span class="font-display mt-4 text-lg font-medium text-al-navy">{{currency this.price}}</span>
         </div>
       </a>
       {{/each}}
@@ -159,7 +150,7 @@
     <div class="inspired-blend">
       <img
         src="/images/home/inspired-nature-horse.jpg"
-        alt="Bay horse in a sunlit meadow"
+        alt="White horse in a sunlit wildflower meadow"
         class="inspired-blend__media"
       />
       <div class="inspired-blend__veil" aria-hidden="true"></div>
@@ -170,8 +161,20 @@
         <p class="mt-6 max-w-md text-sm leading-relaxed text-al-ink/80">Inspired by our founder's enduring passion for horses and a simple belief that nature often holds the answers modern medicine overlooks, Animalife was founded to explore the extraordinary <span class="font-semibold text-al-orange">healing potential of botanicals</span>.</p>
         <div class="mt-5 h-px w-10 bg-al-orange" aria-hidden="true"></div>
         <p class="mt-5 max-w-md text-sm leading-relaxed text-al-ink/80">By combining nature's most powerful ingredients with advanced nutritional science, we create innovative formulations that address the root causes of disease and dysfunction&mdash;empowering horses to perform with <span class="font-semibold text-al-navy">greater strength</span>, recover <span class="font-semibold text-al-navy">more naturally</span>, and enjoy <span class="font-semibold text-al-navy">longer, healthier lives</span>.</p>
-        <a href="/about" class="btn-outline mt-8">Our Story</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLEAN SPORT COMPLIANT -->
+<section class="panel-white">
+  <div class="section">
+    <div class="rounded-[1.75rem] bg-al-navy px-8 py-14 text-center text-white sm:px-14">
+      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-al-orange-light">{{{icon "horseshoe" "w-8 h-8"}}}</div>
+      <div class="eyebrow mt-6 justify-center !text-al-orange-light">FEI Clean Sport Compliant</div>
+      <h2 class="font-display mt-4 text-3xl font-medium sm:text-4xl">Natural. Safe. Competition Compliant.</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/75">Every Animalife formulation is screened for Naturally Occurring Prohibited Substances (NOPS) and Herbal, Spice &amp; Plant Substance (HSPS) contamination through our CleanSport+ Programme&mdash;giving owners, trainers, and riders complete confidence on competition day.</p>
+      <a href="/about/difference" class="btn-outline-light mt-8">Learn About CleanSport+</a>
     </div>
   </div>
 </section>
@@ -189,7 +192,7 @@
         <button type="button" data-testimonial-next class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line bg-white text-al-navy hover:border-al-orange hover:text-al-orange" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
       </div>
     </div>
-    <div class="mt-10 overflow-hidden" data-testimonial-slider>
+    <div class="mt-10 overflow-hidden" data-testimonial-slider data-auto-slider>
       <div class="slider-track gap-0" data-testimonial-track>
         {{#each testimonials}}
         <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
@@ -211,6 +214,9 @@
 <section class="panel-white">
   <div class="section !pt-0">
     <div class="feel-difference">
+      <div class="pt-8 text-center">
+        <img src="/images/brand/animalife-logo.webp" alt="Animalife USA" class="mx-auto h-10 w-auto brightness-0 invert" />
+      </div>
       <div class="feel-difference__panels">
         <div class="feel-difference__panel">
           <img src="/images/ambassadors/disciplines/jumping.jpg" alt="Show jumping" />

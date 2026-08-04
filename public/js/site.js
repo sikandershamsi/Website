@@ -152,6 +152,21 @@
     });
     window.addEventListener('resize', update);
     update();
+
+    if (options.autoMs) {
+      var timer = setInterval(function () {
+        index = index >= maxIndex() ? 0 : index + 1;
+        update();
+      }, options.autoMs);
+      var root = track.closest('[data-auto-slider]') || track;
+      root.addEventListener('mouseenter', function () { clearInterval(timer); });
+      root.addEventListener('mouseleave', function () {
+        timer = setInterval(function () {
+          index = index >= maxIndex() ? 0 : index + 1;
+          update();
+        }, options.autoMs);
+      });
+    }
   }
 
   initPairSlider({
@@ -160,6 +175,7 @@
     prev: '[data-truth-prev]',
     next: '[data-truth-next]',
     dots: '[data-truth-dots]',
+    autoMs: 5000,
   });
 
   initPairSlider({
@@ -167,6 +183,7 @@
     slide: '[data-testimonial-slide]',
     prev: '[data-testimonial-prev]',
     next: '[data-testimonial-next]',
+    autoMs: 4500,
   });
 
   // Affiliate earnings calculator

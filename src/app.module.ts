@@ -8,6 +8,7 @@ import { AmbassadorsModule } from './ambassadors/ambassadors.module';
 import { ProfessionalsModule } from './professionals/professionals.module';
 import { HorseIqModule } from './horse-iq/horse-iq.module';
 import { AccountModule } from './account/account.module';
+import { RacingModule } from './racing/racing.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { AccountModule } from './account/account.module';
     ProfessionalsModule,
     HorseIqModule,
     AccountModule,
+    RacingModule,
   ],
 })
 export class AppModule {}

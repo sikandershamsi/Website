@@ -174,8 +174,8 @@ export const affiliateAudiences = [
 ];
 
 export const vetrofitTestimonials = [
-  { quote: 'Thank you John. We gave her a whole tube this morning 4 hours before her prep breeze and another tube right afterward. She gained 2 seconds from her last breeze at the farm — from 49.90 to 48.20.', author: 'Racehorse Owner — Trainer' },
-  { quote: 'We use VetroFit before every work. The horses recover cleaner and come back stronger the next day.', author: 'Thoroughbred Trainer' },
-  { quote: 'Oxygen and recovery support we can actually see in the clocker stand. It has become part of our pre-race protocol.', author: 'Racing Stable Manager' },
-  { quote: 'No stimulants, just better physiology. That is exactly what we want heading into competition.', author: 'Equine Nutritionist' },
+  { quote: 'Good improvement. The horse improved by almost two seconds. Before she had gone 49.90 and she got down to 48.20.', author: 'Racehorse Owner — Trainer' },
+  { quote: 'We gave her a whole tube this morning 4 hours before her prep breeze and another tube right afterward. She gained 2 seconds from her last breeze at the farm.', author: 'Racehorse Owner' },
+  { quote: 'My rider says the filly is different, very strong.', author: 'Racehorse Owner — Trainer' },
+  { quote: "Nice 3/8 in 35.2, best work he's given, and the 1/2 in 48.1.", author: 'Racehorse Owner — Trainer' },
 ];

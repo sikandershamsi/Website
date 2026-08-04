@@ -46,6 +46,57 @@
   </div>
 </section>
 
+<section class="panel-grey">
+  <div class="section">
+    <div class="grid gap-8 lg:grid-cols-3">
+      <div class="card p-7">
+        <div class="eyebrow">Product</div>
+        <p class="mt-3 text-sm font-medium leading-relaxed text-al-navy">{{product.whatItIs.summary}}</p>
+        {{#if product.whatItIs.points.length}}
+        <ul class="mt-4 space-y-2 text-sm text-al-ink/70">
+          {{#each product.whatItIs.points}}
+          <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange shrink-0"}}}{{this}}</li>
+          {{/each}}
+        </ul>
+        {{/if}}
+      </div>
+      <div class="card p-7">
+        <div class="eyebrow">Outcomes</div>
+        <p class="mt-3 text-sm font-medium leading-relaxed text-al-navy">{{product.outcomes.summary}}</p>
+        <ul class="mt-4 space-y-2 text-sm text-al-ink/70">
+          {{#each product.outcomes.points}}
+          <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange shrink-0"}}}{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="card p-7">
+        <div class="eyebrow">Impact</div>
+        {{#if product.impact.summary}}
+        <p class="mt-3 text-sm font-medium leading-relaxed text-al-navy">{{product.impact.summary}}</p>
+        {{/if}}
+        <ul class="mt-4 space-y-2 text-sm text-al-ink/70">
+          {{#each product.impact.points}}
+          <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange shrink-0"}}}{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 rounded-2xl bg-al-navy p-8 text-white sm:p-10">
+      <div class="eyebrow !text-al-orange-light">The Animalife Difference</div>
+      <p class="font-display mt-4 text-xl font-medium leading-snug sm:text-2xl">{{product.animalifeDifference}}</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel-white">
+  <div class="section max-w-4xl">
+    <h2 class="font-display text-2xl font-medium text-al-navy sm:text-3xl">{{product.physiologyPanel.heading}}</h2>
+    <p class="mt-4 text-sm leading-relaxed text-al-ink/75">{{product.physiologyPanel.body}}</p>
+    <a href="#ingredients" class="btn-outline mt-6">See the Ingredient Chart</a>
+  </div>
+</section>
+
 {{#ifCond product.slug "vetrofit"}}
 <section class="panel-grey">
   <div class="section">
@@ -98,7 +149,8 @@
         <button type="button" data-tab-btn="description" class="tab-btn is-active whitespace-nowrap">Description</button>
         <button type="button" data-tab-btn="ingredients" class="tab-btn whitespace-nowrap">Ingredients &amp; Benefits</button>
         <button type="button" data-tab-btn="feeding" class="tab-btn whitespace-nowrap">Feeding Instructions</button>
-        <button type="button" data-tab-btn="faq" class="tab-btn whitespace-nowrap">FAQ</button>
+        <button type="button" data-tab-btn="faq" class="tab-btn whitespace-nowrap">FAQ&rsquo;s</button>
+        <button type="button" data-tab-btn="horseiq" class="tab-btn whitespace-nowrap">Horse IQ</button>
       </div>
 
       <div data-tab-panel="description" class="max-w-3xl py-10">
@@ -166,6 +218,11 @@
           </div>
           {{/each}}
         </div>
+      </div>
+
+      <div data-tab-panel="horseiq" class="hidden max-w-3xl py-10">
+        <p class="text-sm leading-relaxed text-al-ink/75">Explore the podcasts, videos, white papers, and infographics behind {{product.trademark}}&mdash;straight from the Animalife science team.</p>
+        <a href="/horse-iq" class="btn-outline mt-6">Browse Horse IQ</a>
       </div>
     </div>
   </div>

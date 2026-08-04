@@ -1,13 +1,14 @@
 <header class="sticky top-0 z-40 border-b border-al-line bg-white">
-  <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 sm:px-8 lg:px-10">
-    {{> brand-logo}}
+  <div class="mx-auto flex max-w-7xl items-center gap-8 px-6 py-4 sm:px-8 lg:px-10">
+    {{> brand-logo class="h-14 w-auto"}}
 
-    <nav class="hidden lg:flex items-center gap-8 text-[13px] font-semibold tracking-wide uppercase text-al-navy">
+    <nav class="ml-auto hidden lg:flex items-center gap-8 text-[13px] font-semibold tracking-wide uppercase text-al-navy">
       <a href="/the-science" class="hover:text-al-orange transition-colors {{#ifCond activeNav "science"}}text-al-orange{{/ifCond}}">The Science</a>
       <a href="/shop" class="hover:text-al-orange transition-colors {{#ifCond activeNav "shop"}}text-al-orange{{/ifCond}}">Shop</a>
       <a href="/about" class="hover:text-al-orange transition-colors {{#ifCond activeNav "about"}}text-al-orange{{/ifCond}}">About Us</a>
       <a href="/ambassadors" class="hover:text-al-orange transition-colors {{#ifCond activeNav "ambassadors"}}text-al-orange{{/ifCond}}">Ambassadors</a>
       <a href="/professionals" class="hover:text-al-orange transition-colors {{#ifCond activeNav "professionals"}}text-al-orange{{/ifCond}}">Professionals</a>
+      <a href="/racing" class="hover:text-al-orange transition-colors {{#ifCond activeNav "racing"}}text-al-orange{{/ifCond}}">Racing</a>
       <a href="/horse-iq" class="hover:text-al-orange transition-colors {{#ifCond activeNav "horseiq"}}text-al-orange{{/ifCond}}">Horse IQ</a>
     </nav>
 

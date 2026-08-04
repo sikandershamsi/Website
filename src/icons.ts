@@ -43,6 +43,11 @@ export const icons: Record<string, string> = {
   orbit: '<circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="12" r="6.5" stroke-dasharray="1.6 2.2"/><circle cx="12" cy="12" r="10" stroke-dasharray="1.2 2.8"/>',
   crosshair: '<circle cx="12" cy="12" r="7"/><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="1.6"/>',
   clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/><path d="m16.5 7.5 1.2-1.2"/>',
+  'trend-down': '<path d="M4 7 10 13l3-3 7 7"/><path d="M17 10v7h-7"/>',
+  'dollar-down': '<circle cx="12" cy="12" r="9"/><path d="M12 7v10"/><path d="M9.5 15c0 1.1 1.1 2 2.5 2s2.5-.9 2.5-2c0-3-5-2-5-5 0-1.1 1.1-2 2.5-2s2.5.9 2.5 2"/>',
+  lungs: '<path d="M12 3v7"/><path d="M12 10c-2 0-3 2-3 5v3a2 2 0 0 1-4 0v-6c0-3 2-5 4-6"/><path d="M12 10c2 0 3 2 3 5v3a2 2 0 0 0 4 0v-6c0-3-2-5-4-6"/>',
+  droplet: '<path d="M12 3c3 4 6 8 6 11.5A6 6 0 0 1 6 14.5C6 11 9 7 12 3Z"/>',
+  scale: '<path d="M12 3v18"/><path d="M6 7h12"/><path d="M6 7 3.5 13a2.5 2.5 0 0 0 5 0Z"/><path d="M18 7l-2.5 6a2.5 2.5 0 0 0 5 0Z"/>',
 };
 
 export function renderIcon(name: string, className = 'w-6 h-6'): string {

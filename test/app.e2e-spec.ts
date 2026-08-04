@@ -23,7 +23,7 @@ describe('AppController (e2e)', () => {
       .get('/')
       .expect(200)
       .expect((res) => {
-        if (!res.text.includes('Feel the difference')) {
+        if (!res.text.includes('Feel the Difference')) {
           throw new Error('Homepage did not render expected hero copy');
         }
       });

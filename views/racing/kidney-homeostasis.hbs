@@ -1,0 +1,44 @@
+{{> racing-subnav}}
+
+<section class="panel-white">
+  <div class="section grid items-center gap-10 lg:grid-cols-2">
+    <div>
+      <div class="eyebrow">The Unsung Hero of Equine Performance</div>
+      <h1 class="font-display mt-4 text-4xl font-medium text-al-navy sm:text-5xl">Kidney Homeostasis</h1>
+      <p class="mt-6 text-sm leading-relaxed text-al-ink/75">01 | Homeostasis is the balance that allows every performance system in the horse's body to work together as one.</p>
+      <p class="mt-4 text-sm leading-relaxed text-al-ink/75">It is the body's ability to continuously maintain internal physiological balance, ensuring that critical systems such as oxygen transport, cardiovascular function, hydration, electrolyte balance, metabolism, and recovery work together efficiently&mdash;even under the extreme demands of training and competition.</p>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      {{#each homeostasisSystems}}
+      <div class="card flex flex-col items-center gap-2 p-5 text-center">
+        <div class="flex h-11 w-11 items-center justify-center rounded-full bg-al-panel text-al-navy">{{{icon this.icon "w-5 h-5"}}}</div>
+        <p class="text-xs font-semibold text-al-navy">{{this.title}}</p>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<section class="panel-grey">
+  <div class="section text-center">
+    <div class="eyebrow mx-auto justify-center">Oxygen Is the Currency of Performance</div>
+    <p class="mx-auto mt-6 max-w-3xl text-sm leading-relaxed text-al-ink/75">A racehorse's ability to sustain speed is determined by how efficiently oxygen is delivered to working muscles. Healthy kidney homeostasis helps regulate the physiological systems responsible for red blood cell production, blood pressure, fluid balance, and circulation&mdash;creating the foundation for efficient oxygen transport throughout the body.</p>
+    <div class="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-8 sm:grid-cols-4">
+      {{#each homeostasisImpact}}
+      <div>
+        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-al-navy text-white">{{{icon this.icon "w-6 h-6"}}}</div>
+        <p class="mt-3 text-sm font-semibold text-al-navy">{{this.title}}</p>
+        <p class="text-xs text-al-ink/60">{{this.body}}</p>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<section class="panel-white">
+  <div class="section max-w-3xl text-center">
+    <h2 class="font-display text-3xl font-medium text-al-navy">Homeostasis</h2>
+    <p class="mt-5 text-sm leading-relaxed text-al-ink/75">Homeostasis is the body's ability to maintain internal balance under stress. When kidney function is supported, horses sustain energy, clear metabolic waste, and recover more efficiently between works.</p>
+    <a href="/racing/kidney-distress" class="btn-primary mt-8">See Kidney Distress</a>
+  </div>
+</section>
