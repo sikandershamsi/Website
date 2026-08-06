@@ -1,4 +1,4 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Body, Controller, Get, Post, Render } from '@nestjs/common';
 import {
   performanceCascade,
   ownersTrainersFace,
@@ -8,6 +8,7 @@ import {
   homeostasisComparison,
 } from '../content/racing.data';
 import { vetrofitTestimonials } from '../content/site.data';
+import { PerformanceEvaluationDto } from './performance-evaluation.dto';
 
 @Controller('racing')
 export class RacingController {
@@ -61,6 +62,38 @@ export class RacingController {
       activeNav: 'racing',
       racingTab: 'vetrofit',
       testimonials: vetrofitTestimonials,
+    };
+  }
+
+  @Get('performance-evaluation')
+  @Render('racing/performance-evaluation')
+  performanceEvaluation() {
+    return {
+      title: 'VetroFit® Performance Evaluation Program',
+      activeNav: 'racing',
+      racingTab: 'vetrofit',
+    };
+  }
+
+  @Get('performance-evaluation/apply')
+  @Render('racing/performance-evaluation-apply')
+  performanceEvaluationApply() {
+    return {
+      title: 'Performance Evaluation Program — Application',
+      activeNav: 'racing',
+      racingTab: 'vetrofit',
+    };
+  }
+
+  @Post('performance-evaluation/apply')
+  @Render('racing/performance-evaluation-apply')
+  submitPerformanceEvaluation(@Body() body: PerformanceEvaluationDto) {
+    return {
+      title: 'Performance Evaluation Program — Application',
+      activeNav: 'racing',
+      racingTab: 'vetrofit',
+      submitted: true,
+      submittedName: `${body.firstName} ${body.lastName}`.trim(),
     };
   }
 }

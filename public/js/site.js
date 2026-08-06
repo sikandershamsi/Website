@@ -186,6 +186,15 @@
     autoMs: 4500,
   });
 
+  initPairSlider({
+    track: '[data-products-track]',
+    slide: '[data-products-slide]',
+    prev: '[data-products-prev]',
+    next: '[data-products-next]',
+    dots: '[data-products-dots]',
+    autoMs: 5000,
+  });
+
   // Affiliate earnings calculator
   var calc = document.querySelector('[data-affiliate-calculator]');
   if (calc) {

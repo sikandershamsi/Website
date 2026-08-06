@@ -1,0 +1,257 @@
+{{> racing-subnav}}
+
+{{> page-header eyebrow="VetroFit® Performance Evaluation Program" heading="Application" subheading="Please complete the form below. Our scientific advisory team reviews every application."}}
+
+<section class="panel-white">
+  <div class="section max-w-3xl">
+    {{#if submitted}}
+    <div class="card flex flex-col items-center px-8 py-16 text-center">
+      <div class="flex h-16 w-16 items-center justify-center rounded-full bg-al-orange/10 text-al-orange">{{{icon "check" "w-8 h-8"}}}</div>
+      <p class="font-display mt-6 text-2xl font-medium text-al-navy">Thank You for Your Interest</p>
+      <p class="mt-4 max-w-md text-sm leading-relaxed text-al-ink/65">Your application has been successfully submitted, {{submittedName}}. Our scientific advisory team will review each application based on racing experience, stable profile, geographic representation, and suitability for the evaluation program.</p>
+      <p class="mt-3 max-w-md text-sm leading-relaxed text-al-ink/65">Selected participants will be contacted with enrollment instructions, product shipment details, and trial protocols.</p>
+      <p class="mt-5 text-sm font-semibold text-al-navy">Thank you for helping advance the science of equine performance and recovery.</p>
+      <a href="/racing/vetrofit" class="btn-outline mt-8">Back to VetroFit&reg;</a>
+    </div>
+    {{else}}
+    <form action="/racing/performance-evaluation/apply" method="post" class="space-y-14">
+
+      <div>
+        <p class="eyebrow">Section 1</p>
+        <h2 class="font-display mt-3 text-xl font-medium text-al-navy">Applicant Information</h2>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2">
+          <div><label class="field-label" for="firstName">First Name</label><input id="firstName" name="firstName" required class="input-field" /></div>
+          <div><label class="field-label" for="lastName">Last Name</label><input id="lastName" name="lastName" required class="input-field" /></div>
+          <div class="sm:col-span-2"><label class="field-label" for="farmName">Farm / Stable Name</label><input id="farmName" name="farmName" class="input-field" /></div>
+          <div>
+            <label class="field-label" for="position">Position</label>
+            <select id="position" name="position" class="input-field">
+              <option value="Trainer">Trainer</option>
+              <option value="Owner">Owner</option>
+              <option value="Owner / Trainer">Owner / Trainer</option>
+              <option value="Assistant Trainer">Assistant Trainer</option>
+              <option value="Bloodstock Agent">Bloodstock Agent</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div><label class="field-label" for="positionOther">If Other, please specify</label><input id="positionOther" name="positionOther" class="input-field" /></div>
+          <div><label class="field-label" for="email">Email Address</label><input id="email" name="email" type="email" required class="input-field" /></div>
+          <div><label class="field-label" for="mobilePhone">Mobile Phone</label><input id="mobilePhone" name="mobilePhone" type="tel" required class="input-field" /></div>
+          <div><label class="field-label" for="city">City</label><input id="city" name="city" class="input-field" /></div>
+          <div><label class="field-label" for="state">State / Province</label><input id="state" name="state" class="input-field" /></div>
+          <div><label class="field-label" for="country">Country</label><input id="country" name="country" value="United States" class="input-field" /></div>
+          <div><label class="field-label" for="website">Website (Optional)</label><input id="website" name="website" class="input-field" /></div>
+          <div class="sm:col-span-2"><label class="field-label" for="socialMedia">Social Media (Optional)</label><input id="socialMedia" name="socialMedia" class="input-field" /></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Section 2</p>
+        <h2 class="font-display mt-3 text-xl font-medium text-al-navy">Racing Experience</h2>
+        <div class="mt-6">
+          <label class="field-label">Years actively training racehorses</label>
+          <div class="mt-2 grid gap-2 sm:grid-cols-2">
+            {{#each (array "Less than 3 Years" "3–10 Years" "11–20 Years" "More than 20 Years")}}
+            <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="radio" name="yearsTraining" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+            {{/each}}
+          </div>
+        </div>
+        <div class="mt-6">
+          <label class="field-label">Primary Racing Circuit(s)</label>
+          <div class="mt-2 grid gap-2 sm:grid-cols-3">
+            {{#each (array "Gulfstream Park" "Saratoga" "Churchill Downs" "Keeneland" "Del Mar" "Santa Anita" "Oaklawn Park" "Monmouth Park" "Woodbine")}}
+            <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="racingCircuits" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+            {{/each}}
+          </div>
+          <input name="racingCircuitOther" placeholder="Other" class="input-field mt-2 sm:max-w-xs" />
+        </div>
+        <div class="mt-6">
+          <label class="field-label">Primary Breed</label>
+          <div class="mt-2 grid gap-2 sm:grid-cols-3">
+            {{#each (array "Thoroughbred" "Quarter Horse" "Standardbred")}}
+            <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="primaryBreed" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+            {{/each}}
+          </div>
+          <input name="primaryBreedOther" placeholder="Other" class="input-field mt-2 sm:max-w-xs" />
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Section 3</p>
+        <h2 class="font-display mt-3 text-xl font-medium text-al-navy">Stable Profile</h2>
+        <div class="mt-6">
+          <label class="field-label">Current Number of Horses in Training</label>
+          <div class="mt-2 grid gap-2 sm:grid-cols-3">
+            {{#each (array "1–10" "11–25" "26–50" "51–100" "More than 100")}}
+            <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="radio" name="horsesInTraining" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+            {{/each}}
+          </div>
+        </div>
+        <div class="mt-6">
+          <label class="field-label">Highest Level of Horses Currently in Training</label>
+          <div class="mt-2 grid gap-2 sm:grid-cols-3">
+            {{#each (array "Maiden" "Claiming" "Allowance" "Stakes" "Graded Stakes" "Mixed Program")}}
+            <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="highestLevel" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+            {{/each}}
+          </div>
+        </div>
+        <div class="mt-6"><label class="field-label" for="biggestRaceWon">Biggest Race Won (Optional)</label><input id="biggestRaceWon" name="biggestRaceWon" class="input-field" /></div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Section 4</p>
+        <h2 class="font-display mt-3 text-xl font-medium text-al-navy">Stable Operations &amp; Investment</h2>
+        <div class="mt-6">
+          <label class="field-label">Approximate Annual Veterinary Expenditures</label>
+          <div class="mt-2 grid gap-2 sm:grid-cols-3">
+            {{#each (array "Less than $25,000" "$25,000–$50,000" "$50,001–$100,000" "$100,001–$250,000" "$250,001–$500,000" "More than $500,000")}}
+            <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="radio" name="vetExpenditure" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+            {{/each}}
+          </div>
+        </div>
+        <div class="mt-6">
+          <label class="field-label">Approximate Annual Feed &amp; Nutritional Supplement Expenditures</label>
+          <div class="mt-2 grid gap-2 sm:grid-cols-3">
+            {{#each (array "Less than $25,000" "$25,000–$50,000" "$50,001–$100,000" "$100,001–$250,000" "$250,001–$500,000" "More than $500,000")}}
+            <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="radio" name="feedExpenditure" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+            {{/each}}
+          </div>
+        </div>
+        <div class="mt-6">
+          <label class="field-label">Average Number of Horses Racing Each Month</label>
+          <div class="mt-2 grid gap-2 sm:grid-cols-3">
+            {{#each (array "1–5" "6–10" "11–20" "21–40" "More than 40")}}
+            <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="radio" name="horsesRacingMonthly" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+            {{/each}}
+          </div>
+        </div>
+        <div class="mt-6">
+          <label class="field-label">Primary Focus of Your Stable</label>
+          <div class="mt-2 grid gap-2 sm:grid-cols-3">
+            {{#each (array "Two-Year-Olds" "Maiden Horses" "Claiming Horses" "Allowance Horses" "Stakes Horses" "Graded Stakes Horses" "Mixed Racing Program")}}
+            <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="stableFocus" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Section 5</p>
+        <h2 class="font-display mt-3 text-xl font-medium text-al-navy">Training &amp; Management Practices</h2>
+        <div class="mt-6">
+          <label class="field-label">Which of the following best describes your current training program?</label>
+          <div class="mt-2 grid gap-2 sm:grid-cols-2">
+            {{#each (array "High-intensity racing stable" "Young horse development" "Mixed training program" "Rehabilitation / Return to Racing")}}
+            <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="trainingProgram" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+            {{/each}}
+          </div>
+        </div>
+        <div class="mt-6"><label class="field-label" for="currentSupplements">Current Performance Supplements Used</label><textarea id="currentSupplements" name="currentSupplements" rows="2" class="input-field"></textarea></div>
+        <div class="mt-6"><label class="field-label" for="currentRecoveryProtocols">Current Recovery Protocols</label><textarea id="currentRecoveryProtocols" name="currentRecoveryProtocols" rows="2" class="input-field"></textarea></div>
+        <div class="mt-6">
+          <label class="field-label">Do you currently administer race-day nutritional supplements?</label>
+          <div class="mt-2 flex gap-6 text-sm text-al-ink/75">
+            <label class="flex items-center gap-2"><input type="radio" name="raceDaySupplements" value="Yes" class="accent-al-orange" />Yes</label>
+            <label class="flex items-center gap-2"><input type="radio" name="raceDaySupplements" value="No" class="accent-al-orange" />No</label>
+          </div>
+          <input name="raceDaySupplementsList" placeholder="If yes, please list" class="input-field mt-3" />
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Section 6</p>
+        <h2 class="font-display mt-3 text-xl font-medium text-al-navy">Trial Horse Information</h2>
+        <p class="mt-1 text-xs text-al-ink/55">Maximum two horses</p>
+        {{#each (array 1 2)}}
+        <div class="mt-6 card p-6">
+          <p class="font-display text-base font-medium text-al-navy">Horse #{{this}}</p>
+          <div class="mt-4 grid gap-5 sm:grid-cols-2">
+            <div><label class="field-label">Registered Name</label><input name="horse{{this}}Name" class="input-field" /></div>
+            <div class="grid grid-cols-2 gap-3">
+              <div><label class="field-label">Age</label><input name="horse{{this}}Age" class="input-field" /></div>
+              <div><label class="field-label">Sex</label><input name="horse{{this}}Sex" class="input-field" /></div>
+            </div>
+            <div><label class="field-label">Trainer</label><input name="horse{{this}}Trainer" class="input-field" /></div>
+            <div><label class="field-label">Primary Racing Distance</label><input name="horse{{this}}Distance" class="input-field" /></div>
+            <div><label class="field-label">Number of Starts in the Past 12 Months</label><input name="horse{{this}}Starts" class="input-field" /></div>
+            <div><label class="field-label">Current Training Status</label><input name="horse{{this}}Status" class="input-field" /></div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      <div>
+        <p class="eyebrow">Section 7</p>
+        <h2 class="font-display mt-3 text-xl font-medium text-al-navy">Trial Objectives</h2>
+        <p class="mt-1 text-sm text-al-ink/60">What interests you most about evaluating VetroFit®? (Check all that apply)</p>
+        <div class="mt-4 grid gap-2 sm:grid-cols-2">
+          {{#each (array "Improved Recovery" "Stamina & Endurance" "Aerobic Oxygen Transport" "Hydration Support" "Heat Tolerance" "Racing Performance" "Faster Recovery Between Works" "Overall Wellness")}}
+          <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="trialInterests" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+          {{/each}}
+        </div>
+        <input name="trialInterestOther" placeholder="Other" class="input-field mt-3 sm:max-w-xs" />
+      </div>
+
+      <div>
+        <p class="eyebrow">Section 8</p>
+        <h2 class="font-display mt-3 text-xl font-medium text-al-navy">Evaluation Commitment</h2>
+        <p class="mt-1 text-sm text-al-ink/60">I understand participation in the VetroFit® Performance Evaluation Program includes:</p>
+        <div class="mt-4 space-y-2">
+          {{#each (array "Following the recommended administration protocol" "Completing brief evaluation questionnaires" "Providing honest observations and feedback" "Reporting both positive and negative experiences" "Allowing Animalife USA to use anonymous trial data for research and product development" "I may be contacted regarding follow-up questions.")}}
+          <label class="flex items-start gap-2 text-sm text-al-ink/75"><input type="checkbox" name="commitments" value="{{this}}" class="mt-0.5 accent-al-orange" />{{this}}</label>
+          {{/each}}
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Section 9</p>
+        <h2 class="font-display mt-3 text-xl font-medium text-al-navy">Professional References</h2>
+        <p class="mt-1 text-sm text-al-ink/60">Stable Veterinarian</p>
+        <div class="mt-3 grid gap-5 sm:grid-cols-2">
+          <div><label class="field-label">Name</label><input name="vetName" class="input-field" /></div>
+          <div><label class="field-label">Clinic</label><input name="vetClinic" class="input-field" /></div>
+          <div><label class="field-label">Phone</label><input name="vetPhone" type="tel" class="input-field" /></div>
+          <div><label class="field-label">Email</label><input name="vetEmail" type="email" class="input-field" /></div>
+        </div>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2">
+          <div><label class="field-label" for="feedCompany">Primary Feed Company</label><input id="feedCompany" name="feedCompany" class="input-field" /></div>
+          <div><label class="field-label" for="farrier">Primary Farrier (Optional)</label><input id="farrier" name="farrier" class="input-field" /></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Section 10</p>
+        <h2 class="font-display mt-3 text-xl font-medium text-al-navy">Program Discovery</h2>
+        <label class="field-label mt-4 block">How did you hear about the VetroFit® Performance Evaluation Program?</label>
+        <select name="discoverySource" class="input-field mt-2 sm:max-w-sm">
+          <option value="Veterinarian">Veterinarian</option>
+          <option value="Trainer Referral">Trainer Referral</option>
+          <option value="Owner Referral">Owner Referral</option>
+          <option value="Animalife USA Website">Animalife USA Website</option>
+          <option value="Facebook">Facebook</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Industry Publication">Industry Publication</option>
+          <option value="Trade Show / Conference">Trade Show / Conference</option>
+          <option value="Animalife USA Representative">Animalife USA Representative</option>
+          <option value="Other">Other</option>
+        </select>
+        <input name="discoverySourceOther" placeholder="If other, please specify" class="input-field mt-2 sm:max-w-sm" />
+      </div>
+
+      <div class="card p-6">
+        <p class="eyebrow">Section 11</p>
+        <h2 class="font-display mt-3 text-lg font-medium text-al-navy">Agreement &amp; Signature</h2>
+        <p class="mt-3 text-sm text-al-ink/65">I certify that the information provided in this application is true and accurate to the best of my knowledge. I understand that acceptance into the VetroFit® Performance Evaluation Program is by invitation only and that submission of this application does not guarantee selection. I understand that VetroFit® is a nutritional supplement formulated to support normal physiological function and is not intended to diagnose, treat, cure, or prevent any disease.</p>
+        <div class="mt-5 grid gap-5 sm:grid-cols-2">
+          <div><label class="field-label" for="applicantName">Applicant Name</label><input id="applicantName" name="applicantName" required class="input-field" /></div>
+          <div><label class="field-label" for="signature">Signature</label><input id="signature" name="signature" required class="input-field" placeholder="Type full name to sign" /></div>
+          <div><label class="field-label" for="date">Date</label><input id="date" name="date" type="date" class="input-field" /></div>
+        </div>
+        <label class="mt-5 flex items-start gap-2 text-sm font-semibold text-al-navy"><input type="checkbox" name="agree" required class="mt-0.5 accent-al-orange" />I agree to the terms above</label>
+      </div>
+
+      <button type="submit" class="btn-primary w-full sm:w-auto">Submit Application</button>
+    </form>
+    {{/if}}
+  </div>
+</section>
