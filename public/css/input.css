@@ -141,10 +141,10 @@
     @apply relative isolate overflow-hidden bg-white;
   }
   .science-hero__stage {
-    @apply relative mx-auto min-h-[320px] max-w-7xl sm:min-h-[380px] lg:min-h-[440px];
+    @apply relative mx-auto min-h-[520px] max-w-7xl sm:min-h-[640px] lg:min-h-[760px];
   }
   .science-hero__media {
-    @apply absolute inset-0 h-full w-full object-cover object-[68%_center] sm:object-[62%_center] lg:object-[58%_center];
+    @apply absolute inset-0 h-full w-full object-contain object-center;
   }
   .science-hero__copy {
     @apply relative z-10 flex h-full max-w-xl flex-col justify-center px-6 py-12 sm:px-8 sm:py-14 lg:max-w-[42%] lg:px-10 lg:py-16;
