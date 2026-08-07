@@ -198,13 +198,13 @@
     @apply relative overflow-hidden rounded-2xl bg-al-navy;
   }
   .feel-difference__panels {
-    @apply grid grid-cols-2 lg:grid-cols-4;
+    @apply grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7;
   }
   .feel-difference__panel {
-    @apply relative min-h-[180px] overflow-hidden sm:min-h-[220px] lg:min-h-[280px];
+    @apply relative min-h-[140px] overflow-hidden sm:min-h-[180px] lg:min-h-[220px];
   }
   .feel-difference__panel + .feel-difference__panel {
-    @apply lg:-ml-6;
+    @apply lg:-ml-4;
   }
   .feel-difference__panel img {
     @apply absolute inset-0 h-full w-full object-cover transition-transform duration-500;
@@ -212,25 +212,15 @@
   .feel-difference__panel:hover img {
     @apply scale-105;
   }
-  .feel-difference__panel:nth-child(1) {
-    clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
-  }
-  .feel-difference__panel:nth-child(2),
-  .feel-difference__panel:nth-child(3) {
-    clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
-  }
-  .feel-difference__panel:nth-child(4) {
-    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
-  }
-  @media (max-width: 1023px) {
-    .feel-difference__panel:nth-child(1),
-    .feel-difference__panel:nth-child(2),
-    .feel-difference__panel:nth-child(3),
-    .feel-difference__panel:nth-child(4) {
-      clip-path: none;
+  @media (min-width: 1024px) {
+    .feel-difference__panel:first-child {
+      clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
     }
-    .feel-difference__panel + .feel-difference__panel {
-      margin-left: 0;
+    .feel-difference__panel:not(:first-child):not(:last-child) {
+      clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+    }
+    .feel-difference__panel:last-child {
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
     }
   }
   .feel-difference__title {

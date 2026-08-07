@@ -131,13 +131,13 @@ export const testimonials = [
 ];
 
 export const disciplines = [
-  { slug: 'show-jumping', name: 'Show Jumping' },
-  { slug: 'dressage', name: 'Dressage' },
-  { slug: 'racing', name: 'Racing' },
-  { slug: 'eventing', name: 'Eventing' },
-  { slug: 'western-reining', name: 'Western Reining' },
-  { slug: 'polo', name: 'Polo' },
-  { slug: 'four-in-hand', name: 'Four-in-Hand' },
+  { slug: 'show-jumping', name: 'Show Jumping', image: '/images/ambassadors/disciplines/jumping.jpg' },
+  { slug: 'dressage', name: 'Dressage', image: '/images/ambassadors/disciplines/dressage.jpg' },
+  { slug: 'racing', name: 'Racing', image: '/images/ambassadors/disciplines/racing.jpg' },
+  { slug: 'eventing', name: 'Eventing', image: '/images/ambassadors/disciplines/eventing.jpg' },
+  { slug: 'western-reining', name: 'Western Reining', image: '/images/ambassadors/disciplines/western.jpg' },
+  { slug: 'polo', name: 'Polo', image: '/images/ambassadors/disciplines/polo.jpg' },
+  { slug: 'four-in-hand', name: 'Four-in-Hand', image: '/images/ambassadors/disciplines/four-in-hand.jpg' },
 ];
 
 export const affiliateAudiences = [

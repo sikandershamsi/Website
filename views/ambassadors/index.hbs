@@ -37,18 +37,11 @@
   <div class="section">
     <div class="feel-difference">
       <div class="feel-difference__panels">
+        {{#each disciplines}}
         <div class="feel-difference__panel">
-          <img src="/images/ambassadors/disciplines/jumping.jpg" alt="Show jumping" />
+          <img src="{{this.image}}" alt="{{this.name}}" />
         </div>
-        <div class="feel-difference__panel">
-          <img src="/images/ambassadors/disciplines/western.jpg" alt="Western reining" />
-        </div>
-        <div class="feel-difference__panel">
-          <img src="/images/ambassadors/disciplines/dressage.jpg" alt="Dressage" />
-        </div>
-        <div class="feel-difference__panel">
-          <img src="/images/ambassadors/disciplines/racing.jpg" alt="Thoroughbred racing" />
-        </div>
+        {{/each}}
       </div>
       <p class="feel-difference__title">feel the difference</p>
     </div>
