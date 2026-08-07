@@ -206,17 +206,23 @@
         {{/with}}
 
         {{#if product.primaryIngredients}}
-        <div class="mt-10">
-          <p class="font-display text-lg font-medium text-al-navy">{{product.trademark}} Primary Ingredients</p>
-          <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <div class="mt-10 rounded-2xl border border-al-line bg-white p-6 sm:p-10">
+          <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-al-ink/50">{{product.trademark}}</p>
+          <p class="font-display mt-2 text-center text-2xl font-medium uppercase tracking-wide text-al-navy sm:text-3xl">Primary Ingredients</p>
+          <div class="mx-auto mt-2 h-px w-14 bg-al-orange" aria-hidden="true"></div>
+          <div class="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
             {{#each product.primaryIngredients}}
-            <div class="rounded-xl border border-al-line bg-white p-4 text-center">
-              <p class="text-xs font-semibold text-al-navy">{{this.name}}</p>
-              <p class="mt-1 text-[10px] uppercase tracking-wide text-al-ink/45">Origin: {{this.origin}}</p>
+            <div class="text-center">
+              <div class="mx-auto aspect-square w-full max-w-[140px] overflow-hidden rounded-full">
+                <img src="{{this.image}}" alt="{{this.name}}" class="h-full w-full object-cover" />
+              </div>
+              <p class="font-display mt-4 text-sm font-semibold text-al-navy">{{this.name}}</p>
+              <div class="mx-auto mt-2 h-px w-8 bg-al-orange/50" aria-hidden="true"></div>
+              <p class="mt-2 text-[10px] uppercase tracking-wide text-al-ink/45">Origin: {{this.origin}}</p>
             </div>
             {{/each}}
           </div>
-          <p class="mt-6 text-center text-xs font-semibold uppercase tracking-wide text-al-ink/50">{{product.primaryIngredientsFooter}}</p>
+          <p class="mt-10 text-center text-xs font-semibold uppercase tracking-wide text-al-ink/50">{{product.primaryIngredientsFooter}}</p>
         </div>
         {{/if}}
       </div>
