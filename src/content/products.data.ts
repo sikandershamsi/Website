@@ -29,6 +29,24 @@ export interface PhysiologyPanel {
   body: string;
 }
 
+export interface ComparisonRow {
+  title: string;
+  body: string;
+  otherTitle: string;
+  otherBody: string;
+}
+
+export interface Comparison {
+  headline: string;
+  subheadline: string;
+  intro: string[];
+  ourLabel: string;
+  ourSubLabel: string;
+  otherLabel: string;
+  otherSubLabel: string;
+  rows: ComparisonRow[];
+}
+
 export interface Product {
   slug: string;
   name: string;
@@ -46,7 +64,10 @@ export interface Product {
   impact: ProductImpact;
   animalifeDifference: string;
   physiologyPanel: PhysiologyPanel;
+  comparison: Comparison;
   keyIngredients: string[];
+  primaryIngredients: { name: string; origin: string }[];
+  primaryIngredientsFooter: string;
   supports: string[];
   ingredientBenefits: {
     ingredient: string;
@@ -71,7 +92,7 @@ export const categories = [
     strapline: 'Joint • Connective Tissue Repair',
     summary:
       'Healthy movement begins with healthy joints. Scientifically formulated to support the horse’s natural ability to repair cartilage, strengthen connective tissue, and support the structural integrity of the musculoskeletal system.',
-    image: '/images/shop/cartilage-horse.jpg',
+    image: '/images/products/vetroflex-tub.webp',
     icons: ['Repair Damaged Cartilage', 'Rebuild Stronger Connective Tissue', 'Protect Long-Term Joint Health', 'Perform Better Mobility & Performance'],
   },
   {
@@ -81,7 +102,7 @@ export const categories = [
     strapline: 'Inflammation & Pain Management',
     summary:
       'Lasting comfort begins by supporting the body’s natural inflammatory response. A long-term, natural alternative to routine NSAID use that supports mobility, comfort and recovery.',
-    image: '/images/shop/inflammation-horse.jpg',
+    image: '/images/products/vetrofen-tub.webp',
     icons: ['Target Inflammation at the Source', 'Reduce Swelling & Discomfort', 'Restore Natural Mobility & Flexibility', 'Support Long-Term Joint Health'],
   },
   {
@@ -91,7 +112,7 @@ export const categories = [
     strapline: 'Kidney Homeostasis • Oxygen Transport & Recovery',
     summary:
       'Performance begins long before the muscles go to work. The kidneys regulate red blood cell count, oxygen transport, fluid regulation, electrolyte balance, and recovery.',
-    image: '/images/shop/oxygen-horse.jpg',
+    image: '/images/products/vetrofit-syringe.webp',
     icons: ['Optimize Kidney Function at the Source', 'Enhance Oxygen Delivery & Endurance', 'Speed Recovery Between Rounds & Races', 'Support Peak Performance & Lasting Stamina'],
   },
 ];
@@ -140,6 +161,45 @@ export const products: Product[] = [
       heading: 'Supporting the Physiology of Soundness',
       body: 'Cartilage and connective tissues are constantly adapting to the demands of training and competition. VetroFlex® provides the nutritional building blocks needed to support healthy cartilage repair, collagen synthesis, connective tissue integrity, and joint mobility. The chart below illustrates how these physiological systems contribute to athletic performance and long-term musculoskeletal health.',
     },
+    comparison: {
+      headline: 'Not All Joint Supplements Are Created Equal.',
+      subheadline: 'Repairs the Cause. Not Just the Symptom.',
+      intro: [
+        'Some products only mask the problem. VetroFlex helps repair it.',
+        'Most joint supplements work on the surface—providing temporary lubrication to reduce friction. But real joint health starts beneath the surface. VetroFlex delivers undenatured (native) Collagen Type II peptides that interact with your horse’s immune system to help stimulate cartilage repair and support long-term joint integrity.',
+        'VetroFlex doesn’t just help your horse feel better today—it helps build a healthier tomorrow.',
+      ],
+      ourLabel: 'VetroFlex®',
+      ourSubLabel: 'Collagen Type II Peptides — Repair & Restore Cartilage',
+      otherLabel: 'Other Brands',
+      otherSubLabel: 'Glucosamine, Chondroitin, HA & MSM — Lubrication Only',
+      rows: [
+        {
+          title: 'Works Below the Surface',
+          body: 'Undenatured Collagen Type II peptides signal the immune system to reduce inflammation and stimulate natural cartilage repair.',
+          otherTitle: 'Works on the Surface Only',
+          otherBody: 'Primarily adds temporary lubrication to reduce friction but does not stimulate the body to repair damaged cartilage.',
+        },
+        {
+          title: 'Builds & Strengthens Cartilage',
+          body: 'Supports the production of new collagen and proteoglycans—the essential building blocks of healthy cartilage.',
+          otherTitle: 'Does Not Build New Cartilage',
+          otherBody: 'These ingredients do not provide the signals or building blocks needed for the body to produce new, healthy cartilage.',
+        },
+        {
+          title: 'Improves Joint Structure Over Time',
+          body: 'Helps restore cartilage thickness and integrity for long-term joint function and resilience.',
+          otherTitle: 'No Structural Improvement',
+          otherBody: 'May provide short-term comfort but does not improve cartilage structure or prevent further degradation.',
+        },
+        {
+          title: 'Long-Term Results',
+          body: 'Addresses the root cause of joint degradation for lasting soundness, mobility, and performance.',
+          otherTitle: 'Short-Term Relief',
+          otherBody: 'Focuses on symptom management, not the underlying problem—results fade when supplementation stops.',
+        },
+      ],
+    },
     keyIngredients: [
       'Hydrolyzed Collagen Peptides (Type II)',
       'Prebiotic FOS (Fructooligosaccharides)',
@@ -147,6 +207,19 @@ export const products: Product[] = [
       'Vitamins A, D3, E, K, C',
       'Biotin, Methionine, L-Carnitine',
     ],
+    primaryIngredients: [
+      { name: 'Hydrolyzed Collagen Type II', origin: 'Brazil' },
+      { name: 'ACV (Chondroitin)', origin: 'France' },
+      { name: 'FOS (Fructooligosaccharides)', origin: 'Belgium' },
+      { name: 'Manganese, Copper & Zinc', origin: 'Global' },
+      { name: 'Biotin', origin: 'Switzerland' },
+      { name: 'Garlic', origin: 'USA' },
+      { name: 'Vitamin E', origin: 'Switzerland' },
+      { name: 'Selenium', origin: 'USA' },
+      { name: 'Methionine', origin: 'China' },
+      { name: 'Lysine', origin: 'China' },
+    ],
+    primaryIngredientsFooter: 'Targeted Nutrition for Joint Health | Cartilage Support | Long-Term Soundness',
     supports: ['Cartilage Health', 'Tendons & Ligaments', 'Joint Comfort', 'Structural Integrity', 'Long-Term Soundness'],
     ingredientBenefits: [
       {
@@ -247,7 +320,65 @@ export const products: Product[] = [
       heading: "Supporting Physiology. Not Simply Managing Symptoms.",
       body: 'VetroFen® was developed to support the body’s natural inflammatory processes rather than simply masking their effects. By targeting the physiological systems involved in inflammation, tissue protection, cellular resilience, and recovery, its carefully balanced formulation helps promote comfort, mobility, athletic performance, and long-term wellness. The following chart demonstrates how this physiology-first approach supports the horse at every level.',
     },
+    comparison: {
+      headline: 'Not All Inflammation Supplements Are Created Equal.',
+      subheadline: 'Effective & Safe. The NSAID Alternative.',
+      intro: [
+        'Some products only mask the problem. VetroFen targets inflammation at the root without the risks of NSAIDs.',
+        'Most anti-inflammatory products mask pain by blocking symptoms but may carry serious side effects. VetroFen uses powerful botanical ingredients to help reduce inflammation at the source, support comfort and mobility, and promote long-term joint health—naturally and safely.',
+        'VetroFen helps your horse feel better today—and stay sound for tomorrow.',
+      ],
+      ourLabel: 'VetroFen®',
+      ourSubLabel: 'Botanical Anti-Inflammatory — Root-Cause Support',
+      otherLabel: 'Other Brands',
+      otherSubLabel: 'NSAIDs & Synthetic Products — Symptom Masking',
+      rows: [
+        {
+          title: 'Targets Inflammation at the Source',
+          body: 'Botanical ingredients help reduce inflammation at the root—supporting the body’s natural healing process.',
+          otherTitle: 'Masks Pain & Inflammation',
+          otherBody: 'NSAIDs only block pain signals—they do not address the underlying inflammation or support healing.',
+        },
+        {
+          title: 'Supports Long-Term Joint Health',
+          body: 'Promotes lasting comfort, mobility, and cartilage health without compromising the horse’s well-being.',
+          otherTitle: 'Risk of Side Effects',
+          otherBody: 'Long-term NSAID use can cause ulcers, kidney issues, and other serious side effects.',
+        },
+        {
+          title: 'Safe for Long-Term Use',
+          body: 'Gentle, natural ingredients that are safe for daily use and show benefits over time.',
+          otherTitle: 'Not Ideal for Daily Use',
+          otherBody: 'Many synthetic anti-inflammatories are not safe for prolonged use and can cause cumulative damage.',
+        },
+        {
+          title: 'Supports Full Body Wellness',
+          body: 'Helps reduce inflammation throughout the body for improved comfort and performance.',
+          otherTitle: 'Focused Only on Pain',
+          otherBody: 'Only targets pain signaling pathways without supporting overall inflammatory balance.',
+        },
+        {
+          title: 'Competition Safe',
+          body: 'FEI-compliant and free from banned substances.',
+          otherTitle: 'Potential Risk',
+          otherBody: 'Some NSAIDs may violate competition regulations.',
+        },
+      ],
+    },
     keyIngredients: ['Scutellaria baicalensis extract', 'Acacia catechu extract', 'SOBF Bioavailability Technology'],
+    primaryIngredients: [
+      { name: 'Scutellaria Baicalensis', origin: 'China' },
+      { name: 'Acacia Catechu', origin: 'India' },
+      { name: 'Flaxseed Oil (Omega-3)', origin: 'Canada' },
+      { name: 'Turmeric Extract', origin: 'India' },
+      { name: 'Boswellia Serrata Extract', origin: 'India' },
+      { name: 'Ginger Root Extract', origin: 'India' },
+      { name: 'Black Pepper Extract (Piperine)', origin: 'India' },
+      { name: 'Vitamin C (Ascorbic Acid)', origin: 'USA' },
+      { name: 'MSM (Methylsulfonylmethane)', origin: 'USA' },
+      { name: 'Hyaluronic Acid', origin: 'USA' },
+    ],
+    primaryIngredientsFooter: 'Targeted Nutrition for Inflammation Control | Comfort & Mobility | Long-Term Wellness',
     supports: ['Healthy Inflammatory Response', 'Comfort & Mobility', 'Recovery Following Exercise', 'Performance Longevity', 'Overall Wellness'],
     ingredientBenefits: [
       {
@@ -344,7 +475,70 @@ export const products: Product[] = [
       heading: 'Every Ingredient Has a Purpose. Every Purpose Supports Performance.',
       body: 'Unlike traditional supplements that emphasize isolated ingredients, VetroFit® is formulated as an integrated nutritional system. Each ingredient is selected for its specific physiological role, working synergistically to support healthy kidney homeostasis and the interconnected biological processes that power performance, recovery, and long-term athletic health.',
     },
+    comparison: {
+      headline: 'Not All Performance Supplements Are Created Equal.',
+      subheadline: 'Kidney Health. Oxygen Transport. Peak Performance.',
+      intro: [
+        'Some products only stimulate. VetroFit supports the systems that drive endurance, recovery, and results.',
+        'VetroFit is kidney-focused nutrition that supports oxygen transport and the body’s seven essential systems for peak performance and faster recovery—naturally and safely.',
+        'VetroFit helps your horse perform at its best today—and recover stronger for tomorrow.',
+      ],
+      ourLabel: 'VetroFit®',
+      ourSubLabel: 'Kidney-Centric Nutrition for Peak Performance & Recovery',
+      otherLabel: 'Other Brands',
+      otherSubLabel: 'Stimulants & General Performance Products',
+      rows: [
+        {
+          title: 'Supports Kidney Homeostasis',
+          body: 'Supports the kidneys in maintaining seven vital systems—improving oxygen transport, endurance, and recovery.',
+          otherTitle: 'Does Not Support Kidney Function',
+          otherBody: 'Most products ignore the kidneys, missing the root cause of reduced performance and slow recovery.',
+        },
+        {
+          title: 'Supports More Efficient Oxygen Transport',
+          body: 'Supports red blood cell regulation and optimal oxygen delivery to working muscles.',
+          otherTitle: 'No Impact on Oxygen Delivery',
+          otherBody: 'Stimulants may mask fatigue but do not improve oxygen transport or red blood cell function.',
+        },
+        {
+          title: 'Improves Endurance & Stamina',
+          body: 'Helps horses sustain performance longer with less fatigue and better energy efficiency.',
+          otherTitle: 'Temporary Stimulation Only',
+          otherBody: 'Many products provide a short-lived boost but can lead to a crash and increased fatigue.',
+        },
+        {
+          title: 'Faster Recovery Between Races',
+          body: 'Supports kidney function to remove waste, balance fluids, and restore the body more quickly.',
+          otherTitle: 'Slower Recovery',
+          otherBody: 'Does not address waste removal or fluid balance—leading to longer recovery times.',
+        },
+        {
+          title: 'Safe, and Natural',
+          body: 'Made with natural ingredients free of banned substances (FEI Clean Sport compliant).',
+          otherTitle: 'Risky Ingredients',
+          otherBody: 'Many stimulants contain banned substances or ingredients that carry competition risks.',
+        },
+      ],
+    },
     keyIngredients: ['Omega-3 (Linseed Oil)', 'Superoxide Dismutase (Melon Extract)', 'Chelated Iron, Copper, Manganese, Zinc, Selenium', 'Amino Acids (Lysine, Methionine)', 'B-Vitamins'],
+    primaryIngredients: [
+      { name: 'Water', origin: 'Global' },
+      { name: 'Omega-3 Linseed Oil', origin: 'Canada' },
+      { name: 'SOD (Melon Extract)', origin: 'Japan' },
+      { name: 'Vitamin E (Tocopherol)', origin: 'Switzerland' },
+      { name: 'Vitamin B1 (Thiamine Mononitrate)', origin: 'Germany' },
+      { name: 'Vitamin B2 (Riboflavin)', origin: 'Germany' },
+      { name: 'Folate (Folic Acid)', origin: 'Switzerland' },
+      { name: 'Niacinamide (Vitamin B3)', origin: 'Switzerland' },
+      { name: 'D-Panthenol (Provitamin B5)', origin: 'Switzerland' },
+      { name: 'Vitamin B6 (Pyridoxine HCl)', origin: 'Germany' },
+      { name: 'Vitamin K3 (Menadione Sodium Bisulfite)', origin: 'China' },
+      { name: 'Vitamin A (Retinyl Acetate)', origin: 'Switzerland' },
+      { name: 'Vitamin D3 (Cholecalciferol)', origin: 'Switzerland' },
+      { name: 'Vitamin B12 (Cyanocobalamin)', origin: 'Germany' },
+      { name: 'Chelated Minerals (Fe, Cu, Mn, Zn, Se)', origin: 'Global' },
+    ],
+    primaryIngredientsFooter: 'Targeted Nutrition for Kidney Support | Oxygen Transport | Recovery & Endurance | Overall Performance',
     supports: ['Oxygen Delivery', 'Recovery', 'Cardiovascular Efficiency', 'Electrolyte Balance', 'Energy Production', 'Kidney Function', 'Competitive Performance'],
     ingredientBenefits: [
       {

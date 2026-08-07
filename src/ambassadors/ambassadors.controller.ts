@@ -10,6 +10,12 @@ export class AmbassadorsController {
     return { title: 'Ambassadors', activeNav: 'ambassadors', disciplines };
   }
 
+  @Get('jenni-mcallister')
+  @Render('ambassadors/profile')
+  jenniProfile() {
+    return { title: 'Jenni McAllister | Ambassadors', activeNav: 'ambassadors' };
+  }
+
   @Post('apply')
   @Render('ambassadors/index')
   apply(@Body() body: AmbassadorApplicationDto) {
