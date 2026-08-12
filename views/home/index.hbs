@@ -13,15 +13,20 @@
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-al-navy/80 via-al-navy/45 to-al-navy/20"></div>
     <div class="relative z-10 flex h-full flex-col justify-center px-6 sm:px-8 lg:px-10">
       <div class="mx-auto w-full max-w-7xl">
-        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-al-orange sm:text-[13px]">Long Term Equine Performance Starts Here</p>
-        <h1 class="font-display mt-4 max-w-3xl text-5xl font-medium leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">Feel the Difference</h1>
+        <p class="text-[11px] font-semibold uppercase leading-relaxed tracking-[0.22em] text-al-orange sm:text-xs">
+          Long Term Equine Performance<br />
+          Starts Here
+        </p>
+        <h1 class="font-display mt-5 w-3/4 text-[clamp(2.75rem,8vw,7.5rem)] font-bold leading-[0.95] tracking-tight text-white">
+          Feel the Difference
+        </h1>
       </div>
     </div>
   </div>
   <div class="pointer-events-none absolute inset-x-0 bottom-0 h-0.5 bg-al-orange"></div>
 </section>
 
-<!-- HORSE TRUTHS: sliding bar, 2 at a time -->
+<!-- HORSE TRUTHS: auto slide bar, 2 at a time -->
 <section class="panel-white section">
   <div class="flex flex-wrap items-end justify-between gap-4">
     <div>
@@ -51,8 +56,8 @@
 
 <!-- MISSION + INGREDIENTS combined panel -->
 <section class="panel-grey">
-  <div class="section grid items-start gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
-    <div class="max-w-xl">
+  <div class="section grid items-stretch gap-10 lg:grid-cols-2 lg:gap-14">
+    <div class="flex max-w-xl flex-col justify-center">
       <div class="eyebrow">Inspired by Nature. Proven by Science.</div>
       <h2 class="font-display mt-5 text-4xl font-medium leading-tight text-al-navy sm:text-5xl">Powerful Ingredients. Purposeful Nutrition.</h2>
       <p class="mt-6 text-sm leading-relaxed text-al-ink/75">We combine nature's most powerful compounds with advanced nutritional science to create solutions that work with your animal's body&mdash;not against it.</p>
@@ -80,11 +85,13 @@
       <div class="mt-8 rounded-none border border-al-navy/30 px-5 py-2.5 text-center text-xs font-semibold uppercase tracking-wide text-al-navy">Longer Health. Better Performance. A Better Life.</div>
     </div>
 
-    <img
-      src="/images/home/ingredients-photo.jpg"
-      alt="Natural botanical ingredients used in Animalife formulations"
-      class="w-full object-contain"
-    />
+    <div class="overflow-hidden bg-white">
+      <img
+        src="/images/home/ingredients-photo.jpg"
+        alt="Natural botanical ingredients used in Animalife formulations"
+        class="h-full min-h-[320px] w-full object-cover object-center lg:min-h-[480px]"
+      />
+    </div>
   </div>
 </section>
 
@@ -100,7 +107,6 @@
       </div>
       {{/each}}
     </div>
-    <a href="/about/difference" class="mt-10 inline-block text-sm font-semibold uppercase tracking-wide text-al-navy/55 underline underline-offset-4">Learn More</a>
   </div>
 </section>
 
@@ -123,18 +129,18 @@
     <div class="mt-12 overflow-hidden" data-auto-slider>
       <div class="slider-track" data-products-track>
         {{#each products}}
-        <div class="w-full shrink-0 px-2 md:w-1/2" data-products-slide>
+        <div class="w-full shrink-0 px-2 md:w-1/2 lg:w-1/4" data-products-slide>
           <a href="/shop/product/{{this.slug}}" class="card group flex h-full flex-col items-center overflow-hidden p-6 text-center transition-colors hover:bg-al-panel">
             <div class="flex aspect-[4/5] w-full items-center justify-center">
               <img src="{{this.image}}" alt="{{this.trademark}}" class="h-full w-auto object-contain" />
             </div>
             <div class="flex flex-1 flex-col items-center pt-2">
-              <p class="font-display text-lg font-semibold text-al-navy">{{this.trademark}}</p>
+              <div class="flex justify-center gap-0.5 text-al-navy">
+                {{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}
+              </div>
+              <p class="font-display mt-3 text-lg font-semibold text-al-navy">{{this.trademark}}</p>
               <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-navy/55">{{this.category}}</p>
               <p class="font-display mt-2 text-lg font-medium text-al-navy">{{this.tagline}}</p>
-              <div class="mt-3 flex justify-center gap-0.5 text-al-ink">
-                {{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}
-              </div>
               <span class="font-display mt-4 text-lg font-medium text-al-navy">{{currency this.price}}</span>
             </div>
           </a>
@@ -176,14 +182,14 @@
   </div>
 </section>
 
-<!-- INSPIRED BY NATURE — soft-blended text + photo -->
+<!-- INSPIRED BY NATURE — full image + ingredient image -->
 <section class="panel-grey">
-  <div class="section">
+  <div class="section space-y-8">
     <div class="inspired-blend">
       <img
-        src="/images/home/inspired-nature-horse.jpg"
-        alt="White horse in a sunlit wildflower meadow"
-        class="inspired-blend__media"
+        src="/images/home/inspired-nature.jpg"
+        alt="Horse in a sunlit wildflower meadow"
+        class="inspired-blend__media object-cover object-[70%_center]"
       />
       <div class="inspired-blend__veil" aria-hidden="true"></div>
       <div class="inspired-blend__copy">
@@ -195,18 +201,27 @@
         <p class="mt-5 max-w-md text-sm leading-relaxed text-al-ink/80">By combining nature's most powerful ingredients with advanced nutritional science, we create innovative formulations that address the root causes of disease and dysfunction&mdash;empowering horses to perform with <span class="font-semibold text-al-navy">greater strength</span>, recover <span class="font-semibold text-al-navy">more naturally</span>, and enjoy <span class="font-semibold text-al-navy">longer, healthier lives</span>.</p>
       </div>
     </div>
+    <div class="overflow-hidden bg-white">
+      <img
+        src="/images/home/ingredients-photo.jpg"
+        alt="Botanical ingredients and laboratory tools used in Animalife formulations"
+        class="mx-auto max-h-[420px] w-full object-cover object-center sm:max-h-[480px]"
+      />
+    </div>
   </div>
 </section>
 
 <!-- CLEAN SPORT COMPLIANT -->
 <section class="panel-white">
   <div class="section">
-    <div class="rounded-[1.75rem] bg-al-navy px-8 py-14 text-center text-white sm:px-14">
-      <img src="/images/badges/clean-sport-plus.png" alt="CleanSport+ Tested badge" class="mx-auto h-20 w-auto" />
-      <div class="eyebrow mt-6 justify-center !text-al-navy/55">FEI Clean Sport Compliant</div>
-      <h2 class="font-display mt-4 text-3xl font-medium sm:text-4xl">Natural. Safe. Competition Compliant.</h2>
-      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/75">Every Animalife formulation is screened for Naturally Occurring Prohibited Substances (NOPS) and Herbal, Spice &amp; Plant Substance (HSPS) contamination through our CleanSport+ Programme&mdash;giving owners, trainers, and riders complete confidence on competition day.</p>
-      <a href="/about/difference" class="btn-outline-light mt-8">Learn About CleanSport+</a>
+    <div class="grid items-center gap-10 rounded-none border border-al-line bg-al-panel px-8 py-12 sm:px-12 lg:grid-cols-[auto_1fr] lg:gap-14">
+      <img src="/images/badges/clean-sport-plus.png" alt="CleanSport+ Tested — Anti-Doping Programme" class="mx-auto h-36 w-auto sm:h-44" />
+      <div class="text-center lg:text-left">
+        <div class="eyebrow justify-center lg:justify-start">FEI Clean Sport Compliant</div>
+        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Natural. Safe. Competition Compliant.</h2>
+        <p class="mt-5 max-w-2xl text-sm leading-relaxed text-al-ink/75 lg:mx-0 mx-auto">Every Animalife formulation is screened for Naturally Occurring Prohibited Substances (NOPS) and Herbal, Spice &amp; Plant Substance (HSPS) contamination through our CleanSport+ Programme&mdash;giving owners, trainers, and riders complete confidence on competition day.</p>
+        <a href="/about/difference" class="btn-outline mt-8">Learn About CleanSport+</a>
+      </div>
     </div>
   </div>
 </section>
@@ -229,8 +244,8 @@
         {{#each testimonials}}
         <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
           <div class="card h-full p-6">
-            <div class="flex gap-0.5 text-al-navy/55">
-              {{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}
+            <div class="flex gap-0.5 text-al-navy">
+              {{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}
             </div>
             <p class="mt-4 text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
             <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}} <span class="text-al-ink/40">&middot; {{this.product}}</span></p>
@@ -242,25 +257,20 @@
   </div>
 </section>
 
-<!-- DISCIPLINES PANEL -->
+<!-- FEEL THE DIFFERENCE BANNER -->
 <section class="panel-white">
   <div class="section !pt-0">
-    <div class="relative">
-      <div class="grid grid-cols-2 sm:grid-cols-4">
-        <div class="aspect-[3/4] sm:aspect-[3/4]">
-          <img src="/images/ambassadors/disciplines/jumping.jpg" alt="Show jumping" class="h-full w-full object-cover" />
-        </div>
-        <div class="aspect-[3/4] sm:aspect-[3/4]">
-          <img src="/images/ambassadors/disciplines/western.jpg" alt="Western reining" class="h-full w-full object-cover" />
-        </div>
-        <div class="aspect-[3/4] sm:aspect-[3/4]">
-          <img src="/images/ambassadors/disciplines/dressage.jpg" alt="Dressage" class="h-full w-full object-cover" />
-        </div>
-        <div class="aspect-[3/4] sm:aspect-[3/4]">
-          <img src="/images/ambassadors/disciplines/racing-animalife.jpg" alt="Thoroughbred racing with Animalife" class="h-full w-full object-cover" />
-        </div>
+    <div class="relative overflow-hidden bg-al-navy">
+      <img
+        src="/images/home/feel-difference-banner.jpg"
+        alt="Equestrian athletes across jumping, western, dressage, and racing"
+        class="aspect-[16/7] w-full object-cover object-center sm:aspect-[21/9]"
+      />
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-black/25"></div>
+      <div class="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center">
+        <img src="/images/brand/animalife-logo.png" alt="Animalife USA" class="h-10 w-auto brightness-0 invert sm:h-12" />
+        <p class="mt-6 w-3/4 font-sans text-[clamp(1.75rem,7vw,5rem)] font-extrabold lowercase leading-none tracking-tight text-white" style="text-shadow: 0 2px 14px rgba(0,0,0,0.45)">feel the difference</p>
       </div>
-      <p class="pointer-events-none absolute inset-x-0 bottom-[8%] z-10 px-2 text-center font-sans text-[clamp(1.75rem,7vw,5rem)] font-extrabold lowercase leading-none tracking-tight text-white" style="text-shadow: 0 2px 14px rgba(0,0,0,0.4)">feel the difference</p>
     </div>
     <div class="mt-8 text-center">
       <p class="mx-auto max-w-2xl text-sm text-al-ink/70">From show jumping to racing, dressage to reining&mdash;Animalife supports elite performance in every discipline.</p>

@@ -51,6 +51,9 @@ export const icons: Record<string, string> = {
 };
 
 export function renderIcon(name: string, className = 'w-6 h-6'): string {
+  if (name === 'star-solid') {
+    return `<svg class="${className}" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.7Z"/></svg>`;
+  }
   const path = icons[name] ?? icons.leaf;
   return `<svg class="${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
 }

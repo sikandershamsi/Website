@@ -155,7 +155,8 @@
 
     var index = 0;
     function perView() {
-      return window.innerWidth >= 768 ? 2 : 1;
+      if (options.perViewLg && window.innerWidth >= 1024) return options.perViewLg;
+      return window.innerWidth >= 768 ? (options.perViewMd || 2) : 1;
     }
     function maxIndex() {
       return Math.max(0, slides.length - perView());
@@ -235,6 +236,8 @@
     next: '[data-products-next]',
     dots: '[data-products-dots]',
     autoMs: 5000,
+    perViewMd: 2,
+    perViewLg: 4,
   });
 
   // Affiliate earnings calculator
