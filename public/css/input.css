@@ -124,16 +124,20 @@
     @apply absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent;
   }
   .inspired-blend {
-    @apply relative isolate min-h-[460px] overflow-hidden bg-white sm:min-h-[520px] lg:min-h-[580px];
+    @apply relative isolate grid overflow-hidden bg-white lg:grid-cols-2;
+    min-height: 480px;
+  }
+  .inspired-blend__media-wrap {
+    @apply relative min-h-[320px] sm:min-h-[400px] lg:min-h-full;
   }
   .inspired-blend__media {
-    @apply absolute inset-0 h-full w-full object-cover object-[78%_center] sm:object-[72%_center] lg:object-[70%_center];
+    @apply absolute inset-0 h-full w-full object-cover object-[center_20%];
   }
   .inspired-blend__veil {
-    @apply absolute inset-0 bg-gradient-to-r from-white from-[0%] via-white via-[36%] to-transparent to-[68%] sm:via-[40%] sm:to-[64%] lg:from-[8%] lg:via-[42%] lg:to-[62%];
+    @apply pointer-events-none absolute inset-y-0 left-0 z-[1] w-24 bg-gradient-to-r from-white to-transparent sm:w-32 lg:w-40;
   }
   .inspired-blend__copy {
-    @apply relative z-10 flex max-w-lg flex-col justify-center px-8 py-14 sm:px-12 sm:py-16 lg:max-w-[46%] lg:px-14 lg:py-20;
+    @apply relative z-10 flex flex-col justify-center bg-white px-8 py-12 sm:px-12 sm:py-16 lg:px-14 lg:py-20;
   }
   .inspired-blend__eyebrow {
     @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] uppercase text-al-orange;
@@ -146,7 +150,10 @@
     @apply mt-5 h-px w-10 bg-al-orange;
   }
   .about-hero-blend {
-    @apply min-h-[420px] rounded-none sm:min-h-[480px] lg:min-h-[540px];
+    @apply min-h-[420px] sm:min-h-[480px] lg:min-h-[540px];
+  }
+  .about-hero-blend .inspired-blend__media-wrap {
+    @apply min-h-[320px] sm:min-h-[400px] lg:min-h-[540px];
   }
   .science-hero {
     @apply relative isolate overflow-hidden bg-white;
