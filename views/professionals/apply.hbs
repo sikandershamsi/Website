@@ -3,15 +3,15 @@
 <section class="section max-w-3xl">
   {{#if submitted}}
   <div class="card flex flex-col items-center px-8 py-16 text-center">
-    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-al-orange/10 text-al-orange">{{{icon "check" "w-8 h-8"}}}</div>
+    <div class="flex h-16 w-16 items-center justify-center rounded-none bg-al-navy/10 text-al-navy/55">{{{icon "check" "w-8 h-8"}}}</div>
     <p class="font-display mt-6 text-2xl font-medium text-al-navy">Thank you, {{submittedName}}!</p>
     <p class="mt-3 max-w-md text-sm text-al-ink/65">Your Affiliate Partner application has been submitted. Our Affiliate Partnership Team will review it and reach out within 5&ndash;10 business days.</p>
     <div class="mt-8 grid gap-2 text-left text-sm text-al-ink/70">
-      <span class="flex items-center gap-2">{{{icon "check" "w-4 h-4 text-al-orange"}}}Application Review</span>
-      <span class="flex items-center gap-2">{{{icon "check" "w-4 h-4 text-al-orange"}}}Introductory Discovery Call</span>
-      <span class="flex items-center gap-2">{{{icon "check" "w-4 h-4 text-al-orange"}}}Product &amp; Program Overview</span>
-      <span class="flex items-center gap-2">{{{icon "check" "w-4 h-4 text-al-orange"}}}Affiliate Agreement Execution</span>
-      <span class="flex items-center gap-2">{{{icon "check" "w-4 h-4 text-al-orange"}}}Affiliate Portal Access &amp; Onboarding</span>
+      <span class="flex items-center gap-2">{{{icon "check" "w-4 h-4 text-al-navy/55"}}}Application Review</span>
+      <span class="flex items-center gap-2">{{{icon "check" "w-4 h-4 text-al-navy/55"}}}Introductory Discovery Call</span>
+      <span class="flex items-center gap-2">{{{icon "check" "w-4 h-4 text-al-navy/55"}}}Product &amp; Program Overview</span>
+      <span class="flex items-center gap-2">{{{icon "check" "w-4 h-4 text-al-navy/55"}}}Affiliate Agreement Execution</span>
+      <span class="flex items-center gap-2">{{{icon "check" "w-4 h-4 text-al-navy/55"}}}Affiliate Portal Access &amp; Onboarding</span>
     </div>
     <a href="/professionals" class="btn-outline mt-8">Back to Affiliate Program</a>
   </div>
@@ -88,7 +88,7 @@
       <p class="mt-1 text-sm text-al-ink/60">Which disciplines best describe your audience? (select all that apply)</p>
       <div class="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
         {{#each (array "Hunter/Jumper" "Dressage" "Eventing" "Thoroughbred Racing" "Quarter Horse Racing" "Western Performance" "Barrel Racing" "Reining" "Breeding Operations" "Pleasure Horses" "Veterinary Practice" "Therapy/Rehabilitation" "Multi-Discipline")}}
-        <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="disciplines" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+        <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="disciplines" value="{{this}}" class="accent-al-navy" />{{this}}</label>
         {{/each}}
       </div>
     </div>
@@ -97,8 +97,8 @@
       <h2 class="font-display text-xl font-medium text-al-navy">Current Product Recommendations</h2>
       <p class="mt-1 text-sm text-al-ink/60">Do you currently recommend equine supplements or nutraceutical products?</p>
       <div class="mt-3 flex gap-6 text-sm text-al-ink/75">
-        <label class="flex items-center gap-2"><input type="radio" name="currentlyRecommends" value="yes" required class="accent-al-orange" />Yes</label>
-        <label class="flex items-center gap-2"><input type="radio" name="currentlyRecommends" value="no" class="accent-al-orange" />No</label>
+        <label class="flex items-center gap-2"><input type="radio" name="currentlyRecommends" value="yes" required class="accent-al-navy" />Yes</label>
+        <label class="flex items-center gap-2"><input type="radio" name="currentlyRecommends" value="no" class="accent-al-navy" />No</label>
       </div>
       <div class="mt-4">
         <label class="field-label" for="currentBrands">If yes, please list the brands or products you currently recommend</label>
@@ -111,7 +111,7 @@
       <p class="mt-1 text-sm text-al-ink/60">What interests you most about the Affiliate Partner Program?</p>
       <div class="mt-4 grid gap-2.5 sm:grid-cols-2">
         {{#each (array "Industry-Leading Commissions" "Free Product Opportunities" "Innovative Products" "Additional Revenue Stream" "Supporting Horse Health & Performance" "Professional Development" "Long-Term Partnership Opportunity")}}
-        <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="whyAnimalife" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+        <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="whyAnimalife" value="{{this}}" class="accent-al-navy" />{{this}}</label>
         {{/each}}
       </div>
     </div>
@@ -121,7 +121,7 @@
       <p class="mt-1 text-sm text-al-ink/60">Which Animalife products are you most interested in representing?</p>
       <div class="mt-4 grid gap-2.5 sm:grid-cols-2">
         {{#each (array "VetroFit™ – Performance & Oxygen Transport" "VetroFen™ – Inflammation & Comfort Support" "VetroFlex™ – Joint & Cartilage Support" "All Animalife Products")}}
-        <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="productInterest" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+        <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="productInterest" value="{{this}}" class="accent-al-navy" />{{this}}</label>
         {{/each}}
       </div>
     </div>
@@ -131,7 +131,7 @@
       <p class="mt-1 text-sm text-al-ink/60">How do you intend to promote Animalife products?</p>
       <div class="mt-4 grid gap-2.5 sm:grid-cols-2">
         {{#each (array "Direct Client Recommendations" "Social Media" "Email Marketing" "Clinics & Educational Events" "Veterinary Consultations" "Training Programs" "Retail Store Sales" "Podcast / Media Content" "Website or Blog")}}
-        <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="promotion" value="{{this}}" class="accent-al-orange" />{{this}}</label>
+        <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="promotion" value="{{this}}" class="accent-al-navy" />{{this}}</label>
         {{/each}}
       </div>
     </div>
@@ -158,7 +158,7 @@
     <div class="card p-6">
       <h2 class="font-display text-lg font-medium text-al-navy">Agreement</h2>
       <p class="mt-2 text-sm text-al-ink/65">By submitting, I certify that the information provided is accurate and complete to the best of my knowledge. I understand that submission does not guarantee acceptance into the Animalife Affiliate Partner Program, and if accepted, I agree to represent the Animalife brand professionally and ethically.</p>
-      <label class="mt-4 flex items-center gap-2 text-sm font-semibold text-al-navy"><input type="checkbox" name="agree" required class="accent-al-orange" />I agree to the terms above</label>
+      <label class="mt-4 flex items-center gap-2 text-sm font-semibold text-al-navy"><input type="checkbox" name="agree" required class="accent-al-navy" />I agree to the terms above</label>
     </div>
 
     <button type="submit" class="btn-primary w-full sm:w-auto">Submit Application</button>

@@ -3,7 +3,7 @@
 <section class="section">
   {{#if isEmpty}}
   <div class="card flex flex-col items-center px-8 py-20 text-center">
-    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-al-navy/5 text-al-navy">{{{icon "cart" "w-6 h-6"}}}</div>
+    <div class="flex h-14 w-14 items-center justify-center rounded-none bg-al-navy/5 text-al-navy">{{{icon "cart" "w-6 h-6"}}}</div>
     <p class="mt-5 text-sm text-al-ink/65">Your cart is empty.</p>
     <a href="/shop" class="btn-primary mt-6">Shop All Products</a>
   </div>
@@ -12,7 +12,7 @@
     <div class="card divide-y divide-al-line overflow-hidden">
       {{#each lines}}
       <div class="flex flex-wrap items-center gap-4 p-6">
-        <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-al-cream-dark/50">
+        <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-none bg-al-panel">
           <img src="{{this.image}}" alt="{{this.name}}" class="h-full w-full object-contain p-1" />
         </div>
         <div class="min-w-[160px] flex-1">
@@ -26,7 +26,7 @@
         </form>
         <p class="w-24 text-right font-display text-base font-medium text-al-navy">{{currency this.price}}</p>
         <form action="/cart/remove/{{this.slug}}" method="post">
-          <button type="submit" aria-label="Remove" class="text-al-ink/40 hover:text-al-orange">{{{icon "close" "w-4 h-4"}}}</button>
+          <button type="submit" aria-label="Remove" class="text-al-ink/40 hover:text-al-navy">{{{icon "close" "w-4 h-4"}}}</button>
         </form>
       </div>
       {{/each}}
@@ -40,7 +40,7 @@
       </div>
       <p class="mt-1 text-xs text-al-ink/50">Shipping and taxes calculated at checkout.</p>
       <a href="/checkout" class="btn-primary mt-6 w-full">Proceed to Checkout</a>
-      <a href="/shop" class="mt-3 block text-center text-xs font-semibold uppercase tracking-wide text-al-navy hover:text-al-orange">Continue Shopping</a>
+      <a href="/shop" class="mt-3 block text-center text-xs font-semibold uppercase tracking-wide text-al-navy hover:text-al-navy">Continue Shopping</a>
     </div>
   </div>
   {{/if}}

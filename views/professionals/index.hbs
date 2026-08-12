@@ -5,7 +5,7 @@
       <h1 class="font-display mt-4 text-4xl font-medium text-al-navy sm:text-5xl">Partner with Purpose. Rewarding Results.</h1>
       <p class="mt-5 max-w-xl text-sm leading-relaxed text-al-ink/75">Join a trusted network of equine professionals and earn <span class="font-semibold text-al-navy">generous rewards</span> while making a real difference in horses' lives.</p>
     </div>
-    <div class="overflow-hidden rounded-2xl">
+    <div class="overflow-hidden rounded-none">
       <img src="/images/affiliates/hero-horse-clean.jpg" alt="Animalife affiliate partner horse" class="aspect-[5/3] w-full object-cover object-[center_30%]" />
     </div>
   </div>
@@ -15,13 +15,13 @@
   <div class="section">
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
       {{#each affiliateAudiences}}
-      <article class="overflow-hidden rounded-2xl border border-al-line bg-white shadow-sm">
+      <article class="overflow-hidden rounded-none border border-al-line bg-white">
         <div class="aspect-[5/4] overflow-hidden">
           <img src="{{this.image}}" alt="{{this.title}}" class="h-full w-full object-cover" />
         </div>
         <div class="px-4 py-5 text-center">
-          <div class="mx-auto flex h-10 w-10 items-center justify-center text-al-orange">{{{icon this.icon "w-6 h-6"}}}</div>
-          <h2 class="mt-3 text-[11px] font-semibold uppercase tracking-wide text-al-orange">{{this.title}}</h2>
+          <div class="mx-auto flex h-10 w-10 items-center justify-center text-al-navy/55">{{{icon this.icon "w-6 h-6"}}}</div>
+          <h2 class="mt-3 text-[11px] font-semibold uppercase tracking-wide text-al-navy/55">{{this.title}}</h2>
           <p class="mt-2 text-sm leading-snug text-al-ink/65">{{this.body}}</p>
         </div>
       </article>
@@ -34,7 +34,7 @@
   <div class="section text-center">
     <div class="eyebrow mx-auto justify-center">The Highest Paying Affiliate Program in the Industry</div>
     <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">We Believe Partners Should Be Rewarded Like Partners.</h2>
-    <p class="font-display mt-3 text-5xl font-semibold text-al-orange">Animalife pays up to 40%</p>
+    <p class="font-display mt-3 text-5xl font-semibold text-al-navy/55">Animalife pays up to 40%</p>
     <div class="mt-12 grid gap-6 text-left sm:grid-cols-2">
       <div class="card p-6">
         <p class="font-display text-base font-medium text-al-navy">Direct Referral Commission</p>
@@ -60,11 +60,11 @@
   <div class="section">
     <div class="eyebrow">Affiliate Earnings Calculator</div>
     <h2 class="font-display mt-4 max-w-2xl text-3xl font-medium text-al-navy sm:text-4xl">See what your network could be worth.</h2>
-    <div data-affiliate-calculator class="mt-10 grid gap-10 rounded-2xl border border-al-line bg-white p-8 lg:grid-cols-2">
+    <div data-affiliate-calculator class="mt-10 grid gap-10 rounded-none border border-al-line bg-white p-8 lg:grid-cols-2">
       <div class="space-y-7">
         <div>
           <div class="flex justify-between text-sm font-semibold text-al-navy"><span>How many horses do you influence?</span><span data-calc-horses-val>250</span></div>
-          <input data-calc-horses type="range" min="10" max="1000" step="10" value="250" class="mt-3 w-full accent-al-orange" />
+          <input data-calc-horses type="range" min="10" max="1000" step="10" value="250" class="mt-3 w-full accent-al-navy" />
         </div>
         <div>
           <label class="field-label">Average annual supplement spend (per horse)</label>
@@ -72,15 +72,15 @@
         </div>
         <div>
           <div class="flex justify-between text-sm font-semibold text-al-navy"><span>Expected conversion</span><span data-calc-conversion-val>10%</span></div>
-          <input data-calc-conversion type="range" min="1" max="100" step="1" value="10" class="mt-3 w-full accent-al-orange" />
+          <input data-calc-conversion type="range" min="1" max="100" step="1" value="10" class="mt-3 w-full accent-al-navy" />
         </div>
         <div>
           <div class="flex justify-between text-sm font-semibold text-al-navy"><span>Average commission</span><span data-calc-commission-val>20%</span></div>
-          <input data-calc-commission type="range" min="5" max="40" step="1" value="20" class="mt-3 w-full accent-al-orange" />
+          <input data-calc-commission type="range" min="5" max="40" step="1" value="20" class="mt-3 w-full accent-al-navy" />
         </div>
       </div>
-      <div class="flex flex-col items-center justify-center rounded-2xl bg-al-panel-alt p-10 text-center">
-        <p class="text-xs font-semibold uppercase tracking-wide text-al-orange">Estimated Annual Earnings</p>
+      <div class="flex flex-col items-center justify-center rounded-none bg-al-panel-alt p-10 text-center">
+        <p class="text-xs font-semibold uppercase tracking-wide text-al-navy/55">Estimated Annual Earnings</p>
         <p data-calc-output class="font-display mt-4 text-5xl font-semibold text-al-navy">$25,000</p>
         <p class="mt-4 text-xs text-al-ink/55">Illustrative estimate only. Actual results vary by referral activity and commission tier.</p>
         <a href="/professionals/apply" class="btn-primary mt-8">Become an Affiliate</a>

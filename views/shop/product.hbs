@@ -1,17 +1,17 @@
 <section class="section grid gap-12 lg:grid-cols-2 lg:items-start">
-  <div class="flex aspect-[4/5] items-center justify-center rounded-2xl border border-al-line bg-white p-10 lg:sticky lg:top-28">
+  <div class="flex aspect-[4/5] items-center justify-center rounded-none border border-al-line bg-white p-10 lg:sticky lg:top-28">
     <img src="{{product.image}}" alt="{{product.trademark}}" class="max-h-full w-auto max-w-full object-contain" />
   </div>
 
   <div>
     {{#ifCond product.slug "vetrofit"}}
-    <p class="text-xs font-semibold uppercase tracking-wide text-al-orange">2–4 Hours Before Competition</p>
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-navy/55">2–4 Hours Before Competition</p>
     {{else}}
-    <p class="text-xs font-semibold uppercase tracking-wide text-al-orange">{{product.category}}</p>
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-navy/55">{{product.category}}</p>
     {{/ifCond}}
     <h1 class="font-display mt-3 text-3xl font-medium text-al-navy sm:text-4xl">{{product.trademark}}</h1>
     <p class="mt-2 text-lg text-al-ink/70">{{product.tagline}}</p>
-    <div class="mt-4 flex items-center gap-1 text-al-orange">
+    <div class="mt-4 flex items-center gap-1 text-al-navy/55">
       {{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}
       <span class="ml-2 text-xs font-semibold text-al-ink/60">{{reviews.length}} reviews</span>
     </div>
@@ -39,7 +39,7 @@
       <p class="text-xs font-semibold uppercase tracking-wide text-al-navy">Key Ingredients</p>
       <ul class="mt-3 space-y-1.5 text-sm text-al-ink/70">
         {{#each product.keyIngredients}}
-        <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange shrink-0"}}}{{this}}</li>
+        <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-navy/55 shrink-0"}}}{{this}}</li>
         {{/each}}
       </ul>
     </div>
@@ -55,7 +55,7 @@
         {{#if product.whatItIs.points.length}}
         <ul class="mt-4 space-y-2 text-sm text-al-ink/70">
           {{#each product.whatItIs.points}}
-          <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange shrink-0"}}}{{this}}</li>
+          <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-navy/55 shrink-0"}}}{{this}}</li>
           {{/each}}
         </ul>
         {{/if}}
@@ -65,7 +65,7 @@
         <p class="mt-3 text-sm font-medium leading-relaxed text-al-navy">{{product.outcomes.summary}}</p>
         <ul class="mt-4 space-y-2 text-sm text-al-ink/70">
           {{#each product.outcomes.points}}
-          <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange shrink-0"}}}{{this}}</li>
+          <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-navy/55 shrink-0"}}}{{this}}</li>
           {{/each}}
         </ul>
       </div>
@@ -76,14 +76,14 @@
         {{/if}}
         <ul class="mt-4 space-y-2 text-sm text-al-ink/70">
           {{#each product.impact.points}}
-          <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange shrink-0"}}}{{this}}</li>
+          <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-navy/55 shrink-0"}}}{{this}}</li>
           {{/each}}
         </ul>
       </div>
     </div>
 
-    <div class="mt-8 rounded-2xl bg-al-navy p-8 text-white sm:p-10">
-      <div class="eyebrow !text-al-orange-light">The Animalife Difference</div>
+    <div class="mt-8 rounded-none bg-al-navy p-8 text-white sm:p-10">
+      <div class="eyebrow !text-al-navy/55">The Animalife Difference</div>
       <p class="font-display mt-4 text-xl font-medium leading-snug sm:text-2xl">{{product.animalifeDifference}}</p>
     </div>
   </div>
@@ -102,12 +102,12 @@
     <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-start">
       <div>
         <h2 class="font-display text-2xl font-medium leading-snug text-al-navy sm:text-3xl">{{product.comparison.headline}}</h2>
-        <p class="mt-2 text-sm font-semibold uppercase tracking-wide text-al-orange">{{product.comparison.subheadline}}</p>
+        <p class="mt-2 text-sm font-semibold uppercase tracking-wide text-al-navy/55">{{product.comparison.subheadline}}</p>
         {{#each product.comparison.intro}}
         <p class="mt-4 text-sm leading-relaxed text-al-ink/75">{{this}}</p>
         {{/each}}
       </div>
-      <div class="overflow-hidden rounded-2xl border border-al-line bg-white">
+      <div class="overflow-hidden rounded-none border border-al-line bg-white">
         <div class="grid grid-cols-2">
           <div class="bg-al-navy p-4 text-white">
             <p class="font-display text-sm font-semibold">{{product.comparison.ourLabel}}</p>
@@ -138,7 +138,7 @@
 {{#ifCond product.slug "vetrofit"}}
 <section class="panel-grey">
   <div class="section">
-    <div class="overflow-hidden rounded-2xl">
+    <div class="overflow-hidden rounded-none">
       <img src="/images/vetrofit/page-panel-a.jpg" alt="VetroFit banner and product story" class="w-full object-contain" />
     </div>
   </div>
@@ -152,8 +152,8 @@
         <h2 class="font-display mt-4 text-3xl font-medium text-al-navy">What riders &amp; trainers are saying</h2>
       </div>
       <div class="flex gap-2">
-        <button type="button" data-testimonial-prev class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line" aria-label="Previous">{{{icon "arrow-left" "w-4 h-4"}}}</button>
-        <button type="button" data-testimonial-next class="flex h-10 w-10 items-center justify-center rounded-full border border-al-line" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
+        <button type="button" data-testimonial-prev class="flex h-10 w-10 items-center justify-center rounded-none border border-al-line" aria-label="Previous">{{{icon "arrow-left" "w-4 h-4"}}}</button>
+        <button type="button" data-testimonial-next class="flex h-10 w-10 items-center justify-center rounded-none border border-al-line" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
       </div>
     </div>
     <div class="mt-8 overflow-hidden" data-testimonial-slider>
@@ -173,7 +173,7 @@
 
 <section class="panel-grey">
   <div class="section">
-    <div class="overflow-hidden rounded-2xl bg-white">
+    <div class="overflow-hidden rounded-none bg-white">
       <img src="/images/vetrofit/page-panel-b.jpg" alt="VetroFit primary ingredients and science" class="w-full object-contain" />
     </div>
   </div>
@@ -198,26 +198,26 @@
       <div data-tab-panel="ingredients" class="hidden py-10">
         {{#with (lookup product.ingredientBenefits 0) as |row|}}
         <div class="grid gap-6 md:grid-cols-3">
-          <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-orange">Ingredients</p><p class="mt-2 text-sm text-al-ink/75">{{row.ingredient}}</p></div>
-          <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-orange">Ingredient Benefits</p><p class="mt-2 text-sm text-al-ink/75">{{row.benefit}}</p></div>
-          <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-orange">Performance Benefits</p><p class="mt-2 text-sm text-al-ink/75">{{row.performance}}</p></div>
+          <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-navy/55">Ingredients</p><p class="mt-2 text-sm text-al-ink/75">{{row.ingredient}}</p></div>
+          <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-navy/55">Ingredient Benefits</p><p class="mt-2 text-sm text-al-ink/75">{{row.benefit}}</p></div>
+          <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-navy/55">Performance Benefits</p><p class="mt-2 text-sm text-al-ink/75">{{row.performance}}</p></div>
         </div>
-        <div class="card mt-6 p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-orange">Long-Term Health &amp; Wellness</p><p class="mt-2 text-sm text-al-ink/75">{{row.wellness}}</p></div>
+        <div class="card mt-6 p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-navy/55">Long-Term Health &amp; Wellness</p><p class="mt-2 text-sm text-al-ink/75">{{row.wellness}}</p></div>
         {{/with}}
 
         {{#if product.primaryIngredients}}
-        <div class="mt-10 rounded-2xl border border-al-line bg-white p-6 sm:p-10">
+        <div class="mt-10 rounded-none border border-al-line bg-white p-6 sm:p-10">
           <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-al-ink/50">{{product.trademark}}</p>
           <p class="font-display mt-2 text-center text-2xl font-medium uppercase tracking-wide text-al-navy sm:text-3xl">Primary Ingredients</p>
-          <div class="mx-auto mt-2 h-px w-14 bg-al-orange" aria-hidden="true"></div>
+          <div class="mx-auto mt-2 h-px w-14 bg-al-navy" aria-hidden="true"></div>
           <div class="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
             {{#each product.primaryIngredients}}
             <div class="text-center">
-              <div class="mx-auto aspect-square w-full max-w-[140px] overflow-hidden rounded-full">
+              <div class="mx-auto aspect-square w-full max-w-[140px] overflow-hidden rounded-none">
                 <img src="{{this.image}}" alt="{{this.name}}" class="h-full w-full object-cover" />
               </div>
               <p class="font-display mt-4 text-sm font-semibold text-al-navy">{{this.name}}</p>
-              <div class="mx-auto mt-2 h-px w-8 bg-al-orange/50" aria-hidden="true"></div>
+              <div class="mx-auto mt-2 h-px w-8 bg-al-navy/50" aria-hidden="true"></div>
               <p class="mt-2 text-[10px] uppercase tracking-wide text-al-ink/45">Origin: {{this.origin}}</p>
             </div>
             {{/each}}
@@ -232,7 +232,7 @@
         <p class="mt-2 text-sm leading-relaxed text-al-ink/75 first:mt-0">{{this}}</p>
         {{/each}}
 
-        <div class="mt-8 overflow-x-auto rounded-2xl border border-al-line">
+        <div class="mt-8 overflow-x-auto rounded-none border border-al-line">
           <table class="w-full min-w-[500px] border-collapse text-left text-sm">
             <thead>
               <tr class="bg-al-navy text-white">
@@ -243,7 +243,7 @@
             </thead>
             <tbody>
               {{#each product.feedingRows}}
-              <tr class="border-t border-al-line odd:bg-white even:bg-al-cream-dark/30">
+              <tr class="border-t border-al-line odd:bg-white even:bg-al-panel">
                 <td class="px-4 py-3 font-semibold text-al-navy">{{this.size}}</td>
                 <td class="px-4 py-3 text-al-ink/70">{{this.weight}}</td>
                 {{#each ../product.feedingValueKeys}}
@@ -259,7 +259,7 @@
           <p class="text-xs font-semibold uppercase tracking-wide text-al-navy">Additional Information</p>
           <ul class="mt-3 space-y-1.5 text-sm text-al-ink/70">
             {{#each product.feedingNotes}}
-            <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange shrink-0"}}}{{this}}</li>
+            <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-navy/55 shrink-0"}}}{{this}}</li>
             {{/each}}
           </ul>
         </div>
@@ -294,7 +294,7 @@
   <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
     {{#each reviews}}
     <div class="card p-6">
-      <div class="flex gap-0.5 text-al-orange">{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}</div>
+      <div class="flex gap-0.5 text-al-navy/55">{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}</div>
       <p class="mt-4 text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
       <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}}</p>
     </div>
@@ -303,18 +303,18 @@
 </section>
 {{/if}}
 
-<section class="bg-al-cream-dark/60">
+<section class="bg-al-panel">
   <div class="section">
     <div class="eyebrow">Complete the System</div>
     <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Explore the other formulations.</h2>
     <div class="mt-10 grid gap-8 md:grid-cols-2">
       {{#each related}}
-      <a href="/shop/product/{{this.slug}}" class="card group flex items-center gap-5 p-5 transition-shadow hover:shadow-lg">
-        <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl bg-al-cream-dark/50">
+      <a href="/shop/product/{{this.slug}}" class="card group flex items-center gap-5 p-5 transition-colors hover:bg-al-panel">
+        <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-none bg-al-panel">
           <img src="{{this.image}}" alt="{{this.trademark}}" class="h-full w-full object-contain p-1.5" />
         </div>
         <div>
-          <p class="font-display text-base font-medium text-al-navy group-hover:text-al-orange">{{this.tagline}}</p>
+          <p class="font-display text-base font-medium text-al-navy group-hover:text-al-navy">{{this.tagline}}</p>
           <p class="mt-1 text-xs uppercase tracking-wide text-al-ink/50">{{this.category}}</p>
         </div>
       </a>

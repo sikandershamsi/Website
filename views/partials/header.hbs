@@ -2,30 +2,30 @@
   <div class="mx-auto flex max-w-7xl items-center gap-8 px-6 py-4 sm:px-8 lg:px-10">
     {{> brand-logo class="h-14 w-auto"}}
 
-    <nav class="ml-auto hidden lg:flex items-center gap-8 text-[13px] font-semibold tracking-wide uppercase text-al-navy">
-      <a href="/the-science" class="hover:text-al-orange transition-colors {{#ifCond activeNav "science"}}text-al-orange{{/ifCond}}">The Science</a>
-      <a href="/shop" class="hover:text-al-orange transition-colors {{#ifCond activeNav "shop"}}text-al-orange{{/ifCond}}">Shop</a>
-      <a href="/about" class="hover:text-al-orange transition-colors {{#ifCond activeNav "about"}}text-al-orange{{/ifCond}}">About Us</a>
-      <a href="/ambassadors" class="hover:text-al-orange transition-colors {{#ifCond activeNav "ambassadors"}}text-al-orange{{/ifCond}}">Ambassadors</a>
-      <a href="/professionals" class="hover:text-al-orange transition-colors {{#ifCond activeNav "professionals"}}text-al-orange{{/ifCond}}">Professionals</a>
-      <a href="/racing" class="hover:text-al-orange transition-colors {{#ifCond activeNav "racing"}}text-al-orange{{/ifCond}}">Racing</a>
-      <a href="/horse-iq" class="hover:text-al-orange transition-colors {{#ifCond activeNav "horseiq"}}text-al-orange{{/ifCond}}">Horse IQ</a>
+    <nav class="ml-auto hidden lg:flex items-center gap-8 text-[13px] font-semibold tracking-wide uppercase text-al-navy/70">
+      <a href="/the-science" class="transition-colors hover:text-al-navy {{#ifCond activeNav "science"}}text-al-navy{{/ifCond}}">The Science</a>
+      <a href="/shop" class="transition-colors hover:text-al-navy {{#ifCond activeNav "shop"}}text-al-navy{{/ifCond}}">Shop</a>
+      <a href="/about" class="transition-colors hover:text-al-navy {{#ifCond activeNav "about"}}text-al-navy{{/ifCond}}">About Us</a>
+      <a href="/ambassadors" class="transition-colors hover:text-al-navy {{#ifCond activeNav "ambassadors"}}text-al-navy{{/ifCond}}">Ambassadors</a>
+      <a href="/professionals" class="transition-colors hover:text-al-navy {{#ifCond activeNav "professionals"}}text-al-navy{{/ifCond}}">Professionals</a>
+      <a href="/racing" class="transition-colors hover:text-al-navy {{#ifCond activeNav "racing"}}text-al-navy{{/ifCond}}">Racing</a>
+      <a href="/horse-iq" class="transition-colors hover:text-al-navy {{#ifCond activeNav "horseiq"}}text-al-navy{{/ifCond}}">Horse IQ</a>
     </nav>
 
     <div class="flex items-center gap-4 text-al-navy">
-      <button type="button" data-search-toggle aria-label="Search" class="hover:text-al-orange transition-colors">{{{icon "search" "w-5 h-5"}}}</button>
-      <a href="/account" aria-label="Account" class="hover:text-al-orange transition-colors">{{{icon "user" "w-5 h-5"}}}</a>
-      <a href="/cart" aria-label="Cart" class="relative hover:text-al-orange transition-colors">
+      <button type="button" data-search-toggle aria-label="Search" class="transition-colors hover:text-al-navy/60">{{{icon "search" "w-5 h-5"}}}</button>
+      <a href="/account" aria-label="Account" class="transition-colors hover:text-al-navy/60">{{{icon "user" "w-5 h-5"}}}</a>
+      <a href="/cart" aria-label="Cart" class="relative transition-colors hover:text-al-navy/60">
         {{{icon "cart" "w-5 h-5"}}}
-        <span data-cart-count class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-al-orange text-[10px] font-bold text-white">{{cartCount}}</span>
+        <span data-cart-count class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-none bg-al-navy text-[10px] font-bold text-white">{{cartCount}}</span>
       </a>
       <button type="button" data-mobile-nav-toggle aria-label="Menu" class="lg:hidden">{{{icon "menu" "w-6 h-6"}}}</button>
     </div>
   </div>
 
-  <div data-search-panel class="hidden border-t border-al-line bg-white px-6 py-4 sm:px-8 lg:px-10">
+  <div data-search-panel class="hidden border-t border-al-line bg-al-panel px-6 py-4 sm:px-8 lg:px-10">
     <form action="/horse-iq" method="get" class="mx-auto flex max-w-3xl items-center gap-3">
-      <input type="text" name="q" placeholder="Search products, ingredients, white papers…" class="w-full rounded-full border border-al-line bg-al-panel px-5 py-3 text-sm focus:border-al-orange focus:outline-none" />
+      <input type="text" name="q" placeholder="Search products, ingredients, white papers…" class="w-full rounded-none border border-al-line bg-white px-5 py-3 text-sm focus:border-al-navy focus:outline-none" />
       <button type="submit" class="btn-primary">Search</button>
     </form>
   </div>

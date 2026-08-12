@@ -5,7 +5,7 @@
       <h1 class="font-display mt-4 text-4xl font-medium text-al-navy sm:text-5xl">Elite Riders. Extraordinary Partnerships.</h1>
       <p class="mt-5 text-sm leading-relaxed text-al-ink/75">United by passion. Driven by excellence. Our ambassadors represent the best in every discipline.</p>
     </div>
-    <div class="overflow-hidden rounded-2xl bg-al-panel">
+    <div class="overflow-hidden rounded-none bg-al-panel">
       <img src="/images/ambassadors/hero-horse.jpg" alt="Animalife ambassador horse behind a paddock fence" class="aspect-[4/3] w-full object-cover object-[center_35%]" />
     </div>
   </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="p-5">
           <p class="font-display text-lg font-medium text-al-navy">Jenni McAllister</p>
-          <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-orange">Click to Profile</p>
+          <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-navy/55">Click to Profile</p>
         </div>
       </a>
     </div>
@@ -50,7 +50,7 @@
       {{#each disciplines}}
       <div class="discipline-chip">
         <div class="discipline-chip__icon">{{{icon "horse" "w-6 h-6"}}}</div>
-        <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-al-orange">{{this.name}}</p>
+        <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-al-navy/55">{{this.name}}</p>
       </div>
       {{/each}}
     </div>
@@ -64,16 +64,16 @@
       <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Ride with purpose. Partner with Animalife.</h2>
       <p class="mt-5 text-sm leading-relaxed text-al-ink/70">If you're a competitive rider, trainer, or equine professional who believes in root-cause, science-backed nutrition, we'd love to hear your story.</p>
       <ul class="mt-8 space-y-3 text-sm text-al-ink/80">
-        <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange shrink-0"}}}Complimentary product &amp; personalized feeding plans</li>
-        <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange shrink-0"}}}Co-marketing &amp; social features across Animalife channels</li>
-        <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-orange shrink-0"}}}Direct access to our science &amp; nutrition team</li>
+        <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-navy/55 shrink-0"}}}Complimentary product &amp; personalized feeding plans</li>
+        <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-navy/55 shrink-0"}}}Co-marketing &amp; social features across Animalife channels</li>
+        <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-navy/55 shrink-0"}}}Direct access to our science &amp; nutrition team</li>
       </ul>
     </div>
 
-    <div class="rounded-2xl border border-al-line bg-al-panel p-7 sm:p-8">
+    <div class="rounded-none border border-al-line bg-al-panel p-7 sm:p-8">
       {{#if submitted}}
       <div class="flex h-full flex-col items-center justify-center py-10 text-center">
-        <div class="flex h-14 w-14 items-center justify-center rounded-full bg-al-orange/10 text-al-orange">{{{icon "check" "w-7 h-7"}}}</div>
+        <div class="flex h-14 w-14 items-center justify-center rounded-none bg-al-navy/10 text-al-navy/55">{{{icon "check" "w-7 h-7"}}}</div>
         <p class="font-display mt-5 text-xl font-medium text-al-navy">Thank you, {{submittedName}}!</p>
         <p class="mt-2 text-sm text-al-ink/65">Your ambassador application has been received. Our team will be in touch within 5–10 business days.</p>
       </div>

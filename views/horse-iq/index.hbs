@@ -2,7 +2,7 @@
 
 <section class="section">
   {{#if query}}
-  <p class="mb-6 text-sm text-al-ink/60">Showing results for &ldquo;{{query}}&rdquo; &mdash; <a href="/horse-iq" class="font-semibold text-al-orange">clear search</a></p>
+  <p class="mb-6 text-sm text-al-ink/60">Showing results for &ldquo;{{query}}&rdquo; &mdash; <a href="/horse-iq" class="font-semibold text-al-navy/55">clear search</a></p>
   {{/if}}
 
   <div data-iq-filter class="flex flex-wrap gap-3">
@@ -16,13 +16,13 @@
   <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {{#each items}}
     <div data-iq-card="{{this.type}}" class="card p-6">
-      <div class="flex h-11 w-11 items-center justify-center rounded-full bg-al-orange/10 text-al-orange">
+      <div class="flex h-11 w-11 items-center justify-center rounded-none bg-al-navy/10 text-al-navy/55">
         {{#ifCond this.type "podcast"}}{{{icon "mic" "w-5 h-5"}}}{{/ifCond}}
         {{#ifCond this.type "video"}}{{{icon "play" "w-5 h-5"}}}{{/ifCond}}
         {{#ifCond this.type "white-paper"}}{{{icon "file-text" "w-5 h-5"}}}{{/ifCond}}
         {{#ifCond this.type "infographic"}}{{{icon "image" "w-5 h-5"}}}{{/ifCond}}
       </div>
-      <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-orange">{{this.meta}}</p>
+      <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy/55">{{this.meta}}</p>
       <p class="font-display mt-2 text-lg font-medium text-al-navy">{{this.title}}</p>
       <p class="mt-2 text-sm text-al-ink/65">{{this.description}}</p>
     </div>
