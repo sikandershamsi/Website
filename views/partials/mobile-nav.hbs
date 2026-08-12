@@ -5,16 +5,63 @@
       {{> brand-logo}}
       <button type="button" data-mobile-nav-close aria-label="Close menu">{{{icon "close" "w-6 h-6"}}}</button>
     </div>
-    <nav class="mt-10 flex flex-col gap-1 text-lg font-display text-al-navy">
-      <a href="/the-science" class="border-b border-al-line py-4">The Science</a>
+    <nav class="mt-8 flex flex-col overflow-y-auto text-sm font-semibold uppercase tracking-wide text-al-navy" aria-label="Mobile">
+      <div class="border-b border-al-line" data-mobile-accordion>
+        <button type="button" class="flex w-full items-center justify-between py-4 text-left" data-mobile-accordion-trigger>
+          The Science
+          <span class="text-al-navy/40" data-mobile-accordion-icon>{{{icon "chevron-down" "w-4 h-4"}}}</span>
+        </button>
+        <div class="hidden space-y-3 pb-4 pl-3 text-xs text-al-navy/70" data-mobile-accordion-panel>
+          <a href="/the-science" class="block hover:text-al-orange">Overview</a>
+          <a href="/the-science/philosophy" class="block hover:text-al-orange">Our Philosophy</a>
+        </div>
+      </div>
       <a href="/shop" class="border-b border-al-line py-4">Shop</a>
-      <a href="/about" class="border-b border-al-line py-4">About Us</a>
-      <a href="/ambassadors" class="border-b border-al-line py-4">Ambassadors</a>
-      <a href="/professionals" class="border-b border-al-line py-4">Professionals</a>
-      <a href="/racing" class="border-b border-al-line py-4">Racing</a>
+      <div class="border-b border-al-line" data-mobile-accordion>
+        <button type="button" class="flex w-full items-center justify-between py-4 text-left" data-mobile-accordion-trigger>
+          About Us
+          <span class="text-al-navy/40" data-mobile-accordion-icon>{{{icon "chevron-down" "w-4 h-4"}}}</span>
+        </button>
+        <div class="hidden space-y-3 pb-4 pl-3 text-xs text-al-navy/70" data-mobile-accordion-panel>
+          <a href="/about" class="block hover:text-al-orange">Our Story</a>
+          <a href="/about/difference" class="block hover:text-al-orange">The Animalife Difference</a>
+        </div>
+      </div>
+      <div class="border-b border-al-line" data-mobile-accordion>
+        <button type="button" class="flex w-full items-center justify-between py-4 text-left" data-mobile-accordion-trigger>
+          Ambassadors
+          <span class="text-al-navy/40" data-mobile-accordion-icon>{{{icon "chevron-down" "w-4 h-4"}}}</span>
+        </button>
+        <div class="hidden space-y-3 pb-4 pl-3 text-xs text-al-navy/70" data-mobile-accordion-panel>
+          <a href="/ambassadors" class="block hover:text-al-orange">Meet Our Ambassadors</a>
+          <a href="/ambassadors#become-ambassador" class="block hover:text-al-orange">Be An Animalife Ambassador</a>
+        </div>
+      </div>
+      <div class="border-b border-al-line" data-mobile-accordion>
+        <button type="button" class="flex w-full items-center justify-between py-4 text-left" data-mobile-accordion-trigger>
+          Professionals
+          <span class="text-al-navy/40" data-mobile-accordion-icon>{{{icon "chevron-down" "w-4 h-4"}}}</span>
+        </button>
+        <div class="hidden space-y-3 pb-4 pl-3 text-xs text-al-navy/70" data-mobile-accordion-panel>
+          <a href="/professionals" class="block hover:text-al-orange">Professionals Rewards Program</a>
+        </div>
+      </div>
+      <div class="border-b border-al-line" data-mobile-accordion>
+        <button type="button" class="flex w-full items-center justify-between py-4 text-left" data-mobile-accordion-trigger>
+          Racing
+          <span class="text-al-navy/40" data-mobile-accordion-icon>{{{icon "chevron-down" "w-4 h-4"}}}</span>
+        </button>
+        <div class="hidden space-y-3 pb-4 pl-3 text-xs text-al-navy/70" data-mobile-accordion-panel>
+          <a href="/racing/industry-reality" class="block hover:text-al-orange">Industry Reality</a>
+          <a href="/racing/kidney-homeostasis" class="block hover:text-al-orange">Kidney Homeostasis</a>
+          <a href="/racing/kidney-distress" class="block hover:text-al-orange">Kidney Distress</a>
+          <a href="/racing/vetrofit" class="block hover:text-al-orange">VetroFit</a>
+          <a href="/racing/performance-evaluation" class="block hover:text-al-orange">VetroFit® Performance Evaluation Program</a>
+        </div>
+      </div>
       <a href="/horse-iq" class="border-b border-al-line py-4">Horse IQ</a>
       <a href="/account" class="border-b border-al-line py-4">Account</a>
     </nav>
-    <div class="mt-auto text-xs text-al-navy/60">Supporting the Life of Every Animal™</div>
+    <div class="mt-auto pt-6 text-xs text-al-navy/60">Supporting the Life of Every Animal™</div>
   </div>
 </div>

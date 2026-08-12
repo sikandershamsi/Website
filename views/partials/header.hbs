@@ -1,23 +1,77 @@
-<header class="sticky top-0 z-40 border-b border-al-line bg-white">
-  <div class="mx-auto flex max-w-7xl items-center gap-8 px-6 py-4 sm:px-8 lg:px-10">
-    {{> brand-logo class="h-14 w-auto"}}
+<header class="site-header relative sticky top-0 z-40 border-b border-al-line bg-white" data-site-header>
+  <div class="mx-auto flex max-w-7xl items-center gap-6 px-6 py-4 sm:px-8 lg:gap-8 lg:px-10">
+    {{> brand-logo class="h-14 w-auto shrink-0"}}
 
-    <nav class="ml-auto hidden lg:flex items-center gap-8 text-[13px] font-semibold tracking-wide uppercase text-al-navy/70">
-      <a href="/the-science" class="transition-colors hover:text-al-navy {{#ifCond activeNav "science"}}text-al-navy{{/ifCond}}">The Science</a>
-      <a href="/shop" class="transition-colors hover:text-al-navy {{#ifCond activeNav "shop"}}text-al-navy{{/ifCond}}">Shop</a>
-      <a href="/about" class="transition-colors hover:text-al-navy {{#ifCond activeNav "about"}}text-al-navy{{/ifCond}}">About Us</a>
-      <a href="/ambassadors" class="transition-colors hover:text-al-navy {{#ifCond activeNav "ambassadors"}}text-al-navy{{/ifCond}}">Ambassadors</a>
-      <a href="/professionals" class="transition-colors hover:text-al-navy {{#ifCond activeNav "professionals"}}text-al-navy{{/ifCond}}">Professionals</a>
-      <a href="/racing" class="transition-colors hover:text-al-navy {{#ifCond activeNav "racing"}}text-al-navy{{/ifCond}}">Racing</a>
-      <a href="/horse-iq" class="transition-colors hover:text-al-navy {{#ifCond activeNav "horseiq"}}text-al-navy{{/ifCond}}">Horse IQ</a>
+    <nav class="site-nav relative ml-auto hidden lg:block" data-site-nav aria-label="Primary">
+      <ul class="flex items-center gap-7 text-[13px] font-semibold tracking-wide uppercase xl:gap-8" data-nav-bar>
+        <li class="site-nav__item" data-nav-item data-nav-key="science">
+          <a href="/the-science" class="site-nav__link {{#ifCond activeNav "science"}}is-active{{/ifCond}}" data-nav-trigger>The Science</a>
+        </li>
+        <li class="site-nav__item" data-nav-item data-nav-key="shop">
+          <a href="/shop" class="site-nav__link {{#ifCond activeNav "shop"}}is-active{{/ifCond}}">Shop</a>
+        </li>
+        <li class="site-nav__item" data-nav-item data-nav-key="about">
+          <a href="/about" class="site-nav__link {{#ifCond activeNav "about"}}is-active{{/ifCond}}" data-nav-trigger>About Us</a>
+        </li>
+        <li class="site-nav__item" data-nav-item data-nav-key="ambassadors">
+          <a href="/ambassadors" class="site-nav__link {{#ifCond activeNav "ambassadors"}}is-active{{/ifCond}}" data-nav-trigger>Ambassadors</a>
+        </li>
+        <li class="site-nav__item" data-nav-item data-nav-key="professionals">
+          <a href="/professionals" class="site-nav__link {{#ifCond activeNav "professionals"}}is-active{{/ifCond}}" data-nav-trigger>Professionals</a>
+        </li>
+        <li class="site-nav__item" data-nav-item data-nav-key="racing">
+          <a href="/racing" class="site-nav__link {{#ifCond activeNav "racing"}}is-active{{/ifCond}}" data-nav-trigger>Racing</a>
+        </li>
+        <li class="site-nav__item" data-nav-item data-nav-key="horseiq">
+          <a href="/horse-iq" class="site-nav__link {{#ifCond activeNav "horseiq"}}is-active{{/ifCond}}">Horse IQ</a>
+        </li>
+      </ul>
+
+      <div class="site-nav__mega" data-nav-mega hidden>
+        <div class="site-nav__mega-inner" data-nav-mega-inner>
+          <div class="site-nav__col" data-nav-col="science">
+            <ul class="site-nav__list">
+              <li><a href="/the-science/philosophy">Our Philosophy</a></li>
+            </ul>
+          </div>
+          <div class="site-nav__col site-nav__col--empty" data-nav-col="shop" aria-hidden="true"></div>
+          <div class="site-nav__col" data-nav-col="about">
+            <ul class="site-nav__list">
+              <li><a href="/about">Our Story</a></li>
+              <li><a href="/about/difference">The Animalife Difference</a></li>
+            </ul>
+          </div>
+          <div class="site-nav__col" data-nav-col="ambassadors">
+            <ul class="site-nav__list">
+              <li><a href="/ambassadors">Meet Our Ambassadors</a></li>
+              <li><a href="/ambassadors#become-ambassador">Be An Animalife Ambassador</a></li>
+            </ul>
+          </div>
+          <div class="site-nav__col" data-nav-col="professionals">
+            <ul class="site-nav__list">
+              <li><a href="/professionals">Professionals Rewards Program</a></li>
+            </ul>
+          </div>
+          <div class="site-nav__col" data-nav-col="racing">
+            <ul class="site-nav__list">
+              <li><a href="/racing/industry-reality">Industry Reality</a></li>
+              <li><a href="/racing/kidney-homeostasis">Kidney Homeostasis</a></li>
+              <li><a href="/racing/kidney-distress">Kidney Distress</a></li>
+              <li><a href="/racing/vetrofit">VetroFit</a></li>
+              <li><a href="/racing/performance-evaluation">VetroFit® Performance Evaluation Program</a></li>
+            </ul>
+          </div>
+          <div class="site-nav__col site-nav__col--empty" data-nav-col="horseiq" aria-hidden="true"></div>
+        </div>
+      </div>
     </nav>
 
-    <div class="flex items-center gap-4 text-al-navy">
-      <button type="button" data-search-toggle aria-label="Search" class="transition-colors hover:text-al-navy/60">{{{icon "search" "w-5 h-5"}}}</button>
-      <a href="/account" aria-label="Account" class="transition-colors hover:text-al-navy/60">{{{icon "user" "w-5 h-5"}}}</a>
-      <a href="/cart" aria-label="Cart" class="relative transition-colors hover:text-al-navy/60">
+    <div class="flex shrink-0 items-center gap-4 text-al-navy">
+      <button type="button" data-search-toggle aria-label="Search" class="transition-colors hover:text-al-orange">{{{icon "search" "w-5 h-5"}}}</button>
+      <a href="/account" aria-label="Account" class="transition-colors hover:text-al-orange">{{{icon "user" "w-5 h-5"}}}</a>
+      <a href="/cart" aria-label="Cart" class="relative transition-colors hover:text-al-orange">
         {{{icon "cart" "w-5 h-5"}}}
-        <span data-cart-count class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-none bg-al-navy text-[10px] font-bold text-white">{{cartCount}}</span>
+        <span data-cart-count class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-al-orange text-[10px] font-bold text-white">{{cartCount}}</span>
       </a>
       <button type="button" data-mobile-nav-toggle aria-label="Menu" class="lg:hidden">{{{icon "menu" "w-6 h-6"}}}</button>
     </div>
