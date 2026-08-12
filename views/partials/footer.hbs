@@ -1,15 +1,37 @@
 <footer class="border-t border-al-line bg-al-panel text-al-ink">
-  <div class="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-10">
-    <div class="mb-10 flex flex-wrap items-center justify-between gap-6">
-      <a href="/shop" class="btn-primary">Shop Our Collections</a>
-      <div class="flex items-center gap-3">
-        <span class="text-xs font-semibold uppercase tracking-wider text-al-ink/50">Follow Us</span>
-        <a href="#" aria-label="Instagram" class="flex h-10 w-10 items-center justify-center rounded-none bg-al-navy text-white transition-colors hover:bg-al-navy-light">{{{icon "instagram" "w-4 h-4"}}}</a>
-        <a href="#" aria-label="Facebook" class="flex h-10 w-10 items-center justify-center rounded-none bg-al-navy text-white transition-colors hover:bg-al-navy-light">{{{icon "facebook" "w-4 h-4"}}}</a>
-        <a href="#" aria-label="YouTube" class="flex h-10 w-10 items-center justify-center rounded-none bg-al-navy text-white transition-colors hover:bg-al-navy-light">{{{icon "youtube" "w-4 h-4"}}}</a>
+  <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+    {{!-- Social + shop: prominent top band --}}
+    <div class="flex flex-col gap-8 border-b border-al-line py-10 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-al-orange">Connect With Us</p>
+        <div class="mt-4 flex items-center gap-3">
+          <a
+            href="https://www.instagram.com/animalifeuk/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            class="flex h-12 w-12 items-center justify-center bg-al-navy text-white transition-colors hover:bg-al-orange"
+          >{{{icon "instagram" "w-5 h-5"}}}</a>
+          <a
+            href="https://www.facebook.com/animalifeuk/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            class="flex h-12 w-12 items-center justify-center bg-al-navy text-white transition-colors hover:bg-al-orange"
+          >{{{icon "facebook" "w-5 h-5"}}}</a>
+          <a
+            href="https://www.youtube.com/@animalifeuk"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+            class="flex h-12 w-12 items-center justify-center bg-al-navy text-white transition-colors hover:bg-al-orange"
+          >{{{icon "youtube" "w-5 h-5"}}}</a>
+        </div>
       </div>
+      <a href="/shop" class="btn-primary self-start sm:self-auto">Shop Our Collections</a>
     </div>
-    <div class="grid grid-cols-2 gap-10 md:grid-cols-6">
+
+    <div class="grid grid-cols-2 gap-10 py-14 md:grid-cols-6">
       <div class="col-span-2">
         <span class="font-display text-2xl font-semibold text-al-navy">animalife<span class="text-al-navy/50">USA</span></span>
         <p class="mt-4 max-w-xs text-sm text-al-ink/70">Rooted in Nature. Proven by Science. Since 2005, Animalife has helped thousands of horses perform at their best, recover faster, and live healthier, more active lives.</p>
@@ -46,15 +68,41 @@
         </ul>
       </div>
       <div>
-        <h4 class="text-xs font-semibold uppercase tracking-wider text-al-navy">Contact</h4>
-        <ul class="mt-4 space-y-2.5 text-sm text-al-ink/75">
-          <li><a href="mailto:hello@animalifeusa.com" class="hover:text-al-navy">hello@animalifeusa.com</a></li>
-          <li class="text-al-ink/45">[Phone number pending]</li>
-          <li class="text-al-ink/45">[Address pending]</li>
+        <h4 class="text-xs font-semibold uppercase tracking-wider text-al-navy">Contact &amp; Location</h4>
+        <ul class="mt-4 space-y-3.5 text-sm text-al-ink/75">
+          <li class="flex items-start gap-2.5">
+            <span class="mt-0.5 shrink-0 text-al-orange">{{{icon "mail" "w-4 h-4"}}}</span>
+            <span>
+              <a href="mailto:hello@animalifeusa.com" class="hover:text-al-navy">hello@animalifeusa.com</a>
+              <span class="mt-1 block text-xs text-al-ink/45">Customer support</span>
+            </span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="mt-0.5 shrink-0 text-al-orange">{{{icon "mail" "w-4 h-4"}}}</span>
+            <span>
+              <a href="mailto:partnerships@animalifeusa.com" class="hover:text-al-navy">partnerships@animalifeusa.com</a>
+              <span class="mt-1 block text-xs text-al-ink/45">Trade &amp; affiliates</span>
+            </span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="mt-0.5 shrink-0 text-al-orange">{{{icon "map-pin" "w-4 h-4"}}}</span>
+            <span>
+              <span class="block text-al-navy">United States</span>
+              <span class="mt-1 block text-xs leading-relaxed text-al-ink/55">Serving riders, trainers &amp; veterinarians nationwide</span>
+            </span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="mt-0.5 shrink-0 text-al-orange">{{{icon "clock" "w-4 h-4"}}}</span>
+            <span>
+              <span class="block">Mon–Fri, 9am–5pm ET</span>
+              <span class="mt-1 block text-xs text-al-ink/45">We typically reply within 1–2 business days</span>
+            </span>
+          </li>
         </ul>
       </div>
     </div>
-    <div class="mt-14 flex flex-col gap-3 border-t border-al-line pt-6 text-xs text-al-ink/50 sm:flex-row sm:items-center sm:justify-between">
+
+    <div class="flex flex-col gap-3 border-t border-al-line py-6 text-xs text-al-ink/50 sm:flex-row sm:items-center sm:justify-between">
       <p>© {{year}} Animalife USA. Supporting the Life of Every Animal™.</p>
       <p>These statements have not been evaluated by the FDA. Products are nutritional supplements, not FDA-approved veterinary drugs.</p>
     </div>
