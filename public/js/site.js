@@ -27,85 +27,34 @@
     });
   });
 
-  // Desktop mega nav (columns aligned under each parent)
-  var siteNav = document.querySelector('[data-site-nav]');
-  var navMega = document.querySelector('[data-nav-mega]');
-  var navBar = document.querySelector('[data-nav-bar]');
+  // Desktop nav — one submenu per hovered parent
   var navItems = document.querySelectorAll('[data-nav-item]');
-  var closeMegaTimer = null;
-
-  function positionMegaColumns() {
-    if (!siteNav || !navMega || !navBar) return;
-    var navRect = siteNav.getBoundingClientRect();
-    var maxBottom = 0;
-    navItems.forEach(function (item) {
-      var key = item.getAttribute('data-nav-key');
-      var col = navMega.querySelector('[data-nav-col="' + key + '"]');
-      if (!col) return;
-      var itemRect = item.getBoundingClientRect();
-      var minW = key === 'racing' ? 260 : key === 'shop' || key === 'horseiq' ? itemRect.width : 190;
-      col.style.left = itemRect.left - navRect.left + 'px';
-      col.style.width = Math.max(itemRect.width, minW) + 'px';
-      maxBottom = Math.max(maxBottom, col.offsetHeight);
-    });
-    navMega.style.minHeight = maxBottom + 'px';
-  }
-
-  function openMega(activeKey) {
-    if (!navMega) return;
-    clearTimeout(closeMegaTimer);
-    navMega.hidden = false;
-    positionMegaColumns();
-    navItems.forEach(function (item) {
-      var key = item.getAttribute('data-nav-key');
-      item.classList.toggle('is-active', !!activeKey && key === activeKey && !!item.querySelector('[data-nav-trigger]'));
-    });
-  }
-
-  function closeMega() {
-    if (!navMega) return;
-    navMega.hidden = true;
-    navItems.forEach(function (item) {
-      item.classList.remove('is-active');
-    });
-  }
-
-  function scheduleCloseMega() {
-    clearTimeout(closeMegaTimer);
-    closeMegaTimer = setTimeout(closeMega, 120);
-  }
-
-  if (siteNav && navMega) {
-    siteNav.addEventListener('mouseenter', function () {
-      clearTimeout(closeMegaTimer);
-    });
-    siteNav.addEventListener('mouseleave', scheduleCloseMega);
-
-    navItems.forEach(function (item) {
-      var trigger = item.querySelector('[data-nav-trigger]');
-      var key = item.getAttribute('data-nav-key');
-      item.addEventListener('mouseenter', function () {
-        if (trigger) openMega(key);
+  navItems.forEach(function (item) {
+    item.addEventListener('mouseenter', function () {
+      navItems.forEach(function (other) {
+        other.classList.toggle('is-open', other === item);
       });
-      if (trigger) {
-        trigger.addEventListener('focus', function () {
-          openMega(key);
-        });
+    });
+    item.addEventListener('mouseleave', function () {
+      item.classList.remove('is-open');
+    });
+    item.addEventListener('focusin', function () {
+      navItems.forEach(function (other) {
+        other.classList.toggle('is-open', other === item);
+      });
+    });
+    item.addEventListener('focusout', function (e) {
+      if (!item.contains(e.relatedTarget)) {
+        item.classList.remove('is-open');
       }
     });
-
-    navMega.addEventListener('mouseenter', function () {
-      clearTimeout(closeMegaTimer);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    navItems.forEach(function (item) {
+      item.classList.remove('is-open');
     });
-    navMega.addEventListener('mouseleave', scheduleCloseMega);
-
-    window.addEventListener('resize', function () {
-      if (!navMega.hidden) positionMegaColumns();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeMega();
-    });
-  }
+  });
 
   // Search panel
   var searchPanel = document.querySelector('[data-search-panel]');

@@ -2,57 +2,48 @@
   <div class="mx-auto flex max-w-7xl items-center gap-6 px-6 py-4 sm:px-8 lg:gap-8 lg:px-10">
     {{> brand-logo class="h-14 w-auto shrink-0"}}
 
-    <nav class="site-nav relative ml-auto hidden lg:block" data-site-nav aria-label="Primary">
-      <ul class="flex items-center gap-7 text-[13px] font-semibold tracking-wide uppercase xl:gap-8" data-nav-bar>
-        <li class="site-nav__item" data-nav-item data-nav-key="science">
-          <a href="/the-science" class="site-nav__link {{#ifCond activeNav "science"}}is-active{{/ifCond}}" data-nav-trigger>The Science</a>
-        </li>
-        <li class="site-nav__item" data-nav-item data-nav-key="shop">
-          <a href="/shop" class="site-nav__link {{#ifCond activeNav "shop"}}is-active{{/ifCond}}">Shop</a>
-        </li>
-        <li class="site-nav__item" data-nav-item data-nav-key="about">
-          <a href="/about" class="site-nav__link {{#ifCond activeNav "about"}}is-active{{/ifCond}}" data-nav-trigger>About Us</a>
-        </li>
-        <li class="site-nav__item" data-nav-item data-nav-key="ambassadors">
-          <a href="/ambassadors" class="site-nav__link {{#ifCond activeNav "ambassadors"}}is-active{{/ifCond}}" data-nav-trigger>Ambassadors</a>
-        </li>
-        <li class="site-nav__item" data-nav-item data-nav-key="professionals">
-          <a href="/professionals" class="site-nav__link {{#ifCond activeNav "professionals"}}is-active{{/ifCond}}" data-nav-trigger>Professionals</a>
-        </li>
-        <li class="site-nav__item" data-nav-item data-nav-key="racing">
-          <a href="/racing" class="site-nav__link {{#ifCond activeNav "racing"}}is-active{{/ifCond}}" data-nav-trigger>Racing</a>
-        </li>
-        <li class="site-nav__item" data-nav-item data-nav-key="horseiq">
-          <a href="/horse-iq" class="site-nav__link {{#ifCond activeNav "horseiq"}}is-active{{/ifCond}}">Horse IQ</a>
-        </li>
-      </ul>
-
-      <div class="site-nav__mega" data-nav-mega hidden>
-        <div class="site-nav__mega-inner" data-nav-mega-inner>
-          <div class="site-nav__col" data-nav-col="science">
+    <nav class="site-nav ml-auto hidden lg:block" data-site-nav aria-label="Primary">
+      <ul class="flex items-center gap-7 text-[13px] font-semibold tracking-wide uppercase xl:gap-8">
+        <li class="site-nav__item" data-nav-item>
+          <a href="/the-science" class="site-nav__link {{#ifCond activeNav "science"}}is-active{{/ifCond}}">The Science</a>
+          <div class="site-nav__dropdown" data-nav-dropdown>
             <ul class="site-nav__list">
               <li><a href="/the-science/philosophy">Our Philosophy</a></li>
             </ul>
           </div>
-          <div class="site-nav__col site-nav__col--empty" data-nav-col="shop" aria-hidden="true"></div>
-          <div class="site-nav__col" data-nav-col="about">
+        </li>
+        <li class="site-nav__item">
+          <a href="/shop" class="site-nav__link {{#ifCond activeNav "shop"}}is-active{{/ifCond}}">Shop</a>
+        </li>
+        <li class="site-nav__item" data-nav-item>
+          <a href="/about" class="site-nav__link {{#ifCond activeNav "about"}}is-active{{/ifCond}}">About Us</a>
+          <div class="site-nav__dropdown" data-nav-dropdown>
             <ul class="site-nav__list">
               <li><a href="/about">Our Story</a></li>
               <li><a href="/about/difference">The Animalife Difference</a></li>
             </ul>
           </div>
-          <div class="site-nav__col" data-nav-col="ambassadors">
+        </li>
+        <li class="site-nav__item" data-nav-item>
+          <a href="/ambassadors" class="site-nav__link {{#ifCond activeNav "ambassadors"}}is-active{{/ifCond}}">Ambassadors</a>
+          <div class="site-nav__dropdown" data-nav-dropdown>
             <ul class="site-nav__list">
               <li><a href="/ambassadors">Meet Our Ambassadors</a></li>
               <li><a href="/ambassadors#become-ambassador">Be An Animalife Ambassador</a></li>
             </ul>
           </div>
-          <div class="site-nav__col" data-nav-col="professionals">
+        </li>
+        <li class="site-nav__item" data-nav-item>
+          <a href="/professionals" class="site-nav__link {{#ifCond activeNav "professionals"}}is-active{{/ifCond}}">Professionals</a>
+          <div class="site-nav__dropdown" data-nav-dropdown>
             <ul class="site-nav__list">
               <li><a href="/professionals">Professionals Rewards Program</a></li>
             </ul>
           </div>
-          <div class="site-nav__col" data-nav-col="racing">
+        </li>
+        <li class="site-nav__item" data-nav-item>
+          <a href="/racing" class="site-nav__link {{#ifCond activeNav "racing"}}is-active{{/ifCond}}">Racing</a>
+          <div class="site-nav__dropdown site-nav__dropdown--wide" data-nav-dropdown>
             <ul class="site-nav__list">
               <li><a href="/racing/industry-reality">Industry Reality</a></li>
               <li><a href="/racing/kidney-homeostasis">Kidney Homeostasis</a></li>
@@ -61,9 +52,11 @@
               <li><a href="/racing/performance-evaluation">VetroFit® Performance Evaluation Program</a></li>
             </ul>
           </div>
-          <div class="site-nav__col site-nav__col--empty" data-nav-col="horseiq" aria-hidden="true"></div>
-        </div>
-      </div>
+        </li>
+        <li class="site-nav__item">
+          <a href="/horse-iq" class="site-nav__link {{#ifCond activeNav "horseiq"}}is-active{{/ifCond}}">Horse IQ</a>
+        </li>
+      </ul>
     </nav>
 
     <div class="flex shrink-0 items-center gap-4 text-al-navy">
