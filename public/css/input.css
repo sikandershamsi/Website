@@ -124,16 +124,26 @@
     @apply absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent;
   }
   .inspired-blend {
-    @apply relative isolate min-h-[420px] overflow-hidden rounded-none bg-white sm:min-h-[460px] lg:min-h-[520px];
+    @apply relative isolate min-h-[460px] overflow-hidden bg-white sm:min-h-[520px] lg:min-h-[580px];
   }
   .inspired-blend__media {
-    @apply absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-[68%_center] lg:object-right;
+    @apply absolute inset-0 h-full w-full object-cover object-[78%_center] sm:object-[72%_center] lg:object-[70%_center];
   }
   .inspired-blend__veil {
-    @apply absolute inset-0 bg-gradient-to-r from-white from-[0%] via-white via-[38%] to-transparent to-[72%] sm:via-[42%] sm:to-[68%] lg:via-[46%] lg:to-[64%];
+    @apply absolute inset-0 bg-gradient-to-r from-white from-[0%] via-white via-[36%] to-transparent to-[68%] sm:via-[40%] sm:to-[64%] lg:from-[8%] lg:via-[42%] lg:to-[62%];
   }
   .inspired-blend__copy {
-    @apply relative z-10 flex max-w-xl flex-col justify-center px-8 py-12 sm:px-12 sm:py-16 lg:max-w-[48%] lg:px-14 lg:py-20;
+    @apply relative z-10 flex max-w-lg flex-col justify-center px-8 py-14 sm:px-12 sm:py-16 lg:max-w-[46%] lg:px-14 lg:py-20;
+  }
+  .inspired-blend__eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] uppercase text-al-orange;
+  }
+  .inspired-blend__eyebrow::before {
+    content: "";
+    @apply block h-px w-6 bg-al-orange;
+  }
+  .inspired-blend__rule {
+    @apply mt-5 h-px w-10 bg-al-orange;
   }
   .about-hero-blend {
     @apply min-h-[420px] rounded-none sm:min-h-[480px] lg:min-h-[540px];
