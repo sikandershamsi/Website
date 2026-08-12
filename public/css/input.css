@@ -149,6 +149,18 @@
   .inspired-blend__rule {
     @apply mt-5 h-px w-10 bg-al-orange;
   }
+  .mission-panel {
+    @apply grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr_1.05fr] lg:gap-8 xl:gap-12;
+  }
+  .mission-panel__copy {
+    @apply flex flex-col justify-center;
+  }
+  .mission-panel__media {
+    @apply mx-auto aspect-[4/5] w-full max-w-md overflow-hidden bg-white lg:max-w-none;
+  }
+  .mission-panel__process {
+    @apply flex flex-col justify-center;
+  }
   .about-hero-blend {
     @apply min-h-[420px] sm:min-h-[480px] lg:min-h-[540px];
   }

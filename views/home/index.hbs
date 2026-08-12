@@ -54,43 +54,55 @@
   <div class="mt-6 flex justify-center gap-2" data-truth-dots></div>
 </section>
 
-<!-- MISSION + INGREDIENTS combined panel -->
-<section class="panel-grey">
-  <div class="section grid items-stretch gap-10 lg:grid-cols-2 lg:gap-14">
-    <div class="flex max-w-xl flex-col justify-center">
-      <div class="eyebrow">Inspired by Nature. Proven by Science.</div>
-      <h2 class="font-display mt-5 text-4xl font-medium leading-tight text-al-navy sm:text-5xl">Powerful Ingredients. Purposeful Nutrition.</h2>
-      <p class="mt-6 text-sm leading-relaxed text-al-ink/75">We combine nature's most powerful compounds with advanced nutritional science to create solutions that work with your animal's body&mdash;not against it.</p>
-      <div class="mt-8 flex items-center gap-3 sm:gap-5">
-        <div class="text-center">
-          <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-none border border-al-line text-al-navy">{{{icon "leaf" "w-5 h-5"}}}</div>
-          <p class="mt-2 text-[10px] font-semibold uppercase tracking-wide text-al-navy">Heal</p>
+<!-- OUR MISSION — matches reference: copy | ingredients photo | process -->
+<section class="panel-white">
+  <div class="section">
+    <div class="mission-panel">
+      <div class="mission-panel__copy">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-al-navy/70">Inspired by Nature. Proven by Science.</p>
+        <div class="mt-4 h-px w-12 bg-al-orange" aria-hidden="true"></div>
+        <h2 class="font-display mt-5 text-3xl font-semibold leading-[1.12] text-al-navy sm:text-4xl lg:text-[2.65rem]">
+          Powerful Ingredients.<br />Purposeful Nutrition.
+        </h2>
+        <div class="mt-5 h-px w-12 bg-al-orange" aria-hidden="true"></div>
+        <p class="mt-6 max-w-md text-sm leading-relaxed text-al-ink/75">We combine nature's most powerful compounds with advanced nutritional science to create solutions that work with your animal's body&mdash;not against it.</p>
+      </div>
+
+      <div class="mission-panel__media">
+        <img
+          src="/images/home/ingredients-photo.jpg"
+          alt="Botanical herbs, mortar and pestle, and laboratory flask"
+          class="h-full w-full object-cover object-center"
+        />
+      </div>
+
+      <div class="mission-panel__process">
+        <p class="text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-al-navy/70">Designed to Help Animals</p>
+        <div class="mt-6 flex flex-wrap items-start justify-center gap-x-2 gap-y-4 sm:gap-3">
+          <div class="text-center">
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-al-navy/30 text-al-navy">{{{icon "leaf" "w-5 h-5"}}}</div>
+            <p class="mt-2 text-[10px] font-bold uppercase tracking-wide text-al-navy">Heal</p>
+          </div>
+          <span class="mt-3.5 text-al-navy/35">{{{icon "arrow-right" "w-3.5 h-3.5"}}}</span>
+          <div class="text-center">
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-al-navy/30 text-al-navy">{{{icon "horse" "w-5 h-5"}}}</div>
+            <p class="mt-2 text-[10px] font-bold uppercase tracking-wide text-al-navy">Perform</p>
+          </div>
+          <span class="mt-3.5 text-al-navy/35">{{{icon "arrow-right" "w-3.5 h-3.5"}}}</span>
+          <div class="text-center">
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-al-navy/30 text-al-navy">{{{icon "clock" "w-5 h-5"}}}</div>
+            <p class="mt-2 text-[10px] font-bold uppercase tracking-wide text-al-navy">Recover</p>
+          </div>
+          <span class="mt-3.5 text-al-navy/35">{{{icon "arrow-right" "w-3.5 h-3.5"}}}</span>
+          <div class="text-center">
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-al-navy/30 text-al-navy">{{{icon "heart" "w-5 h-5"}}}</div>
+            <p class="mt-2 text-[10px] font-bold uppercase tracking-wide text-al-navy">Thrive</p>
+          </div>
         </div>
-        <span class="text-al-ink/30">{{{icon "arrow-right" "w-4 h-4"}}}</span>
-        <div class="text-center">
-          <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-none border border-al-line text-al-navy">{{{icon "horse" "w-5 h-5"}}}</div>
-          <p class="mt-2 text-[10px] font-semibold uppercase tracking-wide text-al-navy">Perform</p>
-        </div>
-        <span class="text-al-ink/30">{{{icon "arrow-right" "w-4 h-4"}}}</span>
-        <div class="text-center">
-          <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-none border border-al-line text-al-navy">{{{icon "clock" "w-5 h-5"}}}</div>
-          <p class="mt-2 text-[10px] font-semibold uppercase tracking-wide text-al-navy">Recover</p>
-        </div>
-        <span class="text-al-ink/30">{{{icon "arrow-right" "w-4 h-4"}}}</span>
-        <div class="text-center">
-          <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-none border border-al-line text-al-navy">{{{icon "heart" "w-5 h-5"}}}</div>
-          <p class="mt-2 text-[10px] font-semibold uppercase tracking-wide text-al-navy">Thrive</p>
+        <div class="mt-8 border border-al-orange px-4 py-3 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-al-navy sm:text-[11px]">
+          Longer Health. Better Performance. A Better Life.
         </div>
       </div>
-      <div class="mt-8 rounded-none border border-al-navy/30 px-5 py-2.5 text-center text-xs font-semibold uppercase tracking-wide text-al-navy">Longer Health. Better Performance. A Better Life.</div>
-    </div>
-
-    <div class="overflow-hidden bg-white">
-      <img
-        src="/images/home/ingredients-photo.jpg"
-        alt="Natural botanical ingredients used in Animalife formulations"
-        class="h-full min-h-[320px] w-full object-cover object-center lg:min-h-[480px]"
-      />
     </div>
   </div>
 </section>
@@ -266,7 +278,7 @@
       <div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4">
         <div class="relative inline-block max-w-[75%]">
           <p class="font-sans text-[clamp(1.75rem,7vw,5rem)] font-extrabold lowercase leading-none tracking-tight text-white">feel the difference</p>
-          <img src="/images/brand/animalife-logo.png" alt="Animalife USA" class="ml-auto mt-3 block h-6 w-auto brightness-0 invert sm:h-8" />
+          <img src="/images/brand/animalife-logo.png" alt="Animalife USA" class="ml-auto mt-3 block h-6 w-auto sm:h-8" />
         </div>
       </div>
     </div>
