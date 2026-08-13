@@ -225,37 +225,30 @@
     @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-none bg-al-navy text-white;
   }
   .feel-difference {
-    @apply relative overflow-hidden rounded-none bg-al-navy;
+    @apply relative isolate overflow-hidden bg-al-navy;
   }
   .feel-difference__panels {
-    @apply grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7;
+    @apply grid grid-cols-2 sm:grid-cols-4;
   }
   .feel-difference__panel {
-    @apply relative min-h-[140px] overflow-hidden sm:min-h-[180px] lg:min-h-[220px];
+    @apply relative aspect-[3/4] overflow-hidden sm:aspect-[2/3] lg:min-h-[280px] lg:aspect-auto;
   }
   .feel-difference__panel + .feel-difference__panel {
-    @apply lg:-ml-4;
+    @apply sm:-ml-5 lg:-ml-8;
   }
   .feel-difference__panel img {
-    @apply absolute inset-0 h-full w-full object-cover transition-transform duration-500;
+    @apply absolute inset-0 h-full w-full object-cover object-center;
   }
-  .feel-difference__panel:hover img {
-    @apply scale-105;
-  }
-  @media (min-width: 1024px) {
+  @media (min-width: 640px) {
     .feel-difference__panel:first-child {
-      clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
     }
     .feel-difference__panel:not(:first-child):not(:last-child) {
-      clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+      clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
     }
     .feel-difference__panel:last-child {
-      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+      clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
     }
-  }
-  .feel-difference__title {
-    @apply pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4 text-center text-[clamp(1.75rem,5vw,3.75rem)] font-bold lowercase leading-none tracking-tight text-white;
-    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
   }
   .discipline-chip {
     @apply text-center transition-transform duration-200 hover:-translate-y-0.5;
