@@ -254,29 +254,77 @@
   .science-pillar:hover .science-pillar__title {
     @apply text-al-navy;
   }
-  .inflammation-panel {
-    @apply overflow-hidden rounded-none border border-al-line bg-white;
+  .targeted-support {
+    @apply overflow-hidden border border-al-line bg-white;
   }
-  .inflammation-panel__stage {
-    @apply relative min-h-[320px] sm:min-h-[400px] lg:min-h-[480px];
+  .targeted-support__stage {
+    @apply grid items-center gap-8 px-6 py-10 sm:px-8 sm:py-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-10 lg:px-12 lg:py-14;
   }
-  .inflammation-panel__media {
-    @apply absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-[68%_center] lg:object-[64%_center];
+  .targeted-support__copy {
+    @apply max-w-md;
   }
-  .inflammation-panel__copy {
-    @apply relative z-10 flex h-full max-w-md flex-col justify-center px-6 py-10 sm:px-8 sm:py-12 lg:max-w-[40%] lg:px-10 lg:py-14;
+  .targeted-support__title {
+    @apply font-display text-4xl font-medium uppercase tracking-wide text-al-navy sm:text-5xl lg:text-[3.25rem] lg:leading-none;
   }
-  .inflammation-benefits {
-    @apply border-t border-al-line bg-white;
+  .targeted-support__ornament {
+    @apply mt-5 flex max-w-[11rem] items-center gap-2;
   }
-  .inflammation-benefits__grid {
-    @apply grid divide-y divide-al-line sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x;
+  .targeted-support__ornament-line {
+    @apply h-px flex-1 bg-al-orange/70;
   }
-  .inflammation-benefit {
-    @apply flex items-center gap-3 px-5 py-5 transition-colors duration-200 hover:bg-al-panel;
+  .targeted-support__ornament-dot {
+    @apply h-2 w-2 shrink-0 rounded-full bg-al-orange;
   }
-  .inflammation-benefit__icon {
-    @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-none bg-al-navy text-white;
+  .targeted-support__lead {
+    @apply mt-6 text-[15px] font-medium leading-relaxed text-al-ink sm:text-base;
+  }
+  .targeted-support__rule {
+    @apply mt-6 h-px w-full max-w-sm bg-al-line;
+  }
+  .targeted-support__body {
+    @apply mt-6 text-sm leading-relaxed text-al-ink/70 sm:text-[15px];
+  }
+  .targeted-support__visual {
+    @apply flex items-center justify-center;
+  }
+  .targeted-support__media {
+    @apply mx-auto w-full max-w-xl object-contain;
+  }
+  .targeted-support__products {
+    @apply grid border-t border-al-line divide-y divide-al-line sm:grid-cols-3 sm:divide-x sm:divide-y-0;
+  }
+  .targeted-support__product {
+    @apply flex items-center gap-4 px-5 py-6 transition-colors duration-200 hover:bg-al-panel sm:px-6 lg:px-8;
+  }
+  .targeted-support__product-icon {
+    @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-white;
+  }
+  .targeted-support__product--orange .targeted-support__product-icon {
+    background-color: #c45c32;
+  }
+  .targeted-support__product--blue .targeted-support__product-icon {
+    background-color: #0b4aa5;
+  }
+  .targeted-support__product--red .targeted-support__product-icon {
+    background-color: #d32f2f;
+  }
+  .targeted-support__product--orange .targeted-support__product-name {
+    color: #c45c32;
+  }
+  .targeted-support__product--blue .targeted-support__product-name {
+    color: #0b4aa5;
+  }
+  .targeted-support__product--red .targeted-support__product-name {
+    color: #d32f2f;
+  }
+  .targeted-support__product-text {
+    @apply flex min-w-0 flex-col gap-1;
+  }
+  .targeted-support__product-name {
+    @apply text-sm font-bold uppercase tracking-[0.04em];
+  }
+  .targeted-support__product-focus {
+    @apply text-[11px] font-semibold uppercase tracking-[0.08em] text-al-ink/80;
   }
   .feel-difference {
     @apply relative isolate overflow-hidden bg-al-navy;

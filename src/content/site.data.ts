@@ -1,8 +1,25 @@
-export const inflammationBenefits = [
-  { title: 'Target', body: 'Inflammation at the Source', icon: 'crosshair' },
-  { title: 'Reduce', body: 'Swelling & Discomfort', icon: 'shield-check' },
-  { title: 'Restore', body: 'Natural Mobility & Flexibility', icon: 'horse' },
-  { title: 'Support', body: 'Long-Term Joint Health', icon: 'clock' },
+export const targetedSupportProducts = [
+  {
+    name: 'VetroFlex™',
+    focus: 'Cartilage & Connective Tissue',
+    href: '/shop/category/cartilage-joint-connective-tissue',
+    icon: 'joint',
+    tone: 'orange',
+  },
+  {
+    name: 'VetroFen™',
+    focus: 'Inflammation & Pain Relief',
+    href: '/shop/category/inflammation-pain-management',
+    icon: 'joint',
+    tone: 'blue',
+  },
+  {
+    name: 'VetroFit™',
+    focus: 'Kidney Homeostasis Management',
+    href: '/shop/category/kidney-homeostasis-oxygen-recovery',
+    icon: 'kidney',
+    tone: 'red',
+  },
 ];
 
 export const sciencePillars = [

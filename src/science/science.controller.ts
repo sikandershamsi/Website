@@ -1,6 +1,6 @@
 import { Controller, Get, Redirect, Render } from '@nestjs/common';
 import { products } from '../content/products.data';
-import { ingredientLibrary, inflammationBenefits, sciencePillars } from '../content/site.data';
+import { ingredientLibrary, sciencePillars, targetedSupportProducts } from '../content/site.data';
 
 @Controller('the-science')
 export class ScienceController {
@@ -13,7 +13,7 @@ export class ScienceController {
       scienceTab: 'performance',
       products,
       sciencePillars,
-      inflammationBenefits,
+      targetedSupportProducts,
     };
   }
 
@@ -32,7 +32,7 @@ export class ScienceController {
       scienceTab: 'performance',
       products,
       sciencePillars,
-      inflammationBenefits,
+      targetedSupportProducts,
     };
   }
 
