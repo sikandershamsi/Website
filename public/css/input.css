@@ -255,10 +255,10 @@
     @apply text-al-navy;
   }
   .targeted-support {
-    @apply overflow-hidden border border-al-line bg-white;
+    @apply border border-al-line bg-white;
   }
   .targeted-support__stage {
-    @apply grid items-center gap-8 px-6 py-10 sm:px-8 sm:py-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-10 lg:px-12 lg:py-14;
+    @apply grid items-center gap-8 px-6 py-10 sm:px-8 sm:py-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-6 lg:px-10 lg:py-12;
   }
   .targeted-support__copy {
     @apply max-w-md;
@@ -285,10 +285,10 @@
     @apply mt-6 text-sm leading-relaxed text-al-ink/70 sm:text-[15px];
   }
   .targeted-support__visual {
-    @apply flex items-center justify-center;
+    @apply flex items-center justify-center overflow-visible;
   }
   .targeted-support__media {
-    @apply mx-auto w-full max-w-xl object-contain;
+    @apply mx-auto h-auto w-full max-w-none object-contain object-center;
   }
   .targeted-support__products {
     @apply grid border-t border-al-line divide-y divide-al-line sm:grid-cols-3 sm:divide-x sm:divide-y-0;
