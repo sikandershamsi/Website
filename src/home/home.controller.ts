@@ -15,12 +15,31 @@ export class HomeController {
       testimonials: testimonials.slice(0, 8),
       products,
       featuredIngredients: [
-        { name: 'Hyaluronic Acid', origin: 'Origin: Global', icon: 'beaker' },
-        { name: 'Collagen Type II', origin: 'Origin: Brazil', icon: 'leaf' },
-        { name: 'MSM', origin: 'Origin: Global', icon: 'flask' },
-        { name: 'Glucosamine', origin: 'Origin: Global', icon: 'shield-check' },
-        { name: 'ACV Chondroitin', origin: 'Origin: France', icon: 'flask' },
-        { name: 'Biotin', origin: 'Origin: Switzerland', icon: 'horseshoe' },
+        {
+          name: 'Hydrolyzed Collagen Type II',
+          origin: 'Brazil',
+          image: '/images/ingredients/vetroflex/hydrolyzed-collagen.jpg',
+        },
+        {
+          name: 'ACV (Chondroitin)',
+          origin: 'France',
+          image: '/images/ingredients/vetroflex/acv-chondroitin.jpg',
+        },
+        {
+          name: 'FOS (Fructooligosaccharides)',
+          origin: 'Belgium',
+          image: '/images/ingredients/vetroflex/fos.jpg',
+        },
+        {
+          name: 'Manganese, Copper & Zinc',
+          origin: 'Global',
+          image: '/images/ingredients/vetroflex/manganese-copper-zinc.jpg',
+        },
+        {
+          name: 'Biotin',
+          origin: 'Switzerland',
+          image: '/images/ingredients/vetroflex/biotin.jpg',
+        },
       ],
     };
   }

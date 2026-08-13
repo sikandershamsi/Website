@@ -170,11 +170,44 @@
   .mission-panel__copy {
     @apply flex flex-col justify-center;
   }
+  .mission-panel__eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2f4a3a];
+  }
+  .mission-panel__rule {
+    @apply mt-4 h-px w-12 bg-al-navy/80;
+  }
   .mission-panel__media {
     @apply mx-auto aspect-[4/5] w-full max-w-md overflow-hidden bg-white lg:max-w-none;
   }
   .mission-panel__process {
     @apply flex flex-col justify-center;
+  }
+  .mission-panel__icon {
+    @apply mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[#2f4a3a]/45 text-[#2f4a3a];
+  }
+  .mission-panel__banner {
+    @apply mt-8 bg-[#dce6dc] px-4 py-3 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-[#2f4a3a] sm:text-[11px];
+  }
+  .mission-ingredients {
+    @apply mt-14 grid grid-cols-2 gap-8 border-t border-al-line pt-12 sm:grid-cols-3 lg:grid-cols-5 lg:gap-0;
+  }
+  .mission-ingredient {
+    @apply flex flex-col items-center px-3 text-center lg:border-l lg:border-al-line lg:px-5;
+  }
+  .mission-ingredient:first-child {
+    @apply lg:border-l-0;
+  }
+  .mission-ingredient__media {
+    @apply h-28 w-28 overflow-hidden rounded-full bg-al-panel sm:h-32 sm:w-32;
+  }
+  .mission-ingredient__media img {
+    @apply h-full w-full object-cover;
+  }
+  .mission-ingredient__name {
+    @apply mt-4 text-[11px] font-bold uppercase leading-snug tracking-wide text-al-navy sm:text-xs;
+  }
+  .mission-ingredient__origin {
+    @apply mt-2 inline-flex items-center justify-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#2f4a3a];
   }
   .science-hero {
     @apply relative isolate flex min-h-[420px] items-center overflow-hidden bg-al-navy sm:min-h-[480px] lg:min-h-[560px];
