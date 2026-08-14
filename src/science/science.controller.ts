@@ -47,10 +47,10 @@ export class ScienceController {
 
   // Racing & Kidney content moved to their own top-level /racing section.
   @Get('racing')
-  @Redirect('/racing/industry-reality', 301)
+  @Redirect('/racing#industry-reality', 301)
   racingRedirect() {}
 
   @Get('kidney-homeostasis')
-  @Redirect('/racing/kidney-homeostasis', 301)
+  @Redirect('/racing#kidney-homeostasis', 301)
   kidneyRedirect() {}
 }

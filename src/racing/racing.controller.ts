@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Render } from '@nestjs/common';
+import { Body, Controller, Get, Post, Redirect, Render } from '@nestjs/common';
 import {
   performanceCascade,
   cascadeSummary,
@@ -7,9 +7,6 @@ import {
   kidneyMasterRegulator,
   oxygenTransport,
   kidneyDistressBanner,
-  industryEffects,
-  homeostasisSystems,
-  homeostasisImpact,
   homeostasisComparison,
   vetrofitRacingBanner,
   scienceBehindVetrofit,
@@ -30,7 +27,6 @@ export class RacingController {
     return {
       title: 'Racing',
       activeNav: 'racing',
-      racingTab: 'racing',
       performanceCascade,
       cascadeSummary,
       ownersTrainersFace,
@@ -51,51 +47,20 @@ export class RacingController {
   }
 
   @Get('industry-reality')
-  @Render('racing/industry-reality')
-  industryReality() {
-    return {
-      title: 'Racing — The Industry Reality',
-      activeNav: 'racing',
-      racingTab: 'industry-reality',
-      performanceCascade,
-      ownersTrainersFace,
-      industryEffects,
-    };
-  }
+  @Redirect('/racing#industry-reality', 301)
+  industryReality() {}
 
   @Get('kidney-homeostasis')
-  @Render('racing/kidney-homeostasis')
-  kidneyHomeostasis() {
-    return {
-      title: 'Kidney Homeostasis',
-      activeNav: 'racing',
-      racingTab: 'kidney-homeostasis',
-      homeostasisSystems,
-      homeostasisImpact,
-    };
-  }
+  @Redirect('/racing#kidney-homeostasis', 301)
+  kidneyHomeostasis() {}
 
   @Get('kidney-distress')
-  @Render('racing/kidney-distress')
-  kidneyDistress() {
-    return {
-      title: 'Kidney Distress',
-      activeNav: 'racing',
-      racingTab: 'kidney-distress',
-      comparison: homeostasisComparison,
-    };
-  }
+  @Redirect('/racing#kidney-distress', 301)
+  kidneyDistress() {}
 
   @Get('vetrofit')
-  @Render('racing/vetrofit')
-  vetrofit() {
-    return {
-      title: 'VetroFit for Racing',
-      activeNav: 'racing',
-      racingTab: 'vetrofit',
-      testimonials: vetrofitTestimonials,
-    };
-  }
+  @Redirect('/racing#vetrofit', 301)
+  vetrofit() {}
 
   @Get('performance-evaluation')
   @Render('racing/performance-evaluation')
@@ -103,7 +68,6 @@ export class RacingController {
     return {
       title: 'VetroFit® Performance Evaluation Program',
       activeNav: 'racing',
-      racingTab: 'vetrofit',
     };
   }
 
@@ -113,7 +77,6 @@ export class RacingController {
     return {
       title: 'Performance Evaluation Program — Application',
       activeNav: 'racing',
-      racingTab: 'vetrofit',
     };
   }
 
@@ -123,7 +86,6 @@ export class RacingController {
     return {
       title: 'Performance Evaluation Program — Application',
       activeNav: 'racing',
-      racingTab: 'vetrofit',
       submitted: true,
       submittedName: `${body.firstName} ${body.lastName}`.trim(),
     };

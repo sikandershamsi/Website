@@ -1271,6 +1271,13 @@
   .race-hero {
     @apply relative isolate flex min-h-[calc(100svh-6.75rem)] items-end overflow-hidden bg-al-navy text-white sm:items-center;
   }
+  #industry-reality,
+  #kidney-homeostasis,
+  #kidney-distress,
+  #vetrofit,
+  #performance-evaluation {
+    scroll-margin-top: 6.75rem;
+  }
   .race-hero__video {
     @apply absolute inset-0 h-full w-full object-cover object-center;
   }
