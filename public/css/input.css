@@ -2578,11 +2578,17 @@
       top: 0;
       bottom: 12%;
       right: 7%;
-      width: 1px;
+      width: 1.5px;
       z-index: 4;
-      background: rgba(255, 255, 255, 0.95);
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.95) 18%,
+        rgba(255, 255, 255, 0.95) 82%,
+        rgba(255, 255, 255, 0.2) 100%
+      );
       transform: skewX(-10deg);
-      box-shadow: 1px 0 0 rgba(201, 162, 74, 0.55);
+      box-shadow: 1px 0 0 color-mix(in srgb, var(--al-diff-gold) 65%, transparent);
     }
     .al-diff__media {
       aspect-ratio: 3 / 3.8;
@@ -2606,7 +2612,8 @@
   }
   .al-diff__bar-item + .al-diff__bar-item::before {
     content: "";
-    @apply absolute left-1/2 top-0 h-px w-10 -translate-x-1/2 bg-al-navy/15 sm:left-0 sm:top-1/2 sm:h-10 sm:w-px sm:translate-x-0 sm:-translate-y-1/2;
+    @apply absolute left-1/2 top-0 h-px w-10 -translate-x-1/2 sm:left-0 sm:top-1/2 sm:h-10 sm:w-px sm:translate-x-0 sm:-translate-y-1/2;
+    background-color: color-mix(in srgb, var(--al-diff-gold) 70%, transparent);
   }
   .al-diff__bar-icon {
     @apply flex h-6 w-6 items-center justify-center text-al-navy;
