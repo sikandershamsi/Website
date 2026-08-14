@@ -54,8 +54,17 @@
   </div>
 </section>
 
-<section class="panel-white">
+<section class="shop-by-category" aria-labelledby="shop-by-category-title">
   <div class="section">
+    <header class="shop-by-category__header">
+      <h2 id="shop-by-category-title" class="shop-by-category__title">Shop By Category</h2>
+      <p class="shop-by-category__subtitle">
+        Root Cause Based<br />
+        Treatments for Every Stage of<br />
+        Performance
+      </p>
+    </header>
+
     <div class="category-grid">
       {{#each categories}}
       <a href="/shop/category/{{this.slug}}" class="category-card category-card--{{this.accent}}">
@@ -66,7 +75,7 @@
         <div class="category-card__compact">
           <div class="category-card__copy">
             <div class="category-card__rule" aria-hidden="true"></div>
-            <h2 class="category-card__title">{{this.name}}</h2>
+            <h3 class="category-card__title">{{this.name}}</h3>
             {{#if this.accentLabel}}
             <p class="category-card__accent">{{this.accentLabel}}</p>
             {{/if}}

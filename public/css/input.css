@@ -108,6 +108,18 @@
       @apply opacity-100;
     }
   }
+  .shop-by-category {
+    @apply bg-white py-14 sm:py-16 lg:py-20;
+  }
+  .shop-by-category__header {
+    @apply mx-auto mb-10 max-w-3xl text-center sm:mb-12 lg:mb-14;
+  }
+  .shop-by-category__title {
+    @apply font-display text-3xl font-medium text-al-navy sm:text-4xl lg:text-[2.75rem];
+  }
+  .shop-by-category__subtitle {
+    @apply mt-4 text-[11px] font-extrabold uppercase leading-relaxed tracking-[0.14em] text-al-navy/70 sm:mt-5 sm:text-xs sm:tracking-[0.16em];
+  }
   .category-grid {
     @apply flex flex-col gap-8 lg:gap-10;
   }
@@ -2718,7 +2730,7 @@
     @apply mt-2 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-al-ink/55;
   }
   .science-hero {
-    @apply relative isolate flex min-h-[440px] items-center overflow-hidden bg-[#f3f2ee] sm:min-h-[500px] lg:min-h-[560px] xl:min-h-[600px];
+    @apply relative isolate flex min-h-[calc(100svh-6.75rem)] items-center overflow-hidden bg-[#f3f2ee];
   }
   .science-hero__media {
     @apply absolute inset-0 h-full w-full object-cover object-[78%_center] sm:object-[72%_center] lg:object-[62%_center];
