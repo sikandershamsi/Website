@@ -1132,25 +1132,65 @@
     @apply min-h-[calc(100svh-6.75rem)] py-16 text-white sm:py-20 lg:py-24;
   }
   .amb-hero {
-    @apply relative isolate min-h-[calc(100svh-6.75rem)] overflow-hidden bg-al-navy;
+    @apply relative isolate flex min-h-[calc(100svh-6.75rem)] items-center overflow-hidden bg-white;
   }
   .amb-hero__media {
-    @apply absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-[68%_center];
+    @apply absolute inset-0 h-full w-full object-cover object-center;
+  }
+  .amb-hero__veil {
+    @apply pointer-events-none absolute inset-0 z-[1];
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.92) 32%, rgba(255, 255, 255, 0.4) 48%, rgba(255, 255, 255, 0) 64%);
+  }
+  @media (min-width: 640px) {
+    .amb-hero__media {
+      @apply left-auto right-0 w-[74%];
+    }
+    .amb-hero__veil {
+      background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #ffffff 36%,
+        rgba(255, 255, 255, 0.9) 44%,
+        rgba(255, 255, 255, 0.55) 52%,
+        rgba(255, 255, 255, 0.18) 60%,
+        rgba(255, 255, 255, 0) 68%
+      );
+    }
+  }
+  @media (min-width: 1024px) {
+    .amb-hero__media {
+      @apply w-[70%];
+    }
+  }
+  .amb-hero__copy {
+    @apply relative z-10 flex w-full max-w-xl flex-col items-start px-6 py-16 sm:max-w-[58%] sm:px-10 sm:py-20 lg:max-w-[54%] lg:px-16 lg:py-24;
+  }
+  .amb-hero__eyebrow {
+    @apply text-[11px] font-extrabold uppercase tracking-[0.16em] text-al-orange sm:text-xs sm:tracking-[0.18em];
+  }
+  .amb-hero__rule {
+    @apply mt-4 block h-0.5 w-8 bg-al-orange;
+  }
+  .amb-hero__title {
+    @apply font-display mt-6 text-[clamp(2rem,5.6vw,4.25rem)] font-medium leading-[1.12] text-al-navy;
+  }
+  .amb-hero__title + .amb-hero__rule {
+    @apply mt-6;
+  }
+  .amb-hero__lede {
+    @apply mt-6 text-xs leading-relaxed text-al-navy sm:text-sm;
   }
   .amb-disciplines {
-    @apply border-t border-al-line bg-white;
+    @apply bg-white;
   }
   .amb-disciplines__grid {
-    @apply mx-auto grid w-full max-w-7xl grid-cols-2 sm:grid-cols-3 lg:grid-cols-7;
+    @apply grid w-full grid-cols-2 gap-[3px] sm:grid-cols-3 lg:grid-cols-7;
   }
   .amb-disciplines__item {
-    @apply flex flex-col border-al-line/70;
-  }
-  .amb-disciplines__item + .amb-disciplines__item {
-    @apply border-l;
+    @apply flex flex-col;
   }
   .amb-disciplines__media {
-    @apply relative aspect-[4/5] overflow-hidden bg-al-panel;
+    @apply relative aspect-[9/10] overflow-hidden bg-al-panel;
   }
   .amb-disciplines__img {
     @apply h-full w-full object-cover object-center;
