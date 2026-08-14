@@ -1,13 +1,34 @@
-<section class="panel-white">
-  <div class="section grid gap-10 lg:grid-cols-2 lg:items-center">
-    <div>
-      <div class="eyebrow">Animalife Ambassadors</div>
-      <h1 class="font-display mt-4 text-4xl font-medium text-al-navy sm:text-5xl">Elite Riders. Extraordinary Partnerships.</h1>
-      <p class="mt-5 text-sm leading-relaxed text-al-ink/75">United by passion. Driven by excellence. Our ambassadors represent the best in every discipline.</p>
+<section class="inspired-blend amb-hero">
+  <div class="inspired-blend__media-wrap">
+    <img
+      src="/images/ambassadors/hero-horse.jpg"
+      alt="Bay horse behind a paddock fence"
+      class="inspired-blend__media amb-hero__media"
+    />
+    <div class="inspired-blend__veil" aria-hidden="true"></div>
+  </div>
+  <div class="inspired-blend__copy amb-hero__copy">
+    <p class="amb-hero__eyebrow">Animalife Ambassadors</p>
+    <div class="amb-hero__rule" aria-hidden="true"></div>
+    <h1 class="font-display mt-5 text-4xl font-medium leading-tight text-al-navy sm:text-5xl lg:text-[3.25rem]">Elite Riders. Extraordinary Partnerships.</h1>
+    <div class="amb-hero__rule" aria-hidden="true"></div>
+    <p class="mt-5 max-w-md text-sm leading-relaxed text-al-ink/75 sm:text-base">United by passion. Driven by excellence. Our ambassadors represent the best in every discipline.</p>
+  </div>
+</section>
+
+<section class="amb-disciplines">
+  <div class="amb-disciplines__grid">
+    {{#each disciplines}}
+    <div class="amb-disciplines__item">
+      <div class="amb-disciplines__media">
+        <img src="{{this.image}}" alt="{{this.name}}" class="amb-disciplines__img" />
+      </div>
+      <div class="amb-disciplines__meta">
+        <div class="amb-disciplines__icon">{{{icon this.icon "w-7 h-7"}}}</div>
+        <p class="amb-disciplines__label">{{this.name}}</p>
+      </div>
     </div>
-    <div class="overflow-hidden rounded-none bg-al-panel">
-      <img src="/images/ambassadors/hero-horse.jpg" alt="Animalife ambassador horse behind a paddock fence" class="aspect-[4/3] w-full object-cover object-[center_35%]" />
-    </div>
+    {{/each}}
   </div>
 </section>
 
@@ -29,30 +50,6 @@
           <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-navy/55">Click to Profile</p>
         </div>
       </a>
-    </div>
-  </div>
-</section>
-
-<section class="panel-grey">
-  <div class="section">
-    <div class="feel-difference">
-      <div class="feel-difference__panels">
-        {{#each disciplines}}
-        <div class="feel-difference__panel">
-          <img src="{{this.image}}" alt="{{this.name}}" />
-        </div>
-        {{/each}}
-      </div>
-      <p class="feel-difference__title">feel the difference</p>
-    </div>
-
-    <div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-7">
-      {{#each disciplines}}
-      <div class="discipline-chip">
-        <div class="discipline-chip__icon">{{{icon "horse" "w-6 h-6"}}}</div>
-        <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-al-navy/55">{{this.name}}</p>
-      </div>
-      {{/each}}
     </div>
   </div>
 </section>

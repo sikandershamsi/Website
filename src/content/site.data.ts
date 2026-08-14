@@ -158,13 +158,13 @@ export const testimonials = [
 ];
 
 export const disciplines = [
-  { slug: 'show-jumping', name: 'Show Jumping', image: '/images/ambassadors/disciplines/jumping.jpg' },
-  { slug: 'dressage', name: 'Dressage', image: '/images/ambassadors/disciplines/dressage.jpg' },
-  { slug: 'racing', name: 'Racing', image: '/images/ambassadors/disciplines/racing.jpg' },
-  { slug: 'eventing', name: 'Eventing', image: '/images/ambassadors/disciplines/eventing.jpg' },
-  { slug: 'western-reining', name: 'Western Reining', image: '/images/ambassadors/disciplines/western.jpg' },
-  { slug: 'polo', name: 'Polo', image: '/images/ambassadors/disciplines/polo.jpg' },
-  { slug: 'four-in-hand', name: 'Four-in-Hand', image: '/images/ambassadors/disciplines/four-in-hand.jpg' },
+  { slug: 'show-jumping', name: 'Show Jumping', icon: 'jumping', image: '/images/ambassadors/disciplines/jumping.jpg' },
+  { slug: 'dressage', name: 'Dressage', icon: 'dressage', image: '/images/ambassadors/disciplines/dressage.jpg' },
+  { slug: 'racing', name: 'Thoroughbred Racing', icon: 'racing', image: '/images/ambassadors/disciplines/racing.jpg' },
+  { slug: 'western-reining', name: 'Western Reining', icon: 'western', image: '/images/ambassadors/disciplines/western.jpg' },
+  { slug: 'eventing', name: 'Eventing', icon: 'eventing', image: '/images/ambassadors/disciplines/eventing.jpg' },
+  { slug: 'polo', name: 'Polo', icon: 'polo', image: '/images/ambassadors/disciplines/polo.jpg' },
+  { slug: 'four-in-hand', name: '4 In Hand Carriage', icon: 'carriage', image: '/images/ambassadors/disciplines/four-in-hand.jpg' },
 ];
 
 export const affiliateAudiences = [

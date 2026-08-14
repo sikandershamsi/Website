@@ -1131,6 +1131,48 @@
   .about-hero-blend__copy {
     @apply min-h-[calc(100svh-6.75rem)] py-16 text-white sm:py-20 lg:py-24;
   }
+  .amb-hero {
+    @apply flex min-h-[calc(100svh-6.75rem)] items-stretch bg-white;
+  }
+  .amb-hero__media {
+    @apply object-cover object-[82%_center] sm:object-[78%_center] lg:object-[72%_center];
+  }
+  .amb-hero__copy {
+    @apply min-h-[calc(100svh-6.75rem)] max-w-xl py-16 sm:max-w-xl sm:py-20 lg:max-w-[46%] lg:py-24;
+  }
+  .amb-hero__eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-al-orange;
+  }
+  .amb-hero__rule {
+    @apply mt-4 h-px w-10 bg-al-orange;
+  }
+  .amb-disciplines {
+    @apply border-t border-al-line bg-white;
+  }
+  .amb-disciplines__grid {
+    @apply mx-auto grid w-full max-w-7xl grid-cols-2 sm:grid-cols-3 lg:grid-cols-7;
+  }
+  .amb-disciplines__item {
+    @apply flex flex-col border-al-line/70;
+  }
+  .amb-disciplines__item + .amb-disciplines__item {
+    @apply border-l;
+  }
+  .amb-disciplines__media {
+    @apply relative aspect-[4/5] overflow-hidden bg-al-panel;
+  }
+  .amb-disciplines__img {
+    @apply h-full w-full object-cover object-center;
+  }
+  .amb-disciplines__meta {
+    @apply flex flex-col items-center gap-2 bg-white px-2 py-4 text-center;
+  }
+  .amb-disciplines__icon {
+    @apply flex h-9 w-9 items-center justify-center text-al-orange;
+  }
+  .amb-disciplines__label {
+    @apply text-[9px] font-semibold uppercase tracking-[0.12em] text-al-navy sm:text-[10px];
+  }
   .al-diff {
     --al-diff-gold: #c9a24a;
     @apply bg-[#f4f4f2] py-14 sm:py-16 lg:py-20;
