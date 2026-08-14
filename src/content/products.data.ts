@@ -68,6 +68,8 @@ export interface Product {
   keyIngredients: string[];
   primaryIngredients: { name: string; origin: string; image: string }[];
   primaryIngredientsFooter: string;
+  primaryIngredientsPanel?: string;
+  comparisonPanel?: string;
   supports: string[];
   ingredientBenefits: {
     ingredient: string;
@@ -510,75 +512,83 @@ export const products: Product[] = [
     },
     comparison: {
       headline: 'Not All Performance Supplements Are Created Equal.',
-      subheadline: 'Kidney Health. Oxygen Transport. Peak Performance.',
+      subheadline: 'Some products mask the problem. VetroFit helps support kidney homeostasis and performance.',
       intro: [
-        'Some products only stimulate. VetroFit supports the systems that drive endurance, recovery, and results.',
-        'VetroFit is kidney-focused nutrition that supports oxygen transport and the body’s seven essential systems for peak performance and faster recovery—naturally and safely.',
-        'VetroFit helps your horse perform at its best today—and recover stronger for tomorrow.',
+        'Feel the Difference.',
+        'VetroFit supports kidney homeostasis using electrolytes, amino acids, antioxidants & cofactors.',
+        'Other brands often rely on stimulants and general additives that may only mask fatigue.',
       ],
       ourLabel: 'VetroFit®',
-      ourSubLabel: 'Kidney-Centric Nutrition for Peak Performance & Recovery',
+      ourSubLabel: 'Electrolytes, Amino Acids, Antioxidants & Cofactors — Supporting Kidney Homeostasis',
       otherLabel: 'Other Brands',
-      otherSubLabel: 'Stimulants & General Performance Products',
+      otherSubLabel: 'Stimulants & General Additives That May Only Mask Fatigue',
       rows: [
         {
           title: 'Supports Kidney Homeostasis',
-          body: 'Supports the kidneys in maintaining seven vital systems—improving oxygen transport, endurance, and recovery.',
-          otherTitle: 'Does Not Support Kidney Function',
-          otherBody: 'Most products ignore the kidneys, missing the root cause of reduced performance and slow recovery.',
+          body: "Provides targeted nutritional support for the kidney's 7 key homeostatic functions.",
+          otherTitle: 'Does Not Target Kidney Function',
+          otherBody: 'Does not provide specific nutritional support for kidney homeostasis or regulation.',
         },
         {
-          title: 'Supports More Efficient Oxygen Transport',
-          body: 'Supports red blood cell regulation and optimal oxygen delivery to working muscles.',
-          otherTitle: 'No Impact on Oxygen Delivery',
-          otherBody: 'Stimulants may mask fatigue but do not improve oxygen transport or red blood cell function.',
+          title: 'Supports Healthy Red Blood Cell Production',
+          body: 'Includes essential nutrients that support healthy red blood cell production for optimal oxygen transport.',
+          otherTitle: 'Does Not Support RBC Production',
+          otherBody: 'Does not provide nutrients that support healthy red blood cell production.',
         },
         {
-          title: 'Improves Endurance & Stamina',
-          body: 'Helps horses sustain performance longer with less fatigue and better energy efficiency.',
-          otherTitle: 'Temporary Stimulation Only',
-          otherBody: 'Many products provide a short-lived boost but can lead to a crash and increased fatigue.',
+          title: 'Supports Aerobic Oxygen Transport',
+          body: 'Supports efficient oxygen delivery to muscles for stamina, endurance and peak performance.',
+          otherTitle: 'May Stimulate Without Improving Oxygen Use',
+          otherBody: 'Often increases stimulants without improving oxygen transport or cellular efficiency.',
         },
         {
-          title: 'Faster Recovery Between Races',
-          body: 'Supports kidney function to remove waste, balance fluids, and restore the body more quickly.',
-          otherTitle: 'Slower Recovery',
-          otherBody: 'Does not address waste removal or fluid balance—leading to longer recovery times.',
+          title: 'Supports Recovery & Electrolyte Balance',
+          body: 'Helps support fluid balance, electrolyte regulation, and recovery after intense effort.',
+          otherTitle: 'May Cause Imbalance or Crash',
+          otherBody: 'High stimulants or sugars may lead to electrolyte loss, dehydration, and post-race fatigue.',
         },
         {
-          title: 'Safe, and Natural',
-          body: 'Made with natural ingredients free of banned substances (FEI Clean Sport compliant).',
-          otherTitle: 'Risky Ingredients',
-          otherBody: 'Many stimulants contain banned substances or ingredients that carry competition risks.',
+          title: 'Natural, Safe & Competition Legal',
+          body: 'FEI & USEF compliant with a proven record of safety and efficacy.',
+          otherTitle: 'Risk of Prohibited Substances',
+          otherBody: 'Some products contain ingredients with withdrawal times or risk positive tests.',
         },
       ],
     },
     keyIngredients: ['Omega-3 (Linseed Oil)', 'Superoxide Dismutase (Melon Extract)', 'Chelated Iron, Copper, Manganese, Zinc, Selenium', 'Amino Acids (Lysine, Methionine)', 'B-Vitamins'],
     primaryIngredients: [
-      { name: 'Water', origin: 'Global', image: '/images/ingredients/vetrofit/water.jpg' },
-      { name: 'Omega-3 Linseed Oil', origin: 'Canada', image: '/images/ingredients/vetrofit/omega-3-linseed-oil.jpg' },
-      { name: 'SOD (Melon Extract)', origin: 'Japan', image: '/images/ingredients/vetrofit/sod-melon-extract.jpg' },
-      { name: 'Vitamin E (Tocopherol)', origin: 'Switzerland', image: '/images/ingredients/vetrofit/vitamin-e.jpg' },
-      { name: 'Vitamin B1 (Thiamine Mononitrate)', origin: 'Germany', image: '/images/ingredients/vetrofit/vitamin-b1.jpg' },
-      { name: 'Vitamin B2 (Riboflavin)', origin: 'Germany', image: '/images/ingredients/vetrofit/vitamin-b2.jpg' },
-      { name: 'Folate (Folic Acid)', origin: 'Switzerland', image: '/images/ingredients/vetrofit/folate.jpg' },
-      { name: 'Niacinamide (Vitamin B3)', origin: 'Switzerland', image: '/images/ingredients/vetrofit/niacinamide.jpg' },
-      { name: 'D-Panthenol (Provitamin B5)', origin: 'Switzerland', image: '/images/ingredients/vetrofit/d-panthenol.jpg' },
-      { name: 'Vitamin B6 (Pyridoxine HCl)', origin: 'Germany', image: '/images/ingredients/vetrofit/vitamin-b6.jpg' },
-      { name: 'Vitamin K3 (Menadione Sodium Bisulfite)', origin: 'China', image: '/images/ingredients/vetrofit/vitamin-k3.jpg' },
-      { name: 'Vitamin A (Retinyl Acetate)', origin: 'Switzerland', image: '/images/ingredients/vetrofit/vitamin-a.jpg' },
-      { name: 'Vitamin D3 (Cholecalciferol)', origin: 'Switzerland', image: '/images/ingredients/vetrofit/vitamin-d3.jpg' },
-      { name: 'Vitamin B12 (Cyanocobalamin)', origin: 'Germany', image: '/images/ingredients/vetrofit/vitamin-b12.jpg' },
-      { name: 'Chelated Minerals (Fe, Cu, Mn, Zn, Se)', origin: 'Global', image: '/images/ingredients/vetrofit/chelated-minerals.jpg' },
+      { name: 'Water', origin: 'Other', image: '/images/ingredients/vetrofit/water.jpg' },
+      { name: 'Omega-3 Linseed Oil', origin: 'Plant', image: '/images/ingredients/vetrofit/omega-3-linseed-oil.jpg' },
+      { name: 'SOD Melon Extract', origin: 'Plant', image: '/images/ingredients/vetrofit/sod-melon-extract.jpg' },
+      { name: 'Vitamin E (Tocopherol)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-e.jpg' },
+      { name: 'Vitamin B1 (Thiamine Mononitrate)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-b1.jpg' },
+      { name: 'Vitamin B2 (Riboflavin)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-b2.jpg' },
+      { name: 'Folate (Folic Acid)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/folate.jpg' },
+      { name: 'Niacinamide (Vitamin B3)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/niacinamide.jpg' },
+      { name: 'D-Panthenol (Provitamin B5)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/d-panthenol.jpg' },
+      { name: 'Vitamin B6 (Pyridoxine HCl)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-b6.jpg' },
+      { name: 'Vitamin K3 (Menadione Sodium Bisulfite)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-k3.jpg' },
+      { name: 'Vitamin A/D (Cholecalciferol)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-d3.jpg' },
+      { name: 'Vitamin B12 (Cyanocobalamin)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-b12.jpg' },
+      { name: 'Chelated Minerals (Fe, Cu, Mn, Zn, Se)', origin: 'Mineral', image: '/images/ingredients/vetrofit/chelated-minerals.jpg' },
+      { name: 'Lysine', origin: 'Synthetic', image: '/images/ingredients/vetrofit/lysine.jpg' },
+      { name: 'Methionine', origin: 'Synthetic', image: '/images/ingredients/vetrofit/methionine.jpg' },
     ],
-    primaryIngredientsFooter: 'Targeted Nutrition for Kidney Support | Oxygen Transport | Recovery & Endurance | Overall Performance',
+    primaryIngredientsFooter:
+      'Targeted Nutrition for Kidney Support & Oxygen Transport | Supports Kidney Homeostasis & Fluid-Electrolyte Balance | Promotes Recovery, Endurance & Overall Wellness',
+    primaryIngredientsPanel: '/images/vetrofit/primary-ingredients-panel.jpg',
+    comparisonPanel: '/images/vetrofit/comparison-panel.jpg',
     supports: ['Oxygen Delivery', 'Recovery', 'Cardiovascular Efficiency', 'Electrolyte Balance', 'Energy Production', 'Kidney Function', 'Competitive Performance'],
     ingredientBenefits: [
       {
-        ingredient: 'Omega-3 (linseed oil); Superoxide Dismutase (melon extract); Vitamins A, B1, B2, B6, B12, C, D3, E, K; Chelated minerals (iron, copper, manganese, zinc, selenium); Amino acids (lysine, methionine)',
-        benefit: 'Enhances oxygen transport via iron and B-vitamin support for red blood cell production. Strong antioxidant defense (SOD, vitamins C & E) reduces oxidative stress. Omega-3 supports cardiovascular function and reduces inflammation.',
-        performance: 'Improves endurance and aerobic capacity through enhanced oxygen delivery. Delays fatigue and reduces lactic acid accumulation during exertion. Supports sustained energy output and mental focus during performance.',
-        wellness: 'Supports cardiovascular health and circulatory efficiency. Reduces long-term oxidative stress and cellular damage. Enhances recovery cycles, promoting consistent performance longevity.',
+        ingredient:
+          'Water, Omega-3 Linseed Oil, SOD Melon Extract, Vitamin E (Tocopherol), Vitamin B1 (Thiamine Mononitrate), Vitamin B2 (Riboflavin), Folate (Folic Acid), Niacinamide (Vitamin B3), D-Panthenol (Provitamin B5), Vitamin B6 (Pyridoxine HCl), Vitamin B2 (Riboflavin Sodium Phosphate), Vitamin K3 (Menadione Sodium Bisulfite), Vitamin A/D (Cholecalciferol), Vitamin B12 (Cyanocobalamin), Chelated Minerals (Fe, Cu, Mn, Zn, Se), Lysine, Methionine',
+        benefit:
+          'A comprehensive blend of vitamins, minerals, essential amino acids, antioxidants and electrolytes that support oxygen transport, red blood cell production, energy metabolism, kidney homeostasis, fluid and electrolyte balance, acid-base balance, immune function and recovery.',
+        performance:
+          'Supports healthy kidney function and circulation, enhances aerobic oxygen transport and red blood cell regulation, helps maintain hydration and electrolyte balance, supports energy production and utilization, reduces fatigue, and promotes faster recovery and sustained performance.',
+        wellness:
+          'Helps maintain kidney health and proper fluid balance, supports cardiovascular and metabolic health, promotes long-term soundness and vitality, enhances resilience to physical stress, and supports overall wellness and longevity.',
       },
     ],
     feedingIntro: [

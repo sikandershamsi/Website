@@ -223,6 +223,12 @@
   .category-hero--gold .category-hero__icon {
     background-color: #e0a820;
   }
+  .product-panel {
+    @apply m-0 overflow-hidden border border-al-line bg-white;
+  }
+  .product-panel__img {
+    @apply block h-auto w-full;
+  }
   .tag-pill {
     @apply rounded-none bg-al-panel px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-al-navy;
   }
