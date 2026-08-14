@@ -1,10 +1,10 @@
 <section class="shop-hero">
   <img
-    src="/images/shop/hero.jpg?v=2"
-    alt=""
+    src="/images/shop/hero.jpg?v=3"
+    alt="VetroFlex, VetroFen, and VetroFit with a horse in golden-hour light"
     class="shop-hero__media"
-    width="2048"
-    height="1100"
+    width="1024"
+    height="550"
   />
   <div class="shop-hero__veil" aria-hidden="true"></div>
 
@@ -15,9 +15,13 @@
         <p class="shop-hero__eyebrow">Shop Animalife</p>
         <span class="shop-hero__rule" aria-hidden="true"></span>
       </div>
-      <h1 class="shop-hero__title">Root Cause Based Treatments</h1>
+      <h1 class="shop-hero__title">
+        <span class="shop-hero__title-line">Root Cause Based</span>
+        <span class="shop-hero__title-line">Treatments</span>
+      </h1>
       <p class="shop-hero__lede">
-        For Every Stage of <span class="shop-hero__lede-em">Performance &amp; Wellness</span>
+        <span class="shop-hero__lede-line">For Every Stage of</span>
+        <span class="shop-hero__lede-em">Performance &amp; Wellness</span>
       </p>
       <div class="shop-hero__mark" aria-hidden="true">
         <span class="shop-hero__rule shop-hero__rule--long"></span>
@@ -61,36 +65,15 @@
     <div class="category-grid mt-12">
       {{#each categories}}
       <a href="/shop/category/{{this.slug}}" class="category-card category-card--{{this.accent}}">
-        <figure class="category-card__panel">
-          <img src="{{this.panel}}" alt="{{this.name}} — {{this.summary}}" width="1024" height="576" loading="lazy" />
+        <figure class="category-card__media">
+          <img src="{{this.image}}" alt="{{this.name}}" width="1024" height="576" loading="lazy" />
         </figure>
-
-        <div class="category-card__compact">
-          <div class="category-card__copy">
-            <div class="category-card__rule" aria-hidden="true"></div>
-            <h3 class="category-card__title">{{this.name}}</h3>
-            {{#if this.accentLabel}}
-            <p class="category-card__accent">{{this.accentLabel}}</p>
-            {{/if}}
-            {{#unless (eq this.accentLabel this.strapline)}}
-            <p class="category-card__pillars">{{this.strapline}}</p>
-            {{/unless}}
-            <p class="category-card__body">{{this.summary}}</p>
-          </div>
-
-          <div class="category-card__benefits">
-            {{#each this.benefits}}
-            <div class="category-card__benefit">
-              <div class="category-card__icon">{{{icon this.icon "w-5 h-5"}}}</div>
-              <p class="category-card__benefit-title">{{this.title}}</p>
-              <p class="category-card__benefit-body">{{this.body}}</p>
-            </div>
-            {{/each}}
-          </div>
-        </div>
-
-        <div class="category-card__footer">
-          <p class="category-card__range">{{this.rangeLine}}</p>
+        <div class="category-card__body-wrap">
+          <h3 class="category-card__title">{{this.name}}</h3>
+          {{#if this.accentLabel}}
+          <p class="category-card__accent">{{this.accentLabel}}</p>
+          {{/if}}
+          <p class="category-card__summary">{{this.summary}}</p>
           <span class="category-card__cta">
             {{this.cta}}
             {{{icon "arrow-right" "w-4 h-4"}}}
