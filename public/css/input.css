@@ -1204,6 +1204,34 @@
   .amb-disciplines__label {
     @apply text-[9px] font-semibold uppercase tracking-[0.12em] text-al-navy sm:text-[10px];
   }
+  .amb-feel {
+    @apply w-full bg-[#f3f3f1] px-3 py-10 sm:px-4 sm:py-12 lg:px-5 lg:py-14;
+  }
+  .amb-feel__banner {
+    @apply relative mx-auto w-full overflow-hidden rounded-[1.25rem] sm:rounded-[1.75rem] lg:rounded-[2rem];
+  }
+  .amb-feel__banner-img {
+    @apply block w-full object-cover object-center;
+    aspect-ratio: 953 / 310;
+  }
+  .amb-feel__overlay {
+    @apply pointer-events-none absolute inset-0 bg-black/15;
+  }
+  .amb-feel__title {
+    @apply pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4 text-center font-sans text-[clamp(1.75rem,6.5vw,4.75rem)] font-extrabold lowercase leading-none tracking-tight text-white;
+  }
+  .amb-feel__icons {
+    @apply mx-auto mt-8 flex w-full list-none flex-wrap items-start justify-between gap-y-6 px-6 sm:mt-10 sm:flex-nowrap sm:px-8 lg:mt-12 lg:px-12;
+  }
+  .amb-feel__icon-item {
+    @apply flex w-[28%] flex-col items-center gap-2 text-center sm:w-[12%] sm:min-w-0;
+  }
+  .amb-feel__icon-img {
+    @apply h-12 w-12 object-contain sm:h-14 sm:w-14;
+  }
+  .amb-feel__icon-label {
+    @apply text-[9px] font-semibold uppercase tracking-[0.12em] text-al-orange sm:text-[10px] sm:tracking-[0.14em];
+  }
   .al-diff {
     --al-diff-gold: #c9a24a;
     @apply bg-[#f4f4f2] py-14 sm:py-16 lg:py-20;
