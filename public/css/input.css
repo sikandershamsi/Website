@@ -2562,53 +2562,61 @@
   }
   @media (min-width: 1024px) {
     .al-diff__panels {
+      --al-diff-slant: 2rem;
       @apply overflow-hidden bg-[color:var(--al-diff-bg)];
       align-items: stretch;
     }
     .al-diff__panel {
-      @apply min-w-0;
-      margin-left: -1.75rem;
-      padding-bottom: 0.5rem;
+      @apply min-w-0 pb-2;
       background: var(--al-diff-bg);
-      clip-path: polygon(16% 0, 100% 0, 84% 100%, 0 100%);
     }
-    .al-diff__panel:first-child {
+    .al-diff__media {
+      aspect-ratio: 3 / 3.4;
+      width: calc(100% + var(--al-diff-slant));
+      margin-left: calc(var(--al-diff-slant) / -2);
+      clip-path: polygon(
+        var(--al-diff-slant) 0,
+        100% 0,
+        calc(100% - var(--al-diff-slant)) 100%,
+        0 100%
+      );
+    }
+    .al-diff__panel:first-child .al-diff__media {
+      width: calc(100% + var(--al-diff-slant) / 2);
       margin-left: 0;
-      clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%);
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        calc(100% - var(--al-diff-slant)) 100%,
+        0 100%
+      );
     }
-    .al-diff__panel:last-child {
-      clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%);
+    .al-diff__panel:last-child .al-diff__media {
+      width: calc(100% + var(--al-diff-slant) / 2);
+      clip-path: polygon(var(--al-diff-slant) 0, 100% 0, 100% 100%, 0 100%);
     }
     .al-diff__panel:not(:last-child)::after {
       content: "";
       position: absolute;
       top: 0;
-      bottom: 12%;
-      right: 7%;
-      width: 1.5px;
+      bottom: 0;
+      right: 0;
+      width: 1px;
       z-index: 4;
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.2) 0%,
-        rgba(255, 255, 255, 0.95) 18%,
-        rgba(255, 255, 255, 0.95) 82%,
-        rgba(255, 255, 255, 0.2) 100%
-      );
-      transform: skewX(-10deg);
-      box-shadow: 1px 0 0 color-mix(in srgb, var(--al-diff-gold) 65%, transparent);
+      background: color-mix(in srgb, var(--al-diff-gold) 55%, transparent);
+      transform: skewX(-3.4deg);
     }
-    .al-diff__media {
-      aspect-ratio: 3 / 3.8;
-      clip-path: none;
+    .al-diff__badge {
+      @apply right-7 top-4 h-12 xl:h-14;
     }
     .al-diff__num {
       @apply -mt-7;
     }
     .al-diff__panel-title {
-      @apply mt-4 px-5;
+      @apply mt-4 px-6;
     }
     .al-diff__panel-text {
-      @apply px-5;
+      @apply px-6;
     }
   }
   .al-diff__bar {
