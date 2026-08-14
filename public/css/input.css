@@ -229,6 +229,287 @@
   .product-panel__img {
     @apply block h-auto w-full;
   }
+  .vf-desc {
+    --vf-orange: #e87820;
+    @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
+  }
+  .vf-desc__grid {
+    @apply grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 xl:gap-10;
+  }
+  .vf-desc__difference {
+    @apply bg-[#efefef] px-5 py-5 sm:px-7 sm:py-6 lg:col-span-2 lg:col-start-2;
+  }
+  .vf-desc__logo {
+    @apply font-sans text-[clamp(1.75rem,3vw,2.35rem)] font-extrabold leading-none tracking-tight;
+    color: var(--vf-orange);
+  }
+  .vf-desc__brand {
+    @apply mt-1 text-[11px] font-medium tracking-[0.04em] text-al-ink/55;
+  }
+  .vf-desc__headline {
+    @apply mt-5 flex flex-col gap-0.5 font-sans text-[clamp(1.35rem,2.6vw,1.85rem)] font-extrabold uppercase leading-[1.05] tracking-[0.02em] text-al-navy;
+  }
+  .vf-desc__line--accent {
+    color: var(--vf-orange);
+  }
+  .vf-desc__intro {
+    @apply mt-4 max-w-md text-sm leading-relaxed text-al-ink/70;
+  }
+  .vf-desc__benefits {
+    @apply mt-8 list-none space-y-0 p-0;
+  }
+  .vf-desc__benefit {
+    @apply flex items-center gap-3 border-t border-al-line py-3.5;
+  }
+  .vf-desc__benefit:last-child {
+    @apply border-b;
+  }
+  .vf-desc__benefit-icon {
+    @apply h-11 w-11 shrink-0 object-contain;
+  }
+  .vf-desc__benefit-text {
+    @apply m-0 text-sm leading-snug text-al-ink/80;
+  }
+  .vf-desc__benefit-text strong {
+    @apply font-semibold text-al-navy;
+  }
+  .vf-desc__visuals {
+    @apply flex flex-col gap-4;
+  }
+  .vf-desc__anatomy {
+    @apply m-0;
+  }
+  .vf-desc__anatomy img {
+    @apply mx-auto block h-auto w-full max-w-[320px] object-contain;
+  }
+  .vf-desc__lungs {
+    @apply flex flex-col gap-3;
+  }
+  .vf-desc__lung {
+    @apply relative m-0 overflow-hidden bg-black;
+  }
+  .vf-desc__lung img {
+    @apply block h-auto w-full;
+  }
+  .vf-desc__lung-label {
+    @apply absolute left-2 top-2 z-10 max-w-[calc(100%-1rem)] px-2 py-1 text-[9px] font-bold uppercase tracking-[0.06em] text-white sm:text-[10px];
+  }
+  .vf-desc__lung-label--healthy {
+    @apply bg-emerald-700;
+  }
+  .vf-desc__lung-label--eiph {
+    @apply bg-red-700;
+  }
+  .vf-desc__detail {
+    @apply flex flex-col gap-6;
+  }
+  .vf-desc__block {
+    @apply space-y-2;
+  }
+  .vf-desc__eyebrow {
+    @apply text-[11px] font-extrabold uppercase tracking-[0.12em] text-al-navy;
+  }
+  .vf-desc__body {
+    @apply text-sm leading-relaxed text-al-ink/75;
+  }
+  .vf-desc__list {
+    @apply mt-2 list-disc space-y-1.5 pl-5 text-sm leading-snug text-al-ink/70;
+  }
+  .vf-desc__difference-text {
+    @apply mt-2 text-sm font-medium leading-relaxed text-al-navy sm:text-base;
+  }
+  .vf-kidney {
+    --vf-orange: #e87820;
+    @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
+  }
+  .vf-kidney__grid {
+    @apply grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.55fr)] lg:items-start lg:gap-8 xl:gap-10;
+  }
+  .vf-kidney__logo {
+    @apply font-sans text-[clamp(1.85rem,3.2vw,2.5rem)] font-extrabold leading-none tracking-tight;
+    color: var(--vf-orange);
+  }
+  .vf-kidney__reg {
+    @apply text-[0.55em] align-super;
+  }
+  .vf-kidney__tagline {
+    @apply mt-2 text-[11px] font-bold uppercase tracking-[0.08em];
+    color: var(--vf-orange);
+  }
+  .vf-kidney__intro {
+    @apply mt-3 text-sm leading-relaxed text-al-ink/75;
+  }
+  .vf-kidney__syringe {
+    @apply m-0 mt-6;
+  }
+  .vf-kidney__syringe img {
+    @apply block h-auto w-full max-w-[280px];
+  }
+  .vf-kidney__control-heading {
+    @apply mt-8 font-sans text-sm font-extrabold uppercase leading-snug tracking-[0.04em] text-al-navy sm:text-[15px];
+  }
+  .vf-kidney__control-body {
+    @apply mt-3 text-sm leading-relaxed text-al-ink/75;
+  }
+  .vf-kidney__helps {
+    @apply mt-5 text-sm font-bold;
+    color: var(--vf-orange);
+  }
+  .vf-kidney__benefits {
+    @apply mt-4 list-none space-y-4 p-0;
+  }
+  .vf-kidney__benefit {
+    @apply flex items-start gap-3;
+  }
+  .vf-kidney__benefit-icon {
+    @apply mt-0.5 h-9 w-9 shrink-0 object-contain;
+  }
+  .vf-kidney__benefit-text {
+    @apply m-0 text-sm leading-snug text-al-ink/80;
+  }
+  .vf-kidney__benefit-text strong {
+    @apply font-semibold text-al-navy;
+  }
+  .vf-kidney__diagram-wrap {
+    @apply min-w-0;
+  }
+  .vf-kidney__diagram {
+    @apply relative mx-auto max-w-[780px] xl:px-16 xl:py-10;
+  }
+  .vf-kidney__diagram-img {
+    @apply block h-auto w-full;
+  }
+  .vf-kidney__callouts {
+    @apply absolute inset-0 hidden list-none p-0 xl:block;
+  }
+  .vf-kidney__callout {
+    @apply absolute flex max-w-[168px] items-start gap-1.5;
+  }
+  .vf-kidney__num {
+    @apply flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-extrabold text-white;
+    background-color: var(--vf-orange);
+  }
+  .vf-kidney__callout-title {
+    @apply m-0 text-[10px] font-extrabold uppercase leading-tight tracking-[0.04em] text-al-navy;
+  }
+  .vf-kidney__callout-body {
+    @apply m-0 mt-0.5 text-[10px] leading-snug text-al-ink/70;
+  }
+  .vf-kidney__callout--top {
+    @apply left-1/2 top-[1%] w-[180px] -translate-x-1/2;
+  }
+  .vf-kidney__callout--top-right {
+    @apply right-[1%] top-[14%] w-[160px];
+  }
+  .vf-kidney__callout--right {
+    @apply right-0 top-[42%] w-[160px];
+  }
+  .vf-kidney__callout--bottom-right {
+    @apply bottom-[18%] right-[2%] w-[160px];
+  }
+  .vf-kidney__callout--bottom {
+    @apply bottom-[1%] left-1/2 w-[170px] -translate-x-1/2;
+  }
+  .vf-kidney__callout--bottom-left {
+    @apply bottom-[16%] left-[1%] w-[160px];
+  }
+  .vf-kidney__callout--left {
+    @apply left-0 top-[34%] w-[160px];
+  }
+  .vf-kidney__callout-list {
+    @apply mt-8 list-none space-y-4 p-0 xl:hidden;
+  }
+  .vf-kidney__callout-list-item {
+    @apply flex items-start gap-3 border-t border-al-line pt-4;
+  }
+  .vf-compare {
+    --vf-orange: #e87820;
+    @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
+  }
+  .vf-compare__grid {
+    @apply grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] lg:items-start lg:gap-8;
+  }
+  .vf-compare__headline {
+    @apply font-display text-[clamp(1.5rem,2.8vw,2.15rem)] font-medium leading-snug text-al-navy;
+  }
+  .vf-compare__subhead {
+    @apply mt-3 text-sm font-semibold leading-snug text-al-navy/70;
+  }
+  .vf-compare__subhead-accent {
+    @apply block mt-1;
+    color: var(--vf-orange);
+  }
+  .vf-compare__body {
+    @apply mt-4 text-sm leading-relaxed text-al-ink/75;
+  }
+  .vf-compare__hero {
+    @apply m-0 mt-6 overflow-hidden bg-[#f3f3f3];
+  }
+  .vf-compare__hero img {
+    @apply block h-auto w-full object-cover object-[center_30%] max-h-[420px];
+  }
+  .vf-compare__features {
+    @apply mt-0 grid list-none grid-cols-2 gap-px p-0 sm:grid-cols-4;
+    background-color: color-mix(in srgb, var(--vf-orange) 55%, #8a3a12);
+  }
+  .vf-compare__feature {
+    @apply flex flex-col items-center gap-2 px-2 py-4 text-center;
+    background-color: var(--vf-orange);
+  }
+  .vf-compare__feature-icon {
+    @apply h-10 w-10 object-contain;
+  }
+  .vf-compare__feature-label {
+    @apply m-0 text-[9px] font-bold uppercase leading-snug tracking-[0.04em] text-white sm:text-[10px];
+  }
+  .vf-compare__table {
+    @apply min-w-0;
+  }
+  .vf-compare__heads {
+    @apply grid grid-cols-1 gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-stretch sm:gap-2;
+  }
+  .vf-compare__head {
+    @apply px-4 py-3 text-white;
+  }
+  .vf-compare__head--our {
+    background-color: var(--vf-orange);
+  }
+  .vf-compare__head--other {
+    @apply bg-al-ink;
+  }
+  .vf-compare__head-gap {
+    @apply hidden sm:block sm:w-8;
+  }
+  .vf-compare__head-title {
+    @apply m-0 text-xs font-extrabold uppercase tracking-[0.06em];
+  }
+  .vf-compare__head-sub {
+    @apply m-0 mt-1 text-[10px] leading-snug text-white/80;
+  }
+  .vf-compare__rows {
+    @apply mt-4 list-none space-y-4 p-0;
+  }
+  .vf-compare__row {
+    @apply grid grid-cols-1 items-center gap-3 border border-al-line p-3 sm:grid-cols-[1fr_auto_1fr] sm:gap-2 sm:border-0 sm:p-0;
+  }
+  .vf-compare__side {
+    @apply flex items-center gap-3;
+  }
+  .vf-compare__circle {
+    @apply h-16 w-16 shrink-0 rounded-full object-cover sm:h-[4.5rem] sm:w-[4.5rem];
+  }
+  .vf-compare__title {
+    @apply m-0 text-[11px] font-extrabold uppercase leading-snug tracking-[0.04em] text-al-navy;
+  }
+  .vf-compare__text {
+    @apply m-0 mt-1 text-[11px] leading-snug text-al-ink/70 sm:text-xs;
+  }
+  .vf-compare__vs {
+    @apply mx-auto flex h-8 w-8 items-center justify-center rounded-full bg-al-ink text-[10px] font-bold uppercase text-white;
+  }
+  .vf-compare__disclaimer {
+    @apply mt-6 text-center text-[10px] leading-relaxed text-al-ink/45;
+  }
   .pi-benefit-table {
     @apply grid overflow-hidden border border-[color:var(--pi-gold,#d59444)] sm:grid-cols-2 lg:grid-cols-4;
     --pi-gold: #d59444;
@@ -309,6 +590,70 @@
   }
   .pi-panel__callout-text {
     @apply text-[10px] font-bold uppercase leading-snug tracking-[0.08em] text-al-navy sm:text-[11px];
+  }
+  .physio-chart {
+    @apply mt-12;
+  }
+  .physio-chart__title {
+    @apply mb-6 text-center font-sans text-[clamp(1.15rem,2.4vw,1.65rem)] font-extrabold uppercase tracking-[0.04em] text-al-navy;
+  }
+  .physio-chart__scroll {
+    @apply overflow-x-auto rounded-sm border border-al-line;
+  }
+  .physio-chart__table {
+    @apply w-full min-w-[920px] border-collapse text-left;
+  }
+  .physio-chart__th {
+    @apply px-3 py-3 text-[10px] font-bold uppercase leading-snug tracking-[0.06em] text-white sm:px-4 sm:text-[11px];
+  }
+  .physio-chart__th--system,
+  .physio-chart__th--nutrition {
+    @apply bg-al-navy;
+  }
+  .physio-chart__th--physiology {
+    background-color: #5a6f86;
+  }
+  .physio-chart__th--performance {
+    background-color: #c4a035;
+  }
+  .physio-chart__th--wellness {
+    background-color: #6b7a3d;
+  }
+  .physio-chart__table tbody tr:nth-child(even) {
+    @apply bg-[#f7f7f5];
+  }
+  .physio-chart__table tbody tr:nth-child(odd) {
+    @apply bg-white;
+  }
+  .physio-chart__icon-cell {
+    @apply w-14 border-t border-al-line px-2 py-4 text-center align-middle text-al-navy sm:w-16;
+  }
+  .physio-chart__icon {
+    @apply inline-flex items-center justify-center;
+  }
+  .physio-chart__system {
+    @apply border-t border-al-line px-2 py-4 align-middle text-[11px] font-extrabold uppercase tracking-[0.04em] text-al-navy sm:px-3 sm:text-xs;
+  }
+  .physio-chart__nutrition {
+    @apply border-t border-al-line px-3 py-4 align-middle text-[11px] font-semibold leading-snug text-al-navy sm:text-xs;
+  }
+  .physio-chart__list {
+    @apply border-t border-al-line px-3 py-4 align-top text-[11px] leading-snug sm:text-xs;
+  }
+  .physio-chart__list ul {
+    @apply m-0 list-disc space-y-1.5 pl-4;
+  }
+  .physio-chart__list--physiology {
+    color: #4a5d73;
+  }
+  .physio-chart__list--performance {
+    color: #9a7a1f;
+  }
+  .physio-chart__list--wellness {
+    color: #55632f;
+  }
+  .physio-chart__disclaimer {
+    @apply mt-4 flex items-start justify-center gap-2 text-center text-[10px] leading-relaxed text-al-ink/50 sm:text-[11px];
   }
   .pi-board {
     @apply mt-10 border border-al-line bg-white px-5 py-10 sm:px-8 sm:py-12;

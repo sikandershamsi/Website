@@ -71,6 +71,48 @@ export interface Product {
   primaryIngredientsPanel?: string;
   primaryIngredientsCallouts?: { icon: string; text: string }[];
   comparisonPanel?: string;
+  descriptionShowcase?: {
+    brandLine: string;
+    headline: { text: string; accent?: boolean }[];
+    intro: string;
+    benefits: { icon: string; html: string }[];
+    anatomyImage: string;
+    lungsHealthy: { image: string; label: string };
+    lungsEiph: { image: string; label: string };
+  };
+  kidneyShowcase?: {
+    tagline: string;
+    intro: string;
+    syringeImage: string;
+    controlHeading: string;
+    controlBody: string;
+    helpsHeading: string;
+    benefits: { icon: string; html: string }[];
+    diagramImage: string;
+    callouts: { num: number; title: string; body: string; slot: string }[];
+  };
+  comparisonShowcase?: {
+    body: string;
+    subheadlineLead: string;
+    subheadlineAccent: string;
+    heroImage: string;
+    features: { icon: string; label: string }[];
+    disclaimer: string;
+    rows: { ourImage: string; otherImage: string }[];
+  };
+  physiologyBenefits?: {
+    title: string;
+    disclaimer: string;
+    columns: string[];
+    rows: {
+      icon: string;
+      system: string;
+      nutrition: string;
+      physiology: string[];
+      performance: string[];
+      wellness: string[];
+    }[];
+  };
   supports: string[];
   ingredientBenefits: {
     ingredient: string;
@@ -507,6 +549,112 @@ export const products: Product[] = [
     },
     animalifeDifference:
       'Most supplements support one system. VetroFit® supports the system that helps regulate them all.',
+    descriptionShowcase: {
+      brandLine: 'Vetro Collection by animalife®',
+      headline: [
+        { text: 'MORE OXYGEN.' },
+        { text: 'LESS FATIGUE.', accent: true },
+        { text: 'FASTER RECOVERY.', accent: true },
+      ],
+      intro:
+        'A natural performance-optimization nutraceutical engineered to enhance oxygen delivery, aerobic efficiency, and recovery in high-intensity equine athletes.',
+      benefits: [
+        {
+          icon: '/images/vetrofit/desc/benefit-icon-0.png',
+          html: 'Enhances <strong>red blood cell</strong> production and hemoglobin efficiency.',
+        },
+        {
+          icon: '/images/vetrofit/desc/benefit-icon-1.png',
+          html: 'Improves <strong>oxygen delivery</strong> to working muscle.',
+        },
+        {
+          icon: '/images/vetrofit/desc/benefit-icon-2.png',
+          html: 'Reduces <strong>lactic acid</strong> buildup and oxidative stress.',
+        },
+        {
+          icon: '/images/vetrofit/desc/benefit-icon-3.png',
+          html: 'Shortens <strong>post-training</strong> and <strong>post-race</strong> recovery cycles.',
+        },
+      ],
+      anatomyImage: '/images/vetrofit/desc/anatomy-horse.jpg',
+      lungsHealthy: {
+        image: '/images/vetrofit/desc/lungs-healthy.jpg',
+        label: 'Healthy Lungs',
+      },
+      lungsEiph: {
+        image: '/images/vetrofit/desc/lungs-eiph.jpg',
+        label: 'Exercise-Induced Pulmonary Hemorrhage',
+      },
+    },
+    kidneyShowcase: {
+      tagline: 'Kidney Support & Performance Optimization',
+      intro:
+        'A scientifically formulated nutritional supplement designed to support kidney function, oxygen transport, stamina, and recovery.',
+      syringeImage: '/images/vetrofit/kidney/syringe.jpg',
+      controlHeading: "Supporting the Body's Natural Control Center",
+      controlBody:
+        "VetroFit® is formulated to support healthy kidney physiology, helping maintain the body's natural balance during intense exercise and stress.",
+      helpsHeading: 'VetroFit® helps support:',
+      benefits: [
+        {
+          icon: '/images/vetrofit/kidney/benefit-icon-0.png',
+          html: '<strong>Enhanced stamina and endurance</strong> – Supports oxygen transport and efficient energy use',
+        },
+        {
+          icon: '/images/vetrofit/kidney/benefit-icon-1.png',
+          html: '<strong>Faster recovery and hydration balance</strong> – Supports fluid balance and electrolyte regulation',
+        },
+        {
+          icon: '/images/vetrofit/kidney/benefit-icon-2.png',
+          html: '<strong>Optimal kidney health and detoxification</strong> – Supports waste clearance and overall performance',
+        },
+      ],
+      diagramImage: '/images/vetrofit/kidney/horse-diagram.jpg',
+      callouts: [
+        {
+          num: 1,
+          title: 'Red Blood Cell Support',
+          body: 'Supports healthy red blood cell production to enhance oxygen delivery to muscles.',
+          slot: 'top',
+        },
+        {
+          num: 2,
+          title: 'Detox & Waste Clearance',
+          body: 'Supports kidney function to help remove waste and metabolic toxins.',
+          slot: 'top-right',
+        },
+        {
+          num: 3,
+          title: 'Electrolyte Balance',
+          body: 'Helps maintain the proper balance of essential minerals for optimal nerve, muscle, and heart function.',
+          slot: 'right',
+        },
+        {
+          num: 4,
+          title: 'Fluid Balance & Hydration',
+          body: 'Supports proper hydration and fluid balance for blood volume, circulation, and performance.',
+          slot: 'bottom-right',
+        },
+        {
+          num: 5,
+          title: 'Acid-Base Balance',
+          body: 'Helps maintain optimal pH balance for peak performance.',
+          slot: 'bottom',
+        },
+        {
+          num: 6,
+          title: 'Blood Pressure Support',
+          body: 'Maintains healthy blood pressure and vascular function during exercise and stress.',
+          slot: 'bottom-left',
+        },
+        {
+          num: 7,
+          title: 'Stamina & Metabolic Support',
+          body: 'Supports energy metabolism, reduces fatigue, and helps sustain stamina for maximum performance.',
+          slot: 'left',
+        },
+      ],
+    },
     physiologyPanel: {
       heading: 'Every Ingredient Has a Purpose. Every Purpose Supports Performance.',
       body: 'Unlike traditional supplements that emphasize isolated ingredients, VetroFit® is formulated as an integrated nutritional system. Each ingredient is selected for its specific physiological role, working synergistically to support healthy kidney homeostasis and the interconnected biological processes that power performance, recovery, and long-term athletic health.',
@@ -556,6 +704,41 @@ export const products: Product[] = [
         },
       ],
     },
+    comparisonShowcase: {
+      body: 'Most performance supplements focus on symptoms or rely on stimulants. VetroFit® is built differently — using nutritional components that support kidney function, healthy red blood cell production, oxygen transport, and recovery so horses can perform and rebound more efficiently.',
+      subheadlineLead: 'Some products mask the problem.',
+      subheadlineAccent: 'VetroFit helps support kidney homeostasis and performance.',
+      heroImage: '/images/vetrofit/compare/hero-horse.jpg',
+      features: [
+        { icon: '/images/vetrofit/compare/bar-icon-0.png', label: 'Supports Kidney Homeostasis' },
+        { icon: '/images/vetrofit/compare/bar-icon-1.png', label: 'Supports Oxygen Transport' },
+        { icon: '/images/vetrofit/compare/bar-icon-2.png', label: 'Supports Endurance & Recovery' },
+        { icon: '/images/vetrofit/compare/bar-icon-3.png', label: 'Backed by Science Trusted by Professionals' },
+      ],
+      disclaimer: 'VetroFit® is a nutritional supplement for horses. Results may vary.',
+      rows: [
+        {
+          ourImage: '/images/vetrofit/compare/row0-our.png',
+          otherImage: '/images/vetrofit/compare/row0-other.png',
+        },
+        {
+          ourImage: '/images/vetrofit/compare/row1-our.png',
+          otherImage: '/images/vetrofit/compare/row1-other.png',
+        },
+        {
+          ourImage: '/images/vetrofit/compare/row2-our.png',
+          otherImage: '/images/vetrofit/compare/row2-other.png',
+        },
+        {
+          ourImage: '/images/vetrofit/compare/row3-our.png',
+          otherImage: '/images/vetrofit/compare/row3-other.png',
+        },
+        {
+          ourImage: '/images/vetrofit/compare/row4-our.png',
+          otherImage: '/images/vetrofit/compare/row4-other.png',
+        },
+      ],
+    },
     keyIngredients: ['Omega-3 (Linseed Oil)', 'Superoxide Dismutase (Melon Extract)', 'Chelated Iron, Copper, Manganese, Zinc, Selenium', 'Amino Acids (Lysine, Methionine)', 'B-Vitamins'],
     primaryIngredients: [
       { name: 'Water', origin: 'Other', image: '/images/ingredients/vetrofit/water.jpg' },
@@ -584,6 +767,151 @@ export const products: Product[] = [
       { icon: 'shield-plus', text: 'Promotes Recovery, Endurance & Overall Wellness' },
     ],
     comparisonPanel: '/images/vetrofit/comparison-panel.jpg',
+    physiologyBenefits: {
+      title: 'VetroFit® Physiological Support & Performance Benefits',
+      disclaimer: 'VetroFit® is a nutritional supplement and not intended to diagnose, treat, cure, or prevent any disease.',
+      columns: [
+        'Physiological System',
+        'Key Nutritional Support',
+        'How VetroFit® Helps Support Physiology',
+        'Performance Benefits',
+        'Long-Term Wellness',
+      ],
+      rows: [
+        {
+          icon: 'kidney',
+          system: 'Kidney Homeostasis',
+          nutrition: 'Omega-3 Linseed, Vitamins, Chelated Minerals',
+          physiology: [
+            'Supports kidney function and filtration',
+            'Helps maintain fluid & electrolyte balance',
+            'Supports acid-base & metabolic homeostasis during intense exercise',
+          ],
+          performance: [
+            'Supports hydration and recovery',
+            'Helps maintain physiological balance under stress',
+            'Supports overall endurance capacity',
+          ],
+          wellness: [
+            'Helps maintain healthy kidney function',
+            'Promotes resilience and overall physiological balance',
+          ],
+        },
+        {
+          icon: 'lungs',
+          system: 'Oxygen Transport',
+          nutrition: 'Iron, B Vitamins, Amino Acids',
+          physiology: [
+            'Supports healthy red blood cell production',
+            'Supports efficient oxygen utilization',
+            'Promotes aerobic capacity',
+          ],
+          performance: [
+            'Enhances endurance and stamina',
+            'Supports efficient oxygen delivery to working muscles',
+            'Promotes sustained performance',
+          ],
+          wellness: [
+            'Promotes healthy oxygen-carrying capacity',
+            'Supports vitality throughout training and competition',
+          ],
+        },
+        {
+          icon: 'heart',
+          system: 'Cardiovascular Function',
+          nutrition: 'Omega-3, Selenium, Chelated Minerals',
+          physiology: [
+            'Supports healthy circulation',
+            'Supports vascular function',
+            'Helps maintain cardiovascular efficiency',
+          ],
+          performance: [
+            'Helps sustain cardiovascular performance',
+            'Supports efficient blood flow',
+            'Promotes exercise tolerance',
+          ],
+          wellness: [
+            'Supports long-term heart and circulatory health',
+            'Promotes cardiovascular resilience',
+          ],
+        },
+        {
+          icon: 'bolt',
+          system: 'Cellular Energy & Metabolism',
+          nutrition: 'B Vitamins, Amino Acids, Trace Minerals',
+          physiology: [
+            'Supports cellular energy production',
+            'Supports nutrient utilization',
+            'Supports normal metabolic function',
+          ],
+          performance: [
+            'Supports efficient energy production',
+            'Promotes stamina and power',
+            'Supports optimal athletic output',
+          ],
+          wellness: [
+            'Helps maintain metabolic efficiency',
+            'Supports long-term vitality',
+          ],
+        },
+        {
+          icon: 'shield-check',
+          system: 'Antioxidant Defense',
+          nutrition: 'Superoxide Dismutase (SOD), Vitamin E, Selenium',
+          physiology: [
+            'Helps neutralize free radicals',
+            'Helps protect cells from oxidative stress',
+            'Supports cellular integrity',
+          ],
+          performance: [
+            'Supports muscle recovery',
+            'Reduces oxidative stress',
+            'Supports cellular protection',
+          ],
+          wellness: [
+            'Promotes long-term cellular health',
+            'Supports healthy aging and tissue resilience',
+          ],
+        },
+        {
+          icon: 'droplet',
+          system: 'Fluid & Electrolyte Balance',
+          nutrition: 'Electrolytes, Chelated Minerals',
+          physiology: [
+            'Supports hydration status',
+            'Helps maintain electrolyte balance',
+            'Supports neuromuscular function',
+          ],
+          performance: [
+            'Supports recovery and hydration',
+            'Supports muscle function',
+            'Promotes exercise tolerance',
+          ],
+          wellness: [
+            'Helps maintain fluid and electrolyte balance long-term',
+            'Supports overall physiological stability',
+          ],
+        },
+        {
+          icon: 'refresh',
+          system: 'Recovery Physiology',
+          nutrition: 'Complete VetroFit® Formulation',
+          physiology: [
+            'Supports the body\u2019s natural recovery processes',
+            'Supports tissue repair and adaptation',
+            'Supports immune function',
+          ],
+          performance: [
+            'Helps horses recover efficiently between efforts',
+            'Supports readiness for training and competition',
+          ],
+          wellness: [
+            'Supports long-term performance consistency',
+            'Promotes athletic longevity',
+          ],
+        },
+      ],
+    },
     supports: ['Oxygen Delivery', 'Recovery', 'Cardiovascular Efficiency', 'Electrolyte Balance', 'Energy Production', 'Kidney Function', 'Competitive Performance'],
     ingredientBenefits: [
       {
