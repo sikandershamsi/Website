@@ -1132,19 +1132,10 @@
     @apply min-h-[calc(100svh-6.75rem)] py-16 text-white sm:py-20 lg:py-24;
   }
   .amb-hero {
-    @apply flex min-h-[calc(100svh-6.75rem)] items-stretch bg-white;
+    @apply relative isolate min-h-[calc(100svh-6.75rem)] overflow-hidden bg-al-navy;
   }
   .amb-hero__media {
-    @apply object-cover object-[82%_center] sm:object-[78%_center] lg:object-[72%_center];
-  }
-  .amb-hero__copy {
-    @apply min-h-[calc(100svh-6.75rem)] max-w-xl py-16 sm:max-w-xl sm:py-20 lg:max-w-[46%] lg:py-24;
-  }
-  .amb-hero__eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.18em] text-al-orange;
-  }
-  .amb-hero__rule {
-    @apply mt-4 h-px w-10 bg-al-orange;
+    @apply absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-[68%_center];
   }
   .amb-disciplines {
     @apply border-t border-al-line bg-white;
