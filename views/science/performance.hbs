@@ -29,53 +29,37 @@
   </div>
 </section>
 
-<section class="science-pillars">
-  <div class="science-pillars__grid">
-    {{#each sciencePillars}}
-    <article class="science-pillar" tabindex="0">
-      <div class="science-pillar__icon">{{{icon this.icon "w-7 h-7"}}}</div>
-      <h2 class="science-pillar__title">{{this.title}}</h2>
-      <p class="mt-3 text-xs leading-relaxed text-al-ink/65">{{this.body}}</p>
-    </article>
-    {{/each}}
-  </div>
-</section>
-
 <section class="panel-white">
-  <div class="section">
-    <div class="targeted-support">
-      <div class="targeted-support__stage">
-        <div class="targeted-support__copy">
-          <h2 class="targeted-support__title">Targeted Support</h2>
-          <div class="targeted-support__ornament" aria-hidden="true">
-            <span class="targeted-support__ornament-line"></span>
-            <span class="targeted-support__ornament-dot"></span>
-            <span class="targeted-support__ornament-line"></span>
-          </div>
-          <p class="targeted-support__lead">Targeted support for the systems that power performance, recovery, and long-term health.</p>
-          <div class="targeted-support__rule" aria-hidden="true"></div>
-          <p class="targeted-support__body">Our science-backed solutions work in harmony with your horse&rsquo;s body to support what matters most.</p>
+  <div class="targeted-support">
+    <div class="targeted-support__stage">
+      <img
+        src="/images/science/targeted-support-stage-a0dbe5e5.jpg"
+        alt="Horse anatomy highlighting joint, inflammation, and kidney support systems"
+        class="targeted-support__media"
+      />
+      <div class="targeted-support__copy">
+        <h2 class="targeted-support__title">Targeted Support</h2>
+        <div class="targeted-support__ornament" aria-hidden="true">
+          <span class="targeted-support__ornament-line"></span>
+          <span class="targeted-support__ornament-dot"></span>
+          <span class="targeted-support__ornament-line"></span>
         </div>
-        <div class="targeted-support__visual">
-          <img
-            src="/images/science/targeted-support-horse-ccfabab1.jpg"
-            alt="Horse anatomy highlighting joint, inflammation, and kidney support systems"
-            class="targeted-support__media"
-          />
-        </div>
+        <p class="targeted-support__lead">Targeted support for the systems that power performance, recovery, and long-term health.</p>
+        <div class="targeted-support__rule" aria-hidden="true"></div>
+        <p class="targeted-support__body">Our science-backed solutions work in harmony with your horse&rsquo;s body to support what matters most.</p>
       </div>
+    </div>
 
-      <div class="targeted-support__products">
-        {{#each targetedSupportProducts}}
-        <a href="{{this.href}}" class="targeted-support__product targeted-support__product--{{this.tone}}">
-          <span class="targeted-support__product-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
-          <span class="targeted-support__product-text">
-            <span class="targeted-support__product-name">{{this.name}}</span>
-            <span class="targeted-support__product-focus">{{this.focus}}</span>
-          </span>
-        </a>
-        {{/each}}
-      </div>
+    <div class="targeted-support__products">
+      {{#each targetedSupportProducts}}
+      <a href="{{this.href}}" class="targeted-support__product targeted-support__product--{{this.tone}}">
+        <span class="targeted-support__product-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
+        <span class="targeted-support__product-text">
+          <span class="targeted-support__product-name">{{this.name}}</span>
+          <span class="targeted-support__product-focus">{{this.focus}}</span>
+        </span>
+      </a>
+      {{/each}}
     </div>
   </div>
 </section>
@@ -120,5 +104,21 @@
       <a href="/the-science/ingredients" class="btn-outline">Explore the Ingredient Library</a>
       <a href="/racing/industry-reality" class="btn-primary">Racing: The Industry Reality</a>
     </div>
+  </div>
+</section>
+
+<section class="rooted-nature">
+  <img
+    src="/images/science/rooted-in-nature-95843edf.jpg"
+    alt="Petri dish with a green leaf, river stones, and botanical foliage"
+    class="rooted-nature__media"
+  />
+  <div class="rooted-nature__copy">
+    <h2 class="rooted-nature__title">
+      <span class="rooted-nature__title-dark">Science Rooted</span><br />
+      <span class="rooted-nature__title-accent">In Nature.</span>
+    </h2>
+    <div class="rooted-nature__rule" aria-hidden="true"></div>
+    <p class="rooted-nature__body">Every ingredient is selected to serve a specific purpose&mdash;working together to support the healing process at the cellular level to ensure optimized performance and long-term wellness.</p>
   </div>
 </section>
