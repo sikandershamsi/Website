@@ -36,16 +36,16 @@
 
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {{#each products}}
-      <div class="card flex flex-col overflow-hidden">
-        <a href="/shop/product/{{this.slug}}" class="flex aspect-[4/5] items-center justify-center border-b border-al-line bg-white p-8">
-          <img src="{{this.image}}" alt="{{this.trademark}}" class="max-h-full w-auto max-w-full object-contain" />
+      <div class="card product-card flex flex-col overflow-hidden">
+        <a href="/shop/product/{{this.slug}}" class="product-card__media-link border-b border-al-line bg-white p-8">
+          {{> product-media image=this.image alt=this.trademark tagline=this.tagline}}
         </a>
         <div class="flex flex-1 flex-col p-6">
           <div class="flex items-baseline justify-between gap-2">
-            <p class="font-display text-base font-semibold text-al-navy">{{this.trademark}}</p>
+            <a href="/shop/product/{{this.slug}}" class="font-display text-base font-semibold text-al-navy hover:text-al-navy/70">{{this.trademark}}</a>
             <p class="text-xs uppercase tracking-wider text-al-ink/45">{{this.size}}</p>
           </div>
-          <a href="/shop/product/{{this.slug}}" class="font-display mt-1 text-lg font-medium text-al-navy hover:text-al-navy">{{this.tagline}}</a>
+          <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-navy/50">{{this.category}}</p>
           <p class="mt-3 flex-1 text-sm text-al-ink/65">{{truncate this.description 140}}</p>
           <div class="mt-5 flex items-center justify-between">
             <span class="font-display text-lg font-medium text-al-navy">{{currency this.price}}</span>

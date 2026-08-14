@@ -1,0 +1,13 @@
+<div class="product-media">
+  <img
+    src="{{image}}"
+    alt="{{alt}}"
+    class="product-media__img"
+    {{#if width}}width="{{width}}"{{/if}}
+    {{#if height}}height="{{height}}"{{/if}}
+    loading="lazy"
+  />
+  <div class="product-media__hover" aria-hidden="true">
+    <p class="product-media__hover-text">{{tagline}}</p>
+  </div>
+</div>

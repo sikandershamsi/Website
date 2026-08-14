@@ -1,6 +1,415 @@
-{{> racing-subnav}}
+<section class="race-hero">
+  <video
+    class="race-hero__video"
+    autoplay
+    muted
+    loop
+    playsinline
+    poster="/images/racing/hero-poster.jpg"
+  >
+    <source src="/videos/racing/hero.mp4" type="video/mp4" />
+  </video>
+  <div class="race-hero__veil" aria-hidden="true"></div>
+  <div class="race-hero__copy">
+    <p class="race-hero__eyebrow">Racing</p>
+    <h1 class="race-hero__title">Performance Starts<br />With Physiology</h1>
+    <p class="race-hero__lede">
+      Elite racing pushes a horse&rsquo;s body to its physiological limits. Understanding the industry
+      reality&mdash;and the kidney&rsquo;s role as the body&rsquo;s master regulator&mdash;is the foundation for
+      helping horses perform, recover, and stay sound for longer careers.
+    </p>
+  </div>
+</section>
 
-{{> page-header image="/images/racing/hero.jpg" eyebrow="Racing" heading="Performance Starts With Physiology" subheading="Elite racing pushes a horse's body to its physiological limits. Understanding the industry reality—and the kidney's role as the body's master regulator—is the foundation for helping horses perform, recover, and stay sound for longer careers."}}
+<section class="race-intro">
+  <div class="race-intro__inner">
+    <h2 class="race-intro__title">01 <span aria-hidden="true">|</span> The Race Within the Race</h2>
+    <p class="race-intro__body">
+      Racing places extraordinary demands on the equine athlete. During intense exercise, the horse&rsquo;s demand
+      for oxygen and energy can exceed its ability to maintain physiological balance. As the body shifts from
+      efficient aerobic metabolism toward less efficient anaerobic energy production, fatigue accelerates,
+      performance declines, recovery slows, and physiological stress begins to affect multiple interconnected
+      body systems.
+    </p>
+  </div>
+</section>
+
+<section class="race-cascade" aria-labelledby="race-cascade-title">
+  <div class="race-cascade__inner">
+    <header class="race-cascade__header">
+      <h2 id="race-cascade-title" class="race-cascade__title">The Race Within the Race</h2>
+      <p class="race-cascade__subtitle">
+        The unseen physiological events that affect speed, stamina, recovery, and long-term health.
+      </p>
+    </header>
+
+    <div class="race-cascade__scroller">
+      <div class="race-cascade__board">
+        <div class="race-cascade__rail-cell" aria-hidden="true">{{{icon "flag" "w-5 h-5"}}}</div>
+        {{#each performanceCascade}}
+        <div class="race-cascade__phase-head" style="--phase-color: {{this.color}}">
+          <span class="race-cascade__phase-num">{{this.phase}}</span>
+          <h3 class="race-cascade__phase-name">{{this.name}}</h3>
+          <p class="race-cascade__phase-range">{{this.range}}</p>
+          <div class="race-cascade__phase-media">
+            <img src="{{this.image}}" alt="" class="race-cascade__phase-img" loading="lazy" width="220" height="140" />
+          </div>
+        </div>
+        {{/each}}
+
+        <div class="race-cascade__rail-cell" aria-hidden="true">{{{icon "gallop" "w-5 h-5"}}}</div>
+        {{#each performanceCascade}}
+        <div class="race-cascade__happening" style="--phase-soft: {{this.soft}}">
+          <p class="race-cascade__happening-body">{{this.body}}</p>
+        </div>
+        {{/each}}
+
+        <div class="race-cascade__rail-cell" aria-hidden="true">{{{icon "molecule" "w-5 h-5"}}}</div>
+        {{#each performanceCascade}}
+        <div class="race-cascade__physio" style="--phase-color: {{this.color}}">
+          <div class="race-cascade__physio-icon">{{{icon this.icon "w-7 h-7"}}}</div>
+          <p class="race-cascade__physio-tag">{{this.tag}}</p>
+          {{#unless @last}}
+          <span class="race-cascade__physio-arrow" aria-hidden="true">{{{icon "chevron-right" "w-4 h-4"}}}</span>
+          {{/unless}}
+        </div>
+        {{/each}}
+
+        <div class="race-cascade__rail-cell race-cascade__rail-cell--top" aria-hidden="true">{{{icon "chart" "w-5 h-5"}}}</div>
+        <div class="race-cascade__graph">
+          <p class="race-cascade__graph-label">Performance Level (Relative)</p>
+          <div class="race-cascade__graph-plot" role="img" aria-label="Relative performance declines from near 100 percent at the start to near zero by the finish">
+            <svg class="race-cascade__graph-svg" viewBox="0 0 700 180" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="48" y1="24" x2="680" y2="24" class="race-cascade__graph-grid" />
+              <line x1="48" y1="90" x2="680" y2="90" class="race-cascade__graph-grid" />
+              <line x1="48" y1="156" x2="680" y2="156" class="race-cascade__graph-grid" />
+              <text x="8" y="28" class="race-cascade__graph-axis">100%</text>
+              <text x="12" y="94" class="race-cascade__graph-axis">50%</text>
+              <text x="16" y="160" class="race-cascade__graph-axis">0%</text>
+              <defs>
+                <linearGradient id="raceCascadeLine" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#006837" />
+                  <stop offset="20%" stop-color="#8cc63f" />
+                  <stop offset="40%" stop-color="#fbb03b" />
+                  <stop offset="55%" stop-color="#f15a24" />
+                  <stop offset="70%" stop-color="#ed1c24" />
+                  <stop offset="85%" stop-color="#c1272d" />
+                  <stop offset="100%" stop-color="#662d91" />
+                </linearGradient>
+              </defs>
+              <polyline
+                class="race-cascade__graph-line"
+                fill="none"
+                stroke="url(#raceCascadeLine)"
+                points="70,24 160,30 250,48 340,70 430,92 520,126 610,150"
+              />
+              <circle cx="70" cy="24" r="5.5" fill="#006837" />
+              <circle cx="160" cy="30" r="5.5" fill="#8cc63f" />
+              <circle cx="250" cy="48" r="5.5" fill="#fbb03b" />
+              <circle cx="340" cy="70" r="5.5" fill="#f15a24" />
+              <circle cx="430" cy="92" r="5.5" fill="#ed1c24" />
+              <circle cx="520" cy="126" r="5.5" fill="#c1272d" />
+              <circle cx="610" cy="150" r="5.5" fill="#662d91" />
+            </svg>
+            <div class="race-cascade__graph-x">
+              <span>Start</span>
+              <span>1</span>
+              <span>2</span>
+              <span>4</span>
+              <span>6</span>
+              <span>7</span>
+              <span>Finish</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="race-cascade__rail-cell race-cascade__rail-cell--alert" aria-hidden="true">{{{icon "alert" "w-5 h-5"}}}</div>
+        <div class="race-cascade__summary">
+          <p class="race-cascade__summary-title">The Cascade in Summary</p>
+          <ol class="race-cascade__summary-list">
+            {{#each cascadeSummary}}
+            <li class="race-cascade__summary-item" style="--sum-color: {{this.color}}">
+              <span class="race-cascade__summary-text">{{this.label}}</span>
+              {{#unless @last}}
+              <span class="race-cascade__summary-arrow" aria-hidden="true">→</span>
+              {{/unless}}
+            </li>
+            {{/each}}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="race-intro">
+  <div class="race-intro__inner">
+    <h2 class="race-intro__title">02 <span aria-hidden="true">|</span> When Performance Declines, the Costs Begin</h2>
+    <p class="race-intro__body">
+      The physiological cascade doesn&rsquo;t end at the finish line. Its consequences extend far beyond race
+      day&mdash;impacting soundness, longevity, veterinary costs, and the financial success of every horse owner
+      and trainer.
+    </p>
+  </div>
+</section>
+
+<section class="race-owners" aria-labelledby="race-owners-title">
+  <div class="race-owners__media-wrap" aria-hidden="true">
+    <img
+      src="/images/racing/owners/hero.jpg"
+      alt=""
+      class="race-owners__media"
+      width="1024"
+      height="682"
+    />
+    <div class="race-owners__veil"></div>
+  </div>
+  <div class="race-owners__copy">
+    <p class="race-owners__eyebrow">Owners &amp; Trainers</p>
+    <h2 id="race-owners-title" class="race-owners__title">Face</h2>
+    <ul class="race-owners__list">
+      {{#each ownersTrainersFace}}
+      <li class="race-owners__item">
+        <span class="race-owners__icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
+        <p class="race-owners__text">{{this.title}}</p>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</section>
+
+<section class="race-homeo" aria-labelledby="race-homeo-title">
+  <div class="race-homeo__media-wrap" aria-hidden="true">
+    <img
+      src="/images/racing/homeostasis/hero.jpg"
+      alt=""
+      class="race-homeo__media"
+      width="1024"
+      height="545"
+    />
+    <div class="race-homeo__veil"></div>
+  </div>
+
+  <div class="race-homeo__inner">
+    <div class="race-homeo__copy">
+      <h2 id="race-homeo-title" class="race-homeo__title">
+        <span class="race-homeo__title-lead">{{kidneyHomeostasisBanner.titleLead}}</span>
+        <span class="race-homeo__title-accent">{{kidneyHomeostasisBanner.titleAccent}}</span>
+      </h2>
+      <div class="race-homeo__rule" aria-hidden="true">
+        <span class="race-homeo__rule-line"></span>
+        <span class="race-homeo__rule-icon">{{{icon "gallop" "w-5 h-5"}}}</span>
+        <span class="race-homeo__rule-line"></span>
+      </div>
+      <p class="race-homeo__eyebrow">{{kidneyHomeostasisBanner.eyebrow}}</p>
+      <p class="race-homeo__body">{{kidneyHomeostasisBanner.body}}</p>
+    </div>
+
+    <ul class="race-homeo__features">
+      {{#each kidneyHomeostasisBanner.features}}
+      <li class="race-homeo__feature">
+        <span class="race-homeo__feature-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
+        <p class="race-homeo__feature-text">{{this.title}}</p>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</section>
+
+<section class="race-statement">
+  <div class="race-statement__inner">
+    <h2 class="race-statement__title">
+      <span class="race-statement__num">01</span>
+      <span class="race-statement__sep" aria-hidden="true">|</span>
+      Homeostasis is the balance that allows every performance system in the horse&rsquo;s body to work together as one.
+    </h2>
+    <div class="race-statement__panel">
+      <p class="race-statement__body">
+        It is the body&rsquo;s ability to continuously maintain internal physiological balance, ensuring that critical
+        systems such as oxygen transport, cardiovascular function, hydration, electrolyte balance, metabolism, and
+        recovery work together efficiently&mdash;even under the extreme demands of training and competition.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="race-regulator" aria-labelledby="race-regulator-title">
+  <div class="race-regulator__inner">
+    <header class="race-regulator__header">
+      <h2 id="race-regulator-title" class="race-regulator__title">
+        <span class="race-regulator__title-lead">{{kidneyMasterRegulator.titleLead}}</span>
+        <span class="race-regulator__title-accent">{{kidneyMasterRegulator.titleAccent}}</span>
+      </h2>
+      <p class="race-regulator__subtitle">{{kidneyMasterRegulator.subtitle}}</p>
+      <p class="race-regulator__lede">{{kidneyMasterRegulator.body}}</p>
+    </header>
+
+    <div class="race-regulator__board">
+      <aside class="race-regulator__legend">
+        <p class="race-regulator__legend-title">{{kidneyMasterRegulator.legendTitle}}</p>
+        <p class="race-regulator__legend-accent">{{kidneyMasterRegulator.legendAccent}}</p>
+        <ol class="race-regulator__legend-list">
+          {{#each kidneyMasterRegulator.functions}}
+          <li class="race-regulator__legend-item">
+            <span class="race-regulator__legend-num">{{this.id}}</span>
+            <span class="race-regulator__legend-text">{{this.title}}</span>
+          </li>
+          {{/each}}
+        </ol>
+      </aside>
+
+      <div class="race-regulator__visual">
+        <img
+          src="/images/racing/regulator/diagram.jpg"
+          alt="Racehorse with kidney and circulatory systems highlighted, surrounded by seven regulatory function icons"
+          class="race-regulator__image"
+          width="834"
+          height="632"
+        />
+      </div>
+
+      <div class="race-regulator__side">
+        {{#each kidneyMasterRegulator.sideFunctions}}
+        <article class="race-regulator__callout">
+          <h3 class="race-regulator__callout-title">{{this.title}}</h3>
+          <p class="race-regulator__callout-body">{{this.body}}</p>
+        </article>
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="race-regulator__bottom">
+      {{#each kidneyMasterRegulator.bottomFunctions}}
+      <article class="race-regulator__callout">
+        <h3 class="race-regulator__callout-title">{{this.title}}</h3>
+        <p class="race-regulator__callout-body">{{this.body}}</p>
+      </article>
+      {{/each}}
+    </div>
+
+    <div class="race-regulator__mobile">
+      {{#each kidneyMasterRegulator.functions}}
+      <article class="race-regulator__callout">
+        <div class="race-regulator__callout-head">
+          <span class="race-regulator__legend-num">{{this.id}}</span>
+          <h3 class="race-regulator__callout-title">{{this.title}}</h3>
+        </div>
+        <p class="race-regulator__callout-body">{{this.body}}</p>
+      </article>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<section class="race-statement">
+  <div class="race-statement__inner">
+    <div class="race-statement__panel race-statement__panel--full">
+      <h2 class="race-statement__title">
+        <span class="race-statement__num">02</span>
+        <span class="race-statement__sep" aria-hidden="true">|</span>
+        Oxygen Is the Currency of Performance.
+      </h2>
+      <p class="race-statement__body">
+        A racehorse&rsquo;s ability to sustain speed is determined by how efficiently oxygen is delivered to working
+        muscles. Healthy kidney homeostasis helps regulate the physiological systems responsible for red blood cell
+        production, blood pressure, fluid balance, and circulation&mdash;creating the foundation for efficient oxygen
+        transport throughout the body.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="race-oxygen" aria-labelledby="race-oxygen-title">
+  <div class="race-oxygen__inner">
+    <div class="race-oxygen__top">
+      <div class="race-oxygen__intro">
+        <p class="race-oxygen__eyebrow">{{oxygenTransport.eyebrow}}</p>
+        <h2 id="race-oxygen-title" class="race-oxygen__title">
+          {{oxygenTransport.titleStart}}
+          <span class="race-oxygen__title-accent">{{oxygenTransport.titleAccent}}</span>
+        </h2>
+        <p class="race-oxygen__body">{{oxygenTransport.body}}</p>
+        <div class="race-oxygen__brand">
+          <p class="race-oxygen__logo"><span>Vetro</span><span class="race-oxygen__logo-fit">Fit</span><sup>®</sup></p>
+          <p class="race-oxygen__tagline">
+            {{oxygenTransport.tagline}}
+            <span>{{oxygenTransport.taglineAccent}}</span>
+          </p>
+        </div>
+        <div class="race-oxygen__visual">
+          <img
+            src="/images/racing/oxygen/horse.jpg"
+            alt="Grey racehorse with lungs, heart, kidney, and circulatory system highlighted"
+            class="race-oxygen__horse"
+            width="573"
+            height="451"
+          />
+        </div>
+      </div>
+
+      <div class="race-oxygen__panels">
+        <div class="race-oxygen__journey">
+          <p class="race-oxygen__panel-label">{{oxygenTransport.journeyTitle}}</p>
+          <ol class="race-oxygen__journey-list">
+            {{#each oxygenTransport.journey}}
+            <li class="race-oxygen__journey-item">
+              <span class="race-oxygen__journey-icon" aria-hidden="true">{{{icon this.icon "w-6 h-6"}}}</span>
+              <div class="race-oxygen__journey-copy">
+                <p class="race-oxygen__journey-title">{{this.step}}. {{this.title}}</p>
+                <p class="race-oxygen__journey-body">{{this.body}}</p>
+              </div>
+              {{#unless @last}}
+              <span class="race-oxygen__journey-arrow" aria-hidden="true">{{{icon "chevron-right" "w-4 h-4"}}}</span>
+              {{/unless}}
+            </li>
+            {{/each}}
+          </ol>
+        </div>
+
+        <div class="race-oxygen__systems">
+          <p class="race-oxygen__systems-title">{{oxygenTransport.systemsTitle}}</p>
+          <div class="race-oxygen__systems-grid">
+            {{#each oxygenTransport.systems}}
+            <article class="race-oxygen__system">
+              <span class="race-oxygen__system-icon" aria-hidden="true">{{{icon this.icon "w-6 h-6"}}}</span>
+              <h3 class="race-oxygen__system-name">{{this.title}}</h3>
+              <p class="race-oxygen__system-body">{{this.body}}</p>
+            </article>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="race-oxygen__benefits">
+      <p class="race-oxygen__benefits-title">{{oxygenTransport.benefitsTitle}}</p>
+      <div class="race-oxygen__benefits-row">
+        {{#each oxygenTransport.benefits}}
+        <article class="race-oxygen__benefit">
+          <span class="race-oxygen__benefit-icon" aria-hidden="true">{{{icon this.icon "w-6 h-6"}}}</span>
+          <h3 class="race-oxygen__benefit-name">{{this.title}}</h3>
+          <p class="race-oxygen__benefit-body">{{this.body}}</p>
+        </article>
+        {{/each}}
+        <aside class="race-oxygen__peak">
+          <img
+            src="/images/racing/oxygen/kidneys.jpg"
+            alt=""
+            class="race-oxygen__peak-img"
+            width="160"
+            height="100"
+          />
+          <p class="race-oxygen__peak-text">{{oxygenTransport.peak}}</p>
+        </aside>
+      </div>
+    </div>
+
+    <p class="race-oxygen__footer">
+      {{oxygenTransport.tagline}}
+      <span>{{oxygenTransport.taglineAccent}}</span>
+    </p>
+  </div>
+</section>
 
 <section class="panel-grey">
   <div class="section grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

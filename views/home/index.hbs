@@ -51,7 +51,7 @@
 </section>
 
 <!-- INSPIRED BY NATURE. PROVEN BY SCIENCE — copy | still-life | process + ingredient strip -->
-<section class="mission-section">
+<section class="mission-section" id="mission">
   <div class="section">
     <div class="mission-panel">
       <div class="mission-panel__copy">
@@ -66,10 +66,10 @@
 
       <div class="mission-panel__media">
         <img
-          src="/images/home/ingredients-photo.jpg?v=20260814g"
+          src="/images/home/ingredients-photo.jpg?v=20260814h"
           alt="Botanical herbs, mortar and pestle, powders, and laboratory flask"
-          width="1200"
-          height="550"
+          width="1188"
+          height="912"
           loading="lazy"
         />
       </div>
@@ -154,17 +154,14 @@
       <div class="slider-track" data-products-track>
         {{#each featuredProducts}}
         <div class="w-full shrink-0 px-2 sm:w-1/2 lg:w-1/4" data-products-slide>
-          <a href="/shop/product/{{this.slug}}" class="card group flex h-full flex-col items-center overflow-hidden p-6 text-center transition-colors hover:bg-al-panel">
-            <div class="flex aspect-[4/5] w-full items-center justify-center">
-              <img src="{{this.image}}" alt="{{this.trademark}}" class="h-full w-auto object-contain" />
-            </div>
+          <a href="/shop/product/{{this.slug}}" class="card product-card group flex h-full flex-col items-center overflow-hidden p-6 text-center">
+            {{> product-media image=this.image alt=this.trademark tagline=this.tagline}}
             <div class="flex flex-1 flex-col items-center pt-2">
               <div class="flex justify-center gap-0.5 text-al-navy">
                 {{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}
               </div>
               <p class="font-display mt-3 text-lg font-semibold text-al-navy">{{this.trademark}}</p>
               <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-navy/55">{{this.category}}</p>
-              <p class="font-display mt-2 text-lg font-medium text-al-navy">{{this.tagline}}</p>
               <span class="font-display mt-4 text-lg font-medium text-al-navy">{{currency this.price}}</span>
             </div>
           </a>

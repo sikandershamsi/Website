@@ -1,4 +1,58 @@
-{{> page-header eyebrow="Shop Animalife" heading="Shop By Category" subheading="Root Cause Based Treatments For Every Stage of Performance"}}
+<section class="shop-hero">
+  <img
+    src="/images/shop/hero.jpg?v=2"
+    alt=""
+    class="shop-hero__media"
+    width="2048"
+    height="1100"
+  />
+  <div class="shop-hero__veil" aria-hidden="true"></div>
+
+  <div class="shop-hero__content">
+    <div class="shop-hero__copy">
+      <div class="shop-hero__eyebrow-row">
+        <span class="shop-hero__rule" aria-hidden="true"></span>
+        <p class="shop-hero__eyebrow">Shop Animalife</p>
+        <span class="shop-hero__rule" aria-hidden="true"></span>
+      </div>
+      <h1 class="shop-hero__title">Root Cause Based Treatments</h1>
+      <p class="shop-hero__lede">
+        For Every Stage of <span class="shop-hero__lede-em">Performance &amp; Wellness</span>
+      </p>
+      <div class="shop-hero__mark" aria-hidden="true">
+        <span class="shop-hero__rule shop-hero__rule--long"></span>
+        <span class="shop-hero__mark-icon">{{{icon "gallop" "w-6 h-6"}}}</span>
+        <span class="shop-hero__rule shop-hero__rule--long"></span>
+      </div>
+    </div>
+
+    <ul class="shop-hero__features">
+      <li class="shop-hero__feature">
+        <div class="shop-hero__feature-icon">{{{icon "leaf" "w-5 h-5"}}}</div>
+        <p class="shop-hero__feature-label">Science-Backed Nutrition</p>
+      </li>
+      <li class="shop-hero__feature">
+        <div class="shop-hero__feature-icon">{{{icon "shield-check" "w-5 h-5"}}}</div>
+        <p class="shop-hero__feature-label">Targeted Support</p>
+      </li>
+      <li class="shop-hero__feature">
+        <div class="shop-hero__feature-icon">{{{icon "microscope" "w-5 h-5"}}}</div>
+        <p class="shop-hero__feature-label">Research Driven</p>
+      </li>
+      <li class="shop-hero__feature">
+        <div class="shop-hero__feature-icon">{{{icon "horse" "w-5 h-5"}}}</div>
+        <p class="shop-hero__feature-label">Equine Focused</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="shop-hero__wave" aria-hidden="true">
+    <svg class="shop-hero__wave-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" focusable="false">
+      <path fill="#1e3f33" d="M0,72 C360,18 720,18 1080,72 C1260,98 1380,110 1440,114 L1440,120 L0,120 Z"></path>
+      <path fill="none" stroke="#c4a56a" stroke-width="2" d="M0,72 C360,18 720,18 1080,72 C1260,98 1380,110 1440,114"></path>
+    </svg>
+  </div>
+</section>
 
 <section class="panel-white">
   <div class="section">
@@ -53,17 +107,16 @@
     <p class="mt-3 text-sm text-al-ink/60">Browse every formula below, or start with a category above.</p>
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {{#each products}}
-      <div class="card flex flex-col overflow-hidden">
-        <a href="/shop/product/{{this.slug}}" class="flex aspect-[4/5] items-center justify-center border-b border-al-line bg-white p-8">
-          <img src="{{this.image}}" alt="{{this.trademark}}" class="max-h-full w-auto max-w-full object-contain" />
+      <div class="card product-card flex flex-col overflow-hidden">
+        <a href="/shop/product/{{this.slug}}" class="product-card__media-link border-b border-al-line bg-white p-8">
+          {{> product-media image=this.image alt=this.trademark tagline=this.tagline}}
         </a>
         <div class="flex flex-1 flex-col p-6">
           <div class="flex items-baseline justify-between gap-2">
-            <p class="font-display text-lg font-semibold text-al-navy">{{this.trademark}}</p>
+            <a href="/shop/product/{{this.slug}}" class="font-display text-lg font-semibold text-al-navy hover:text-al-navy/70">{{this.trademark}}</a>
             <p class="text-xs uppercase tracking-wider text-al-ink/45">{{this.size}}</p>
           </div>
           <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-navy/50">{{this.category}}</p>
-          <a href="/shop/product/{{this.slug}}" class="font-display mt-2 text-base font-medium text-al-navy hover:text-al-navy/70">{{this.tagline}}</a>
           <p class="mt-3 flex-1 text-sm text-al-ink/65">{{truncate this.description 140}}</p>
           <div class="mt-5 flex items-center justify-between">
             <span class="font-display text-lg font-medium text-al-navy">{{currency this.price}}</span>

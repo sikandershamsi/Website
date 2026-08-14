@@ -1,7 +1,11 @@
 import { Body, Controller, Get, Post, Render } from '@nestjs/common';
 import {
   performanceCascade,
+  cascadeSummary,
   ownersTrainersFace,
+  kidneyHomeostasisBanner,
+  kidneyMasterRegulator,
+  oxygenTransport,
   industryEffects,
   homeostasisSystems,
   homeostasisImpact,
@@ -15,7 +19,17 @@ export class RacingController {
   @Get()
   @Render('racing/index')
   index() {
-    return { title: 'Racing', activeNav: 'racing', racingTab: 'racing' };
+    return {
+      title: 'Racing',
+      activeNav: 'racing',
+      racingTab: 'racing',
+      performanceCascade,
+      cascadeSummary,
+      ownersTrainersFace,
+      kidneyHomeostasisBanner,
+      kidneyMasterRegulator,
+      oxygenTransport,
+    };
   }
 
   @Get('industry-reality')
