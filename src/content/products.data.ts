@@ -1431,7 +1431,7 @@ export const products: Product[] = [
           ],
         },
         {
-          icon: 'heart',
+          icon: 'heart-pulse',
           system: 'Cardiovascular Function',
           nutrition: 'Omega-3, Selenium, Chelated Minerals',
           physiology: [

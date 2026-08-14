@@ -32,15 +32,15 @@
     </div>
 
     <div class="grid grid-cols-2 gap-10 py-14 md:grid-cols-6">
-      <div class="col-span-2">
+      <div class="col-span-2 min-w-0">
         <span class="font-display text-2xl font-semibold text-al-navy">animalife<span class="text-al-navy/50">USA</span></span>
         <p class="mt-4 max-w-xs text-sm text-al-ink/70">Rooted in Nature. Proven by Science. Since 2005, Animalife has helped thousands of horses perform at their best, recover faster, and live healthier, more active lives.</p>
         <form action="/horse-iq/subscribe" method="post" class="mt-6 flex max-w-sm gap-2">
-          <input type="email" name="email" required placeholder="Your email" class="w-full rounded-none border border-al-line bg-white px-4 py-2.5 text-sm text-al-ink placeholder:text-al-ink/40 focus:border-al-navy focus:outline-none" />
-          <button type="submit" class="btn-primary px-5">Join</button>
+          <input type="email" name="email" required placeholder="Your email" class="min-w-0 w-full rounded-none border border-al-line bg-white px-4 py-2.5 text-sm text-al-ink placeholder:text-al-ink/40 focus:border-al-navy focus:outline-none" />
+          <button type="submit" class="btn-primary shrink-0 px-5">Join</button>
         </form>
       </div>
-      <div>
+      <div class="min-w-0">
         <h4 class="text-xs font-semibold uppercase tracking-wider text-al-navy">Shop</h4>
         <ul class="mt-4 space-y-2.5 text-sm text-al-ink/75">
           <li><a href="/shop/product/vetroflex" class="hover:text-al-navy">VetroFlex®</a></li>
@@ -49,7 +49,7 @@
           <li><a href="/shop" class="hover:text-al-navy">Shop All</a></li>
         </ul>
       </div>
-      <div>
+      <div class="min-w-0">
         <h4 class="text-xs font-semibold uppercase tracking-wider text-al-navy">Company</h4>
         <ul class="mt-4 space-y-2.5 text-sm text-al-ink/75">
           <li><a href="/about" class="hover:text-al-navy">Our Story</a></li>
@@ -58,7 +58,7 @@
           <li><a href="/professionals" class="hover:text-al-navy">Affiliate Program</a></li>
         </ul>
       </div>
-      <div>
+      <div class="min-w-0">
         <h4 class="text-xs font-semibold uppercase tracking-wider text-al-navy">Support</h4>
         <ul class="mt-4 space-y-2.5 text-sm text-al-ink/75">
           <li><a href="/racing" class="hover:text-al-navy">Racing</a></li>
@@ -67,33 +67,33 @@
           <li><a href="/account" class="hover:text-al-navy">My Account</a></li>
         </ul>
       </div>
-      <div>
+      <div class="col-span-2 min-w-0 md:col-span-1">
         <h4 class="text-xs font-semibold uppercase tracking-wider text-al-navy">Contact &amp; Location</h4>
         <ul class="mt-4 space-y-3.5 text-sm text-al-ink/75">
           <li class="flex items-start gap-2.5">
             <span class="mt-0.5 shrink-0 text-al-orange">{{{icon "mail" "w-4 h-4"}}}</span>
-            <span>
-              <a href="mailto:hello@animalifeusa.com" class="hover:text-al-navy">hello@animalifeusa.com</a>
+            <span class="min-w-0 break-words">
+              <a href="mailto:hello@animalifeusa.com" class="break-all hover:text-al-navy">hello@animalifeusa.com</a>
               <span class="mt-1 block text-xs text-al-ink/45">Customer support</span>
             </span>
           </li>
           <li class="flex items-start gap-2.5">
             <span class="mt-0.5 shrink-0 text-al-orange">{{{icon "mail" "w-4 h-4"}}}</span>
-            <span>
-              <a href="mailto:partnerships@animalifeusa.com" class="hover:text-al-navy">partnerships@animalifeusa.com</a>
+            <span class="min-w-0 break-words">
+              <a href="mailto:partnerships@animalifeusa.com" class="break-all hover:text-al-navy">partnerships@animalifeusa.com</a>
               <span class="mt-1 block text-xs text-al-ink/45">Trade &amp; affiliates</span>
             </span>
           </li>
           <li class="flex items-start gap-2.5">
             <span class="mt-0.5 shrink-0 text-al-orange">{{{icon "map-pin" "w-4 h-4"}}}</span>
-            <span>
+            <span class="min-w-0">
               <span class="block text-al-navy">United States</span>
               <span class="mt-1 block text-xs leading-relaxed text-al-ink/55">Serving riders, trainers &amp; veterinarians nationwide</span>
             </span>
           </li>
           <li class="flex items-start gap-2.5">
             <span class="mt-0.5 shrink-0 text-al-orange">{{{icon "clock" "w-4 h-4"}}}</span>
-            <span>
+            <span class="min-w-0">
               <span class="block">Mon–Fri, 9am–5pm ET</span>
               <span class="mt-1 block text-xs text-al-ink/45">We typically reply within 1–2 business days</span>
             </span>

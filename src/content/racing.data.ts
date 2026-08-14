@@ -7,7 +7,7 @@ export const performanceCascade = [
     tag: 'Oxygen Supply Meets Demand',
     level: 100,
     color: '#006837',
-    soft: '#d4eddc',
+    soft: '#d9f0e0',
     icon: 'o2',
     image: '/images/racing/cascade/phase-1-horse.jpg',
   },
@@ -19,7 +19,7 @@ export const performanceCascade = [
     tag: 'Oxygen Demand Exceeds Supply',
     level: 95,
     color: '#8cc63f',
-    soft: '#e8f2d4',
+    soft: '#eaf6d4',
     icon: 'scale',
     image: '/images/racing/cascade/phase-2-horse.jpg',
   },
@@ -31,7 +31,7 @@ export const performanceCascade = [
     tag: 'Lactic Acid Accumulates',
     level: 82,
     color: '#fbb03b',
-    soft: '#fbecd0',
+    soft: '#fdeed0',
     icon: 'molecule',
     image: '/images/racing/cascade/phase-3-horse.jpg',
   },
@@ -43,8 +43,8 @@ export const performanceCascade = [
     tag: 'Cardiovascular Stress Increases',
     level: 65,
     color: '#f15a24',
-    soft: '#fbd9cb',
-    icon: 'heart',
+    soft: '#fde0d4',
+    icon: 'heart-pulse',
     image: '/images/racing/cascade/phase-4-horse.jpg',
   },
   {
@@ -55,7 +55,7 @@ export const performanceCascade = [
     tag: 'Performance Begins to Decline',
     level: 48,
     color: '#ed1c24',
-    soft: '#f8d0d1',
+    soft: '#fcd6d8',
     icon: 'chart-down',
     image: '/images/racing/cascade/phase-5-horse.jpg',
   },
@@ -67,7 +67,7 @@ export const performanceCascade = [
     tag: 'Pulmonary Stress Develops',
     level: 28,
     color: '#c1272d',
-    soft: '#efd0d2',
+    soft: '#f3d4d6',
     icon: 'lungs',
     image: '/images/racing/cascade/phase-6-horse.jpg',
   },
@@ -79,11 +79,44 @@ export const performanceCascade = [
     tag: 'Recovery Slows & Damage Accumulates',
     level: 8,
     color: '#662d91',
-    soft: '#e4d4ef',
+    soft: '#eadcf5',
     icon: 'clock',
     image: '/images/racing/cascade/phase-7-horse.jpg',
   },
 ];
+
+const cascadeColumns = performanceCascade.length;
+const cascadeDots = performanceCascade.map((phase, index) => ({
+  x: Number((((index + 0.5) / cascadeColumns) * 100).toFixed(4)),
+  y: 100 - phase.level,
+  color: phase.color,
+}));
+
+/**
+ * Geometry for the performance-level plot. The line lives in a 0–700 x 0–100
+ * viewBox stretched to the plot box, while dots and ticks are positioned in
+ * percentages so they stay locked to the seven phase columns above them.
+ */
+export const cascadePlot = {
+  line: [
+    ...cascadeDots.map((dot) => `${((dot.x / 100) * 700).toFixed(1)},${dot.y}`),
+    '700,98',
+  ].join(' '),
+  dots: cascadeDots,
+  dividers: Array.from({ length: cascadeColumns - 1 }, (_, index) =>
+    Number((((index + 1) / cascadeColumns) * 100).toFixed(4)),
+  ),
+  ticks: [
+    { label: 'Start', x: 0 },
+    { label: '1', x: 14.2857 },
+    { label: '2', x: 28.5714 },
+    { label: '4', x: 42.8571 },
+    { label: '5\u00bd', x: 57.1429 },
+    { label: '6\u00bd', x: 71.4286 },
+    { label: '7\u00bd', x: 85.7143 },
+    { label: 'Finish', x: 100 },
+  ],
+};
 
 export const cascadeSummary = [
   { label: 'Oxygen Demand Exceeds Supply', color: '#8cc63f' },
@@ -91,8 +124,8 @@ export const cascadeSummary = [
   { label: 'Cardiovascular Stress Increases', color: '#f15a24' },
   { label: 'Performance Declines', color: '#ed1c24' },
   { label: 'Pulmonary Stress Develops', color: '#c1272d' },
-  { label: 'Recovery Slows', color: '#662d91' },
-  { label: 'Long-Term Structural Damage Accumulates', color: '#7b3fa8' },
+  { label: 'Recovery Slows', color: '#9b5de5' },
+  { label: 'Long-Term Structural Damage Accumulates', color: '#b98ce8' },
 ];
 
 export const ownersTrainersFace = [
@@ -121,42 +154,49 @@ const kidneyRegulatorFunctions = [
     title: 'Blood Pressure Regulation',
     body: 'Helps maintain stable blood pressure by controlling fluid balance and vascular resistance.',
     icon: 'heart-pulse',
+    tone: 'rose',
   },
   {
     id: 2,
     title: 'Red Blood Cell Regulation',
     body: 'The kidney produces erythropoietin (EPO) to stimulate red blood cell production for optimal oxygen-carrying capacity.',
-    icon: 'droplet',
+    icon: 'cells',
+    tone: 'rose',
   },
   {
     id: 3,
     title: 'Fluid Balance',
     body: 'Regulates water retention and loss to maintain proper hydration and blood volume.',
     icon: 'droplet',
+    tone: 'sky',
   },
   {
     id: 4,
     title: 'Electrolyte Balance',
     body: 'Balances essential electrolytes to support nerve function, muscle contraction, and cellular health.',
-    icon: 'orbit',
+    icon: 'molecule',
+    tone: 'violet',
   },
   {
     id: 5,
     title: 'Acid-Base Balance',
     body: 'Maintains the body’s acid-base equilibrium for optimal enzyme function and muscle performance.',
-    icon: 'scale',
+    icon: 'gauge',
+    tone: 'amber',
   },
   {
     id: 6,
     title: 'Oxygen Transport Support',
     body: 'By supporting red blood cell production and blood flow, the kidney plays a key role in delivering oxygen to working muscles.',
     icon: 'lungs',
+    tone: 'sky',
   },
   {
     id: 7,
     title: 'Waste Clearance & Detoxification',
     body: 'Filters and removes metabolic waste, toxins, and byproducts of exercise to keep the body running efficiently.',
     icon: 'kidney',
+    tone: 'rose',
   },
 ];
 
@@ -190,19 +230,19 @@ export const oxygenTransport = {
     },
     {
       step: 2,
-      icon: 'droplet',
+      icon: 'cells',
       title: 'Oxygen Transported',
       body: 'Red blood cells carry oxygen through the bloodstream.',
     },
     {
       step: 3,
-      icon: 'orbit',
+      icon: 'vessels',
       title: 'Oxygen Delivered',
       body: 'Oxygen is delivered to working muscles and organs.',
     },
     {
       step: 4,
-      icon: 'muscle',
+      icon: 'fibers',
       title: 'Energy Produced',
       body: 'Oxygen fuels energy production for powerful, sustained performance.',
     },
@@ -215,7 +255,7 @@ export const oxygenTransport = {
       body: 'Maintains the pressure needed to push oxygen-rich blood where it’s needed most.',
     },
     {
-      icon: 'molecule',
+      icon: 'cells',
       title: 'Red Blood Cell Activity',
       body: 'Supports healthy RBC production and oxygen-carrying capacity.',
     },
@@ -225,7 +265,7 @@ export const oxygenTransport = {
       body: 'Maintains proper hydration and blood volume for optimal circulation.',
     },
     {
-      icon: 'orbit',
+      icon: 'molecule',
       title: 'Electrolyte Balance',
       body: 'Supports nerve, muscle, and heart function for efficient performance.',
     },
@@ -253,8 +293,36 @@ export const oxygenTransport = {
       body: 'Supports the body’s ability to adapt, repair, and thrive under athletic stress.',
     },
   ],
-  peak: 'Healthy Kidneys. Efficient Oxygen. Peak Performance.',
+  peakLead: 'Healthy Kidneys. Efficient Oxygen.',
+  peakAccent: 'Peak Performance.',
 };
+
+const kidneyDistressCallouts = [
+  {
+    title: 'Fluid & Electrolyte Imbalance',
+    body: 'Loss of essential electrolytes and fluid can impair kidney regulation and muscle function.',
+    icon: 'droplet',
+    tone: 'blue',
+  },
+  {
+    title: 'Reduced Oxygen Transport',
+    body: 'Kidney distress can impact red blood cell production and oxygen delivery.',
+    icon: 'cells',
+    tone: 'orange',
+  },
+  {
+    title: 'Early Fatigue',
+    body: 'Imbalances in acid–base balance and waste clearance can lead to muscle fatigue and decreased performance.',
+    icon: 'muscle',
+    tone: 'blue',
+  },
+  {
+    title: 'Waste Accumulation',
+    body: 'When the kidney is overburdened, metabolic waste products can accumulate, slowing recovery and increasing inflammation.',
+    icon: 'molecule',
+    tone: 'orange',
+  },
+];
 
 export const kidneyDistressBanner = {
   titleLead: 'Kidney',
@@ -269,32 +337,9 @@ export const kidneyDistressBanner = {
     { icon: 'o2', title: 'Metabolic Demand' },
     { icon: 'bolt', title: 'Electrolyte Losses' },
   ],
-  callouts: [
-    {
-      title: 'Fluid & Electrolyte Imbalance',
-      body: 'Loss of essential electrolytes and fluid can impair kidney regulation and muscle function.',
-      icon: 'droplet',
-      tone: 'blue',
-    },
-    {
-      title: 'Reduced Oxygen Transport',
-      body: 'Kidney distress can impact red blood cell production and oxygen delivery.',
-      icon: 'molecule',
-      tone: 'orange',
-    },
-    {
-      title: 'Early Fatigue',
-      body: 'Imbalances in acid–base balance and waste clearance can lead to muscle fatigue and decreased performance.',
-      icon: 'muscle',
-      tone: 'blue',
-    },
-    {
-      title: 'Waste Accumulation',
-      body: 'When the kidney is overburdened, metabolic waste products can accumulate, slowing recovery and increasing inflammation.',
-      icon: 'orbit',
-      tone: 'orange',
-    },
-  ],
+  callouts: kidneyDistressCallouts,
+  sideCallouts: kidneyDistressCallouts.slice(0, 3),
+  wasteCallout: kidneyDistressCallouts[3],
 };
 
 export const industryEffects = [
@@ -368,8 +413,7 @@ export const homeostasisComparison = {
 
 export const vetrofitRacingBanner = {
   brand: 'Animalife',
-  productLead: 'Vetro',
-  productAccent: 'fit®',
+  product: 'Vetrofit',
   tagline: 'Fast-Acting. Targeted. Results.',
   timingValue: '2–4',
   timingUnit: 'Hours',
@@ -377,7 +421,7 @@ export const vetrofitRacingBanner = {
   features: [
     { icon: 'kidney', title: 'Supports Healthy Kidney Function' },
     { icon: 'scale', title: 'Maintains Physiological Balance' },
-    { icon: 'gallop', title: 'Supports Peak Performance & Efficient Recovery' },
+    { icon: 'horse', title: 'Supports Peak Performance & Efficient Recovery' },
   ],
 };
 
@@ -404,7 +448,7 @@ export const scienceBehindVetrofit = {
       text: 'Nourish tissues and systems so the body can repair and adapt.',
     },
     {
-      icon: 'gallop',
+      icon: 'horse-solid',
       title: 'Support Physiological Balance',
       text: 'Maintain optimal function for sustained performance and recovery.',
     },
@@ -414,7 +458,7 @@ export const scienceBehindVetrofit = {
       text: 'Sustainable health today for a lifetime of vitality, longevity and beyond.',
     },
     {
-      icon: 'orbit',
+      icon: 'moon-ring',
       title: 'Backed by Science & Nature',
       text: 'Formulated with proven research and the finest natural ingredients.',
     },

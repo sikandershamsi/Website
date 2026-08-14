@@ -36,32 +36,110 @@
 
 <section class="race-cascade" id="industry-reality" aria-labelledby="race-cascade-title">
   <div class="race-cascade__inner">
-    <h2 id="race-cascade-title" class="sr-only">The Race Within the Race</h2>
-    <p class="sr-only">
-      The unseen physiological events that affect speed, stamina, recovery, and long-term health.
-    </p>
+    <header class="race-cascade__header">
+      <h2 id="race-cascade-title" class="race-cascade__title">The Race Within the Race</h2>
+      <p class="race-cascade__subtitle">
+        The unseen physiological events that affect speed, stamina, recovery, and long-term health.
+      </p>
+    </header>
 
-    <figure class="race-cascade__figure">
-      <div class="race-cascade__scroller">
-        <img
-          src="/images/racing/cascade/board.jpg?v=3"
-          alt="Infographic of seven race phases from optimal performance through recovery slowing and damage accumulation, with relative performance declining across distance."
-          class="race-cascade__board-img"
-          width="2048"
-          height="1364"
-          loading="lazy"
-        />
-      </div>
-    </figure>
-
-    <ol class="sr-only">
+    <ul class="race-cascade__mobile">
       {{#each performanceCascade}}
-      <li>
-        Phase {{this.phase}}: {{this.name}} ({{this.range}}). {{this.body}} Physiological cascade: {{this.tag}}.
+      <li class="race-cascade__mobile-card" style="--phase-color: {{this.color}}; --phase-soft: {{this.soft}}">
+        <div class="race-cascade__mobile-head">
+          <span class="race-cascade__mobile-num">{{this.phase}}</span>
+          <div class="race-cascade__mobile-meta">
+            <h3 class="race-cascade__mobile-name">{{this.name}}</h3>
+            <p class="race-cascade__mobile-range">{{this.range}}</p>
+          </div>
+          <div class="race-cascade__mobile-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</div>
+        </div>
+        <div class="race-cascade__mobile-media">
+          <img src="{{this.image}}" alt="" class="race-cascade__mobile-img" loading="lazy" width="220" height="140" />
+        </div>
+        <p class="race-cascade__mobile-body">{{this.body}}</p>
+        <p class="race-cascade__mobile-tag">{{this.tag}}</p>
       </li>
       {{/each}}
-    </ol>
-    <p class="sr-only">Cascade summary: {{#each cascadeSummary}}{{this.label}}{{#unless @last}}; {{/unless}}{{/each}}.</p>
+    </ul>
+
+    <div class="race-cascade__mobile-foot">
+      <div class="race-cascade__graph race-cascade__graph--mobile">
+        <p class="race-cascade__graph-label">Performance Level (Relative)</p>
+        {{> cascade-plot gradientId="cascadeLineMobile"}}
+      </div>
+    </div>
+
+    <div class="race-cascade__scroller">
+      <div class="race-cascade__board">
+        <div class="race-cascade__rail-cell race-cascade__rail-cell--phase">
+          <span class="race-cascade__rail-tab">Phase</span>
+          <span class="race-cascade__rail-label">
+            Race Progress
+            <span class="race-cascade__rail-note">(Approx.)</span>
+          </span>
+        </div>
+        {{#each performanceCascade}}
+        <div class="race-cascade__phase-head" style="--phase-color: {{this.color}}">
+          <span class="race-cascade__phase-num">{{this.phase}}</span>
+          <h3 class="race-cascade__phase-name">{{this.name}}</h3>
+          <p class="race-cascade__phase-range">{{this.range}}</p>
+          <div class="race-cascade__phase-media">
+            <img src="{{this.image}}?v=20260815a" alt="" class="race-cascade__phase-img" loading="lazy" width="254" height="234" />
+          </div>
+        </div>
+        {{/each}}
+
+        <div class="race-cascade__rail-cell">
+          <span class="race-cascade__rail-label">What&rsquo;s Happening</span>
+        </div>
+        {{#each performanceCascade}}
+        <div class="race-cascade__happening" style="--phase-soft: {{this.soft}}">
+          <p class="race-cascade__happening-body">{{this.body}}</p>
+        </div>
+        {{/each}}
+
+        <div class="race-cascade__rail-cell">
+          <span class="race-cascade__rail-label">Physiological Cascade</span>
+        </div>
+        {{#each performanceCascade}}
+        <div class="race-cascade__physio" style="--phase-color: {{this.color}}">
+          <span class="race-cascade__physio-icon" aria-hidden="true">{{{icon this.icon "w-9 h-9"}}}</span>
+          <p class="race-cascade__physio-tag">{{this.tag}}</p>
+          {{#unless @last}}
+          <span class="race-cascade__physio-arrow" aria-hidden="true">{{{icon "arrow-right" "w-5 h-5"}}}</span>
+          {{/unless}}
+        </div>
+        {{/each}}
+
+        <div class="race-cascade__rail-cell race-cascade__rail-cell--last">
+          <span class="race-cascade__rail-label">
+            Performance Level
+            <span class="race-cascade__rail-note">(Relative)</span>
+          </span>
+        </div>
+        <div class="race-cascade__graph">
+          {{> cascade-plot gradientId="cascadeLine"}}
+        </div>
+      </div>
+    </div>
+
+    <div class="race-cascade__summary">
+      <div class="race-cascade__summary-head">
+        <span class="race-cascade__summary-icon" aria-hidden="true">{{{icon "alert-solid" "w-8 h-8"}}}</span>
+        <p class="race-cascade__summary-title">The Cascade in Summary</p>
+      </div>
+      <ol class="race-cascade__summary-list">
+        {{#each cascadeSummary}}
+        <li class="race-cascade__summary-item" style="--sum-color: {{this.color}}">
+          <span class="race-cascade__summary-text">{{this.label}}</span>
+          {{#unless @last}}
+          <span class="race-cascade__summary-arrow" aria-hidden="true">{{{icon "arrow-right" "w-4 h-4"}}}</span>
+          {{/unless}}
+        </li>
+        {{/each}}
+      </ol>
+    </div>
   </div>
 </section>
 
@@ -102,29 +180,39 @@
 </section>
 
 <section class="race-homeo" id="kidney-homeostasis" aria-labelledby="race-homeo-title">
+  <figure class="race-homeo__stage">
+    <img
+      src="/images/racing/homeostasis/banner.jpg?v=20260815b"
+      alt="Racehorse and jockey wearing a winner&rsquo;s garland"
+      class="race-homeo__media"
+      width="1024"
+      height="545"
+    />
+    <span class="race-homeo__veil" aria-hidden="true"></span>
+    <span class="race-homeo__veil race-homeo__veil--rail" aria-hidden="true"></span>
+  </figure>
+
   <div class="race-homeo__inner">
-    <h2 id="race-homeo-title" class="sr-only">
-      {{kidneyHomeostasisBanner.titleLead}} {{kidneyHomeostasisBanner.titleAccent}}
-    </h2>
-    <p class="sr-only">{{kidneyHomeostasisBanner.eyebrow}}</p>
-    <p class="sr-only">{{kidneyHomeostasisBanner.body}}</p>
-
-    <figure class="race-homeo__figure">
-      <div class="race-homeo__scroller">
-        <img
-          src="/images/racing/homeostasis/board.jpg?v=1"
-          alt="Kidney Homeostasis: The Foundation of Performance. A racehorse with a winner’s garland and jockey, with an anatomical kidney overlay and four performance foundations listed."
-          class="race-homeo__board-img"
-          width="2048"
-          height="1092"
-          loading="lazy"
-        />
+    <div class="race-homeo__copy">
+      <h2 id="race-homeo-title" class="race-homeo__title">
+        <span class="race-homeo__title-lead">{{kidneyHomeostasisBanner.titleLead}}</span>
+        <span class="race-homeo__title-accent">{{kidneyHomeostasisBanner.titleAccent}}</span>
+      </h2>
+      <div class="race-homeo__rule" aria-hidden="true">
+        <span class="race-homeo__rule-line"></span>
+        <span class="race-homeo__rule-icon">{{{icon "gallop" "w-5 h-5"}}}</span>
+        <span class="race-homeo__rule-line"></span>
       </div>
-    </figure>
+      <p class="race-homeo__eyebrow">{{kidneyHomeostasisBanner.eyebrow}}</p>
+      <p class="race-homeo__body">{{kidneyHomeostasisBanner.body}}</p>
+    </div>
 
-    <ul class="sr-only">
+    <ul class="race-homeo__features">
       {{#each kidneyHomeostasisBanner.features}}
-      <li>{{this.title}}</li>
+      <li class="race-homeo__feature">
+        <span class="race-homeo__feature-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
+        <p class="race-homeo__feature-text">{{this.title}}</p>
+      </li>
       {{/each}}
     </ul>
   </div>
@@ -149,31 +237,71 @@
 
 <section class="race-regulator" aria-labelledby="race-regulator-title">
   <div class="race-regulator__inner">
-    <h2 id="race-regulator-title" class="sr-only">
-      {{kidneyMasterRegulator.titleLead}} {{kidneyMasterRegulator.titleAccent}} &mdash;
-      {{kidneyMasterRegulator.subtitle}}
-    </h2>
-    <p class="sr-only">{{kidneyMasterRegulator.body}}</p>
+    <header class="race-regulator__header">
+      <h2 id="race-regulator-title" class="race-regulator__title">
+        <span class="race-regulator__title-lead">{{kidneyMasterRegulator.titleLead}}</span>
+        <span class="race-regulator__title-accent">{{kidneyMasterRegulator.titleAccent}}</span>
+      </h2>
+      <p class="race-regulator__subtitle">{{kidneyMasterRegulator.subtitle}}</p>
+      <p class="race-regulator__lede">{{kidneyMasterRegulator.body}}</p>
+    </header>
 
-    <figure class="race-regulator__figure">
-      <div class="race-regulator__scroller">
+    <div class="race-regulator__board">
+      <aside class="race-regulator__legend">
+        <p class="race-regulator__legend-title">{{kidneyMasterRegulator.legendTitle}}</p>
+        <p class="race-regulator__legend-accent">{{kidneyMasterRegulator.legendAccent}}</p>
+        <ol class="race-regulator__legend-list">
+          {{#each kidneyMasterRegulator.functions}}
+          <li class="race-regulator__legend-item">
+            <span class="race-regulator__legend-num">{{this.id}}</span>
+            <span class="race-regulator__legend-text">{{this.title}}</span>
+          </li>
+          {{/each}}
+        </ol>
+      </aside>
+
+      <div class="race-regulator__visual">
         <img
-          src="/images/racing/regulator/board.jpg?v=1"
-          alt="Infographic of a galloping racehorse with the kidney and circulatory system highlighted, surrounded by the seven core functions the kidney regulates."
-          class="race-regulator__board-img"
-          width="2048"
-          height="1364"
-          loading="lazy"
+          src="/images/racing/regulator/horse.jpg?v=20260815a"
+          alt="Racehorse at full gallop with the kidney and circulatory system highlighted"
+          class="race-regulator__image"
+          width="600"
+          height="500"
         />
       </div>
-    </figure>
 
-    <p class="sr-only">{{kidneyMasterRegulator.legendTitle}} {{kidneyMasterRegulator.legendAccent}}.</p>
-    <ol class="sr-only">
-      {{#each kidneyMasterRegulator.functions}}
-      <li>{{this.title}}: {{this.body}}</li>
+      <div class="race-regulator__side">
+        {{#each kidneyMasterRegulator.sideFunctions}}
+        <article class="race-regulator__callout">
+          <span class="race-regulator__callout-icon race-regulator__callout-icon--{{this.tone}}" aria-hidden="true">
+            {{{icon this.icon "w-7 h-7"}}}
+          </span>
+          <div class="race-regulator__callout-copy">
+            <h3 class="race-regulator__callout-title">
+              <span class="race-regulator__callout-num">{{this.id}}.</span>&nbsp;{{this.title}}
+            </h3>
+            <p class="race-regulator__callout-body">{{this.body}}</p>
+          </div>
+        </article>
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="race-regulator__bottom">
+      {{#each kidneyMasterRegulator.bottomFunctions}}
+      <article class="race-regulator__callout">
+        <span class="race-regulator__callout-icon race-regulator__callout-icon--{{this.tone}}" aria-hidden="true">
+          {{{icon this.icon "w-7 h-7"}}}
+        </span>
+        <div class="race-regulator__callout-copy">
+          <h3 class="race-regulator__callout-title">
+            <span class="race-regulator__callout-num">{{this.id}}.</span>&nbsp;{{this.title}}
+          </h3>
+          <p class="race-regulator__callout-body">{{this.body}}</p>
+        </div>
+      </article>
       {{/each}}
-    </ol>
+    </div>
   </div>
 </section>
 
@@ -197,85 +325,159 @@
 
 <section class="race-oxygen" aria-labelledby="race-oxygen-title">
   <div class="race-oxygen__inner">
-    <p class="sr-only">{{oxygenTransport.eyebrow}}</p>
-    <h2 id="race-oxygen-title" class="sr-only">
-      {{oxygenTransport.titleStart}} {{oxygenTransport.titleAccent}}
-    </h2>
-    <p class="sr-only">{{oxygenTransport.body}}</p>
-    <p class="sr-only">
-      {{oxygenTransport.brand}} &mdash; {{oxygenTransport.tagline}} {{oxygenTransport.taglineAccent}}
-    </p>
+    <div class="race-oxygen__top">
+      <div class="race-oxygen__intro">
+        <p class="race-oxygen__eyebrow"><span>{{oxygenTransport.eyebrow}}</span></p>
+        <h2 id="race-oxygen-title" class="race-oxygen__title">
+          {{oxygenTransport.titleStart}}
+          <span class="race-oxygen__title-accent">{{oxygenTransport.titleAccent}}</span>
+        </h2>
+        <p class="race-oxygen__body">{{oxygenTransport.body}}</p>
+        <div class="race-oxygen__brand">
+          <p class="race-oxygen__logo"><span>Vetro</span><span class="race-oxygen__logo-fit">Fit</span><sup>®</sup></p>
+          <p class="race-oxygen__tagline">
+            {{oxygenTransport.tagline}}
+            <span>{{oxygenTransport.taglineAccent}}</span>
+          </p>
+        </div>
+      </div>
 
-    <figure class="race-oxygen__figure">
-      <div class="race-oxygen__scroller">
+      <div class="race-oxygen__visual">
         <img
-          src="/images/racing/oxygen/board.jpg?v=1"
-          alt="Infographic showing the journey of oxygen from inhalation to energy production, the kidney systems that support oxygen delivery, and the performance benefits of optimized oxygen delivery."
-          class="race-oxygen__board-img"
-          width="2048"
-          height="1364"
-          loading="lazy"
+          src="/images/racing/oxygen/horse.jpg?v=20260815a"
+          alt="Grey racehorse with lungs, heart, kidney, and circulatory system highlighted"
+          class="race-oxygen__horse"
+          width="624"
+          height="497"
         />
       </div>
-    </figure>
 
-    <p class="sr-only">{{oxygenTransport.journeyTitle}}</p>
-    <ol class="sr-only">
-      {{#each oxygenTransport.journey}}
-      <li>{{this.step}}. {{this.title}}: {{this.body}}</li>
-      {{/each}}
-    </ol>
+      <div class="race-oxygen__panels">
+        <div class="race-oxygen__journey">
+          <p class="race-oxygen__panel-label"><span>{{oxygenTransport.journeyTitle}}</span></p>
+          <ol class="race-oxygen__journey-list">
+            {{#each oxygenTransport.journey}}
+            <li class="race-oxygen__journey-item">
+              <span class="race-oxygen__journey-icon" aria-hidden="true">{{{icon this.icon "w-8 h-8"}}}</span>
+              <p class="race-oxygen__journey-title">{{this.step}}. {{this.title}}</p>
+              <p class="race-oxygen__journey-body">{{this.body}}</p>
+              {{#unless @last}}
+              <span class="race-oxygen__journey-arrow" aria-hidden="true">{{{icon "arrow-right" "w-4 h-4"}}}</span>
+              {{/unless}}
+            </li>
+            {{/each}}
+          </ol>
+        </div>
 
-    <p class="sr-only">{{oxygenTransport.systemsTitle}}</p>
-    <ul class="sr-only">
-      {{#each oxygenTransport.systems}}
-      <li>{{this.title}}: {{this.body}}</li>
-      {{/each}}
-    </ul>
+        <div class="race-oxygen__systems">
+          <p class="race-oxygen__systems-title">{{oxygenTransport.systemsTitle}}</p>
+          <div class="race-oxygen__systems-grid">
+            {{#each oxygenTransport.systems}}
+            <article class="race-oxygen__system">
+              <span class="race-oxygen__system-icon" aria-hidden="true">{{{icon this.icon "w-7 h-7"}}}</span>
+              <h3 class="race-oxygen__system-name">{{this.title}}</h3>
+              <p class="race-oxygen__system-body">{{this.body}}</p>
+            </article>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <p class="sr-only">{{oxygenTransport.benefitsTitle}}</p>
-    <ul class="sr-only">
-      {{#each oxygenTransport.benefits}}
-      <li>{{this.title}}: {{this.body}}</li>
-      {{/each}}
-    </ul>
-    <p class="sr-only">{{oxygenTransport.peak}}</p>
+    <div class="race-oxygen__benefits">
+      <p class="race-oxygen__benefits-title"><span>{{oxygenTransport.benefitsTitle}}</span></p>
+      <div class="race-oxygen__benefits-row">
+        <div class="race-oxygen__benefits-list">
+          {{#each oxygenTransport.benefits}}
+          <article class="race-oxygen__benefit">
+            <span class="race-oxygen__benefit-icon" aria-hidden="true">{{{icon this.icon "w-7 h-7"}}}</span>
+            <div class="race-oxygen__benefit-copy">
+              <h3 class="race-oxygen__benefit-name">{{this.title}}</h3>
+              <p class="race-oxygen__benefit-body">{{this.body}}</p>
+            </div>
+          </article>
+          {{/each}}
+        </div>
+        <aside class="race-oxygen__peak">
+          <span class="race-oxygen__peak-icon" aria-hidden="true">
+            {{{icon "kidney" "w-8 h-8"}}}{{{icon "kidney" "w-8 h-8"}}}
+          </span>
+          <p class="race-oxygen__peak-text">
+            {{oxygenTransport.peakLead}}
+            <span>{{oxygenTransport.peakAccent}}</span>
+          </p>
+        </aside>
+      </div>
+    </div>
+
+    <p class="race-oxygen__footer">
+      {{oxygenTransport.tagline}}
+      <span>{{oxygenTransport.taglineAccent}}</span>
+    </p>
   </div>
 </section>
 
 <section class="race-distress" id="kidney-distress" aria-labelledby="race-distress-title">
+  <img
+    src="/images/racing/distress/scene.jpg?v=20260815a"
+    alt="Racehorse at full gallop on a dirt track with the kidney and circulatory system highlighted"
+    class="race-distress__scene"
+    width="1024"
+    height="682"
+  />
+  <span class="race-distress__veil" aria-hidden="true"></span>
+
   <div class="race-distress__inner">
-    <h2 id="race-distress-title" class="sr-only">
-      {{kidneyDistressBanner.titleLead}} {{kidneyDistressBanner.titleAccent}}
-    </h2>
-    <p class="sr-only">{{kidneyDistressBanner.subtitle}}</p>
-    <p class="sr-only">{{kidneyDistressBanner.body}}</p>
+    <header class="race-distress__header">
+      <h2 id="race-distress-title" class="race-distress__title">
+        <span class="race-distress__title-lead">{{kidneyDistressBanner.titleLead}}</span>
+        <span class="race-distress__title-accent">{{kidneyDistressBanner.titleAccent}}</span>
+      </h2>
+      <p class="race-distress__subtitle">{{kidneyDistressBanner.subtitle}}</p>
+      <p class="race-distress__lede">{{kidneyDistressBanner.body}}</p>
+    </header>
 
-    <figure class="race-distress__figure">
-      <div class="race-distress__scroller">
-        <img
-          src="/images/racing/distress/board.jpg?v=1"
-          alt="Infographic of a racehorse under racing stress with the kidney and circulatory system highlighted, listing the major stressors on the kidney and the effects of kidney distress."
-          class="race-distress__board-img"
-          width="2048"
-          height="1364"
-          loading="lazy"
-        />
+    <div class="race-distress__board">
+      <div class="race-distress__left">
+        <aside class="race-distress__stressors">
+          <p class="race-distress__stressors-title">{{kidneyDistressBanner.stressorsTitle}}</p>
+          <ul class="race-distress__stressors-list">
+            {{#each kidneyDistressBanner.stressors}}
+            <li class="race-distress__stressor">
+              <span class="race-distress__stressor-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
+              <span class="race-distress__stressor-text">{{this.title}}</span>
+            </li>
+            {{/each}}
+          </ul>
+        </aside>
+
+        <article
+          class="race-distress__callout race-distress__callout--{{kidneyDistressBanner.wasteCallout.tone}} race-distress__callout--waste"
+        >
+          <span class="race-distress__callout-icon" aria-hidden="true">
+            {{{icon kidneyDistressBanner.wasteCallout.icon "w-7 h-7"}}}
+          </span>
+          <div class="race-distress__callout-copy">
+            <h3 class="race-distress__callout-title">{{kidneyDistressBanner.wasteCallout.title}}</h3>
+            <p class="race-distress__callout-body">{{kidneyDistressBanner.wasteCallout.body}}</p>
+          </div>
+        </article>
       </div>
-    </figure>
 
-    <p class="sr-only">{{kidneyDistressBanner.stressorsTitle}}</p>
-    <ul class="sr-only">
-      {{#each kidneyDistressBanner.stressors}}
-      <li>{{this.title}}</li>
-      {{/each}}
-    </ul>
+      <div class="race-distress__gap" aria-hidden="true"></div>
 
-    <ul class="sr-only">
-      {{#each kidneyDistressBanner.callouts}}
-      <li>{{this.title}}: {{this.body}}</li>
-      {{/each}}
-    </ul>
+      <div class="race-distress__callouts">
+        {{#each kidneyDistressBanner.sideCallouts}}
+        <article class="race-distress__callout race-distress__callout--{{this.tone}}">
+          <span class="race-distress__callout-icon" aria-hidden="true">{{{icon this.icon "w-7 h-7"}}}</span>
+          <div class="race-distress__callout-copy">
+            <h3 class="race-distress__callout-title">{{this.title}}</h3>
+            <p class="race-distress__callout-body">{{this.body}}</p>
+          </div>
+        </article>
+        {{/each}}
+      </div>
+    </div>
   </div>
 </section>
 
@@ -372,43 +574,94 @@
 
 <section class="race-vetrofit" id="vetrofit" aria-labelledby="race-vetrofit-title">
   <div class="race-vetrofit__inner">
-    <p class="sr-only">{{vetrofitRacingBanner.brand}}</p>
-    <h2 id="race-vetrofit-title" class="sr-only">
-      {{vetrofitRacingBanner.productLead}}{{vetrofitRacingBanner.productAccent}}
-    </h2>
-    <p class="sr-only">{{vetrofitRacingBanner.tagline}}</p>
-    <p class="sr-only">
-      Developed for elite performance horses, VetroFit&reg; is a fast-acting proprietary formulation designed to be
-      administered just 2&ndash;4 hours before competition.
-    </p>
-    <p class="sr-only">
-      Its highly bioavailable blend of vitamins, minerals, trace elements, amino acids, and antioxidants provides
-      targeted nutritional support for healthy kidney function, helping maintain the physiological balance required
-      for peak performance and efficient recovery.
-    </p>
-
-    <figure class="race-vetrofit__figure">
-      <div class="race-vetrofit__scroller">
-        <img
-          src="/images/racing/vetrofit/board.jpg?v=1"
-          alt="Animalife VetroFit — fast-acting, targeted, results. A galloping racehorse beside a VetroFit syringe, highlighting administration 2 to 4 hours before competition."
-          class="race-vetrofit__board-img"
-          width="2048"
-          height="1364"
-          loading="lazy"
-        />
+    <div class="race-vetrofit__copy">
+      <p class="race-vetrofit__brand">{{vetrofitRacingBanner.brand}}</p>
+      <h2 id="race-vetrofit-title" class="race-vetrofit__product">
+        <span class="race-vetrofit__product-mark">{{vetrofitRacingBanner.product}}</span><span
+          class="race-vetrofit__product-reg"
+          aria-hidden="true"
+          >&reg;</span
+        >
+      </h2>
+      <p class="race-vetrofit__tagline">{{vetrofitRacingBanner.tagline}}</p>
+      <div class="race-vetrofit__prose">
+        <p class="race-vetrofit__body">
+          Developed for elite performance horses, VetroFit&reg; is a fast-acting proprietary formulation designed to be
+          administered just <span>2&ndash;4 hours</span> before competition.
+        </p>
+        <p class="race-vetrofit__body">
+          Its highly bioavailable blend of vitamins, minerals, trace elements, amino acids, and antioxidants provides
+          targeted nutritional support for <span>healthy kidney function</span>, helping maintain the physiological
+          balance required for peak performance and efficient recovery.
+        </p>
       </div>
-    </figure>
+    </div>
 
-    <p class="sr-only">
-      {{vetrofitRacingBanner.timingValue}} {{vetrofitRacingBanner.timingUnit}}
-      {{vetrofitRacingBanner.timingNote}}
-    </p>
-    <ul class="sr-only">
-      {{#each vetrofitRacingBanner.features}}
-      <li>{{this.title}}</li>
-      {{/each}}
-    </ul>
+    <div class="race-vetrofit__visual">
+      <img
+        src="/images/racing/vetrofit/horse.jpg?v=20260815b"
+        alt="Racehorse and jockey at full gallop"
+        class="race-vetrofit__media"
+        width="678"
+        height="620"
+      />
+
+      <img
+        src="/images/racing/vetrofit/syringe-cutout.png?v=20260814c"
+        alt=""
+        class="race-vetrofit__syringe"
+        width="268"
+        height="984"
+        aria-hidden="true"
+      />
+
+      <div
+        class="race-vetrofit__dial"
+        role="img"
+        aria-label="Administer {{vetrofitRacingBanner.timingValue}} {{vetrofitRacingBanner.timingUnit}} {{vetrofitRacingBanner.timingNote}}"
+      >
+        <div class="race-vetrofit__dial-face">
+          <span class="race-vetrofit__dial-ticks" aria-hidden="true"></span>
+          <span class="race-vetrofit__dial-ticks race-vetrofit__dial-ticks--major" aria-hidden="true"></span>
+          <svg class="race-vetrofit__dial-arc" viewBox="0 0 100 100" aria-hidden="true">
+            <defs>
+              <marker id="raceVetrofitArrow" viewBox="0 0 10 10" refX="4" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto">
+                <path d="M0 0 L10 5 L0 10 Z" />
+              </marker>
+            </defs>
+            <path class="race-vetrofit__dial-start" d="M50 4 V12" />
+            <path
+              class="race-vetrofit__dial-sweep"
+              d="M55.8 8.4 A42 42 0 0 1 70.5 85.9"
+              marker-end="url(#raceVetrofitArrow)"
+            />
+          </svg>
+          <div class="race-vetrofit__dial-center">
+            <svg class="race-vetrofit__dial-glyph" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9.6 2.6h4.8" />
+              <path d="M12 2.6v2.2" />
+              <path d="m18.4 6.1 1.3-1.3" />
+              <circle cx="12" cy="13" r="7.6" />
+              <path d="M12 9.2V13l2.7 1.8" />
+            </svg>
+            <p class="race-vetrofit__dial-value">{{vetrofitRacingBanner.timingValue}}</p>
+            <p class="race-vetrofit__dial-unit">{{vetrofitRacingBanner.timingUnit}}</p>
+            <p class="race-vetrofit__dial-note">{{vetrofitRacingBanner.timingNote}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="race-vetrofit__features-wrap">
+      <ul class="race-vetrofit__features">
+        {{#each vetrofitRacingBanner.features}}
+        <li class="race-vetrofit__feature">
+          <span class="race-vetrofit__feature-icon" aria-hidden="true">{{{icon this.icon "w-8 h-8"}}}</span>
+          <p class="race-vetrofit__feature-text">{{this.title}}</p>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -450,58 +703,98 @@
 </section>
 
 <section class="race-science" aria-labelledby="race-science-title">
-  <div class="race-science__inner">
-    <h2 id="race-science-title" class="sr-only">
-      {{scienceBehindVetrofit.titleLead}} {{scienceBehindVetrofit.titleAccent}}
-    </h2>
-    <p class="sr-only">{{scienceBehindVetrofit.tagline}}</p>
-    <p class="sr-only">{{scienceBehindVetrofit.body}}</p>
-
-    <figure class="race-science__figure">
-      <div class="race-science__scroller">
-        <img
-          src="/images/racing/science/board.jpg?v=1"
-          alt="The Science Behind VetroFit — nature, research, results. Six formulation principles and a table of physiological support and performance benefits across seven body systems."
-          class="race-science__board-img"
-          width="2048"
-          height="3075"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-    </figure>
-
-    <ul class="sr-only">
-      {{#each scienceBehindVetrofit.pillars}}
-      <li>{{this.title}}: {{this.text}}</li>
-      {{/each}}
-    </ul>
-
-    {{#if physiologyBenefits}}
-    <table class="sr-only">
-      <caption>{{physiologyBenefits.title}}</caption>
-      <thead>
-        <tr>
-          {{#each physiologyBenefits.columns}}
-          <th scope="col">{{this}}</th>
-          {{/each}}
-        </tr>
-      </thead>
-      <tbody>
-        {{#each physiologyBenefits.rows}}
-        <tr>
-          <th scope="row">{{this.system}}</th>
-          <td>{{this.nutrition}}</td>
-          <td>{{#each this.physiology}}{{this}}{{#unless @last}}; {{/unless}}{{/each}}</td>
-          <td>{{#each this.performance}}{{this}}{{#unless @last}}; {{/unless}}{{/each}}</td>
-          <td>{{#each this.wellness}}{{this}}{{#unless @last}}; {{/unless}}{{/each}}</td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-    <p class="sr-only">{{physiologyBenefits.disclaimer}}</p>
-    {{/if}}
+  <div class="race-science__hero">
+    <div class="race-science__media-wrap" aria-hidden="true">
+      <img
+        src="{{scienceBehindVetrofit.image}}?v=20260815a"
+        alt=""
+        class="race-science__media"
+        width="1364"
+        height="688"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="race-science__veil"></div>
+    </div>
+    <div class="race-science__copy">
+      <h2 id="race-science-title" class="race-science__title">
+        <span class="race-science__title-lead">{{scienceBehindVetrofit.titleLead}}</span>
+        <span class="race-science__title-accent">{{scienceBehindVetrofit.titleAccent}}</span>
+      </h2>
+      <p class="race-science__tagline">{{scienceBehindVetrofit.tagline}}</p>
+      <p class="race-science__body">{{scienceBehindVetrofit.body}}</p>
+    </div>
   </div>
+
+  <ul class="race-science__pillars">
+    {{#each scienceBehindVetrofit.pillars}}
+    <li class="race-science__pillar">
+      <span class="race-science__pillar-icon" aria-hidden="true">{{{icon this.icon "w-9 h-9"}}}</span>
+      <p class="race-science__pillar-title">{{this.title}}</p>
+      <p class="race-science__pillar-text">{{this.text}}</p>
+    </li>
+    {{/each}}
+  </ul>
+
+  {{#if physiologyBenefits}}
+  <div class="race-science__chart">
+    <div class="physio-chart physio-chart--race">
+      <header class="race-science__chart-head">
+        <p class="race-science__chart-brand">VetroFit®</p>
+        <h3 class="physio-chart__title">Physiological Support &amp; Performance Benefits</h3>
+      </header>
+      <div class="physio-chart__scroll">
+        <table class="physio-chart__table">
+          <thead>
+            <tr>
+              <th class="physio-chart__th physio-chart__th--system" colspan="2">{{lookup physiologyBenefits.columns 0}}</th>
+              <th class="physio-chart__th physio-chart__th--nutrition">{{lookup physiologyBenefits.columns 1}}</th>
+              <th class="physio-chart__th physio-chart__th--physiology">{{lookup physiologyBenefits.columns 2}}</th>
+              <th class="physio-chart__th physio-chart__th--performance">{{lookup physiologyBenefits.columns 3}}</th>
+              <th class="physio-chart__th physio-chart__th--wellness">{{lookup physiologyBenefits.columns 4}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each physiologyBenefits.rows}}
+            <tr>
+              <td class="physio-chart__icon-cell">
+                <span class="physio-chart__icon">{{{icon this.icon "w-7 h-7"}}}</span>
+              </td>
+              <td class="physio-chart__system">{{this.system}}</td>
+              <td class="physio-chart__nutrition">{{this.nutrition}}</td>
+              <td class="physio-chart__list physio-chart__list--physiology">
+                <ul>
+                  {{#each this.physiology}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </td>
+              <td class="physio-chart__list physio-chart__list--performance">
+                <ul>
+                  {{#each this.performance}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </td>
+              <td class="physio-chart__list physio-chart__list--wellness">
+                <ul>
+                  {{#each this.wellness}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      <p class="physio-chart__disclaimer">
+        {{{icon "leaf" "w-3.5 h-3.5"}}}
+        <span>{{physiologyBenefits.disclaimer}}</span>
+      </p>
+    </div>
+  </div>
+  {{/if}}
 </section>
 
 <section class="race-intro race-intro--muted">

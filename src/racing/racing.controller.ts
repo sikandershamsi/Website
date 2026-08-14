@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Redirect, Render } from '@nestjs/common';
 import {
   performanceCascade,
+  cascadePlot,
   cascadeSummary,
   ownersTrainersFace,
   kidneyHomeostasisBanner,
@@ -28,6 +29,7 @@ export class RacingController {
       title: 'Racing',
       activeNav: 'racing',
       performanceCascade,
+      cascadePlot,
       cascadeSummary,
       ownersTrainersFace,
       kidneyHomeostasisBanner,

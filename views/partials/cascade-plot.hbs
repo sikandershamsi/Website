@@ -1,0 +1,48 @@
+<div class="cascade-plot">
+  <div class="cascade-plot__axis" aria-hidden="true">
+    <span>100%</span>
+    <span>50%</span>
+    <span>0%</span>
+  </div>
+  <div
+    class="cascade-plot__area"
+    role="img"
+    aria-label="Relative performance declines from full capacity in the opening furlong to near zero at the finish"
+  >
+    <span class="cascade-plot__hline" style="top: 0%"></span>
+    <span class="cascade-plot__hline" style="top: 50%"></span>
+    <span class="cascade-plot__hline cascade-plot__hline--base" style="top: 100%"></span>
+    {{#each cascadePlot.dividers}}
+    <span class="cascade-plot__vline" style="left: {{this}}%"></span>
+    {{/each}}
+    <svg class="cascade-plot__svg" viewBox="0 0 700 100" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="{{gradientId}}" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#006837" />
+          <stop offset="16%" stop-color="#8cc63f" />
+          <stop offset="34%" stop-color="#fbb03b" />
+          <stop offset="52%" stop-color="#f15a24" />
+          <stop offset="68%" stop-color="#ed1c24" />
+          <stop offset="84%" stop-color="#c1272d" />
+          <stop offset="100%" stop-color="#8a2be2" />
+        </linearGradient>
+      </defs>
+      <polyline
+        class="cascade-plot__line"
+        fill="none"
+        stroke="url(#{{gradientId}})"
+        vector-effect="non-scaling-stroke"
+        points="{{cascadePlot.line}}"
+      />
+    </svg>
+    {{#each cascadePlot.dots}}
+    <span class="cascade-plot__dot" style="left: {{this.x}}%; top: {{this.y}}%; background: {{this.color}}"></span>
+    {{/each}}
+  </div>
+  <div class="cascade-plot__ticks" aria-hidden="true">
+    {{#each cascadePlot.ticks}}
+    <span class="cascade-plot__tick" style="left: {{this.x}}%">{{this.label}}</span>
+    {{/each}}
+  </div>
+  <p class="cascade-plot__caption">Distance (Furlongs)</p>
+</div>
