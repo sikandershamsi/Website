@@ -1,6 +1,6 @@
 <section class="science-hero">
   <img
-    src="/images/science/hero-performance.jpg"
+    src="/images/science/hero-performance-ed9890d2.jpg"
     alt="Laboratory glassware with botanical ingredients used in Animalife research"
     class="science-hero__media"
   />
@@ -122,3 +122,28 @@
     <p class="rooted-nature__body">Every ingredient is selected to serve a specific purpose&mdash;working together to support the healing process at the cellular level to ensure optimized performance and long-term wellness.</p>
   </div>
 </section>
+
+{{#if vetrofenPrimary.primaryIngredients}}
+<section class="primary-ingredients" aria-labelledby="primary-ingredients-heading">
+  <div class="primary-ingredients__panel">
+    <p class="primary-ingredients__brand">{{vetrofenPrimary.trademark}}</p>
+    <h2 id="primary-ingredients-heading" class="primary-ingredients__title">Primary Ingredients</h2>
+    <div class="primary-ingredients__title-rule" aria-hidden="true"></div>
+    <ul class="primary-ingredients__grid">
+      {{#each vetrofenPrimary.primaryIngredients}}
+      <li class="primary-ingredients__item">
+        <div class="primary-ingredients__media">
+          <img src="{{this.image}}?v=20260814" alt="{{this.name}}" width="720" height="720" loading="lazy" />
+        </div>
+        <p class="primary-ingredients__name">{{this.name}}</p>
+        <div class="primary-ingredients__rule" aria-hidden="true"></div>
+        <p class="primary-ingredients__origin">{{this.origin}}</p>
+      </li>
+      {{/each}}
+    </ul>
+    {{#if vetrofenPrimary.primaryIngredientsFooter}}
+    <p class="primary-ingredients__footer">{{vetrofenPrimary.primaryIngredientsFooter}}</p>
+    {{/if}}
+  </div>
+</section>
+{{/if}}

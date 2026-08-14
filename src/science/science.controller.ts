@@ -1,12 +1,10 @@
 import { Controller, Get, Redirect, Render } from '@nestjs/common';
-import { products } from '../content/products.data';
+import { findProduct, products } from '../content/products.data';
 import { ingredientLibrary, sciencePillars, targetedSupportProducts } from '../content/site.data';
 
 @Controller('the-science')
 export class ScienceController {
-  @Get()
-  @Render('science/performance')
-  index() {
+  private performanceView() {
     return {
       title: 'The Science Behind Performance',
       activeNav: 'science',
@@ -14,7 +12,14 @@ export class ScienceController {
       products,
       sciencePillars,
       targetedSupportProducts,
+      vetrofenPrimary: findProduct('vetrofen'),
     };
+  }
+
+  @Get()
+  @Render('science/performance')
+  index() {
+    return this.performanceView();
   }
 
   @Get('philosophy')
@@ -26,14 +31,7 @@ export class ScienceController {
   @Get('performance')
   @Render('science/performance')
   performance() {
-    return {
-      title: 'The Science Behind Performance',
-      activeNav: 'science',
-      scienceTab: 'performance',
-      products,
-      sciencePillars,
-      targetedSupportProducts,
-    };
+    return this.performanceView();
   }
 
   @Get('ingredients')

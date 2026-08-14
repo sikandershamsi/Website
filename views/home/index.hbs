@@ -51,48 +51,50 @@
 </section>
 
 <!-- INSPIRED BY NATURE. PROVEN BY SCIENCE — copy | still-life | process + ingredient strip -->
-<section class="panel-grey">
+<section class="mission-section">
   <div class="section">
     <div class="mission-panel">
       <div class="mission-panel__copy">
         <p class="mission-panel__eyebrow">Inspired by Nature. Proven by Science.</p>
         <div class="mission-panel__rule" aria-hidden="true"></div>
-        <h2 class="font-display mt-5 text-3xl font-semibold leading-[1.12] text-al-navy sm:text-4xl lg:text-[2.65rem]">
+        <h2 class="mission-panel__title">
           Powerful Ingredients.<br />Purposeful Nutrition.
         </h2>
         <div class="mission-panel__rule" aria-hidden="true"></div>
-        <p class="mt-6 max-w-md text-sm leading-relaxed text-al-ink/75 sm:text-[15px]">We combine nature's most powerful compounds with advanced nutritional science to create solutions that work with your animal's body&mdash;not against it.</p>
+        <p class="mission-panel__body">We combine nature's most powerful compounds with advanced nutritional science to create solutions that work with your animal's body&mdash;not against it.</p>
       </div>
 
       <div class="mission-panel__media">
         <img
-          src="/images/home/ingredients-photo-689a7dc4.jpg"
+          src="/images/home/ingredients-photo-3cf2ff6d.jpg"
           alt="Botanical herbs, mortar and pestle, and laboratory flask"
-          class="h-full w-full object-cover object-center"
+          width="1080"
+          height="620"
+          loading="lazy"
         />
       </div>
 
       <div class="mission-panel__process">
-        <p class="text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-[#2f4a3a]">Designed to Help Animals</p>
-        <div class="mt-6 flex flex-wrap items-start justify-center gap-x-2 gap-y-4 sm:gap-3">
-          <div class="text-center">
+        <p class="mission-panel__process-label">Designed to Help Animals</p>
+        <div class="mission-panel__steps">
+          <div class="mission-panel__step">
             <div class="mission-panel__icon">{{{icon "leaf" "w-5 h-5"}}}</div>
-            <p class="mt-2 text-[10px] font-bold uppercase tracking-wide text-al-navy">Heal</p>
+            <p class="mission-panel__step-label">Heal</p>
           </div>
-          <span class="mt-4 text-al-navy/35">{{{icon "arrow-right" "w-3.5 h-3.5"}}}</span>
-          <div class="text-center">
+          <span class="mission-panel__arrow" aria-hidden="true">{{{icon "arrow-right" "w-3.5 h-3.5"}}}</span>
+          <div class="mission-panel__step">
             <div class="mission-panel__icon">{{{icon "horse" "w-5 h-5"}}}</div>
-            <p class="mt-2 text-[10px] font-bold uppercase tracking-wide text-al-navy">Perform</p>
+            <p class="mission-panel__step-label">Perform</p>
           </div>
-          <span class="mt-4 text-al-navy/35">{{{icon "arrow-right" "w-3.5 h-3.5"}}}</span>
-          <div class="text-center">
+          <span class="mission-panel__arrow" aria-hidden="true">{{{icon "arrow-right" "w-3.5 h-3.5"}}}</span>
+          <div class="mission-panel__step">
             <div class="mission-panel__icon">{{{icon "clock" "w-5 h-5"}}}</div>
-            <p class="mt-2 text-[10px] font-bold uppercase tracking-wide text-al-navy">Recover</p>
+            <p class="mission-panel__step-label">Recover</p>
           </div>
-          <span class="mt-4 text-al-navy/35">{{{icon "arrow-right" "w-3.5 h-3.5"}}}</span>
-          <div class="text-center">
+          <span class="mission-panel__arrow" aria-hidden="true">{{{icon "arrow-right" "w-3.5 h-3.5"}}}</span>
+          <div class="mission-panel__step">
             <div class="mission-panel__icon">{{{icon "heart" "w-5 h-5"}}}</div>
-            <p class="mt-2 text-[10px] font-bold uppercase tracking-wide text-al-navy">Thrive</p>
+            <p class="mission-panel__step-label">Thrive</p>
           </div>
         </div>
         <div class="mission-panel__banner">
@@ -105,13 +107,10 @@
       {{#each featuredIngredients}}
       <div class="mission-ingredient">
         <div class="mission-ingredient__media">
-          <img src="{{this.image}}" alt="{{this.name}}" />
+          <img src="{{this.image}}" alt="{{this.name}}" width="720" height="720" loading="lazy" />
         </div>
         <p class="mission-ingredient__name">{{this.name}}</p>
-        <p class="mission-ingredient__origin">
-          {{{icon "globe" "w-3.5 h-3.5"}}}
-          <span>Origin: {{this.origin}}</span>
-        </p>
+        <p class="mission-ingredient__origin">Origin: {{this.origin}}</p>
       </div>
       {{/each}}
     </div>

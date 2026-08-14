@@ -1,17 +1,43 @@
 {{> page-header eyebrow="Shop Animalife" heading="Shop By Category" subheading="Root Cause Based Treatments For Every Stage of Performance"}}
 
-<section class="panel-grey">
+<section class="panel-white">
   <div class="section">
-    <div class="grid gap-6 md:grid-cols-3">
+    <div class="category-grid">
       {{#each categories}}
-      <a href="/shop/category/{{this.slug}}" class="group overflow-hidden rounded-none border border-al-line bg-white transition-colors hover:bg-al-panel">
-        <div class="flex aspect-[4/5] items-center justify-center bg-white p-8">
-          <img src="{{this.image}}" alt="{{this.short}}" class="max-h-full w-auto max-w-full object-contain" />
+      <a href="/shop/category/{{this.slug}}" class="category-card category-card--{{this.accent}}">
+        <div class="category-card__stage">
+          <div class="category-card__copy">
+            <div class="category-card__rule" aria-hidden="true"></div>
+            <h2 class="category-card__title">{{this.name}}</h2>
+            {{#if this.accentLabel}}
+            <p class="category-card__accent">{{this.accentLabel}}</p>
+            {{/if}}
+            {{#unless (eq this.accentLabel this.strapline)}}
+            <p class="category-card__pillars">{{this.strapline}}</p>
+            {{/unless}}
+            <p class="category-card__body">{{this.summary}}</p>
+          </div>
+          <div class="category-card__media">
+            <img src="{{this.image}}" alt="{{this.name}}" width="1024" height="576" loading="lazy" />
+          </div>
         </div>
-        <div class="border-t border-al-line bg-white p-5">
-          <p class="font-display text-lg font-medium text-al-navy">{{this.short}}</p>
-          <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-navy/50">{{this.strapline}}</p>
-          <span class="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-al-navy group-hover:text-al-navy/70">Shop category {{{icon "arrow-right" "w-4 h-4"}}}</span>
+
+        <div class="category-card__benefits">
+          {{#each this.benefits}}
+          <div class="category-card__benefit">
+            <div class="category-card__icon">{{{icon this.icon "w-5 h-5"}}}</div>
+            <p class="category-card__benefit-title">{{this.title}}</p>
+            <p class="category-card__benefit-body">{{this.body}}</p>
+          </div>
+          {{/each}}
+        </div>
+
+        <div class="category-card__footer">
+          <p class="category-card__range">{{this.rangeLine}}</p>
+          <span class="category-card__cta">
+            {{this.cta}}
+            {{{icon "arrow-right" "w-4 h-4"}}}
+          </span>
         </div>
       </a>
       {{/each}}
@@ -19,7 +45,7 @@
   </div>
 </section>
 
-<section class="panel-white">
+<section class="panel-grey">
   <div class="section">
     <div class="eyebrow">Product Selection</div>
     <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Shop All Products</h2>
