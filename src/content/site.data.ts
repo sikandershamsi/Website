@@ -201,8 +201,22 @@ export const affiliateAudiences = [
 ];
 
 export const vetrofitTestimonials = [
-  { quote: 'Good improvement. The horse improved by almost two seconds. Before she had gone 49.90 and she got down to 48.20.', author: 'Racehorse Owner — Trainer' },
-  { quote: 'We gave her a whole tube this morning 4 hours before her prep breeze and another tube right afterward. She gained 2 seconds from her last breeze at the farm.', author: 'Racehorse Owner' },
-  { quote: 'My rider says the filly is different, very strong.', author: 'Racehorse Owner — Trainer' },
-  { quote: "Nice 3/8 in 35.2, best work he's given, and the 1/2 in 48.1.", author: 'Racehorse Owner — Trainer' },
+  {
+    quote:
+      'Good improvement. The horse improved by almost two seconds. Before she has gone 49.90 and she got down to 48.20.',
+    author: 'Racehorse Owner - Trainer',
+  },
+  {
+    quote:
+      'We gave her a whole tube this morning 4 hours before her prep breeze and another tube right afterward. She gained 2 seconds from her last breeze at the farm.',
+    author: 'Racehorse Owner',
+  },
+  {
+    quote: 'My rider says the filly is different, very strong.',
+    author: 'Racehorse Owner - Trainer',
+  },
+  {
+    quote: "Nice 3/8 in 35.2 best work he's given, and the 1/2 in 48.1.",
+    author: 'Racehorse Owner - Trainer',
+  },
 ];

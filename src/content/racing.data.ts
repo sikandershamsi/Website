@@ -325,6 +325,7 @@ export const homeostasisComparison = {
   normal: {
     label: 'Normal State of Homeostasis',
     tagline: 'Well-Nourished · Hydrated · Balanced · Resilient',
+    image: '/images/racing/comparison/kidney-normal.jpg',
     points: [
       { title: 'Optimal Blood Flow', body: 'Healthy circulation ensures efficient filtration and nutrient delivery.' },
       { title: 'Efficient Filtration', body: 'Removes waste products effectively while preserving essential nutrients.' },
@@ -334,11 +335,18 @@ export const homeostasisComparison = {
       { title: 'Acid-Base Balance', body: "Keeps the body's pH in the optimal range for peak performance." },
       { title: 'Overall Resilience', body: 'Supports endurance, recovery, and long-term health and soundness.' },
     ],
-    result: ['Efficient waste removal and toxin clearance', 'Strong immunity and reduced inflammation', 'Better endurance, faster recovery, and consistent performance', 'Long-term protection of vital organs and musculoskeletal system'],
+    resultTitle: 'Result: Optimal Performance',
+    result: [
+      'Efficient waste removal and toxin clearance',
+      'Strong immunity and reduced inflammation',
+      'Better endurance, faster recovery, and consistent performance',
+      'Long-term protection of vital organs and musculoskeletal system',
+    ],
   },
   stress: {
     label: 'Extreme Stress From Intense Training or Competition',
     tagline: 'Physiological Stress · Dehydration · Inflammation · Imbalance',
+    image: '/images/racing/comparison/kidney-stress.jpg',
     points: [
       { title: 'Reduced Blood Flow', body: 'Vasoconstriction and dehydration limit oxygen and nutrient delivery.' },
       { title: 'Compromised Filtration', body: 'Waste and metabolic toxins accumulate, increasing systemic stress.' },
@@ -348,6 +356,110 @@ export const homeostasisComparison = {
       { title: 'Acid-Base Disruption', body: 'Metabolic acidosis impairs muscle function, recovery, and overall performance.' },
       { title: 'Lower Resilience', body: 'Increased risk of fatigue, injury, poor recovery, and long-term health consequences.' },
     ],
-    result: ['Toxin buildup and increased inflammation', 'Poor hydration and electrolyte loss', 'Decreased stamina, slower recovery, higher risk of injury', 'Greater strain on the body and long-term organ damage'],
+    resultTitle: 'Result: Reduced Performance & Recovery',
+    result: [
+      'Toxin buildup and increased inflammation',
+      'Poor hydration and electrolyte loss',
+      'Decreased stamina, slower recovery, higher risk of injury',
+      'Greater strain on the body and long-term organ damage',
+    ],
+  },
+};
+
+export const vetrofitRacingBanner = {
+  brand: 'Animalife',
+  productLead: 'Vetro',
+  productAccent: 'fit®',
+  tagline: 'Fast-Acting. Targeted. Results.',
+  timingValue: '2–4',
+  timingUnit: 'Hours',
+  timingNote: 'Before Competition',
+  features: [
+    { icon: 'kidney', title: 'Supports Healthy Kidney Function' },
+    { icon: 'scale', title: 'Maintains Physiological Balance' },
+    { icon: 'gallop', title: 'Supports Peak Performance & Efficient Recovery' },
+  ],
+};
+
+export const scienceBehindVetrofit = {
+  titleLead: 'The Science Behind',
+  titleAccent: 'VetroFit',
+  tagline: 'Nature. Research. Results.',
+  body: 'We combine the wisdom of nature with advanced nutritional science to create targeted formulations that deliver real, measurable results.',
+  image: '/images/racing/science/hero.jpg',
+  pillars: [
+    {
+      icon: 'leaf',
+      title: 'Support Natural Regulation',
+      text: 'Promote balance through the body\u2019s own intelligent systems.',
+    },
+    {
+      icon: 'shield-plus',
+      title: 'Enhance the Body\u2019s Defenses',
+      text: 'Strengthen resilience and help defend the animal\u2019s daily demands.',
+    },
+    {
+      icon: 'refresh',
+      title: 'Support Natural Repair',
+      text: 'Nourish tissues and systems so the body can repair and adapt.',
+    },
+    {
+      icon: 'gallop',
+      title: 'Support Physiological Balance',
+      text: 'Maintain optimal function for sustained performance and recovery.',
+    },
+    {
+      icon: 'chart',
+      title: 'Drive Long-Term Results',
+      text: 'Sustainable health today for a lifetime of vitality, longevity and beyond.',
+    },
+    {
+      icon: 'orbit',
+      title: 'Backed by Science & Nature',
+      text: 'Formulated with proven research and the finest natural ingredients.',
+    },
+  ],
+};
+
+export const physiologyToFormulation = {
+  title: 'From Physiology to Formulation',
+  body:
+    'Every ingredient in VetroFit\u00ae is selected for a defined physiological purpose. Together, they form a highly bioavailable nutritional system that supports healthy kidney homeostasis\u2014the foundation for efficient oxygen transport, cardiovascular performance, metabolic balance, hydration, and recovery.',
+};
+
+export const brandsVsAnimalife = {
+  image: '/images/racing/why/hero.jpg',
+  before: 'Most brands focus on what the horse is experiencing',
+  after: 'Animalife focuses on why it happens',
+  features: [
+    { icon: 'kidney', title: 'Supports Kidney Function' },
+    { icon: 'scale', title: 'Maintains Physiological Balance' },
+    { icon: 'gallop', title: 'Supports Peak Performance & Efficient Recovery' },
+  ],
+};
+
+export const performanceEvaluationBanner = {
+  image: '/images/racing/evaluation/hero.jpg',
+  eyebrow: 'VetroFit® Performance Evaluation Program',
+  title: 'Feel the Difference.',
+  subtitle: 'Better Balance. Better Performance. Better Recovery.',
+  body: 'Join a select group of professional trainers and owners evaluating VetroFit®—a nutraceutical designed to support kidney homeostasis, physiological balance for optimized performance, recovery and long term wellness.',
+  aside: {
+    line1: 'Scientific Nutrition.',
+    line2: 'Real-World Results.',
+    line3: 'Better Outcomes.',
+  },
+  benefits: [
+    { icon: 'kidney', title: 'Supports Kidney Health' },
+    { icon: 'droplet', title: 'Optimizes Physiological Balance' },
+    { icon: 'gallop', title: 'Ultra Fast Acting' },
+    { icon: 'heart-pulse', title: 'Promotes Faster Recovery' },
+  ],
+  cta: {
+    href: '/racing/performance-evaluation',
+    lead: 'Applications Now Open',
+    sub: 'For a Limited Number of Stables.',
+    tagline: 'Your experience. Our science.',
+    taglineAccent: 'Better outcomes for every horse.',
   },
 };

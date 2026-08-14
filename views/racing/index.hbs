@@ -460,6 +460,398 @@
   </div>
 </section>
 
+<section class="race-intro">
+  <div class="race-intro__inner">
+    <h2 class="race-intro__title">02 <span aria-hidden="true">|</span> The Kidney: Where Performance Is Won or Lost</h2>
+    <p class="race-intro__body">
+      The fatigue you see on the track begins long before it becomes visible. As the kidney struggles to maintain
+      physiological homeostasis under extreme athletic demands, oxygen delivery, recovery, and performance begin to
+      decline.
+    </p>
+  </div>
+</section>
+
+<section class="race-compare" aria-label="Kidney homeostasis comparison">
+  <div class="race-compare__inner">
+    <article class="race-compare__panel race-compare__panel--normal">
+      <header class="race-compare__head">
+        <h2 class="race-compare__label">{{homeostasisComparison.normal.label}}</h2>
+      </header>
+      <p class="race-compare__tagline">{{homeostasisComparison.normal.tagline}}</p>
+      <div class="race-compare__visual">
+        <img
+          src="{{homeostasisComparison.normal.image}}"
+          alt="Healthy kidney in a normal state of homeostasis"
+          class="race-compare__kidney"
+          width="410"
+          height="369"
+        />
+      </div>
+      <ul class="race-compare__points">
+        {{#each homeostasisComparison.normal.points}}
+        <li class="race-compare__point">
+          <span class="race-compare__mark" aria-hidden="true">{{{icon "check" "w-4 h-4"}}}</span>
+          <div>
+            <p class="race-compare__point-title">{{this.title}}</p>
+            <p class="race-compare__point-body">{{this.body}}</p>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+      <div class="race-compare__result">
+        <div class="race-compare__result-icon" aria-hidden="true">{{{icon "shield-check" "w-7 h-7"}}}</div>
+        <div>
+          <p class="race-compare__result-title">{{homeostasisComparison.normal.resultTitle}}</p>
+          <ul class="race-compare__result-list">
+            {{#each homeostasisComparison.normal.result}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="race-compare__panel race-compare__panel--stress">
+      <header class="race-compare__head">
+        <h2 class="race-compare__label">{{homeostasisComparison.stress.label}}</h2>
+      </header>
+      <p class="race-compare__tagline">{{homeostasisComparison.stress.tagline}}</p>
+      <div class="race-compare__visual">
+        <img
+          src="{{homeostasisComparison.stress.image}}"
+          alt="Kidney under extreme training and competition stress"
+          class="race-compare__kidney"
+          width="410"
+          height="369"
+        />
+      </div>
+      <ul class="race-compare__points">
+        {{#each homeostasisComparison.stress.points}}
+        <li class="race-compare__point">
+          <span class="race-compare__mark" aria-hidden="true">{{{icon "close" "w-4 h-4"}}}</span>
+          <div>
+            <p class="race-compare__point-title">{{this.title}}</p>
+            <p class="race-compare__point-body">{{this.body}}</p>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+      <div class="race-compare__result">
+        <div class="race-compare__result-icon" aria-hidden="true">{{{icon "alert" "w-7 h-7"}}}</div>
+        <div>
+          <p class="race-compare__result-title">{{homeostasisComparison.stress.resultTitle}}</p>
+          <ul class="race-compare__result-list">
+            {{#each homeostasisComparison.stress.result}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="race-vetrofit" aria-labelledby="race-vetrofit-title">
+  <div class="race-vetrofit__media-wrap" aria-hidden="true">
+    <img
+      src="/images/racing/vetrofit/hero.jpg"
+      alt=""
+      class="race-vetrofit__media"
+      width="1024"
+      height="682"
+    />
+    <div class="race-vetrofit__veil"></div>
+  </div>
+
+  <div class="race-vetrofit__inner">
+    <div class="race-vetrofit__copy">
+      <p class="race-vetrofit__brand">{{vetrofitRacingBanner.brand}}</p>
+      <h2 id="race-vetrofit-title" class="race-vetrofit__product">
+        <span class="race-vetrofit__product-lead">{{vetrofitRacingBanner.productLead}}</span><span class="race-vetrofit__product-accent">{{vetrofitRacingBanner.productAccent}}</span>
+      </h2>
+      <p class="race-vetrofit__tagline">{{vetrofitRacingBanner.tagline}}</p>
+      <p class="race-vetrofit__body">
+        Developed for elite performance horses, VetroFit&reg; is a fast-acting proprietary formulation designed to be
+        administered just <span>2&ndash;4 hours</span> before competition.
+      </p>
+      <p class="race-vetrofit__body">
+        Its highly bioavailable blend of vitamins, minerals, trace elements, amino acids, and antioxidants provides
+        targeted nutritional support for <span>healthy kidney function</span>, helping maintain the physiological
+        balance required for peak performance and efficient recovery.
+      </p>
+    </div>
+
+    <div class="race-vetrofit__timing" aria-hidden="true">
+      <span class="race-vetrofit__timing-icon">{{{icon "clock" "w-5 h-5"}}}</span>
+      <p class="race-vetrofit__timing-value">{{vetrofitRacingBanner.timingValue}}</p>
+      <p class="race-vetrofit__timing-unit">{{vetrofitRacingBanner.timingUnit}}</p>
+      <p class="race-vetrofit__timing-note">{{vetrofitRacingBanner.timingNote}}</p>
+    </div>
+
+    <ul class="race-vetrofit__features">
+      {{#each vetrofitRacingBanner.features}}
+      <li class="race-vetrofit__feature">
+        <span class="race-vetrofit__feature-icon" aria-hidden="true">{{{icon this.icon "w-6 h-6"}}}</span>
+        <p class="race-vetrofit__feature-text">{{this.title}}</p>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</section>
+
+<section class="race-intro">
+  <div class="race-intro__inner">
+    <h2 class="race-intro__title race-intro__title--plain">VetroFit</h2>
+    <p class="race-intro__body">
+      Developed specifically for the demands of the equine athlete,
+      <strong>VetroFit&reg;</strong> is a proprietary nutritional formulation designed to support healthy kidney
+      homeostasis&mdash;the physiological foundation for efficient oxygen transport, faster recovery, sustained
+      performance, and long-term wellness.
+    </p>
+  </div>
+</section>
+
+<section class="panel-grey">
+  <div class="section">
+    <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
+      <div class="eyebrow justify-center text-black">Testimonials</div>
+      <h2 class="font-display mt-4 text-3xl font-medium text-black sm:text-4xl lg:text-[2.75rem]">Trusted by horsemen who expect results.</h2>
+    </div>
+    <div class="mt-10 overflow-hidden" data-testimonial-slider data-auto-slider>
+      <div class="slider-track gap-0" data-testimonial-track>
+        {{#each testimonials}}
+        <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
+          <div class="card h-full p-6">
+            <div class="flex gap-0.5 text-black">
+              {{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}
+            </div>
+            <p class="mt-4 text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
+            <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-black">{{this.author}}</p>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="mt-6 flex justify-center gap-2" data-testimonial-dots></div>
+  </div>
+</section>
+
+<section class="race-science" aria-labelledby="race-science-title">
+  <div class="race-science__hero">
+    <div class="race-science__media-wrap" aria-hidden="true">
+      <img
+        src="{{scienceBehindVetrofit.image}}"
+        alt=""
+        class="race-science__media"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="race-science__veil"></div>
+    </div>
+    <div class="race-science__copy">
+      <h2 id="race-science-title" class="race-science__title">
+        <span class="race-science__title-lead">{{scienceBehindVetrofit.titleLead}}</span>
+        <span class="race-science__title-accent">{{scienceBehindVetrofit.titleAccent}}</span>
+      </h2>
+      <p class="race-science__tagline">{{scienceBehindVetrofit.tagline}}</p>
+      <p class="race-science__body">{{scienceBehindVetrofit.body}}</p>
+    </div>
+  </div>
+
+  <ul class="race-science__pillars">
+    {{#each scienceBehindVetrofit.pillars}}
+    <li class="race-science__pillar">
+      <span class="race-science__pillar-icon" aria-hidden="true">{{{icon this.icon "w-6 h-6"}}}</span>
+      <p class="race-science__pillar-title">{{this.title}}</p>
+      <p class="race-science__pillar-text">{{this.text}}</p>
+    </li>
+    {{/each}}
+  </ul>
+
+  {{#if physiologyBenefits}}
+  <div class="race-science__chart">
+    <div class="physio-chart physio-chart--race">
+      <h3 class="physio-chart__title">{{physiologyBenefits.title}}</h3>
+      <div class="physio-chart__scroll">
+        <table class="physio-chart__table">
+          <thead>
+            <tr>
+              <th class="physio-chart__th physio-chart__th--system" colspan="2">{{lookup physiologyBenefits.columns 0}}</th>
+              <th class="physio-chart__th physio-chart__th--nutrition">{{lookup physiologyBenefits.columns 1}}</th>
+              <th class="physio-chart__th physio-chart__th--physiology">{{lookup physiologyBenefits.columns 2}}</th>
+              <th class="physio-chart__th physio-chart__th--performance">{{lookup physiologyBenefits.columns 3}}</th>
+              <th class="physio-chart__th physio-chart__th--wellness">{{lookup physiologyBenefits.columns 4}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each physiologyBenefits.rows}}
+            <tr>
+              <td class="physio-chart__icon-cell">
+                <span class="physio-chart__icon">{{{icon this.icon "w-7 h-7"}}}</span>
+              </td>
+              <td class="physio-chart__system">{{this.system}}</td>
+              <td class="physio-chart__nutrition">{{this.nutrition}}</td>
+              <td class="physio-chart__list physio-chart__list--physiology">
+                <ul>
+                  {{#each this.physiology}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </td>
+              <td class="physio-chart__list physio-chart__list--performance">
+                <ul>
+                  {{#each this.performance}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </td>
+              <td class="physio-chart__list physio-chart__list--wellness">
+                <ul>
+                  {{#each this.wellness}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      <p class="physio-chart__disclaimer">
+        {{{icon "leaf" "w-3.5 h-3.5"}}}
+        <span>{{physiologyBenefits.disclaimer}}</span>
+      </p>
+    </div>
+  </div>
+  {{/if}}
+</section>
+
+<section class="race-intro race-intro--muted">
+  <div class="race-intro__inner">
+    <h2 class="race-intro__title">{{physiologyToFormulation.title}}</h2>
+    <p class="race-intro__body">{{physiologyToFormulation.body}}</p>
+  </div>
+</section>
+
+{{#if vetrofitPrimary.primaryIngredients}}
+<section class="primary-ingredients" aria-labelledby="race-primary-ingredients-heading">
+  <div class="primary-ingredients__panel">
+    <p class="primary-ingredients__brand">{{vetrofitPrimary.trademark}}</p>
+    <h2 id="race-primary-ingredients-heading" class="primary-ingredients__title">Primary Ingredients</h2>
+    <div class="primary-ingredients__title-rule" aria-hidden="true"></div>
+    <ul class="primary-ingredients__grid">
+      {{#each vetrofitPrimary.primaryIngredients}}
+      <li class="primary-ingredients__item">
+        <div class="primary-ingredients__media">
+          <img src="{{this.image}}" alt="{{this.name}}" width="640" height="640" loading="lazy" />
+        </div>
+        <p class="primary-ingredients__name">{{this.name}}</p>
+        <div class="primary-ingredients__rule" aria-hidden="true"></div>
+        <p class="primary-ingredients__origin">{{this.origin}}</p>
+      </li>
+      {{/each}}
+    </ul>
+    {{#if vetrofitPrimary.primaryIngredientsFooter}}
+    <p class="primary-ingredients__footer">{{vetrofitPrimary.primaryIngredientsFooter}}</p>
+    {{/if}}
+  </div>
+</section>
+{{/if}}
+
+<section class="race-why" aria-labelledby="race-why-title">
+  <div class="race-why__media-wrap" aria-hidden="true">
+    <img
+      src="{{brandsVsAnimalife.image}}"
+      alt=""
+      class="race-why__media"
+      width="1024"
+      height="512"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="race-why__veil"></div>
+  </div>
+
+  <div class="race-why__inner">
+    <div class="race-why__copy">
+      <h2 id="race-why-title" class="race-why__before">{{brandsVsAnimalife.before}}</h2>
+      <div class="race-why__vs" aria-hidden="true">
+        <span class="race-why__vs-line"></span>
+        <span class="race-why__vs-label">VS</span>
+        <span class="race-why__vs-line"></span>
+      </div>
+      <p class="race-why__after">{{brandsVsAnimalife.after}}</p>
+    </div>
+
+    <ul class="race-why__features">
+      {{#each brandsVsAnimalife.features}}
+      <li class="race-why__feature">
+        <span class="race-why__feature-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
+        <p class="race-why__feature-text">{{this.title}}</p>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</section>
+
+<section class="race-eval" aria-labelledby="race-eval-title">
+  <div class="race-eval__media-wrap" aria-hidden="true">
+    <img
+      src="{{performanceEvaluationBanner.image}}"
+      alt=""
+      class="race-eval__media"
+      width="1024"
+      height="492"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <div class="race-eval__inner">
+    <div class="race-eval__main">
+      <p class="race-eval__eyebrow">
+        <span class="race-eval__eyebrow-line" aria-hidden="true"></span>
+        <span>{{performanceEvaluationBanner.eyebrow}}</span>
+        <span class="race-eval__eyebrow-line" aria-hidden="true"></span>
+      </p>
+      <h2 id="race-eval-title" class="race-eval__title">{{performanceEvaluationBanner.title}}</h2>
+      <p class="race-eval__subtitle">{{performanceEvaluationBanner.subtitle}}</p>
+      <p class="race-eval__body">{{performanceEvaluationBanner.body}}</p>
+
+      <ul class="race-eval__benefits">
+        {{#each performanceEvaluationBanner.benefits}}
+        <li class="race-eval__benefit">
+          <span class="race-eval__benefit-icon" aria-hidden="true">{{{icon this.icon "w-6 h-6"}}}</span>
+          <p class="race-eval__benefit-text">{{this.title}}</p>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="race-eval__aside" aria-hidden="true">
+      <span class="race-eval__aside-icon">{{{icon "gallop" "w-5 h-5"}}}</span>
+      <p class="race-eval__aside-line">{{performanceEvaluationBanner.aside.line1}}</p>
+      <p class="race-eval__aside-line">{{performanceEvaluationBanner.aside.line2}}</p>
+      <p class="race-eval__aside-accent">{{performanceEvaluationBanner.aside.line3}}</p>
+    </div>
+  </div>
+
+  <a href="{{performanceEvaluationBanner.cta.href}}" class="race-eval__cta">
+    <div class="race-eval__cta-open">
+      <span class="race-eval__cta-icon" aria-hidden="true">{{{icon "file-text" "w-5 h-5"}}}</span>
+      <div>
+        <p class="race-eval__cta-lead">{{performanceEvaluationBanner.cta.lead}}</p>
+        <p class="race-eval__cta-sub">{{performanceEvaluationBanner.cta.sub}}</p>
+      </div>
+    </div>
+    <span class="race-eval__cta-divider" aria-hidden="true"></span>
+    <div class="race-eval__cta-tagline">
+      <p class="race-eval__cta-tagline-main">{{performanceEvaluationBanner.cta.tagline}}</p>
+      <p class="race-eval__cta-tagline-accent">{{performanceEvaluationBanner.cta.taglineAccent}}</p>
+    </div>
+  </a>
+</section>
+
 <section class="panel-grey">
   <div class="section grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
     <a href="/racing/industry-reality" class="card group p-7 transition-colors hover:bg-al-panel">

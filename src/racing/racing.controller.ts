@@ -11,7 +11,13 @@ import {
   homeostasisSystems,
   homeostasisImpact,
   homeostasisComparison,
+  vetrofitRacingBanner,
+  scienceBehindVetrofit,
+  physiologyToFormulation,
+  brandsVsAnimalife,
+  performanceEvaluationBanner,
 } from '../content/racing.data';
+import { findProduct } from '../content/products.data';
 import { vetrofitTestimonials } from '../content/site.data';
 import { PerformanceEvaluationDto } from './performance-evaluation.dto';
 
@@ -20,6 +26,7 @@ export class RacingController {
   @Get()
   @Render('racing/index')
   index() {
+    const vetrofitPrimary = findProduct('vetrofit');
     return {
       title: 'Racing',
       activeNav: 'racing',
@@ -31,6 +38,15 @@ export class RacingController {
       kidneyMasterRegulator,
       oxygenTransport,
       kidneyDistressBanner,
+      homeostasisComparison,
+      vetrofitRacingBanner,
+      testimonials: vetrofitTestimonials,
+      scienceBehindVetrofit,
+      physiologyBenefits: vetrofitPrimary?.physiologyBenefits,
+      physiologyToFormulation,
+      vetrofitPrimary,
+      brandsVsAnimalife,
+      performanceEvaluationBanner,
     };
   }
 

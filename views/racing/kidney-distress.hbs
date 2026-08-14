@@ -27,7 +27,7 @@
           {{/each}}
         </ul>
         <div class="mt-6 rounded-none bg-white p-5">
-          <p class="text-xs font-semibold uppercase tracking-wide text-green-700">Result: Optimal Performance</p>
+          <p class="text-xs font-semibold uppercase tracking-wide text-green-700">{{comparison.normal.resultTitle}}</p>
           <ul class="mt-2 space-y-1 text-xs text-al-ink/70">
             {{#each comparison.normal.result}}
             <li>&bull; {{this}}</li>
@@ -51,7 +51,7 @@
           {{/each}}
         </ul>
         <div class="mt-6 rounded-none bg-white p-5">
-          <p class="text-xs font-semibold uppercase tracking-wide text-red-700">Result: Reduced Performance &amp; Recovery</p>
+          <p class="text-xs font-semibold uppercase tracking-wide text-red-700">{{comparison.stress.resultTitle}}</p>
           <ul class="mt-2 space-y-1 text-xs text-al-ink/70">
             {{#each comparison.stress.result}}
             <li>&bull; {{this}}</li>
