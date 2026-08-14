@@ -46,6 +46,13 @@
   </div>
 </section>
 
+<section class="panel-white">
+  <div class="section max-w-4xl">
+    <h2 class="font-display text-2xl font-medium text-al-navy sm:text-3xl">{{product.physiologyPanel.heading}}</h2>
+    <p class="mt-4 text-sm leading-relaxed text-al-ink/75">{{product.physiologyPanel.body}}</p>
+  </div>
+</section>
+
 <section class="panel-grey" id="ingredients">
   <div class="section">
     <div data-tabs>
@@ -60,21 +67,8 @@
       <div data-tab-panel="description" class="py-10">
         <p class="max-w-3xl text-sm leading-relaxed text-al-ink/75">{{product.description}}</p>
 
-        {{#if product.primaryIngredientsPanel}}
-        <figure class="product-panel mt-10">
-          <img
-            src="{{product.primaryIngredientsPanel}}"
-            alt="{{product.trademark}} primary ingredients"
-            width="1024"
-            height="682"
-            loading="lazy"
-            class="product-panel__img"
-          />
-        </figure>
-        {{/if}}
-
         {{#if product.comparisonPanel}}
-        <figure class="product-panel mt-8">
+        <figure class="product-panel mt-10">
           <img
             src="{{product.comparisonPanel}}"
             alt="{{product.trademark}} compared with other brands"
@@ -89,32 +83,55 @@
 
       <div data-tab-panel="ingredients" class="hidden py-10">
         {{#with (lookup product.ingredientBenefits 0) as |row|}}
-        <div class="grid gap-6 md:grid-cols-3">
-          <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-navy/55">Ingredients</p><p class="mt-2 text-sm text-al-ink/75">{{row.ingredient}}</p></div>
-          <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-navy/55">Ingredient Benefits</p><p class="mt-2 text-sm text-al-ink/75">{{row.benefit}}</p></div>
-          <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-navy/55">Performance Benefits</p><p class="mt-2 text-sm text-al-ink/75">{{row.performance}}</p></div>
+        <div class="pi-benefit-table">
+          <div class="pi-benefit-table__col">
+            <p class="pi-benefit-table__head">Ingredients</p>
+            <p class="pi-benefit-table__body">{{row.ingredient}}</p>
+          </div>
+          <div class="pi-benefit-table__col">
+            <p class="pi-benefit-table__head">Ingredient Benefits</p>
+            <p class="pi-benefit-table__body">{{row.benefit}}</p>
+          </div>
+          <div class="pi-benefit-table__col">
+            <p class="pi-benefit-table__head">Performance Benefits</p>
+            <p class="pi-benefit-table__body">{{row.performance}}</p>
+          </div>
+          <div class="pi-benefit-table__col">
+            <p class="pi-benefit-table__head">Long-Term Benefits</p>
+            <p class="pi-benefit-table__body">{{row.wellness}}</p>
+          </div>
         </div>
-        <div class="card mt-6 p-6"><p class="text-xs font-semibold uppercase tracking-wide text-al-navy/55">Long-Term Health &amp; Wellness</p><p class="mt-2 text-sm text-al-ink/75">{{row.wellness}}</p></div>
         {{/with}}
 
         {{#if product.primaryIngredients}}
-        <div class="mt-10 rounded-none border border-al-line bg-white p-6 sm:p-10">
-          <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-al-ink/50">{{product.trademark}}</p>
-          <p class="font-display mt-2 text-center text-2xl font-medium uppercase tracking-wide text-al-navy sm:text-3xl">Primary Ingredients</p>
-          <div class="mx-auto mt-2 h-px w-14 bg-al-navy" aria-hidden="true"></div>
-          <div class="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
+        <div class="pi-board{{#if product.primaryIngredientsCallouts}} pi-board--dense{{/if}}">
+          <p class="pi-board__brand">{{product.trademark}}</p>
+          <h3 class="pi-board__title">Primary Ingredients</h3>
+          <div class="pi-board__rule" aria-hidden="true"></div>
+          <ul class="pi-board__grid">
             {{#each product.primaryIngredients}}
-            <div class="text-center">
-              <div class="mx-auto aspect-square w-full max-w-[140px] overflow-hidden rounded-none">
-                <img src="{{this.image}}" alt="{{this.name}}" class="h-full w-full object-cover" />
+            <li class="pi-board__item">
+              <div class="pi-board__media">
+                <img src="{{this.image}}?v=20260814c" alt="{{this.name}}" width="640" height="640" loading="lazy" />
               </div>
-              <p class="font-display mt-4 text-sm font-semibold text-al-navy">{{this.name}}</p>
-              <div class="mx-auto mt-2 h-px w-8 bg-al-navy/50" aria-hidden="true"></div>
-              <p class="mt-2 text-[10px] uppercase tracking-wide text-al-ink/45">Origin: {{this.origin}}</p>
+              <p class="pi-board__name">{{this.name}}</p>
+              <div class="pi-board__item-rule" aria-hidden="true"></div>
+              <p class="pi-board__origin">Origin: {{this.origin}}</p>
+            </li>
+            {{/each}}
+          </ul>
+          {{#if product.primaryIngredientsCallouts}}
+          <div class="pi-board__callouts">
+            {{#each product.primaryIngredientsCallouts}}
+            <div class="pi-board__callout">
+              <div class="pi-board__callout-icon">{{{icon this.icon "w-5 h-5"}}}</div>
+              <p class="pi-board__callout-text">{{this.text}}</p>
             </div>
             {{/each}}
           </div>
-          <p class="mt-10 text-center text-xs font-semibold uppercase tracking-wide text-al-ink/50">{{product.primaryIngredientsFooter}}</p>
+          {{else}}
+          <p class="pi-board__footer">{{product.primaryIngredientsFooter}}</p>
+          {{/if}}
         </div>
         {{/if}}
       </div>
@@ -224,14 +241,7 @@
   </div>
 </section>
 
-<section class="panel-white">
-  <div class="section max-w-4xl">
-    <h2 class="font-display text-2xl font-medium text-al-navy sm:text-3xl">{{product.physiologyPanel.heading}}</h2>
-    <p class="mt-4 text-sm leading-relaxed text-al-ink/75">{{product.physiologyPanel.body}}</p>
-    <a href="#ingredients" class="btn-outline mt-6">See the Ingredient Chart</a>
-  </div>
-</section>
-
+{{#unless product.comparisonPanel}}
 <section class="panel-grey">
   <div class="section">
     <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-start">
@@ -269,6 +279,7 @@
     </div>
   </div>
 </section>
+{{/unless}}
 
 {{#ifCond product.slug "vetrofit"}}
 <section class="panel-grey">
@@ -315,6 +326,7 @@
 </section>
 {{/ifCond}}
 
+{{#unless (eq product.slug "vetrofit")}}
 {{#if reviews.length}}
 <section class="section">
   <div class="eyebrow">Testimonials</div>
@@ -330,6 +342,7 @@
   </div>
 </section>
 {{/if}}
+{{/unless}}
 
 <section class="bg-al-panel">
   <div class="section">

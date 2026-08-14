@@ -229,6 +229,78 @@
   .product-panel__img {
     @apply block h-auto w-full;
   }
+  .pi-benefit-table {
+    @apply grid gap-px overflow-hidden border border-al-navy/80 bg-al-navy/10 sm:grid-cols-2 lg:grid-cols-4;
+  }
+  .pi-benefit-table__col {
+    @apply bg-white;
+  }
+  .pi-benefit-table__head {
+    @apply bg-al-navy px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-white;
+  }
+  .pi-benefit-table__body {
+    @apply px-4 py-4 text-xs leading-relaxed text-al-ink/75 sm:text-[13px];
+  }
+  .pi-board {
+    @apply mt-10 border border-al-line bg-white px-5 py-10 sm:px-8 sm:py-12;
+  }
+  .pi-board__brand {
+    @apply text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-al-navy/55;
+  }
+  .pi-board__title {
+    @apply mt-2 text-center font-sans text-[clamp(1.35rem,2.5vw,1.85rem)] font-extrabold uppercase tracking-[0.06em] text-al-navy;
+  }
+  .pi-board__rule {
+    @apply mx-auto mt-3 h-px w-14 bg-al-orange;
+  }
+  .pi-board__grid {
+    @apply mt-10 grid list-none grid-cols-2 gap-x-4 gap-y-10 p-0 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5;
+  }
+  .pi-board--dense .pi-board__grid {
+    @apply lg:grid-cols-7;
+  }
+  .pi-board--dense .pi-board__item:nth-child(15) {
+    @apply lg:col-start-3;
+  }
+  .pi-board__item {
+    @apply flex flex-col items-center text-center;
+  }
+  .pi-board__media {
+    @apply relative aspect-square w-full max-w-[120px] overflow-hidden rounded-full bg-[#efefef] sm:max-w-[130px];
+  }
+  .pi-board--dense .pi-board__media {
+    @apply max-w-[100px] sm:max-w-[110px];
+  }
+  .pi-board__media img {
+    @apply absolute inset-0 h-full w-full scale-105 object-cover object-center;
+  }
+  .pi-board__name {
+    @apply mt-3 max-w-[11rem] text-[10px] font-bold uppercase leading-snug tracking-[0.04em] text-al-navy sm:text-[11px];
+  }
+  .pi-board__item-rule {
+    @apply mx-auto mt-2 h-px w-8 bg-al-orange;
+  }
+  .pi-board__origin {
+    @apply mt-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-al-ink/50;
+  }
+  .pi-board__footer {
+    @apply mt-12 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-al-ink/55;
+  }
+  .pi-board__callouts {
+    @apply mt-12 grid gap-6 border-t border-al-orange/40 pt-8 sm:grid-cols-3 sm:gap-0;
+  }
+  .pi-board__callout {
+    @apply flex flex-col items-center gap-3 px-4 text-center sm:px-6;
+  }
+  .pi-board__callout + .pi-board__callout {
+    @apply sm:border-l sm:border-al-orange/40;
+  }
+  .pi-board__callout-icon {
+    @apply flex h-11 w-11 items-center justify-center rounded-full border-2 border-al-orange text-al-orange;
+  }
+  .pi-board__callout-text {
+    @apply text-[10px] font-bold uppercase leading-snug tracking-[0.08em] text-al-navy sm:text-[11px];
+  }
   .tag-pill {
     @apply rounded-none bg-al-panel px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-al-navy;
   }

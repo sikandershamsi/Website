@@ -69,6 +69,7 @@ export interface Product {
   primaryIngredients: { name: string; origin: string; image: string }[];
   primaryIngredientsFooter: string;
   primaryIngredientsPanel?: string;
+  primaryIngredientsCallouts?: { icon: string; text: string }[];
   comparisonPanel?: string;
   supports: string[];
   ingredientBenefits: {
@@ -567,8 +568,9 @@ export const products: Product[] = [
       { name: 'Niacinamide (Vitamin B3)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/niacinamide.jpg' },
       { name: 'D-Panthenol (Provitamin B5)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/d-panthenol.jpg' },
       { name: 'Vitamin B6 (Pyridoxine HCl)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-b6.jpg' },
+      { name: 'Vitamin B2 (Riboflavin Sodium Phosphate)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-b2-rsp.jpg' },
       { name: 'Vitamin K3 (Menadione Sodium Bisulfite)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-k3.jpg' },
-      { name: 'Vitamin A/D (Cholecalciferol)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-d3.jpg' },
+      { name: 'Vitamin A/D (Cholecalciferol)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-ad.jpg' },
       { name: 'Vitamin B12 (Cyanocobalamin)', origin: 'Synthetic', image: '/images/ingredients/vetrofit/vitamin-b12.jpg' },
       { name: 'Chelated Minerals (Fe, Cu, Mn, Zn, Se)', origin: 'Mineral', image: '/images/ingredients/vetrofit/chelated-minerals.jpg' },
       { name: 'Lysine', origin: 'Synthetic', image: '/images/ingredients/vetrofit/lysine.jpg' },
@@ -576,7 +578,11 @@ export const products: Product[] = [
     ],
     primaryIngredientsFooter:
       'Targeted Nutrition for Kidney Support & Oxygen Transport | Supports Kidney Homeostasis & Fluid-Electrolyte Balance | Promotes Recovery, Endurance & Overall Wellness',
-    primaryIngredientsPanel: '/images/vetrofit/primary-ingredients-panel.jpg',
+    primaryIngredientsCallouts: [
+      { icon: 'crosshair', text: 'Targeted Nutrition for Kidney Support & Oxygen Transport' },
+      { icon: 'kidney', text: 'Supports Kidney Homeostasis & Fluid-Electrolyte Balance' },
+      { icon: 'shield-plus', text: 'Promotes Recovery, Endurance & Overall Wellness' },
+    ],
     comparisonPanel: '/images/vetrofit/comparison-panel.jpg',
     supports: ['Oxygen Delivery', 'Recovery', 'Cardiovascular Efficiency', 'Electrolyte Balance', 'Energy Production', 'Kidney Function', 'Competitive Performance'],
     ingredientBenefits: [
