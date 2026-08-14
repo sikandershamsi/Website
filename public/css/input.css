@@ -177,7 +177,11 @@
     @apply mt-4 h-px w-12 bg-al-navy/80;
   }
   .mission-panel__media {
-    @apply mx-auto aspect-[4/5] w-full max-w-md overflow-hidden bg-white lg:max-w-none;
+    @apply mx-auto aspect-[4/5] w-full max-w-md overflow-hidden bg-al-panel lg:max-w-none;
+  }
+  .mission-panel__media img {
+    @apply h-full w-full object-cover object-center;
+    mix-blend-mode: multiply;
   }
   .mission-panel__process {
     @apply flex flex-col justify-center;
