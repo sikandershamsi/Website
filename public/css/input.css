@@ -2582,8 +2582,6 @@
       );
     }
     .al-diff__panel:first-child .al-diff__media {
-      width: calc(100% + var(--al-diff-slant) / 2);
-      margin-left: 0;
       clip-path: polygon(
         0 0,
         100% 0,
@@ -2592,7 +2590,6 @@
       );
     }
     .al-diff__panel:last-child .al-diff__media {
-      width: calc(100% + var(--al-diff-slant) / 2);
       clip-path: polygon(var(--al-diff-slant) 0, 100% 0, 100% 100%, 0 100%);
     }
     .al-diff__panel:not(:last-child)::after {
@@ -2604,7 +2601,7 @@
       width: 1px;
       z-index: 4;
       background: color-mix(in srgb, var(--al-diff-gold) 55%, transparent);
-      transform: skewX(-3.4deg);
+      transform: skewX(-5deg);
     }
     .al-diff__badge {
       @apply right-7 top-4 h-12 xl:h-14;
