@@ -426,6 +426,19 @@
     --vf-orange: #e87820;
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
   }
+  .vf-compare--red {
+    --vf-orange: #c43c2c;
+  }
+  .vf-compare__banner {
+    @apply -mx-5 -mt-8 mb-8 px-5 py-4 text-white sm:-mx-8 sm:-mt-10 sm:px-8;
+    background-color: var(--vf-orange);
+  }
+  .vf-compare__banner-title {
+    @apply m-0 font-sans text-xl font-extrabold uppercase tracking-[0.06em];
+  }
+  .vf-compare__banner-sub {
+    @apply m-0 mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/85;
+  }
   .vf-compare__grid {
     @apply grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] lg:items-start lg:gap-8;
   }
@@ -510,6 +523,196 @@
   .vf-compare__disclaimer {
     @apply mt-6 text-center text-[10px] leading-relaxed text-al-ink/45;
   }
+  .vfen-inflam {
+    --vf-orange: #e87820;
+    @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
+  }
+  .vfen-inflam__grid {
+    @apply grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-start lg:gap-8;
+  }
+  .vfen-inflam__visuals {
+    @apply flex flex-col gap-4;
+  }
+  .vfen-inflam__anatomy {
+    @apply m-0;
+  }
+  .vfen-inflam__anatomy img {
+    @apply block h-auto w-full;
+  }
+  .vfen-inflam__tissues {
+    @apply flex flex-col gap-3;
+  }
+  .vfen-inflam__tissue {
+    @apply relative m-0 overflow-hidden bg-black;
+  }
+  .vfen-inflam__tissue img {
+    @apply block h-auto w-full;
+  }
+  .vfen-inflam__bar {
+    @apply absolute bottom-0 left-0 top-0 z-10 flex w-6 items-center justify-center text-[9px] font-extrabold uppercase tracking-[0.14em] text-white sm:w-7 sm:text-[10px];
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+  .vfen-inflam__bar--healthy {
+    @apply bg-emerald-600;
+  }
+  .vfen-inflam__bar--inflamed {
+    @apply bg-red-600;
+  }
+  .vfen-inflam__tag {
+    @apply absolute left-9 top-2 z-10 px-2 py-1 text-[9px] font-bold uppercase tracking-[0.06em] text-white sm:left-10 sm:text-[10px];
+  }
+  .vfen-inflam__tag--healthy {
+    @apply bg-emerald-600;
+  }
+  .vfen-inflam__tag--inflamed {
+    @apply bg-red-600;
+  }
+  .vfen-inflam__detail {
+    @apply flex flex-col gap-6;
+  }
+  .vfen-inflam__block {
+    @apply space-y-2;
+  }
+  .vfen-inflam__eyebrow {
+    @apply text-[11px] font-extrabold uppercase tracking-[0.12em] text-al-navy;
+  }
+  .vfen-inflam__eyebrow span {
+    @apply font-semibold normal-case tracking-normal text-al-ink/45;
+  }
+  .vfen-inflam__body {
+    @apply text-sm leading-relaxed text-al-ink/75;
+  }
+  .vfen-inflam__list {
+    @apply mt-2 list-disc space-y-1.5 pl-5 text-sm leading-snug text-al-ink/70;
+  }
+  .vfen-inflam__callouts {
+    @apply mt-2 list-none space-y-3 border-t border-al-line p-0 pt-5;
+  }
+  .vfen-inflam__callout {
+    @apply flex items-center gap-3;
+  }
+  .vfen-inflam__callout-icon {
+    @apply h-10 w-10 shrink-0 object-contain;
+  }
+  .vfen-inflam__callout-text {
+    @apply m-0 text-sm leading-snug text-al-ink/80;
+  }
+  .vfen-inflam__difference {
+    @apply mt-8 bg-[#efefef] px-5 py-5 sm:px-7 sm:py-6;
+  }
+  .vfen-inflam__difference-text {
+    @apply mt-2 text-sm font-medium leading-relaxed text-al-navy sm:text-base;
+  }
+  .vfen-control {
+    --vf-orange: #e87820;
+    --vf-red: #c43c2c;
+    @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
+  }
+  .vfen-control__grid {
+    @apply grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.55fr)] lg:items-start lg:gap-8 xl:gap-10;
+  }
+  .vfen-control__logo {
+    @apply font-sans text-[clamp(1.85rem,3.2vw,2.5rem)] font-extrabold leading-none tracking-tight;
+    color: var(--vf-red);
+  }
+  .vfen-control__reg {
+    @apply text-[0.55em] align-super;
+  }
+  .vfen-control__brand {
+    @apply mt-1 text-[11px] font-medium tracking-[0.04em] text-al-ink/55;
+  }
+  .vfen-control__tagline {
+    @apply mt-3 text-[11px] font-bold uppercase tracking-[0.08em];
+    color: var(--vf-orange);
+  }
+  .vfen-control__intro {
+    @apply mt-3 text-sm leading-relaxed text-al-ink/75;
+  }
+  .vfen-control__product {
+    @apply m-0 mt-6;
+  }
+  .vfen-control__product img {
+    @apply block h-auto w-full max-w-[220px];
+  }
+  .vfen-control__heading {
+    @apply mt-8 font-sans text-sm font-extrabold uppercase leading-snug tracking-[0.04em] text-al-navy sm:text-[15px];
+  }
+  .vfen-control__body {
+    @apply mt-3 text-sm leading-relaxed text-al-ink/75;
+  }
+  .vfen-control__helps {
+    @apply mt-5 text-sm font-bold;
+    color: var(--vf-orange);
+  }
+  .vfen-control__benefits {
+    @apply mt-4 list-none space-y-4 p-0;
+  }
+  .vfen-control__benefit {
+    @apply flex items-start gap-3;
+  }
+  .vfen-control__benefit-icon {
+    @apply mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white;
+    background-color: var(--vf-orange);
+  }
+  .vfen-control__benefit-text {
+    @apply m-0 text-sm leading-snug text-al-ink/80;
+  }
+  .vfen-control__benefit-text strong {
+    @apply font-semibold text-al-navy;
+  }
+  .vfen-control__diagram-wrap {
+    @apply min-w-0;
+  }
+  .vfen-control__diagram {
+    @apply relative mx-auto max-w-[780px] xl:px-16 xl:py-10;
+  }
+  .vfen-control__diagram-img {
+    @apply block h-auto w-full;
+  }
+  .vfen-control__callouts {
+    @apply absolute inset-0 hidden list-none p-0 xl:block;
+  }
+  .vfen-control__callout {
+    @apply absolute flex max-w-[168px] items-start gap-1.5;
+  }
+  .vfen-control__num {
+    @apply flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-extrabold text-white;
+    background-color: var(--vf-orange);
+  }
+  .vfen-control__callout-title {
+    @apply m-0 text-[10px] font-extrabold uppercase leading-tight tracking-[0.04em] text-al-navy;
+  }
+  .vfen-control__callout-body {
+    @apply m-0 mt-0.5 text-[10px] leading-snug text-al-ink/70;
+  }
+  .vfen-control__callout--top {
+    @apply left-1/2 top-[1%] w-[180px] -translate-x-1/2;
+  }
+  .vfen-control__callout--top-right {
+    @apply right-[1%] top-[14%] w-[160px];
+  }
+  .vfen-control__callout--right {
+    @apply right-0 top-[42%] w-[160px];
+  }
+  .vfen-control__callout--bottom-right {
+    @apply bottom-[18%] right-[2%] w-[160px];
+  }
+  .vfen-control__callout--bottom {
+    @apply bottom-[1%] left-1/2 w-[170px] -translate-x-1/2;
+  }
+  .vfen-control__callout--bottom-left {
+    @apply bottom-[16%] left-[1%] w-[160px];
+  }
+  .vfen-control__callout--left {
+    @apply left-0 top-[34%] w-[160px];
+  }
+  .vfen-control__callout-list {
+    @apply mt-8 list-none space-y-4 p-0 xl:hidden;
+  }
+  .vfen-control__callout-list-item {
+    @apply flex items-start gap-3 border-t border-al-line pt-4;
+  }
   .pi-benefit-table {
     @apply grid overflow-hidden border border-[color:var(--pi-gold,#d59444)] sm:grid-cols-2 lg:grid-cols-4;
     --pi-gold: #d59444;
@@ -549,6 +752,9 @@
   .pi-panel__grid {
     @apply mt-8 grid list-none grid-cols-2 gap-0 border border-[color:var(--pi-gold)] p-0 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7;
   }
+  .pi-panel--cols-5 .pi-panel__grid {
+    @apply lg:grid-cols-5;
+  }
   .pi-panel__item {
     @apply flex flex-col items-center border-[color:var(--pi-gold)] px-2 py-5 text-center;
     border-right-width: 1px;
@@ -557,11 +763,26 @@
   .pi-panel__item:nth-child(7n) {
     @apply lg:border-r-0;
   }
+  .pi-panel--cols-5 .pi-panel__item:nth-child(7n) {
+    @apply lg:border-r;
+  }
+  .pi-panel--cols-5 .pi-panel__item:nth-child(5n) {
+    @apply lg:border-r-0;
+  }
   .pi-panel__item:nth-child(n + 15) {
+    @apply lg:border-b-0;
+  }
+  .pi-panel--cols-5 .pi-panel__item:nth-child(n + 15) {
+    @apply lg:border-b;
+  }
+  .pi-panel--cols-5 .pi-panel__item:nth-child(n + 6) {
     @apply lg:border-b-0;
   }
   .pi-panel__item:nth-child(15) {
     @apply lg:col-start-3;
+  }
+  .pi-panel--cols-5 .pi-panel__item:nth-child(15) {
+    @apply lg:col-start-auto;
   }
   .pi-panel__media {
     @apply relative aspect-square w-full max-w-[88px] overflow-hidden rounded-full bg-[#f3f3f3] sm:max-w-[100px];
@@ -651,6 +872,39 @@
   }
   .physio-chart__list--wellness {
     color: #55632f;
+  }
+  .physio-chart--vetrofen .physio-chart__th--physiology {
+    @apply bg-al-navy;
+  }
+  .physio-chart--vetrofen .physio-chart__th--performance {
+    background-color: #e87722;
+  }
+  .physio-chart--vetrofen .physio-chart__th--wellness {
+    background-color: #2f6b3a;
+  }
+  .physio-chart--vetrofen .physio-chart__list--performance {
+    background-color: #fff4ea;
+    color: #e87722;
+  }
+  .physio-chart--vetrofen .physio-chart__list--wellness {
+    background-color: #eef6ef;
+    color: #2f6b3a;
+  }
+  .physio-chart__callouts {
+    @apply mt-8 grid gap-6 border-t border-al-line pt-8 sm:grid-cols-3 sm:gap-0;
+  }
+  .physio-chart__callout {
+    @apply flex flex-col items-center gap-3 px-4 text-center sm:border-r sm:border-al-line sm:last:border-r-0;
+  }
+  .physio-chart__callout-icon {
+    @apply flex h-12 w-12 items-center justify-center rounded-full border-2 border-al-orange text-al-orange;
+  }
+  .physio-chart--vetrofen .physio-chart__callout-icon {
+    color: #e87722;
+    border-color: #e87722;
+  }
+  .physio-chart__callout-text {
+    @apply m-0 max-w-[16rem] text-[11px] font-bold uppercase leading-snug tracking-[0.04em] text-al-navy;
   }
   .physio-chart__disclaimer {
     @apply mt-4 flex items-start justify-center gap-2 text-center text-[10px] leading-relaxed text-al-ink/50 sm:text-[11px];

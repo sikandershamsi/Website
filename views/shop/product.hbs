@@ -46,12 +46,14 @@
   </div>
 </section>
 
+{{#unless (eq product.slug "vetrofen")}}
 <section class="panel-white">
   <div class="section max-w-4xl">
     <h2 class="font-display text-2xl font-medium text-al-navy sm:text-3xl">{{product.physiologyPanel.heading}}</h2>
     <p class="mt-4 text-sm leading-relaxed text-al-ink/75">{{product.physiologyPanel.body}}</p>
   </div>
 </section>
+{{/unless}}
 
 <section class="panel-grey" id="ingredients">
   <div class="section">
@@ -66,6 +68,85 @@
 
       <div data-tab-panel="description" class="py-10">
         <p class="max-w-3xl text-sm leading-relaxed text-al-ink/75">{{product.description}}</p>
+
+        {{#if product.inflammationShowcase}}
+        <article class="vfen-inflam mt-10">
+          <div class="vfen-inflam__grid">
+            <div class="vfen-inflam__visuals">
+              <figure class="vfen-inflam__anatomy">
+                <img
+                  src="{{product.inflammationShowcase.anatomyImage}}"
+                  alt="{{product.trademark}} equine anatomy highlighting joint inflammation points"
+                  width="1200"
+                  height="348"
+                  loading="lazy"
+                />
+              </figure>
+              <div class="vfen-inflam__tissues">
+                <figure class="vfen-inflam__tissue">
+                  <span class="vfen-inflam__bar vfen-inflam__bar--healthy">{{product.inflammationShowcase.tissueHealthy.barLabel}}</span>
+                  <span class="vfen-inflam__tag vfen-inflam__tag--healthy">{{product.inflammationShowcase.tissueHealthy.tagLabel}}</span>
+                  <img
+                    src="{{product.inflammationShowcase.tissueHealthy.image}}"
+                    alt="Healthy tissue"
+                    width="700"
+                    height="467"
+                    loading="lazy"
+                  />
+                </figure>
+                <figure class="vfen-inflam__tissue">
+                  <span class="vfen-inflam__bar vfen-inflam__bar--inflamed">{{product.inflammationShowcase.tissueInflamed.barLabel}}</span>
+                  <span class="vfen-inflam__tag vfen-inflam__tag--inflamed">{{product.inflammationShowcase.tissueInflamed.tagLabel}}</span>
+                  <img
+                    src="{{product.inflammationShowcase.tissueInflamed.image}}"
+                    alt="Inflamed tissue"
+                    width="700"
+                    height="509"
+                    loading="lazy"
+                  />
+                </figure>
+              </div>
+            </div>
+
+            <div class="vfen-inflam__detail">
+              <div class="vfen-inflam__block">
+                <p class="vfen-inflam__eyebrow">Product <span>({{product.inflammationShowcase.productLabel}})</span></p>
+                <p class="vfen-inflam__body">{{product.whatItIs.summary}}</p>
+              </div>
+              <div class="vfen-inflam__block">
+                <p class="vfen-inflam__eyebrow">Outcomes <span>({{product.inflammationShowcase.outcomesLabel}})</span></p>
+                <p class="vfen-inflam__body">{{product.outcomes.summary}}</p>
+                <ul class="vfen-inflam__list">
+                  {{#each product.outcomes.points}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+              <div class="vfen-inflam__block">
+                <p class="vfen-inflam__eyebrow">Impact <span>({{product.inflammationShowcase.impactLabel}})</span></p>
+                <ul class="vfen-inflam__list">
+                  {{#each product.impact.points}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+              </div>
+              <ul class="vfen-inflam__callouts">
+                {{#each product.inflammationShowcase.callouts}}
+                <li class="vfen-inflam__callout">
+                  <img class="vfen-inflam__callout-icon" src="{{this.icon}}" alt="" width="48" height="48" loading="lazy" />
+                  <p class="vfen-inflam__callout-text">{{this.text}}</p>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+
+          <div class="vfen-inflam__difference">
+            <p class="vfen-inflam__eyebrow">The Animalife Difference</p>
+            <p class="vfen-inflam__difference-text">{{product.animalifeDifference}}</p>
+          </div>
+        </article>
+        {{/if}}
 
         {{#if product.descriptionShowcase}}
         <article class="vf-desc mt-10">
@@ -158,6 +239,75 @@
         </article>
         {{/if}}
 
+        {{#if product.controlShowcase}}
+        <article class="vfen-control mt-10">
+          <div class="vfen-control__grid">
+            <div class="vfen-control__aside">
+              <p class="vfen-control__logo">{{product.name}}<span class="vfen-control__reg">®</span></p>
+              <p class="vfen-control__brand">{{product.controlShowcase.brandLine}}</p>
+              <p class="vfen-control__tagline">{{product.controlShowcase.tagline}}</p>
+              <p class="vfen-control__intro">{{product.controlShowcase.intro}}</p>
+              <figure class="vfen-control__product">
+                <img
+                  src="{{product.controlShowcase.productImage}}"
+                  alt="{{product.trademark}} tub"
+                  width="480"
+                  height="502"
+                  loading="lazy"
+                />
+              </figure>
+              <h3 class="vfen-control__heading">{{product.controlShowcase.controlHeading}}</h3>
+              <p class="vfen-control__body">{{product.controlShowcase.controlBody}}</p>
+              <p class="vfen-control__helps">{{product.controlShowcase.helpsHeading}}</p>
+              <ul class="vfen-control__benefits">
+                {{#each product.controlShowcase.benefits}}
+                <li class="vfen-control__benefit">
+                  <span class="vfen-control__benefit-icon">{{{icon this.icon "w-5 h-5"}}}</span>
+                  <p class="vfen-control__benefit-text">{{{this.html}}}</p>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+
+            <div class="vfen-control__diagram-wrap">
+              <div class="vfen-control__diagram">
+                <img
+                  class="vfen-control__diagram-img"
+                  src="{{product.controlShowcase.diagramImage}}"
+                  alt="{{product.trademark}} inflammation and recovery support diagram"
+                  width="1100"
+                  height="1170"
+                  loading="lazy"
+                />
+                <ul class="vfen-control__callouts">
+                  {{#each product.controlShowcase.callouts}}
+                  <li class="vfen-control__callout vfen-control__callout--{{this.slot}}">
+                    <span class="vfen-control__num">{{this.num}}</span>
+                    <div class="vfen-control__callout-copy">
+                      <p class="vfen-control__callout-title">{{this.title}}</p>
+                      <p class="vfen-control__callout-body">{{this.body}}</p>
+                    </div>
+                  </li>
+                  {{/each}}
+                </ul>
+              </div>
+
+              <ol class="vfen-control__callout-list">
+                {{#each product.controlShowcase.callouts}}
+                <li class="vfen-control__callout-list-item">
+                  <span class="vfen-control__num">{{this.num}}</span>
+                  <div>
+                    <p class="vfen-control__callout-title">{{this.title}}</p>
+                    <p class="vfen-control__callout-body">{{this.body}}</p>
+                  </div>
+                </li>
+                {{/each}}
+              </ol>
+            </div>
+          </div>
+        </article>
+        {{/if}}
+
         {{#if product.kidneyShowcase}}
         <article class="vf-kidney mt-10">
           <div class="vf-kidney__grid">
@@ -227,7 +377,13 @@
         {{/if}}
 
         {{#if product.comparisonShowcase}}
-        <article class="vf-compare mt-10">
+        <article class="vf-compare mt-10{{#ifCond product.slug "vetrofen"}} vf-compare--red{{/ifCond}}">
+          {{#ifCond product.slug "vetrofen"}}
+          <div class="vf-compare__banner">
+            <p class="vf-compare__banner-title">{{product.trademark}}</p>
+            <p class="vf-compare__banner-sub">Feel the Difference</p>
+          </div>
+          {{/ifCond}}
           <div class="vf-compare__grid">
             <div class="vf-compare__aside">
               <h3 class="vf-compare__headline">{{product.comparison.headline}}</h3>
@@ -316,7 +472,7 @@
 
       <div data-tab-panel="ingredients" class="hidden py-10">
         {{#if product.primaryIngredientsCallouts}}
-        <div class="pi-panel">
+        <div class="pi-panel{{#ifCond product.slug "vetrofen"}} pi-panel--cols-5{{/ifCond}}">
           <header class="pi-panel__header">
             <p class="pi-panel__brand">{{product.trademark}}</p>
             <h3 class="pi-panel__title">Primary Ingredients</h3>
@@ -348,7 +504,7 @@
             {{#each product.primaryIngredients}}
             <li class="pi-panel__item">
               <div class="pi-panel__media">
-                <img src="{{this.image}}?v=20260814d" alt="{{this.name}}" width="720" height="720" loading="lazy" />
+                <img src="{{this.image}}?v=20260814e" alt="{{this.name}}" width="720" height="720" loading="lazy" />
               </div>
               <p class="pi-panel__name">{{this.name}}</p>
               <p class="pi-panel__origin">Origin: {{this.origin}}</p>
@@ -367,17 +523,17 @@
         </div>
 
         {{#if product.physiologyBenefits}}
-        <div class="physio-chart">
+        <div class="physio-chart{{#ifCond product.physiologyBenefits.variant "vetrofen"}} physio-chart--vetrofen{{/ifCond}}">
           <h3 class="physio-chart__title">{{product.physiologyBenefits.title}}</h3>
           <div class="physio-chart__scroll">
             <table class="physio-chart__table">
               <thead>
                 <tr>
-                  <th class="physio-chart__th physio-chart__th--system" colspan="2">Physiological System</th>
-                  <th class="physio-chart__th physio-chart__th--nutrition">Key Nutritional Support</th>
-                  <th class="physio-chart__th physio-chart__th--physiology">How VetroFit® Helps Support Physiology</th>
-                  <th class="physio-chart__th physio-chart__th--performance">Performance Benefits</th>
-                  <th class="physio-chart__th physio-chart__th--wellness">Long-Term Wellness</th>
+                  <th class="physio-chart__th physio-chart__th--system" colspan="2">{{lookup product.physiologyBenefits.columns 0}}</th>
+                  <th class="physio-chart__th physio-chart__th--nutrition">{{lookup product.physiologyBenefits.columns 1}}</th>
+                  <th class="physio-chart__th physio-chart__th--physiology">{{lookup product.physiologyBenefits.columns 2}}</th>
+                  <th class="physio-chart__th physio-chart__th--performance">{{lookup product.physiologyBenefits.columns 3}}</th>
+                  <th class="physio-chart__th physio-chart__th--wellness">{{lookup product.physiologyBenefits.columns 4}}</th>
                 </tr>
               </thead>
               <tbody>
@@ -414,6 +570,16 @@
               </tbody>
             </table>
           </div>
+          {{#if product.physiologyBenefits.callouts}}
+          <div class="physio-chart__callouts">
+            {{#each product.physiologyBenefits.callouts}}
+            <div class="physio-chart__callout">
+              <div class="physio-chart__callout-icon">{{{icon this.icon "w-6 h-6"}}}</div>
+              <p class="physio-chart__callout-text">{{this.text}}</p>
+            </div>
+            {{/each}}
+          </div>
+          {{/if}}
           <p class="physio-chart__disclaimer">
             {{{icon "leaf" "w-3.5 h-3.5"}}}
             <span>{{product.physiologyBenefits.disclaimer}}</span>
@@ -465,7 +631,7 @@
         {{/if}}
       </div>
 
-      <div data-tab-panel="feeding" class="hidden max-w-4xl py-10">
+      <div data-tab-panel="feeding" class="hidden max-w-4xl py-10" id="feeding">
         {{#each product.feedingIntro}}
         <p class="mt-2 text-sm leading-relaxed text-al-ink/75 first:mt-0">{{this}}</p>
         {{/each}}
@@ -528,6 +694,7 @@
 
 
 {{#unless product.descriptionShowcase}}
+{{#unless product.inflammationShowcase}}
 <section class="panel-grey">
   <div class="section">
     <div class="grid gap-8 lg:grid-cols-3">
@@ -571,8 +738,10 @@
   </div>
 </section>
 {{/unless}}
+{{/unless}}
 
 {{#unless product.comparisonPanel}}
+{{#unless (eq product.slug "vetrofen")}}
 <section class="panel-grey">
   <div class="section">
     <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-start">
@@ -610,6 +779,7 @@
     </div>
   </div>
 </section>
+{{/unless}}
 {{/unless}}
 
 {{#ifCond product.slug "vetrofit"}}

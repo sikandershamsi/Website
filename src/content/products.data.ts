@@ -100,10 +100,33 @@ export interface Product {
     disclaimer: string;
     rows: { ourImage: string; otherImage: string }[];
   };
+  inflammationShowcase?: {
+    productLabel: string;
+    outcomesLabel: string;
+    impactLabel: string;
+    anatomyImage: string;
+    tissueHealthy: { image: string; barLabel: string; tagLabel: string };
+    tissueInflamed: { image: string; barLabel: string; tagLabel: string };
+    callouts: { icon: string; text: string }[];
+  };
+  controlShowcase?: {
+    brandLine: string;
+    tagline: string;
+    intro: string;
+    productImage: string;
+    controlHeading: string;
+    controlBody: string;
+    helpsHeading: string;
+    benefits: { icon: string; html: string }[];
+    diagramImage: string;
+    callouts: { num: number; title: string; body: string; slot: string }[];
+  };
   physiologyBenefits?: {
     title: string;
     disclaimer: string;
     columns: string[];
+    variant?: 'vetrofen';
+    callouts?: { icon: string; text: string }[];
     rows: {
       icon: string;
       system: string;
@@ -394,52 +417,177 @@ export const products: Product[] = [
     },
     animalifeDifference:
       'Unlike NSAIDs and steroids, VetroFen controls inflammation without compromising tissue repair, gastric health, or competition eligibility—making it suitable for continuous, long-term use.',
+    inflammationShowcase: {
+      productLabel: 'What It Is',
+      outcomesLabel: 'What It Delivers',
+      impactLabel: 'Why It Wins',
+      anatomyImage: '/images/vetrofen/desc/anatomy-horse.jpg',
+      tissueHealthy: {
+        image: '/images/vetrofen/desc/tissue-healthy.jpg',
+        barLabel: 'Healthy',
+        tagLabel: 'Normal',
+      },
+      tissueInflamed: {
+        image: '/images/vetrofen/desc/tissue-inflamed.jpg',
+        barLabel: 'Diseased',
+        tagLabel: 'Inflammation',
+      },
+      callouts: [
+        {
+          icon: '/images/vetrofen/desc/callout-icon-0.png',
+          text: 'Targets chronic inflammation at the cellular level',
+        },
+        {
+          icon: '/images/vetrofen/desc/callout-icon-1.png',
+          text: 'Competition-safe alternative to routine NSAID use',
+        },
+        {
+          icon: '/images/vetrofen/desc/callout-icon-2.png',
+          text: 'Gentle daily support for comfort and recovery',
+        },
+      ],
+    },
+    controlShowcase: {
+      brandLine: 'Vetro Collection by animalife®',
+      tagline: 'Natural Inflammation & Pain Management',
+      intro:
+        'A fast-acting, completely natural supplement scientifically formulated to target inflammation, support comfort, and promote recovery.',
+      productImage: '/images/vetrofen/control/product-tub.jpg',
+      controlHeading: "Supporting the Body's Natural Control Center",
+      controlBody:
+        "VetroFen® is formulated with powerful natural ingredients to help calm inflammation, ease discomfort, and support the body's recovery process.",
+      helpsHeading: 'VetroFen® helps support:',
+      benefits: [
+        {
+          icon: 'horse',
+          html: '<strong>Reduced inflammation and pain</strong> – Supports comfort and mobility.',
+        },
+        {
+          icon: 'heart',
+          html: '<strong>Faster recovery and performance</strong> – Helps your horse bounce back quicker.',
+        },
+        {
+          icon: 'shield-check',
+          html: '<strong>Long-term health and well-being</strong> – Safe for extended use and daily support.',
+        },
+      ],
+      diagramImage: '/images/vetrofen/control/horse-diagram.jpg',
+      callouts: [
+        {
+          num: 1,
+          title: 'Fast-Acting Inflammation Response',
+          body: 'Helps quickly reduce inflammation and discomfort.',
+          slot: 'top',
+        },
+        {
+          num: 2,
+          title: 'Joint Comfort & Flexibility',
+          body: 'Supports joint comfort, flexibility, and a full range of motion.',
+          slot: 'top-right',
+        },
+        {
+          num: 3,
+          title: 'Muscle Recovery & Soreness Relief',
+          body: 'Helps reduce muscle soreness and supports faster recovery.',
+          slot: 'right',
+        },
+        {
+          num: 4,
+          title: 'Natural Pain Relief',
+          body: 'Provides natural comfort without the side effects of NSAIDs.',
+          slot: 'bottom-right',
+        },
+        {
+          num: 5,
+          title: 'Antioxidant Support',
+          body: 'Helps combat oxidative stress and supports overall cell health and recovery.',
+          slot: 'bottom',
+        },
+        {
+          num: 6,
+          title: 'Supports Active Lifestyle',
+          body: 'Ideal for performance horses, intense training, and daily activity.',
+          slot: 'bottom-left',
+        },
+        {
+          num: 7,
+          title: 'Long-Term Wellness',
+          body: 'Safe for long-term use to maintain comfort and support healthy inflammatory balance.',
+          slot: 'left',
+        },
+      ],
+    },
     physiologyPanel: {
       heading: "Supporting Physiology. Not Simply Managing Symptoms.",
       body: 'VetroFen® was developed to support the body’s natural inflammatory processes rather than simply masking their effects. By targeting the physiological systems involved in inflammation, tissue protection, cellular resilience, and recovery, its carefully balanced formulation helps promote comfort, mobility, athletic performance, and long-term wellness. The following chart demonstrates how this physiology-first approach supports the horse at every level.',
     },
     comparison: {
-      headline: 'Not All Inflammation Supplements Are Created Equal.',
-      subheadline: 'Effective & Safe. The NSAID Alternative.',
+      headline: 'Not All Inflammatory Supplements Are Created Equal.',
+      subheadline: 'Some products mask inflammation. VetroFen helps support a healthy inflammatory response.',
       intro: [
         'Some products only mask the problem. VetroFen targets inflammation at the root without the risks of NSAIDs.',
         'Most anti-inflammatory products mask pain by blocking symptoms but may carry serious side effects. VetroFen uses powerful botanical ingredients to help reduce inflammation at the source, support comfort and mobility, and promote long-term joint health—naturally and safely.',
         'VetroFen helps your horse feel better today—and stay sound for tomorrow.',
       ],
       ourLabel: 'VetroFen®',
-      ourSubLabel: 'Botanical Anti-Inflammatory — Root-Cause Support',
+      ourSubLabel: 'Botanical Extracts Supporting Healthy Inflammatory Response',
       otherLabel: 'Other Brands',
-      otherSubLabel: 'NSAIDs & Synthetic Products — Symptom Masking',
+      otherSubLabel: 'NSAIDs & Steroids Suppressing Inflammation',
       rows: [
         {
-          title: 'Targets Inflammation at the Source',
-          body: 'Botanical ingredients help reduce inflammation at the root—supporting the body’s natural healing process.',
-          otherTitle: 'Masks Pain & Inflammation',
-          otherBody: 'NSAIDs only block pain signals—they do not address the underlying inflammation or support healing.',
+          title: "Supports the Body's Natural Response",
+          body: 'Helps modulate the inflammatory response, encouraging balanced healing and long-term comfort.',
+          otherTitle: 'Suppresses Inflammation',
+          otherBody: 'Blocks inflammation to mask symptoms, which can delay or reduce the natural healing process.',
         },
         {
-          title: 'Supports Long-Term Joint Health',
-          body: 'Promotes lasting comfort, mobility, and cartilage health without compromising the horse’s well-being.',
-          otherTitle: 'Risk of Side Effects',
-          otherBody: 'Long-term NSAID use can cause ulcers, kidney issues, and other serious side effects.',
+          title: 'Promotes Tissue Recovery & Repair',
+          body: "Supports the body's natural ability to repair damaged tissues and maintain joint integrity.",
+          otherTitle: 'Does Not Promote Tissue Healing',
+          otherBody: 'Does not contribute to tissue repair and may slow or inhibit the healing process.',
         },
         {
-          title: 'Safe for Long-Term Use',
-          body: 'Gentle, natural ingredients that are safe for daily use and show benefits over time.',
-          otherTitle: 'Not Ideal for Daily Use',
-          otherBody: 'Many synthetic anti-inflammatories are not safe for prolonged use and can cause cumulative damage.',
+          title: 'Supports Long-Term Joint Comfort',
+          body: 'Encourages healthy joint function and mobility without compromising long-term health.',
+          otherTitle: 'Risk of Long-Term Side Effects',
+          otherBody: 'May cause gastric ulceration, kidney stress, and other adverse effects with prolonged use.',
         },
         {
-          title: 'Supports Full Body Wellness',
-          body: 'Helps reduce inflammation throughout the body for improved comfort and performance.',
-          otherTitle: 'Focused Only on Pain',
-          otherBody: 'Only targets pain signaling pathways without supporting overall inflammatory balance.',
+          title: 'Natural, Safe & Competition Legal',
+          body: 'FEI & USEF compliant with a proven record of safety and efficacy.',
+          otherTitle: 'Restricted & Risky for Competition',
+          otherBody: 'Many are prohibited substances with withdrawal times and potential for positive tests.',
+        },
+      ],
+    },
+    comparisonShowcase: {
+      body: 'VetroFen® is formulated with botanical extracts that help support the body’s natural inflammatory processes and tissue recovery—so horses can stay comfortable, mobile, and competing without the trade-offs of NSAIDs and steroids.',
+      subheadlineLead: 'Some products mask inflammation.',
+      subheadlineAccent: 'VetroFen helps support a healthy inflammatory response.',
+      heroImage: '/images/vetrofen/compare/hero-horse.jpg',
+      features: [
+        { icon: '/images/vetrofen/compare/bar-icon-0.png', label: 'Supports a Healthy Inflammatory Response' },
+        { icon: '/images/vetrofen/compare/bar-icon-1.png', label: 'Promotes Tissue Recovery' },
+        { icon: '/images/vetrofen/compare/bar-icon-2.png', label: 'Improves Comfort & Mobility' },
+        { icon: '/images/vetrofen/compare/bar-icon-3.png', label: 'Backed by Science Trusted by Professionals' },
+      ],
+      disclaimer: 'VetroFen® is a nutritional supplement for horses. Results may vary.',
+      rows: [
+        {
+          ourImage: '/images/vetrofen/compare/row0-our.png',
+          otherImage: '/images/vetrofen/compare/row0-other.png',
         },
         {
-          title: 'Competition Safe',
-          body: 'FEI-compliant and free from banned substances.',
-          otherTitle: 'Potential Risk',
-          otherBody: 'Some NSAIDs may violate competition regulations.',
+          ourImage: '/images/vetrofen/compare/row1-our.png',
+          otherImage: '/images/vetrofen/compare/row1-other.png',
+        },
+        {
+          ourImage: '/images/vetrofen/compare/row2-our.png',
+          otherImage: '/images/vetrofen/compare/row2-other.png',
+        },
+        {
+          ourImage: '/images/vetrofen/compare/row3-our.png',
+          otherImage: '/images/vetrofen/compare/row3-other.png',
         },
       ],
     },
@@ -452,18 +600,175 @@ export const products: Product[] = [
       { name: 'Boswellia Serrata Extract', origin: 'India', image: '/images/ingredients/vetrofen/boswellia-serrata.jpg' },
       { name: 'Ginger Root Extract', origin: 'India', image: '/images/ingredients/vetrofen/ginger-root.jpg' },
       { name: 'Black Pepper Extract (Piperine)', origin: 'India', image: '/images/ingredients/vetrofen/black-pepper.jpg' },
-      { name: 'Vitamin C (Ascorbic Acid)', origin: 'USA', image: '/images/ingredients/vetrofen/vitamin-c.jpg' },
+      { name: 'Vitamin C (Ascorbic Acid)', origin: 'UK', image: '/images/ingredients/vetrofen/vitamin-c.jpg' },
       { name: 'MSM (Methylsulfonylmethane)', origin: 'USA', image: '/images/ingredients/vetrofen/msm.jpg' },
       { name: 'Hyaluronic Acid', origin: 'USA', image: '/images/ingredients/vetrofen/hyaluronic-acid.jpg' },
     ],
     primaryIngredientsFooter: 'Targeted Nutrition for Inflammation Control | Comfort & Mobility | Long-Term Wellness',
+    primaryIngredientsCallouts: [
+      { icon: 'crosshair', text: 'Targeted Nutrition for Inflammation Control' },
+      { icon: 'joint', text: 'Comfort & Mobility' },
+      { icon: 'shield-check', text: 'Long-Term Wellness' },
+    ],
+    physiologyBenefits: {
+      title: 'VetroFen® Physiological Support & Performance Benefits',
+      disclaimer:
+        'VetroFen® is a nutritional supplement and not intended to diagnose, treat, cure, or prevent any disease.',
+      variant: 'vetrofen',
+      columns: [
+        'Physiological System',
+        'Key Nutritional Support',
+        'How VetroFen® Helps Support Physiology',
+        'Performance Benefits',
+        'Long-Term Wellness',
+      ],
+      callouts: [
+        { icon: 'crosshair', text: 'Targeted Nutrition for a Healthy Inflammatory Response' },
+        { icon: 'joint', text: 'Comfort & Mobility Without Compromise' },
+        { icon: 'shield-check', text: 'Long-Term Health Naturally Supported' },
+      ],
+      rows: [
+        {
+          icon: 'shield-flame',
+          system: 'Healthy Inflammatory Response',
+          nutrition: 'Scutellaria Baicalensis Extract (Baicalin), Acacia Catechu Extracts (Catechins)',
+          physiology: [
+            'Supports a balanced inflammatory response',
+            'Helps modulate key inflammatory mediators',
+            'Promotes natural resolution of inflammation',
+            'Supports tissue repair and recovery',
+          ],
+          performance: [
+            'Helps maintain comfort and mobility',
+            'Supports performance during periods of inflammation',
+            'Promotes faster recovery between training and competition',
+            'Supports consistent performance',
+          ],
+          wellness: [
+            'Supports long-term joint and soft tissue health',
+            'Helps manage chronic inflammation naturally',
+            'Promotes overall tissue resilience and longevity',
+          ],
+        },
+        {
+          icon: 'joint',
+          system: 'Joint Comfort & Mobility',
+          nutrition: 'Scutellaria Baicalensis Extract (Baicalin), Acacia Catechu Extracts (Catechins)',
+          physiology: [
+            'Helps reduce inflammatory mediators associated with joint discomfort',
+            'Supports synovial fluid quality and joint lubrication',
+            'Supports healthy cartilage and connective tissue environment',
+          ],
+          performance: [
+            'Enhances mobility and range of motion',
+            'Supports flexibility and stride efficiency',
+            'Promotes willingness to perform',
+            'Supports comfort during training and competition',
+          ],
+          wellness: [
+            'Supports long-term joint integrity',
+            'Helps maintain connective tissue strength and elasticity',
+            'Promotes active longevity and soundness',
+          ],
+        },
+        {
+          icon: 'muscle',
+          system: 'Muscle Comfort & Recovery',
+          nutrition: 'Scutellaria Baicalensis Extract (Baicalin), Acacia Catechu Extracts (Catechins)',
+          physiology: [
+            'Helps modulate inflammatory response in muscle tissue',
+            'Supports reduction of exercise-induced muscle soreness',
+            'Promotes natural recovery processes',
+          ],
+          performance: [
+            'Supports muscle comfort and relaxation',
+            'Reduces post-exercise stiffness',
+            'Promotes faster recovery',
+            'Supports optimal training consistency',
+          ],
+          wellness: [
+            'Supports long-term muscle health',
+            'Helps reduce cumulative stress on muscles',
+            'Promotes overall physical resilience',
+          ],
+        },
+        {
+          icon: 'shield-check',
+          system: 'Antioxidant & Cellular Protection',
+          nutrition: 'Scutellaria Baicalensis Extract (Baicalin), Acacia Catechu Extracts (Catechins)',
+          physiology: [
+            'Provides potent antioxidant protection',
+            'Helps neutralize free radicals',
+            'Supports cellular health and integrity',
+            'Helps protect tissues from oxidative stress',
+          ],
+          performance: [
+            'Supports endurance and stamina',
+            'Helps maintain cellular energy production',
+            'Supports optimal athletic output',
+            'Supports recovery under stress',
+          ],
+          wellness: [
+            'Promotes long-term cellular health',
+            'Supports healthy aging and tissue resilience',
+            'Helps reduce oxidative damage over time',
+          ],
+        },
+        {
+          icon: 'stomach',
+          system: 'Gastric Comfort & Gut Health',
+          nutrition: 'Acacia Catechu Extracts (Catechins)',
+          physiology: [
+            'Supports a healthy gastric environment',
+            'Helps maintain normal gut function',
+            'Supports mucosal integrity',
+            'Helps reduce irritation and oxidative stress in the gut',
+          ],
+          performance: [
+            'Supports appetite and nutrient absorption',
+            'Enhances overall comfort',
+            'Supports performance consistency',
+            'Helps maintain hydration and electrolyte balance',
+          ],
+          wellness: [
+            'Supports long-term gastric health',
+            'Promotes digestive comfort',
+            'Supports overall gut balance and immunity',
+          ],
+        },
+        {
+          icon: 'refresh',
+          system: 'Recovery & Adaptation',
+          nutrition: 'Scutellaria Baicalensis Extract (Baicalin), Acacia Catechu Extracts (Catechins)',
+          physiology: [
+            'Supports the body\u2019s natural recovery and adaptation',
+            'Helps modulate stress response',
+            'Supports immune system function',
+          ],
+          performance: [
+            'Supports faster recovery between efforts',
+            'Helps maintain performance during stressful periods',
+            'Promotes readiness for training and competition',
+          ],
+          wellness: [
+            'Supports long-term health and resilience',
+            'Helps maintain immune balance',
+            'Promotes lifelong performance potential',
+          ],
+        },
+      ],
+    },
     supports: ['Healthy Inflammatory Response', 'Comfort & Mobility', 'Recovery Following Exercise', 'Performance Longevity', 'Overall Wellness'],
     ingredientBenefits: [
       {
-        ingredient: 'Scutellaria baicalensis extract; Acacia catechu extract (flavonoid-rich proprietary blend)',
-        benefit: 'Potent natural anti-inflammatory action via flavonoids. Reduces pain, swelling, and oxidative stress at the cellular level. Supports joint comfort without reliance on NSAIDs. High bioavailability formulation for rapid absorption.',
-        performance: 'Rapid relief from soreness, inflammation, and joint stress. Maintains comfort and mobility during intense training cycles. Enables consistent performance by minimizing pain-related limitations.',
-        wellness: 'Supports joint health without long-term side effects associated with NSAIDs. Reduces chronic inflammation and oxidative damage. Improves quality of life and soundness in aging or high-performance horses.',
+        ingredient:
+          'Scutellaria Baicalensis Extract (Baicalin); Acacia Catechu Extracts (Catechins)',
+        benefit:
+          'Powerful botanical extracts with well-studied bioactive compounds and antioxidant properties. Baicalin helps inhibit inflammatory mediators. Catechins support immune balance and help protect tissues from oxidative stress and damage.',
+        performance:
+          'Supports a healthy inflammatory response and reduces swelling associated with strenuous activity. Helps increase joint comfort, muscle recovery, and overall mobility. Promotes optimal performance and trainability with greater ease.',
+        wellness:
+          'Promotes long-term joint and soft tissue health. Supports connective tissue integrity and resilience. Helps manage chronic inflammation naturally. Safe for long-term use and supports consistent well-being and longevity.',
       },
     ],
     feedingIntro: [
