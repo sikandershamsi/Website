@@ -1120,7 +1120,7 @@
     @apply mt-5 h-px w-10 bg-al-orange;
   }
   .about-hero-blend {
-    @apply flex min-h-[calc(100svh-6.75rem)] items-stretch;
+    @apply flex min-h-[calc(100svh-6.75rem)] items-stretch bg-al-navy;
   }
   .about-hero-blend .inspired-blend__media-wrap {
     @apply absolute inset-0;
@@ -1129,7 +1129,119 @@
     @apply object-cover object-[78%_center] sm:object-[75%_center] lg:object-[72%_center];
   }
   .about-hero-blend__copy {
-    @apply min-h-[calc(100svh-6.75rem)] py-16 sm:py-20 lg:py-24;
+    @apply min-h-[calc(100svh-6.75rem)] py-16 text-white sm:py-20 lg:py-24;
+  }
+  .al-diff {
+    --al-diff-gold: #c9a24a;
+    @apply bg-[#f4f4f2] py-14 sm:py-16 lg:py-20;
+  }
+  .al-diff__inner {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .al-diff__header {
+    @apply mx-auto max-w-3xl text-center;
+  }
+  .al-diff__title {
+    @apply font-display text-3xl font-medium text-al-navy sm:text-4xl lg:text-[2.75rem];
+  }
+  .al-diff__rule {
+    @apply mx-auto mt-4 h-px w-40 max-w-[55%];
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--al-diff-gold) 20%,
+      var(--al-diff-gold) 80%,
+      transparent 100%
+    );
+  }
+  .al-diff__subtitle {
+    @apply mt-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-al-navy sm:text-[11px] sm:tracking-[0.2em];
+  }
+  .al-diff__panels {
+    @apply mt-10 grid gap-8 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:mt-14 lg:grid-cols-5 lg:gap-0;
+  }
+  .al-diff__panel {
+    @apply relative flex flex-col items-center text-center;
+  }
+  .al-diff__media {
+    @apply relative w-full overflow-hidden bg-al-panel;
+    aspect-ratio: 3 / 4;
+  }
+  .al-diff__img {
+    @apply absolute inset-0 h-full w-full object-cover object-center;
+  }
+  .al-diff__fade {
+    @apply pointer-events-none absolute inset-x-0 bottom-0 h-2/5;
+    background: linear-gradient(to top, #f4f4f2 0%, rgba(244, 244, 242, 0.85) 35%, transparent 100%);
+  }
+  .al-diff__badge {
+    @apply absolute right-2 top-2 z-[2] h-12 w-auto drop-shadow-sm sm:h-14 lg:h-12 xl:h-14;
+  }
+  .al-diff__num {
+    @apply absolute bottom-3 left-1/2 z-[3] flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full bg-white text-sm font-semibold text-al-navy shadow-sm;
+    border: 2px solid var(--al-diff-gold);
+  }
+  .al-diff__panel-title {
+    @apply mt-5 px-2 text-[11px] font-extrabold uppercase tracking-[0.12em] text-al-navy sm:text-xs;
+  }
+  .al-diff__panel-text {
+    @apply mt-3 max-w-[18rem] px-2 text-[12px] leading-relaxed text-al-ink/70 sm:max-w-none lg:px-3 lg:text-[11px] xl:text-xs;
+  }
+  @media (min-width: 1024px) {
+    .al-diff__panels {
+      align-items: start;
+    }
+    .al-diff__panel + .al-diff__panel {
+      margin-left: -1.25rem;
+    }
+    .al-diff__panel:nth-child(1) .al-diff__media {
+      clip-path: polygon(0 0, 100% 0, 86% 100%, 0 100%);
+    }
+    .al-diff__panel:nth-child(2) .al-diff__media,
+    .al-diff__panel:nth-child(3) .al-diff__media,
+    .al-diff__panel:nth-child(4) .al-diff__media {
+      clip-path: polygon(14% 0, 100% 0, 86% 100%, 0 100%);
+    }
+    .al-diff__panel:nth-child(5) .al-diff__media {
+      clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
+    }
+    .al-diff__panel:not(:last-child) .al-diff__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(
+        105deg,
+        transparent 0%,
+        transparent 84%,
+        var(--al-diff-gold) 90%,
+        transparent 96%
+      );
+      opacity: 0.85;
+    }
+    .al-diff__panel-title {
+      @apply mt-6 px-4;
+    }
+    .al-diff__panel-text {
+      @apply px-4;
+    }
+  }
+  .al-diff__bar {
+    @apply mt-12 flex list-none flex-col items-stretch gap-0 border-t border-al-navy/10 pt-8 sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:gap-2 lg:mt-16;
+  }
+  .al-diff__bar-item {
+    @apply relative flex flex-1 flex-col items-center justify-center gap-2 px-3 py-3 text-center;
+  }
+  .al-diff__bar-item + .al-diff__bar-item::before {
+    content: "";
+    @apply absolute left-1/2 top-0 h-px w-10 -translate-x-1/2 bg-[var(--al-diff-gold)] sm:left-0 sm:top-1/2 sm:h-8 sm:w-px sm:translate-x-0 sm:-translate-y-1/2;
+  }
+  .al-diff__bar-icon {
+    @apply flex h-6 w-6 items-center justify-center text-al-navy;
+  }
+  .al-diff__bar-label {
+    @apply text-[9px] font-semibold uppercase tracking-[0.14em] text-al-navy sm:text-[10px];
   }
   .mission-section {
     @apply bg-white;
