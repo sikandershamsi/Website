@@ -170,13 +170,13 @@ export const disciplines = [
 export const affiliateAudiences = [
   {
     title: 'Trainers',
-    body: 'Boosting performance and potential.',
+    body: 'Building performance and potential.',
     image: '/images/affiliates/roles/trainers.jpg',
     icon: 'horse',
   },
   {
     title: 'Veterinarians',
-    body: 'Supporting health with integrity.',
+    body: 'Supporting health and longevity.',
     image: '/images/affiliates/roles/veterinarians.jpg',
     icon: 'stethoscope',
   },

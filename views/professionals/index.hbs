@@ -1,32 +1,37 @@
-<section class="panel-white">
-  <div class="section grid items-center gap-10 lg:grid-cols-2">
-    <div>
-      <div class="eyebrow">Affiliate Rewards Program</div>
-      <h1 class="font-display mt-4 text-4xl font-medium text-al-navy sm:text-5xl">Partner with Purpose. Rewarding Results.</h1>
-      <p class="mt-5 max-w-xl text-sm leading-relaxed text-al-ink/75">Join a trusted network of equine professionals and earn <span class="font-semibold text-al-navy">generous rewards</span> while making a real difference in horses' lives.</p>
-    </div>
-    <div class="overflow-hidden rounded-none">
-      <img src="/images/affiliates/hero-horse-clean.jpg" alt="Animalife affiliate partner horse" class="aspect-[5/3] w-full object-cover object-[center_30%]" />
+<section class="pro-hero">
+  <div class="pro-hero__banner">
+    <img
+      src="/images/affiliates/hero-horse-clean.jpg"
+      alt="Chestnut horse portrait"
+      class="pro-hero__media"
+    />
+    <div class="pro-hero__veil" aria-hidden="true"></div>
+    <div class="pro-hero__copy">
+      <span class="pro-hero__rule" aria-hidden="true"></span>
+      <p class="pro-hero__eyebrow">Affiliate Rewards Program</p>
+      <span class="pro-hero__rule" aria-hidden="true"></span>
+      <h1 class="pro-hero__title">Partner with Purpose.<br />Rewarding Results.</h1>
+      <p class="pro-hero__lede">
+        <span class="pro-hero__em">Join</span> a trusted network of equine professionals and earn
+        <span class="pro-hero__em">generous rewards</span> while making a
+        <span class="pro-hero__em">real difference</span> in horses&rsquo; lives.
+      </p>
     </div>
   </div>
-</section>
 
-<section class="panel-grey">
-  <div class="section">
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-      {{#each affiliateAudiences}}
-      <article class="overflow-hidden rounded-none border border-al-line bg-white">
-        <div class="aspect-[5/4] overflow-hidden">
-          <img src="{{this.image}}" alt="{{this.title}}" class="h-full w-full object-cover" />
-        </div>
-        <div class="px-4 py-5 text-center">
-          <div class="mx-auto flex h-10 w-10 items-center justify-center text-al-navy/55">{{{icon this.icon "w-6 h-6"}}}</div>
-          <h2 class="mt-3 text-[11px] font-semibold uppercase tracking-wide text-al-navy/55">{{this.title}}</h2>
-          <p class="mt-2 text-sm leading-snug text-al-ink/65">{{this.body}}</p>
-        </div>
-      </article>
-      {{/each}}
-    </div>
+  <div class="pro-hero__roles">
+    {{#each affiliateAudiences}}
+    <article class="pro-hero__role">
+      <div class="pro-hero__role-media">
+        <img src="{{this.image}}" alt="{{this.title}}" class="pro-hero__role-img" />
+      </div>
+      <div class="pro-hero__role-meta">
+        <div class="pro-hero__role-icon">{{{icon this.icon "w-7 h-7"}}}</div>
+        <h2 class="pro-hero__role-title">{{this.title}}</h2>
+        <p class="pro-hero__role-body">{{this.body}}</p>
+      </div>
+    </article>
+    {{/each}}
   </div>
 </section>
 

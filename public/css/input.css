@@ -1159,6 +1159,93 @@
   .about-hero-blend__copy {
     @apply min-h-[calc(100svh-6.75rem)] py-16 text-white sm:py-20 lg:py-24;
   }
+  .pro-hero {
+    @apply flex min-h-[calc(100svh-6.75rem)] w-full flex-col bg-[#faf9f6];
+  }
+  .pro-hero__banner {
+    @apply relative isolate flex min-h-0 flex-1 items-center overflow-hidden;
+  }
+  .pro-hero__media {
+    @apply absolute inset-0 h-full w-full object-cover object-[center_20%];
+  }
+  .pro-hero__veil {
+    @apply pointer-events-none absolute inset-0 z-[1];
+    background: linear-gradient(
+      180deg,
+      #faf9f6 0%,
+      rgba(250, 249, 246, 0.94) 34%,
+      rgba(250, 249, 246, 0.45) 52%,
+      rgba(250, 249, 246, 0) 68%
+    );
+  }
+  @media (min-width: 640px) {
+    .pro-hero__media {
+      @apply left-auto right-0 w-[58%] object-[center_28%];
+    }
+    .pro-hero__veil {
+      background: linear-gradient(
+        90deg,
+        #faf9f6 0%,
+        #faf9f6 42%,
+        rgba(250, 249, 246, 0.92) 50%,
+        rgba(250, 249, 246, 0.55) 58%,
+        rgba(250, 249, 246, 0.15) 66%,
+        rgba(250, 249, 246, 0) 74%
+      );
+    }
+  }
+  @media (min-width: 1024px) {
+    .pro-hero__media {
+      @apply w-[52%];
+    }
+  }
+  .pro-hero__copy {
+    @apply relative z-10 flex w-full max-w-xl flex-col items-start px-6 py-14 sm:max-w-[55%] sm:px-10 sm:py-16 lg:max-w-[50%] lg:px-16 lg:py-20;
+  }
+  .pro-hero__rule {
+    @apply block h-0.5 w-10 bg-al-orange;
+  }
+  .pro-hero__eyebrow {
+    @apply my-3 text-[11px] font-extrabold uppercase tracking-[0.16em] text-al-orange sm:text-xs sm:tracking-[0.18em];
+  }
+  .pro-hero__title {
+    @apply font-display mt-7 text-[clamp(2rem,5.2vw,3.75rem)] font-medium leading-[1.12] text-[#1a2a40];
+  }
+  .pro-hero__lede {
+    @apply mt-5 max-w-md text-sm leading-relaxed text-[#333333] sm:text-[15px];
+  }
+  .pro-hero__em {
+    @apply font-semibold text-[#1a2a40];
+  }
+  .pro-hero__roles {
+    @apply grid w-full grid-cols-1 bg-white sm:grid-cols-2 lg:grid-cols-5;
+  }
+  .pro-hero__role {
+    @apply flex flex-col border-b border-[#e6e4df] last:border-b-0 sm:border-b-0;
+  }
+  .pro-hero__role-media {
+    @apply relative aspect-[5/3.4] overflow-hidden bg-[#f0eee9];
+  }
+  .pro-hero__role-img {
+    @apply h-full w-full object-cover object-center;
+  }
+  .pro-hero__role-meta {
+    @apply flex flex-col items-center gap-2 bg-white px-3 py-5 text-center sm:px-4 sm:py-6;
+  }
+  @media (min-width: 1024px) {
+    .pro-hero__role:not(:last-child) .pro-hero__role-meta {
+      border-right: 1px solid #e6e4df;
+    }
+  }
+  .pro-hero__role-icon {
+    @apply flex h-9 w-9 items-center justify-center text-al-orange;
+  }
+  .pro-hero__role-title {
+    @apply text-[10px] font-bold uppercase leading-snug tracking-[0.1em] text-[#1a2a40] sm:text-[11px];
+  }
+  .pro-hero__role-body {
+    @apply max-w-[14rem] text-[12px] leading-snug text-[#555555] sm:text-[13px];
+  }
   .amb-hero {
     @apply relative isolate flex min-h-[calc(100svh-6.75rem)] items-center overflow-hidden bg-white;
   }
@@ -1233,10 +1320,10 @@
     @apply text-[9px] font-semibold uppercase tracking-[0.12em] text-al-navy sm:text-[10px];
   }
   .amb-feel {
-    @apply w-full bg-[#f3f3f1] px-3 py-10 sm:px-4 sm:py-12 lg:px-5 lg:py-14;
+    @apply w-full bg-white pb-10 sm:pb-12 lg:pb-14;
   }
   .amb-feel__banner {
-    @apply relative mx-auto w-full overflow-hidden rounded-[1.25rem] sm:rounded-[1.75rem] lg:rounded-[2rem];
+    @apply relative mx-auto w-full overflow-hidden;
   }
   .amb-feel__banner-img {
     @apply block w-full object-cover object-center;
@@ -1662,6 +1749,157 @@
   }
   .discipline-chip:hover .discipline-chip__icon {
     @apply border-al-navy bg-al-navy text-white;
+  }
+  .jenni-profile {
+    @apply bg-white text-al-navy;
+  }
+  .jenni-hero {
+    @apply relative isolate flex min-h-[calc(100svh-6.75rem)] items-center overflow-hidden bg-white;
+  }
+  .jenni-hero__image {
+    @apply absolute inset-y-0 right-0 h-full w-full object-cover object-[72%_center] sm:w-[74%] sm:object-[center_42%] lg:w-[68%];
+  }
+  .jenni-hero__veil {
+    @apply pointer-events-none absolute inset-0 z-[1];
+    background: linear-gradient(90deg, #fff 0%, #fff 36%, rgba(255,255,255,.93) 45%, rgba(255,255,255,.4) 58%, transparent 72%);
+  }
+  .jenni-hero__copy {
+    @apply relative z-10 w-full max-w-xl px-6 py-14 sm:max-w-[53%] sm:px-10 lg:max-w-[48%] lg:px-16;
+  }
+  .jenni-hero__logo {
+    @apply h-auto w-28 object-contain sm:w-32;
+  }
+  .jenni-hero__title {
+    @apply font-display mt-7 text-[clamp(3rem,6vw,5.8rem)] font-semibold leading-[.86] text-[#0b2445];
+  }
+  .jenni-hero__partner {
+    @apply mt-6 text-xs font-extrabold uppercase tracking-[.08em] text-al-orange sm:text-sm;
+  }
+  .jenni-hero__location {
+    @apply mt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-[.06em] text-[#0b2445] sm:text-sm;
+  }
+  .jenni-hero__location span {
+    @apply text-lg;
+  }
+  .jenni-hero__discipline {
+    @apply mt-3 text-[11px] font-bold uppercase tracking-[.1em] text-[#0b2445] sm:text-xs;
+  }
+  .jenni-hero__discipline span {
+    @apply mx-2 text-al-ink/35;
+  }
+  .jenni-hero__quote {
+    @apply font-display mt-7 border-l-2 border-al-orange pl-4 text-lg italic leading-snug text-[#0b2445] sm:text-xl;
+  }
+  .jenni-stats {
+    @apply grid grid-cols-2 border-y border-al-line bg-white sm:grid-cols-3 lg:grid-cols-6;
+  }
+  .jenni-stats__item {
+    @apply flex items-center justify-center gap-3 border-al-line px-4 py-5 text-al-orange sm:px-5 sm:py-6;
+  }
+  .jenni-stats__item:not(:first-child) {
+    @apply border-l;
+  }
+  .jenni-stats__item div {
+    @apply flex flex-col;
+  }
+  .jenni-stats__item span {
+    @apply text-[8px] font-bold uppercase tracking-[.09em] text-[#0b2445] sm:text-[9px];
+  }
+  .jenni-stats__item strong {
+    @apply font-display mt-1 text-lg font-semibold leading-none text-[#0b2445] sm:text-xl;
+  }
+  .jenni-story {
+    @apply grid border-b border-al-line lg:grid-cols-[29%_71%];
+  }
+  .jenni-story__bio {
+    @apply border-al-line px-6 py-10 sm:px-10 lg:border-r lg:px-12;
+  }
+  .jenni-story h2,
+  .jenni-program h2 {
+    @apply border-b-2 border-al-orange pb-3 text-xs font-extrabold uppercase tracking-[.08em] text-[#0b2445];
+  }
+  .jenni-story__bio p {
+    @apply mt-5 text-sm leading-relaxed text-al-ink/75;
+  }
+  .jenni-story__signature {
+    @apply font-display mt-9 text-3xl italic text-[#0b2445];
+    color: #0b2445 !important;
+  }
+  .jenni-story__products {
+    @apply px-6 py-10 sm:px-10 lg:px-12;
+  }
+  .jenni-products {
+    @apply mt-5 grid gap-3 sm:grid-cols-3;
+  }
+  .jenni-product {
+    @apply relative flex min-h-[22rem] flex-col rounded-lg border border-al-line px-4 pb-4 pt-5 text-center;
+  }
+  .jenni-product--orange { @apply bg-[#fff8f0]; }
+  .jenni-product--red { @apply bg-[#fff5f5]; }
+  .jenni-product--blue { @apply bg-[#f4f6ff]; }
+  .jenni-product__name {
+    @apply text-[10px] font-extrabold uppercase leading-tight;
+  }
+  .jenni-product__name span { @apply text-[8px] font-semibold; }
+  .jenni-product--orange .jenni-product__name { @apply text-al-orange; }
+  .jenni-product--red .jenni-product__name { @apply text-red-600; }
+  .jenni-product--blue .jenni-product__name { @apply text-blue-900; }
+  .jenni-product img {
+    @apply mx-auto mt-3 h-28 w-auto object-contain;
+  }
+  .jenni-product h3 {
+    @apply mt-2 text-[10px] font-bold leading-snug text-[#0b2445];
+  }
+  .jenni-product > p:not(.jenni-product__name) {
+    @apply mt-3 text-[10px] leading-relaxed text-al-ink/70;
+  }
+  .jenni-product a {
+    @apply mt-auto inline-flex self-center rounded border px-4 py-2 text-[9px] font-bold uppercase tracking-[.08em];
+  }
+  .jenni-product--orange a { @apply border-al-orange text-al-orange; }
+  .jenni-product--red a { @apply border-red-500 text-red-600; }
+  .jenni-product--blue a { @apply border-blue-800 text-blue-900; }
+  .jenni-story__product-quote {
+    @apply font-display mt-7 border-x-2 border-al-orange px-5 text-center text-base italic text-[#0b2445];
+  }
+  .jenni-program {
+    @apply grid border-b border-al-line lg:grid-cols-[27%_73%];
+  }
+  .jenni-connect {
+    @apply border-al-line px-6 py-10 sm:px-10 lg:border-r lg:px-12;
+  }
+  .jenni-connect ul {
+    @apply mt-5 space-y-4 text-xs text-al-ink/75;
+  }
+  .jenni-connect li {
+    @apply flex items-center gap-3;
+  }
+  .jenni-connect svg { @apply text-al-orange; }
+  .jenni-program__flow {
+    @apply px-6 py-10 sm:px-10 lg:px-12;
+  }
+  .jenni-flow {
+    @apply mt-6 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr] sm:items-start;
+  }
+  .jenni-flow__step {
+    @apply text-center;
+  }
+  .jenni-flow__step > svg {
+    @apply mx-auto h-12 w-12 rounded-full p-3 text-white;
+  }
+  .jenni-flow__step--sun > svg { @apply bg-al-orange; }
+  .jenni-flow__step--green > svg { @apply bg-[#0b5a36]; }
+  .jenni-flow__step--blue > svg { @apply bg-[#0d3c90]; }
+  .jenni-flow__step--red > svg { @apply bg-red-600; }
+  .jenni-flow__step--forest > svg { @apply bg-[#08502d]; }
+  .jenni-flow__step h3 {
+    @apply mt-3 text-[9px] font-extrabold uppercase tracking-[.08em] text-[#0b2445];
+  }
+  .jenni-flow__step p {
+    @apply mt-3 text-[10px] leading-relaxed text-al-ink/70;
+  }
+  .jenni-flow__arrow {
+    @apply hidden pt-3 text-lg text-[#0b2445] sm:block;
   }
   .slider-track {
     @apply flex transition-transform duration-500 ease-out;
