@@ -1,5 +1,9 @@
 <section class="category-hero category-hero--{{category.accent}}">
-  <div class="category-hero__stage">
+  <figure class="category-hero__panel">
+    <img src="{{category.panel}}" alt="{{category.name}} — {{category.summary}}" width="1024" height="576" />
+  </figure>
+
+  <div class="category-hero__compact">
     <div class="category-hero__copy">
       <div class="category-hero__rule" aria-hidden="true"></div>
       <h1 class="category-hero__title">{{category.name}}</h1>
@@ -11,20 +15,17 @@
       {{/unless}}
       <p class="category-hero__body">{{category.summary}}</p>
     </div>
-    <div class="category-hero__media">
-      <img src="{{category.image}}" alt="{{category.name}}" width="1024" height="576" />
-    </div>
-  </div>
-  <div class="category-hero__benefits">
-    {{#each category.benefits}}
-    <div class="category-hero__benefit">
-      <div class="category-hero__icon">{{{icon this.icon "w-5 h-5"}}}</div>
-      <div>
-        <p class="category-hero__benefit-title">{{this.title}}</p>
-        <p class="category-hero__benefit-body">{{this.body}}</p>
+    <div class="category-hero__benefits">
+      {{#each category.benefits}}
+      <div class="category-hero__benefit">
+        <div class="category-hero__icon">{{{icon this.icon "w-5 h-5"}}}</div>
+        <div>
+          <p class="category-hero__benefit-title">{{this.title}}</p>
+          <p class="category-hero__benefit-body">{{this.body}}</p>
+        </div>
       </div>
+      {{/each}}
     </div>
-    {{/each}}
   </div>
 </section>
 

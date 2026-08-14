@@ -95,6 +95,7 @@ export const categories = [
     summary:
       'Advanced nutrition that supports the body\u2019s natural ability to repair, rebuild, and protect cartilage and connective tissue\u2014for comfort and long-term healthy performance, every day. For years to come.',
     image: '/images/shop/categories/cartilage.jpg',
+    panel: '/images/shop/categories/cartilage-panel.jpg',
     rangeLine: 'VetroFlex\u00ae Range | Joint + Connective Tissue Support',
     cta: 'Shop Category',
     benefits: [
@@ -115,6 +116,7 @@ export const categories = [
     summary:
       'Targeted support that helps moderate inflammation and discomfort\u2014so your horse can move freely, recover faster, and perform at its best.',
     image: '/images/shop/categories/inflammation.jpg',
+    panel: '/images/shop/categories/inflammation-panel.jpg',
     rangeLine: 'VetroFen\u00ae Range | Inflammation & Pain Management',
     cta: 'Shop Category',
     benefits: [
@@ -135,6 +137,7 @@ export const categories = [
     summary:
       'Support the kidneys\u2014your horse\u2019s homeostasis engine. VetroFit\u00ae helps maintain fluid balance, regulate electrolytes, transport oxygen, and remove waste\u2014so your horse can perform, recover, and thrive every day.',
     image: '/images/shop/categories/kidney.jpg',
+    panel: '/images/shop/categories/kidney-panel.jpg',
     rangeLine: 'VetroFit\u00ae Range | Kidney Homeostasis & Oxygen Transport',
     cta: 'Shop Category',
     benefits: [

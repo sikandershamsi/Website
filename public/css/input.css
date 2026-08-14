@@ -85,11 +85,17 @@
   .category-card {
     @apply block overflow-hidden border border-al-line bg-white transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)];
   }
-  .category-card__stage {
-    @apply grid items-stretch lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)];
+  .category-card__panel {
+    @apply m-0 hidden lg:block;
+  }
+  .category-card__panel img {
+    @apply block h-auto w-full;
+  }
+  .category-card__compact {
+    @apply lg:hidden;
   }
   .category-card__copy {
-    @apply flex flex-col justify-center px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12;
+    @apply flex flex-col justify-center px-6 py-8 sm:px-8 sm:py-10;
   }
   .category-card__rule {
     @apply h-0.5 w-10 bg-al-orange;
@@ -105,12 +111,6 @@
   }
   .category-card__body {
     @apply mt-4 max-w-md text-sm leading-relaxed text-al-ink/70;
-  }
-  .category-card__media {
-    @apply relative min-h-[220px] overflow-hidden bg-white sm:min-h-[280px] lg:min-h-full;
-  }
-  .category-card__media img {
-    @apply absolute inset-0 h-full w-full object-cover object-[72%_center];
   }
   .category-card__benefits {
     @apply grid grid-cols-2 border-t border-al-line sm:grid-cols-4;
@@ -160,11 +160,17 @@
   .category-hero {
     @apply overflow-hidden border-b border-al-line bg-white;
   }
-  .category-hero__stage {
-    @apply grid items-stretch lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)];
+  .category-hero__panel {
+    @apply m-0 hidden lg:block;
+  }
+  .category-hero__panel img {
+    @apply mx-auto block h-auto w-full max-w-[1400px];
+  }
+  .category-hero__compact {
+    @apply lg:hidden;
   }
   .category-hero__copy {
-    @apply flex flex-col justify-center px-6 py-10 sm:px-8 lg:px-12 lg:py-14 xl:px-16;
+    @apply flex flex-col justify-center px-6 py-10 sm:px-8;
   }
   .category-hero__rule {
     @apply h-0.5 w-12 bg-al-orange;
@@ -180,12 +186,6 @@
   }
   .category-hero__body {
     @apply mt-5 max-w-lg text-sm leading-relaxed text-al-ink/70 sm:text-[15px];
-  }
-  .category-hero__media {
-    @apply relative min-h-[260px] overflow-hidden bg-white sm:min-h-[340px] lg:min-h-[420px];
-  }
-  .category-hero__media img {
-    @apply absolute inset-0 h-full w-full object-cover object-[70%_center];
   }
   .category-hero__benefits {
     @apply grid grid-cols-2 border-t border-al-line sm:grid-cols-4;
@@ -372,7 +372,7 @@
     @apply relative h-32 w-32 overflow-hidden rounded-full bg-[#efece6] sm:h-36 sm:w-36 lg:h-40 lg:w-40;
   }
   .mission-ingredient__media img {
-    @apply absolute inset-0 h-full w-full scale-110 object-cover object-center;
+    @apply absolute inset-0 h-full w-full scale-105 object-cover object-center;
   }
   .mission-ingredient__name {
     @apply mt-4 text-[11px] font-bold uppercase leading-snug tracking-wide text-al-navy sm:text-xs;
@@ -548,7 +548,7 @@
     @apply relative aspect-square w-full max-w-[148px] overflow-hidden rounded-full bg-[#efefef] sm:max-w-[160px];
   }
   .primary-ingredients__media img {
-    @apply absolute inset-0 h-full w-full scale-110 object-cover object-center;
+    @apply absolute inset-0 h-full w-full scale-105 object-cover object-center;
   }
   .primary-ingredients__name {
     @apply mt-4 max-w-[11rem] text-[10px] font-bold uppercase leading-snug tracking-[0.04em] text-black sm:text-[11px];
