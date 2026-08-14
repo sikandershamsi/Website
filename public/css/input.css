@@ -252,6 +252,27 @@
   .vf-desc__line--accent {
     color: var(--vf-orange);
   }
+  .vf-desc__line--blue {
+    color: #1a3a6b;
+  }
+  .vf-desc__logo-lead {
+    color: var(--vf-orange);
+  }
+  .vf-desc__logo-tail {
+    color: #1a3a6b;
+  }
+  .vf-desc__eyebrow span {
+    @apply font-semibold normal-case tracking-normal text-al-ink/45;
+  }
+  .vf-desc--flex .vf-desc__anatomy img {
+    @apply max-w-[380px];
+  }
+  .vf-desc--flex .vf-desc__lung-label--healthy {
+    @apply bg-emerald-600;
+  }
+  .vf-desc--flex .vf-desc__lung-label--eiph {
+    @apply bg-red-600;
+  }
   .vf-desc__intro {
     @apply mt-4 max-w-md text-sm leading-relaxed text-al-ink/70;
   }
@@ -428,6 +449,15 @@
   }
   .vf-compare--red {
     --vf-orange: #c43c2c;
+  }
+  .vf-compare--blue {
+    --vf-orange: #2f6db3;
+  }
+  .vf-compare--blue .vf-compare__vs {
+    background-color: #2f6db3;
+  }
+  .vf-compare--blue .vf-compare__features {
+    background-color: color-mix(in srgb, #2f6db3 70%, #1a3a6b);
   }
   .vf-compare__banner {
     @apply -mx-5 -mt-8 mb-8 px-5 py-4 text-white sm:-mx-8 sm:-mt-10 sm:px-8;
@@ -609,6 +639,12 @@
     --vf-red: #c43c2c;
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
   }
+  .vfen-control--flex {
+    --vf-red: #e87820;
+  }
+  .vfen-control--flex .vfen-control__product img {
+    @apply max-w-[260px];
+  }
   .vfen-control__grid {
     @apply grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.55fr)] lg:items-start lg:gap-8 xl:gap-10;
   }
@@ -784,6 +820,40 @@
   .pi-panel--cols-5 .pi-panel__item:nth-child(15) {
     @apply lg:col-start-auto;
   }
+  .pi-panel--cols-6 .pi-panel__grid {
+    @apply lg:grid-cols-12;
+  }
+  .pi-panel--cols-6 .pi-panel__item {
+    @apply lg:col-span-2;
+  }
+  .pi-panel--cols-6 .pi-panel__item:nth-child(7n) {
+    @apply lg:border-r;
+  }
+  .pi-panel--cols-6 .pi-panel__item:nth-child(6n) {
+    @apply lg:border-r-0;
+  }
+  .pi-panel--cols-6 .pi-panel__item:nth-child(n + 7) {
+    @apply lg:border-b-0;
+  }
+  .pi-panel--cols-6 .pi-panel__item:nth-child(7) {
+    @apply lg:col-start-2;
+  }
+  .pi-panel--cols-6 .pi-panel__item:nth-child(n + 15) {
+    @apply lg:border-b-0;
+  }
+  .pi-panel--flex {
+    --pi-gold: #e08a2c;
+  }
+  .pi-panel--flex .pi-panel__title {
+    color: #1f4d32;
+  }
+  .pi-panel--flex .pi-benefit-table__head {
+    background-color: #1f4d32;
+  }
+  .pi-panel--flex .pi-panel__callout-icon {
+    color: #e08a2c;
+    border-color: #e08a2c;
+  }
   .pi-panel__media {
     @apply relative aspect-square w-full max-w-[88px] overflow-hidden rounded-full bg-[#f3f3f3] sm:max-w-[100px];
   }
@@ -902,6 +972,31 @@
   .physio-chart--vetrofen .physio-chart__callout-icon {
     color: #e87722;
     border-color: #e87722;
+  }
+  .physio-chart--vetroflex .physio-chart__th--system,
+  .physio-chart--vetroflex .physio-chart__th--nutrition {
+    background-color: #1f4d32;
+  }
+  .physio-chart--vetroflex .physio-chart__th--physiology {
+    background-color: #2a5c3d;
+  }
+  .physio-chart--vetroflex .physio-chart__th--performance {
+    background-color: #e08a2c;
+  }
+  .physio-chart--vetroflex .physio-chart__th--wellness {
+    background-color: #6b7a3d;
+  }
+  .physio-chart--vetroflex .physio-chart__list--performance {
+    background-color: #fff4ea;
+    color: #e08a2c;
+  }
+  .physio-chart--vetroflex .physio-chart__list--wellness {
+    background-color: #f2f4ea;
+    color: #55632f;
+  }
+  .physio-chart--vetroflex .physio-chart__callout-icon {
+    color: #e08a2c;
+    border-color: #e08a2c;
   }
   .physio-chart__callout-text {
     @apply m-0 max-w-[16rem] text-[11px] font-bold uppercase leading-snug tracking-[0.04em] text-al-navy;
@@ -1025,22 +1120,28 @@
     @apply mt-5 h-px w-10 bg-al-orange;
   }
   .about-hero-blend {
-    @apply min-h-[420px] sm:min-h-[480px] lg:min-h-[540px];
+    @apply flex min-h-[calc(100svh-6.75rem)] items-stretch;
   }
   .about-hero-blend .inspired-blend__media-wrap {
     @apply absolute inset-0;
   }
+  .about-hero-blend__media {
+    @apply object-cover object-[78%_center] sm:object-[75%_center] lg:object-[72%_center];
+  }
+  .about-hero-blend__copy {
+    @apply min-h-[calc(100svh-6.75rem)] py-16 sm:py-20 lg:py-24;
+  }
   .mission-section {
-    @apply bg-[#f6f5f2];
+    @apply bg-white;
   }
   .mission-panel {
-    @apply grid items-center gap-10 lg:grid-cols-[1.05fr_1.1fr_1.05fr] lg:gap-6 xl:gap-10;
+    @apply grid items-center gap-10 lg:grid-cols-[1.05fr_1.15fr_1fr] lg:gap-6 xl:gap-10;
   }
   .mission-panel__copy {
     @apply flex flex-col justify-center;
   }
   .mission-panel__eyebrow {
-    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-al-navy;
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-al-ink/55;
   }
   .mission-panel__rule {
     @apply mt-4 h-px w-12 bg-al-orange;
@@ -1061,7 +1162,7 @@
     @apply flex flex-col justify-center;
   }
   .mission-panel__process-label {
-    @apply text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-al-navy;
+    @apply text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-al-ink/55;
   }
   .mission-panel__steps {
     @apply mt-6 flex flex-wrap items-start justify-center gap-x-1.5 gap-y-4 sm:gap-x-2;
@@ -1070,7 +1171,7 @@
     @apply text-center;
   }
   .mission-panel__icon {
-    @apply mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-al-navy/40 text-al-navy;
+    @apply mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-al-navy/35 text-al-navy;
   }
   .mission-panel__step-label {
     @apply mt-2 text-[10px] font-bold uppercase tracking-wide text-al-navy;
@@ -1079,7 +1180,8 @@
     @apply mt-4 text-al-navy/35;
   }
   .mission-panel__banner {
-    @apply mt-8 border border-al-orange bg-transparent px-4 py-3 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-al-navy sm:text-[11px];
+    @apply mt-8 px-4 py-3 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-al-navy/70 sm:text-[11px];
+    background-color: #eef5ea;
   }
   .mission-ingredients {
     @apply mt-14 grid grid-cols-2 gap-8 border-t border-black/10 pt-12 sm:grid-cols-3 lg:grid-cols-5 lg:gap-0;
@@ -1091,7 +1193,7 @@
     @apply lg:border-l-0;
   }
   .mission-ingredient__media {
-    @apply relative h-32 w-32 overflow-hidden rounded-full bg-[#efece6] sm:h-36 sm:w-36 lg:h-40 lg:w-40;
+    @apply relative h-32 w-32 overflow-hidden rounded-full bg-[#f3f1ec] sm:h-36 sm:w-36 lg:h-40 lg:w-40;
   }
   .mission-ingredient__media img {
     @apply absolute inset-0 h-full w-full scale-105 object-cover object-center;
@@ -1100,7 +1202,7 @@
     @apply mt-4 text-[11px] font-bold uppercase leading-snug tracking-wide text-al-navy sm:text-xs;
   }
   .mission-ingredient__origin {
-    @apply mt-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-al-ink/55;
+    @apply mt-2 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-al-ink/55;
   }
   .science-hero {
     @apply relative isolate flex min-h-[440px] items-center overflow-hidden bg-[#f3f2ee] sm:min-h-[500px] lg:min-h-[560px] xl:min-h-[600px];

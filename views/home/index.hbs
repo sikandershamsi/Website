@@ -61,15 +61,15 @@
           Powerful Ingredients.<br />Purposeful Nutrition.
         </h2>
         <div class="mission-panel__rule" aria-hidden="true"></div>
-        <p class="mission-panel__body">We combine nature's most powerful compounds with advanced nutritional science to create solutions that work with your animal's body&mdash;not against it.</p>
+        <p class="mission-panel__body">We combine nature&rsquo;s most powerful compounds with advanced nutritional science to create solutions that work with your animal&rsquo;s biology&mdash;not against it.</p>
       </div>
 
       <div class="mission-panel__media">
         <img
-          src="/images/home/ingredients-photo-3cf2ff6d.jpg"
-          alt="Botanical herbs, mortar and pestle, and laboratory flask"
-          width="1080"
-          height="620"
+          src="/images/home/ingredients-photo.jpg?v=20260814g"
+          alt="Botanical herbs, mortar and pestle, powders, and laboratory flask"
+          width="1200"
+          height="550"
           loading="lazy"
         />
       </div>
@@ -107,10 +107,10 @@
       {{#each featuredIngredients}}
       <div class="mission-ingredient">
         <div class="mission-ingredient__media">
-          <img src="{{this.image}}" alt="{{this.name}}" width="720" height="720" loading="lazy" />
+          <img src="{{this.image}}?v=20260814g" alt="{{this.name}}" width="720" height="720" loading="lazy" />
         </div>
         <p class="mission-ingredient__name">{{this.name}}</p>
-        <p class="mission-ingredient__origin">Origin: {{this.origin}}</p>
+        <p class="mission-ingredient__origin">{{{icon "map-pin" "w-3 h-3 inline-block align-[-1px]"}}} Origin: {{this.origin}}</p>
       </div>
       {{/each}}
     </div>

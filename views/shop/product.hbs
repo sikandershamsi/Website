@@ -47,12 +47,14 @@
 </section>
 
 {{#unless (eq product.slug "vetrofen")}}
+{{#unless (eq product.slug "vetroflex")}}
 <section class="panel-white">
   <div class="section max-w-4xl">
     <h2 class="font-display text-2xl font-medium text-al-navy sm:text-3xl">{{product.physiologyPanel.heading}}</h2>
     <p class="mt-4 text-sm leading-relaxed text-al-ink/75">{{product.physiologyPanel.body}}</p>
   </div>
 </section>
+{{/unless}}
 {{/unless}}
 
 <section class="panel-grey" id="ingredients">
@@ -149,14 +151,18 @@
         {{/if}}
 
         {{#if product.descriptionShowcase}}
-        <article class="vf-desc mt-10">
+        <article class="vf-desc mt-10{{#ifCond product.slug "vetroflex"}} vf-desc--flex{{/ifCond}}">
           <div class="vf-desc__grid">
             <div class="vf-desc__copy">
+              {{#ifCond product.slug "vetroflex"}}
+              <p class="vf-desc__logo"><span class="vf-desc__logo-lead">Vetro</span><span class="vf-desc__logo-tail">flex</span></p>
+              {{else}}
               <p class="vf-desc__logo">{{product.name}}</p>
+              {{/ifCond}}
               <p class="vf-desc__brand">{{product.descriptionShowcase.brandLine}}</p>
               <h3 class="vf-desc__headline">
                 {{#each product.descriptionShowcase.headline}}
-                <span class="vf-desc__line{{#if this.accent}} vf-desc__line--accent{{/if}}">{{this.text}}</span>
+                <span class="vf-desc__line{{#if this.accent}}{{#ifCond this.accent "blue"}} vf-desc__line--blue{{else}} vf-desc__line--accent{{/ifCond}}{{/if}}">{{this.text}}</span>
                 {{/each}}
               </h3>
               <p class="vf-desc__intro">{{product.descriptionShowcase.intro}}</p>
@@ -174,7 +180,7 @@
               <figure class="vf-desc__anatomy">
                 <img
                   src="{{product.descriptionShowcase.anatomyImage}}"
-                  alt="{{product.trademark}} equine anatomy highlighting oxygen-delivery systems"
+                  alt="{{product.trademark}} equine anatomy highlighting joint and connective tissue systems"
                   width="704"
                   height="380"
                   loading="lazy"
@@ -185,7 +191,7 @@
                   <span class="vf-desc__lung-label vf-desc__lung-label--healthy">{{product.descriptionShowcase.lungsHealthy.label}}</span>
                   <img
                     src="{{product.descriptionShowcase.lungsHealthy.image}}"
-                    alt="Healthy equine lungs"
+                    alt="{{product.descriptionShowcase.lungsHealthy.label}}"
                     width="900"
                     height="658"
                     loading="lazy"
@@ -195,7 +201,7 @@
                   <span class="vf-desc__lung-label vf-desc__lung-label--eiph">{{product.descriptionShowcase.lungsEiph.label}}</span>
                   <img
                     src="{{product.descriptionShowcase.lungsEiph.image}}"
-                    alt="Equine lungs with exercise-induced pulmonary hemorrhage"
+                    alt="{{product.descriptionShowcase.lungsEiph.label}}"
                     width="900"
                     height="658"
                     loading="lazy"
@@ -206,11 +212,18 @@
 
             <div class="vf-desc__detail">
               <div class="vf-desc__block">
-                <p class="vf-desc__eyebrow">Product</p>
+                <p class="vf-desc__eyebrow">Product{{#if product.descriptionShowcase.productLabel}} <span>({{product.descriptionShowcase.productLabel}})</span>{{/if}}</p>
                 <p class="vf-desc__body">{{product.whatItIs.summary}}</p>
+                {{#if product.whatItIs.points.length}}
+                <ul class="vf-desc__list">
+                  {{#each product.whatItIs.points}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+                {{/if}}
               </div>
               <div class="vf-desc__block">
-                <p class="vf-desc__eyebrow">Outcomes</p>
+                <p class="vf-desc__eyebrow">Outcomes{{#if product.descriptionShowcase.outcomesLabel}} <span>({{product.descriptionShowcase.outcomesLabel}})</span>{{/if}}</p>
                 <p class="vf-desc__body">{{product.outcomes.summary}}</p>
                 <ul class="vf-desc__list">
                   {{#each product.outcomes.points}}
@@ -219,7 +232,7 @@
                 </ul>
               </div>
               <div class="vf-desc__block">
-                <p class="vf-desc__eyebrow">Impact</p>
+                <p class="vf-desc__eyebrow">Impact{{#if product.descriptionShowcase.impactLabel}} <span>({{product.descriptionShowcase.impactLabel}})</span>{{/if}}</p>
                 {{#if product.impact.summary}}
                 <p class="vf-desc__body">{{product.impact.summary}}</p>
                 {{/if}}
@@ -240,11 +253,13 @@
         {{/if}}
 
         {{#if product.controlShowcase}}
-        <article class="vfen-control mt-10">
+        <article class="vfen-control mt-10{{#ifCond product.slug "vetroflex"}} vfen-control--flex{{/ifCond}}">
           <div class="vfen-control__grid">
             <div class="vfen-control__aside">
               <p class="vfen-control__logo">{{product.name}}<span class="vfen-control__reg">®</span></p>
+              {{#if product.controlShowcase.brandLine}}
               <p class="vfen-control__brand">{{product.controlShowcase.brandLine}}</p>
+              {{/if}}
               <p class="vfen-control__tagline">{{product.controlShowcase.tagline}}</p>
               <p class="vfen-control__intro">{{product.controlShowcase.intro}}</p>
               <figure class="vfen-control__product">
@@ -274,7 +289,7 @@
                 <img
                   class="vfen-control__diagram-img"
                   src="{{product.controlShowcase.diagramImage}}"
-                  alt="{{product.trademark}} inflammation and recovery support diagram"
+                  alt="{{product.trademark}} joint and connective tissue support diagram"
                   width="1100"
                   height="1170"
                   loading="lazy"
@@ -377,8 +392,14 @@
         {{/if}}
 
         {{#if product.comparisonShowcase}}
-        <article class="vf-compare mt-10{{#ifCond product.slug "vetrofen"}} vf-compare--red{{/ifCond}}">
+        <article class="vf-compare mt-10{{#ifCond product.slug "vetrofen"}} vf-compare--red{{/ifCond}}{{#ifCond product.slug "vetroflex"}} vf-compare--blue{{/ifCond}}">
           {{#ifCond product.slug "vetrofen"}}
+          <div class="vf-compare__banner">
+            <p class="vf-compare__banner-title">{{product.trademark}}</p>
+            <p class="vf-compare__banner-sub">Feel the Difference</p>
+          </div>
+          {{/ifCond}}
+          {{#ifCond product.slug "vetroflex"}}
           <div class="vf-compare__banner">
             <p class="vf-compare__banner-title">{{product.trademark}}</p>
             <p class="vf-compare__banner-sub">Feel the Difference</p>
@@ -395,7 +416,7 @@
               <figure class="vf-compare__hero">
                 <img
                   src="{{product.comparisonShowcase.heroImage}}"
-                  alt="Racehorse and jockey in full stride"
+                  alt="{{product.trademark}} horse and rider in competition"
                   width="720"
                   height="900"
                   loading="lazy"
@@ -472,7 +493,7 @@
 
       <div data-tab-panel="ingredients" class="hidden py-10">
         {{#if product.primaryIngredientsCallouts}}
-        <div class="pi-panel{{#ifCond product.slug "vetrofen"}} pi-panel--cols-5{{/ifCond}}">
+        <div class="pi-panel{{#ifCond product.slug "vetrofen"}} pi-panel--cols-5{{/ifCond}}{{#ifCond product.slug "vetroflex"}} pi-panel--cols-6 pi-panel--flex{{/ifCond}}">
           <header class="pi-panel__header">
             <p class="pi-panel__brand">{{product.trademark}}</p>
             <h3 class="pi-panel__title">Primary Ingredients</h3>
@@ -504,7 +525,7 @@
             {{#each product.primaryIngredients}}
             <li class="pi-panel__item">
               <div class="pi-panel__media">
-                <img src="{{this.image}}?v=20260814e" alt="{{this.name}}" width="720" height="720" loading="lazy" />
+                <img src="{{this.image}}?v=20260814f" alt="{{this.name}}" width="720" height="720" loading="lazy" />
               </div>
               <p class="pi-panel__name">{{this.name}}</p>
               <p class="pi-panel__origin">Origin: {{this.origin}}</p>
@@ -523,7 +544,7 @@
         </div>
 
         {{#if product.physiologyBenefits}}
-        <div class="physio-chart{{#ifCond product.physiologyBenefits.variant "vetrofen"}} physio-chart--vetrofen{{/ifCond}}">
+        <div class="physio-chart{{#if product.physiologyBenefits.variant}} physio-chart--{{product.physiologyBenefits.variant}}{{/if}}">
           <h3 class="physio-chart__title">{{product.physiologyBenefits.title}}</h3>
           <div class="physio-chart__scroll">
             <table class="physio-chart__table">
@@ -695,6 +716,7 @@
 
 {{#unless product.descriptionShowcase}}
 {{#unless product.inflammationShowcase}}
+{{#unless (eq product.slug "vetroflex")}}
 <section class="panel-grey">
   <div class="section">
     <div class="grid gap-8 lg:grid-cols-3">
@@ -739,9 +761,11 @@
 </section>
 {{/unless}}
 {{/unless}}
+{{/unless}}
 
 {{#unless product.comparisonPanel}}
 {{#unless (eq product.slug "vetrofen")}}
+{{#unless (eq product.slug "vetroflex")}}
 <section class="panel-grey">
   <div class="section">
     <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-start">
@@ -779,6 +803,7 @@
     </div>
   </div>
 </section>
+{{/unless}}
 {{/unless}}
 {{/unless}}
 

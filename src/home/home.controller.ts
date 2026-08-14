@@ -52,27 +52,27 @@ export class HomeController {
         {
           name: 'Hydrolyzed Collagen Type II',
           origin: 'Brazil',
-          image: '/images/ingredients/inspired/hydrolyzed-collagen-3cf2ff6d.jpg',
+          image: '/images/ingredients/inspired/hydrolyzed-collagen.jpg',
         },
         {
           name: 'ACV (Chondroitin)',
           origin: 'France',
-          image: '/images/ingredients/inspired/acv-chondroitin-3cf2ff6d.jpg',
+          image: '/images/ingredients/inspired/acv-chondroitin.jpg',
         },
         {
           name: 'FOS (Fructooligosaccharides)',
           origin: 'Belgium',
-          image: '/images/ingredients/inspired/fos-3cf2ff6d.jpg',
+          image: '/images/ingredients/inspired/fos.jpg',
         },
         {
           name: 'Manganese, Copper & Zinc',
           origin: 'Global',
-          image: '/images/ingredients/inspired/manganese-copper-zinc-3cf2ff6d.jpg',
+          image: '/images/ingredients/inspired/manganese-copper-zinc.jpg',
         },
         {
           name: 'Biotin',
           origin: 'Switzerland',
-          image: '/images/ingredients/inspired/biotin-3cf2ff6d.jpg',
+          image: '/images/ingredients/inspired/biotin.jpg',
         },
       ],
     };

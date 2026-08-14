@@ -73,12 +73,15 @@ export interface Product {
   comparisonPanel?: string;
   descriptionShowcase?: {
     brandLine: string;
-    headline: { text: string; accent?: boolean }[];
+    headline: { text: string; accent?: boolean | 'blue' | 'orange' }[];
     intro: string;
     benefits: { icon: string; html: string }[];
     anatomyImage: string;
     lungsHealthy: { image: string; label: string };
     lungsEiph: { image: string; label: string };
+    productLabel?: string;
+    outcomesLabel?: string;
+    impactLabel?: string;
   };
   kidneyShowcase?: {
     tagline: string;
@@ -110,7 +113,7 @@ export interface Product {
     callouts: { icon: string; text: string }[];
   };
   controlShowcase?: {
-    brandLine: string;
+    brandLine?: string;
     tagline: string;
     intro: string;
     productImage: string;
@@ -125,7 +128,7 @@ export interface Product {
     title: string;
     disclaimer: string;
     columns: string[];
-    variant?: 'vetrofen';
+    variant?: 'vetrofen' | 'vetroflex';
     callouts?: { icon: string; text: string }[];
     rows: {
       icon: string;
@@ -258,6 +261,115 @@ export const products: Product[] = [
     },
     animalifeDifference:
       'All competitors manage symptoms and offer short term fixes. VetroFlex supports the horse’s natural ability to repair cartilage and strengthen connective tissue throughout the body.',
+    descriptionShowcase: {
+      brandLine: 'Vetro Collection by animalife™',
+      headline: [
+        { text: 'Stronger Joints.' },
+        { text: 'Restored Mobility.', accent: true },
+        { text: 'Built to Last.', accent: 'blue' },
+      ],
+      intro:
+        'A structurally targeted, veterinary-grade nutraceutical engineered to repair cartilage, strengthen connective tissue, and restore soundness for lasting performance longevity.',
+      benefits: [
+        {
+          icon: '/images/vetroflex/desc/benefit-icon-0.png',
+          html: 'Drives true <strong>cartilage &amp; connective tissue</strong> repair.',
+        },
+        {
+          icon: '/images/vetroflex/desc/benefit-icon-1.png',
+          html: 'Improves durability across <strong>joints, tendons, ligaments, and spine</strong>.',
+        },
+        {
+          icon: '/images/vetroflex/desc/benefit-icon-2.png',
+          html: 'Limits <strong>oxidative damage</strong> and progressive degeneration.',
+        },
+        {
+          icon: '/images/vetroflex/desc/benefit-icon-3.png',
+          html: 'Supports long-term <strong>soundness</strong> and performance longevity.',
+        },
+      ],
+      anatomyImage: '/images/vetroflex/desc/anatomy-horse.jpg',
+      lungsHealthy: {
+        image: '/images/vetroflex/desc/cartilage-healthy.jpg',
+        label: 'Healthy Cartilage',
+      },
+      lungsEiph: {
+        image: '/images/vetroflex/desc/cartilage-damaged.jpg',
+        label: 'Damaged Cartilage',
+      },
+      productLabel: 'What It Is',
+      outcomesLabel: 'What It Delivers',
+      impactLabel: 'Why It Wins',
+    },
+    controlShowcase: {
+      tagline: 'Complete Joint & Connective Tissue Support',
+      intro:
+        'A comprehensive formula designed to help support cartilage repair, joint function, and connective tissue integrity for long-term mobility and performance.',
+      productImage: '/images/vetroflex/control/product-tub.jpg',
+      controlHeading: "Supporting the Body's Natural Control Center",
+      controlBody:
+        'VetroFlex® is scientifically formulated to support the joints, cartilage, and connective tissues—key components of the equine movement system.',
+      helpsHeading: 'VetroFlex® helps support the internal structures needed for:',
+      benefits: [
+        {
+          icon: 'horse',
+          html: '<strong>Stronger joints and cartilage</strong> — Supports repair and resilience',
+        },
+        {
+          icon: 'heart',
+          html: '<strong>Improved mobility and performance</strong> — Helps maintain healthy movement',
+        },
+        {
+          icon: 'shield-check',
+          html: '<strong>Long-term joint health and comfort</strong> — Supports connective tissue integrity',
+        },
+      ],
+      diagramImage: '/images/vetroflex/control/horse-diagram.jpg',
+      callouts: [
+        {
+          num: 1,
+          title: 'Cartilage Repair & Maintenance',
+          body: 'Supports the repair and maintenance of healthy cartilage for lasting joint function.',
+          slot: 'top',
+        },
+        {
+          num: 2,
+          title: 'Joint Comfort & Mobility',
+          body: 'Helps maintain joint comfort, flexibility, and a full range of motion.',
+          slot: 'top-right',
+        },
+        {
+          num: 3,
+          title: 'Connective Tissue Strength',
+          body: 'Supports tendons, ligaments, and fascia for strength and resilience.',
+          slot: 'right',
+        },
+        {
+          num: 4,
+          title: 'Inflammation Balance',
+          body: 'Helps support a normal inflammatory response for joint and tissue health.',
+          slot: 'bottom-right',
+        },
+        {
+          num: 5,
+          title: 'Shock Absorption & Cushioning',
+          body: 'Supports synovial fluid and joint cushioning for impact protection.',
+          slot: 'bottom',
+        },
+        {
+          num: 6,
+          title: 'Bone Health Support',
+          body: 'Provides key minerals that support bone density and skeletal strength.',
+          slot: 'bottom-left',
+        },
+        {
+          num: 7,
+          title: 'Long-Term Performance',
+          body: 'Supports the structural integrity needed for endurance, soundness, and peak performance.',
+          slot: 'left',
+        },
+      ],
+    },
     physiologyPanel: {
       heading: 'Supporting the Physiology of Soundness',
       body: 'Cartilage and connective tissues are constantly adapting to the demands of training and competition. VetroFlex® provides the nutritional building blocks needed to support healthy cartilage repair, collagen synthesis, connective tissue integrity, and joint mobility. The chart below illustrates how these physiological systems contribute to athletic performance and long-term musculoskeletal health.',
@@ -301,33 +413,217 @@ export const products: Product[] = [
         },
       ],
     },
+    comparisonShowcase: {
+      body: 'Most joint supplements work on the surface—providing temporary lubrication to reduce friction. But real joint health starts beneath the surface. VetroFlex delivers undenatured (native) Collagen Type II peptides that interact with your horse\u2019s immune system to help stimulate cartilage repair and support long-term joint integrity.',
+      subheadlineLead: 'Some products only mask the problem.',
+      subheadlineAccent: 'VetroFlex helps repair it.',
+      heroImage: '/images/vetroflex/compare/hero-horse.jpg',
+      features: [
+        { icon: '/images/vetroflex/compare/bar-icon-0.png', label: 'Supports Cartilage Repair & Renewal' },
+        { icon: '/images/vetroflex/compare/bar-icon-1.png', label: 'Maintains Joint Structure & Strength' },
+        { icon: '/images/vetroflex/compare/bar-icon-2.png', label: 'Supports Long-Term Soundness' },
+        { icon: '/images/vetroflex/compare/bar-icon-3.png', label: 'Backed by Science Trusted by Professionals' },
+      ],
+      disclaimer: 'VetroFlex® is a nutritional supplement for horses. Results may vary.',
+      rows: [
+        {
+          ourImage: '/images/vetroflex/compare/row0-our.png',
+          otherImage: '/images/vetroflex/compare/row0-other.png',
+        },
+        {
+          ourImage: '/images/vetroflex/compare/row1-our.png',
+          otherImage: '/images/vetroflex/compare/row1-other.png',
+        },
+        {
+          ourImage: '/images/vetroflex/compare/row2-our.png',
+          otherImage: '/images/vetroflex/compare/row2-other.png',
+        },
+        {
+          ourImage: '/images/vetroflex/compare/row3-our.png',
+          otherImage: '/images/vetroflex/compare/row3-other.png',
+        },
+      ],
+    },
     keyIngredients: [
       'Hydrolyzed Collagen Peptides (Type II)',
-      'Prebiotic FOS (Fructooligosaccharides)',
-      'MSM',
-      'Vitamins A, D3, E, K, C',
-      'Biotin, Methionine, L-Carnitine',
+      'Fructooligosaccharides (FOS)',
+      'Apple Cider Vinegar',
+      'Manganese, Copper & Zinc',
+      'Biotin, Methionine, Garlic, Vitamin E, Selenium',
     ],
     primaryIngredients: [
-      { name: 'Hydrolyzed Collagen Type II', origin: 'Brazil', image: '/images/ingredients/vetroflex/hydrolyzed-collagen.jpg' },
-      { name: 'ACV (Chondroitin)', origin: 'France', image: '/images/ingredients/vetroflex/acv-chondroitin.jpg' },
-      { name: 'FOS (Fructooligosaccharides)', origin: 'Belgium', image: '/images/ingredients/vetroflex/fos.jpg' },
-      { name: 'Manganese, Copper & Zinc', origin: 'Global', image: '/images/ingredients/vetroflex/manganese-copper-zinc.jpg' },
-      { name: 'Biotin', origin: 'Switzerland', image: '/images/ingredients/vetroflex/biotin.jpg' },
-      { name: 'Garlic', origin: 'USA', image: '/images/ingredients/vetroflex/garlic.jpg' },
-      { name: 'Vitamin E', origin: 'Switzerland', image: '/images/ingredients/vetroflex/vitamin-e.jpg' },
-      { name: 'Selenium', origin: 'USA', image: '/images/ingredients/vetroflex/selenium.jpg' },
-      { name: 'Methionine', origin: 'China', image: '/images/ingredients/vetroflex/methionine.jpg' },
-      { name: 'Lysine', origin: 'China', image: '/images/ingredients/vetroflex/lysine.jpg' },
+      { name: 'Hydrolyzed Collagen Peptides (Type II)', origin: 'Bovine', image: '/images/ingredients/vetroflex/hydrolyzed-collagen.jpg' },
+      { name: 'Fructooligosaccharides (FOS)', origin: 'Plant', image: '/images/ingredients/vetroflex/fos.jpg' },
+      { name: 'Apple Cider Vinegar', origin: 'Apple', image: '/images/ingredients/vetroflex/apple-cider-vinegar.jpg' },
+      { name: 'Manganese (Mn)', origin: 'Mineral', image: '/images/ingredients/vetroflex/manganese.jpg' },
+      { name: 'Copper (Cu)', origin: 'Mineral', image: '/images/ingredients/vetroflex/copper.jpg' },
+      { name: 'Zinc (Zn)', origin: 'Mineral', image: '/images/ingredients/vetroflex/zinc.jpg' },
+      { name: 'Biotin', origin: 'Synthetic', image: '/images/ingredients/vetroflex/biotin.jpg' },
+      { name: 'Methionine', origin: 'Synthetic', image: '/images/ingredients/vetroflex/methionine.jpg' },
+      { name: 'Garlic', origin: 'Plant', image: '/images/ingredients/vetroflex/garlic.jpg' },
+      { name: 'Vitamin E', origin: 'Synthetic', image: '/images/ingredients/vetroflex/vitamin-e.jpg' },
+      { name: 'Selenium', origin: 'Mineral', image: '/images/ingredients/vetroflex/selenium.jpg' },
     ],
-    primaryIngredientsFooter: 'Targeted Nutrition for Joint Health | Cartilage Support | Long-Term Soundness',
+    primaryIngredientsFooter: 'Targeted Nutrition for Cartilage Repair | Joint Comfort & Flexibility | Long-Term Joint Health & Soundness',
+    primaryIngredientsCallouts: [
+      { icon: 'crosshair', text: 'Targeted Nutrition for Cartilage Repair' },
+      { icon: 'joint', text: 'Joint Comfort & Flexibility' },
+      { icon: 'horse', text: 'Long-Term Joint Health & Soundness' },
+    ],
+    physiologyBenefits: {
+      title: 'VetroFlex® Physiological Support & Performance Benefits',
+      disclaimer:
+        'VetroFlex® is a nutritional supplement and not intended to diagnose, treat, cure, or prevent any disease.',
+      variant: 'vetroflex',
+      columns: [
+        'Physiological System',
+        'Key Nutritional Support',
+        'How VetroFlex® Helps Support Physiology',
+        'Performance Benefits',
+        'Long-Term Wellness',
+      ],
+      callouts: [
+        { icon: 'crosshair', text: 'Targeted Nutrition for Cartilage Repair' },
+        { icon: 'joint', text: 'Joint Comfort & Flexibility' },
+        { icon: 'horse', text: 'Long-Term Joint Health & Soundness' },
+      ],
+      rows: [
+        {
+          icon: 'joint',
+          system: 'Cartilage Repair & Regeneration',
+          nutrition: 'Hydrolyzed Collagen Peptides (Type II), Vitamin C, Manganese (Mn), Copper (Cu), Zinc (Zn)',
+          physiology: [
+            'Provides bioavailable building blocks for cartilage repair',
+            'Supports collagen synthesis and cartilage matrix formation',
+            'Supports chondrocyte health and cartilage cellular function',
+          ],
+          performance: [
+            'Supports joint function and flexibility',
+            'Encourages healthy cartilage repair',
+            'Improves mobility and stride comfort',
+            'Promotes consistency in training and competition',
+          ],
+          wellness: [
+            'Helps maintain cartilage strength and elasticity',
+            'Supports connective tissue health',
+            'Promotes long-term soundness and active longevity',
+          ],
+        },
+        {
+          icon: 'shield-joint',
+          system: 'Connective Tissue Integrity',
+          nutrition: 'Hydrolyzed Collagen Peptides (Type II), Methionine, Zinc (Zn), Copper (Cu), Vitamin C',
+          physiology: [
+            'Supports collagen cross-linking and connective tissue strength',
+            'Supports tendons, ligaments and joint capsule integrity',
+            'Provides essential cofactors for tissue repair and maintenance',
+          ],
+          performance: [
+            'Supports tendon and ligament strength',
+            'Improves joint stability',
+            'Enhances overall structural integrity',
+            'Supports athletic performance and injury resilience',
+          ],
+          wellness: [
+            'Supports long-term connective tissue health',
+            'Helps reduce the risk of soft tissue injury',
+            'Promotes lifelong soundness',
+          ],
+        },
+        {
+          icon: 'stomach',
+          system: 'Gut Health & Nutrient Absorption',
+          nutrition: 'Fructooligosaccharides (FOS), Apple Cider Vinegar',
+          physiology: [
+            'Supports a healthy gut microbiome and digestive environment',
+            'Promotes beneficial bacteria growth',
+            'Enhances nutrient absorption and digestive efficiency',
+          ],
+          performance: [
+            'Supports optimal nutrient utilization',
+            'Promotes digestive comfort',
+            'Helps maintain energy and condition',
+            'Supports performance consistency',
+          ],
+          wellness: [
+            'Supports long-term digestive health',
+            'Promotes overall gut balance',
+            'Supports immune function',
+          ],
+        },
+        {
+          icon: 'shield-plus',
+          system: 'Antioxidant Protection',
+          nutrition: 'Vitamin E, Selenium, Garlic',
+          physiology: [
+            'Helps neutralize free radicals and oxidative stress',
+            'Supports cellular health and mitochondrial function',
+            'Supports immune system function',
+          ],
+          performance: [
+            'Supports muscle recovery',
+            'Reduces exercise-induced oxidative stress',
+            'Supports overall performance and training tolerance',
+          ],
+          wellness: [
+            'Promotes long-term cellular health',
+            'Supports healthy aging',
+            'Supports tissue resilience and repair capacity',
+          ],
+        },
+        {
+          icon: 'droplet',
+          system: 'Tissue Nourishment & Metabolism',
+          nutrition: 'Methionine, Biotin, Manganese (Mn), Zinc (Zn)',
+          physiology: [
+            'Supports protein synthesis and tissue repair',
+            'Supports healthy skin, hooves and connective tissues',
+            'Supports normal metabolic function',
+          ],
+          performance: [
+            'Supports tissue repair and adaptation',
+            'Promotes healthy skin and hoof quality',
+            'Supports strength and athletic output',
+          ],
+          wellness: [
+            'Supports strong, resilient tissues',
+            'Promotes healthy skin and coat',
+            'Supports hoof integrity',
+          ],
+        },
+        {
+          icon: 'refresh',
+          system: 'Joint Comfort & Mobility',
+          nutrition: 'Apple Cider Vinegar, Garlic, Omega-3 Support (through overall formulation synergy)',
+          physiology: [
+            'Supports a balanced inflammatory response',
+            'Promotes joint comfort and mobility',
+            'Supports synovial fluid quality and joint lubrication',
+          ],
+          performance: [
+            'Enhances mobility and stride comfort',
+            'Supports flexibility and range of motion',
+            'Promotes willingness to perform',
+          ],
+          wellness: [
+            'Supports long-term joint comfort',
+            'Helps maintain an active lifestyle',
+            'Promotes overall quality of life',
+          ],
+        },
+      ],
+    },
     supports: ['Cartilage Health', 'Tendons & Ligaments', 'Joint Comfort', 'Structural Integrity', 'Long-Term Soundness'],
     ingredientBenefits: [
       {
-        ingredient: 'Hydrolysed collagen peptides (Type II); Prebiotic FOS; Vitamins A, D3, E, K, C; Biotin; Methionine; MSM; L-carnitine',
-        benefit: 'Collagen peptides directly support cartilage regeneration and connective tissue integrity. MSM reduces joint inflammation and supports mobility. Prebiotics improve gut health and nutrient absorption. L-carnitine enhances muscle energy metabolism.',
-        performance: 'Improves joint flexibility and shock absorption under load. Enhances muscular efficiency and reduces fatigue during work. Supports quicker post-exercise recovery and reduced stiffness.',
-        wellness: 'Promotes long-term cartilage repair and joint preservation. Supports hoof quality, connective tissue strength, and structural integrity. Enhances overall mobility and extends competitive lifespan.',
+        ingredient:
+          'Hydrolyzed Collagen Peptides (Type II), Fructooligosaccharides (FOS), Apple Cider Vinegar, Manganese (Mn), Copper (Cu), Zinc (Zn), Biotin, Methionine, Garlic, Vitamin E, Selenium.',
+        benefit:
+          'A targeted blend of bioavailable building blocks, prebiotics, organic acids, essential minerals, sulfur amino acids, antioxidants and botanicals that support cartilage repair, collagen synthesis, connective tissue integrity, gut health, and nutrient absorption.',
+        performance:
+          'Supports joint function and flexibility, encourages healthy cartilage repair, improves mobility and stride comfort, promotes consistency in training and competition, and helps maintain optimal performance.',
+        wellness:
+          'Helps maintain cartilage strength and elasticity, supports connective tissue health, promotes long-term soundness and active longevity, and helps reduce the risk of age-related joint degeneration.',
       },
     ],
     feedingIntro: [
