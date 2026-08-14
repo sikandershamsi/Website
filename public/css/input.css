@@ -198,10 +198,10 @@
     @apply lg:border-l-0;
   }
   .mission-ingredient__media {
-    @apply h-28 w-28 overflow-hidden rounded-full bg-al-panel sm:h-32 sm:w-32;
+    @apply relative h-32 w-32 overflow-hidden rounded-full bg-[#e8e8e8] sm:h-36 sm:w-36 lg:h-40 lg:w-40;
   }
   .mission-ingredient__media img {
-    @apply h-full w-full object-cover;
+    @apply absolute inset-0 h-full w-full scale-110 object-cover object-center;
   }
   .mission-ingredient__name {
     @apply mt-4 text-[11px] font-bold uppercase leading-snug tracking-wide text-al-navy sm:text-xs;

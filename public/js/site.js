@@ -226,6 +226,7 @@
     slide: '[data-testimonial-slide]',
     prev: '[data-testimonial-prev]',
     next: '[data-testimonial-next]',
+    dots: '[data-testimonial-dots]',
     autoMs: 4500,
   });
 
@@ -235,7 +236,7 @@
     prev: '[data-products-prev]',
     next: '[data-products-next]',
     dots: '[data-products-dots]',
-    autoMs: 5000,
+    autoMs: 0,
     perViewMd: 2,
     perViewLg: 4,
   });

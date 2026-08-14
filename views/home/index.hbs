@@ -1,23 +1,23 @@
 <!-- HERO -->
 <section class="relative isolate overflow-hidden bg-al-navy text-white">
-  <div class="relative h-[60vh] min-h-[440px] sm:h-[68vh] lg:h-[78vh]">
-    <video data-hero-slide autoplay muted loop playsinline class="absolute inset-0 h-full w-full object-cover opacity-100 transition-opacity duration-1000">
+  <div class="relative h-[calc(100svh-6.75rem)] min-h-[560px]">
+    <video data-hero-slide autoplay muted loop playsinline class="absolute inset-0 h-full w-full object-cover object-center opacity-100 transition-opacity duration-1000">
       <source src="/videos/home/eventer.mp4" type="video/mp4" />
     </video>
-    <video data-hero-slide muted loop playsinline class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-1000">
+    <video data-hero-slide muted loop playsinline class="absolute inset-0 h-full w-full object-cover object-center opacity-0 transition-opacity duration-1000">
       <source src="/videos/home/jumper.mp4" type="video/mp4" />
     </video>
-    <video data-hero-slide muted loop playsinline class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-1000">
+    <video data-hero-slide muted loop playsinline class="absolute inset-0 h-full w-full object-cover object-center opacity-0 transition-opacity duration-1000">
       <source src="/videos/home/racehorse.mp4" type="video/mp4" />
     </video>
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-al-navy/80 via-al-navy/45 to-al-navy/20"></div>
     <div class="relative z-10 flex h-full flex-col justify-center px-6 sm:px-8 lg:px-10">
       <div class="mx-auto w-full max-w-7xl">
-        <p class="text-[11px] font-semibold uppercase leading-relaxed tracking-[0.22em] text-al-orange sm:text-xs">
+        <p class="text-[11px] font-semibold uppercase leading-relaxed tracking-[0.22em] text-white sm:text-xs">
           Long Term Equine Performance<br />
           Starts Here
         </p>
-        <h1 class="font-display mt-5 w-3/4 text-[clamp(2.75rem,8vw,7.5rem)] font-bold leading-[0.95] tracking-tight text-white">
+        <h1 class="font-display mt-5 w-[90%] max-w-5xl text-[clamp(3.5rem,12vw,9.5rem)] font-bold leading-[0.92] tracking-tight text-white">
           Feel the Difference
         </h1>
       </div>
@@ -27,31 +27,27 @@
 </section>
 
 <!-- HORSE TRUTHS: auto slide bar, 2 at a time -->
-<section class="panel-white section">
-  <div class="flex flex-wrap items-end justify-between gap-4">
-    <div>
-      <div class="eyebrow">Horse Truths</div>
-      <h2 class="font-display mt-4 max-w-2xl text-3xl font-medium text-al-navy sm:text-4xl">Seven truths behind every Animalife formulation.</h2>
-    </div>
-    <div class="flex gap-2">
-      <button type="button" data-truth-prev class="flex h-10 w-10 items-center justify-center rounded-none border border-al-line text-al-navy hover:border-al-navy hover:text-al-navy" aria-label="Previous">{{{icon "arrow-left" "w-4 h-4"}}}</button>
-      <button type="button" data-truth-next class="flex h-10 w-10 items-center justify-center rounded-none border border-al-line text-al-navy hover:border-al-navy hover:text-al-navy" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
-    </div>
+<section class="panel-white flex min-h-[calc(100svh-6.75rem)] w-full flex-col justify-center px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+  <div class="mx-auto flex w-full max-w-none flex-col items-center text-center">
+    <div class="eyebrow justify-center text-al-navy">Horse Truths</div>
+    <h2 class="font-display mt-5 max-w-5xl text-[clamp(2.5rem,5.5vw,4.25rem)] font-medium leading-[1.1] text-black">
+      Seven truths behind every Animalife formulation.
+    </h2>
   </div>
-  <div class="mt-10 overflow-hidden" data-truth-slider data-auto-slider>
+  <div class="mt-14 w-full overflow-hidden" data-truth-slider data-auto-slider>
     <div class="slider-track" data-truth-track>
       {{#each horseTruths}}
-      <div class="w-full shrink-0 px-1 md:w-1/2 md:px-3" data-truth-slide>
-        <div class="h-full border-b border-al-line pb-8 md:border-b-0 md:border-r md:pr-8">
-          <span class="font-display text-3xl font-medium text-al-navy/25">{{#if (gt this.n 9)}}{{this.n}}{{else}}0{{this.n}}{{/if}}</span>
-          <p class="font-display mt-3 text-lg font-medium text-al-navy">{{this.title}}</p>
-          <p class="mt-2 text-sm leading-relaxed text-al-ink/70">{{this.body}}</p>
+      <div class="w-full shrink-0 px-1 md:w-1/2 md:px-6 lg:px-10" data-truth-slide>
+        <div class="h-full border-b border-al-line pb-8 text-left md:border-b-0 md:border-r md:pr-10">
+          <span class="font-display text-4xl font-medium text-al-navy/25 sm:text-5xl">{{#if (gt this.n 9)}}{{this.n}}{{else}}0{{this.n}}{{/if}}</span>
+          <p class="font-display mt-4 text-xl font-medium text-black sm:text-2xl">{{this.title}}</p>
+          <p class="mt-3 max-w-xl text-sm leading-relaxed text-al-ink/70 sm:text-base">{{this.body}}</p>
         </div>
       </div>
       {{/each}}
     </div>
   </div>
-  <div class="mt-6 flex justify-center gap-2" data-truth-dots></div>
+  <div class="mt-8 flex justify-center gap-2" data-truth-dots></div>
 </section>
 
 <!-- INSPIRED BY NATURE. PROVEN BY SCIENCE — copy | still-life | process + ingredient strip -->
@@ -136,7 +132,6 @@
       </div>
       {{/each}}
     </div>
-    <a href="/about/difference" class="mt-14 inline-block text-xs font-bold uppercase tracking-[0.16em] text-al-navy border-b-2 border-al-orange pb-1 hover:text-al-orange">Learn More</a>
   </div>
 </section>
 
@@ -158,8 +153,8 @@
     </div>
     <div class="mt-12 overflow-hidden" data-auto-slider>
       <div class="slider-track" data-products-track>
-        {{#each products}}
-        <div class="w-full shrink-0 px-2 md:w-1/2 lg:w-1/4" data-products-slide>
+        {{#each featuredProducts}}
+        <div class="w-full shrink-0 px-2 sm:w-1/2 lg:w-1/4" data-products-slide>
           <a href="/shop/product/{{this.slug}}" class="card group flex h-full flex-col items-center overflow-hidden p-6 text-center transition-colors hover:bg-al-panel">
             <div class="flex aspect-[4/5] w-full items-center justify-center">
               <img src="{{this.image}}" alt="{{this.trademark}}" class="h-full w-auto object-contain" />
@@ -256,31 +251,26 @@
 <!-- TESTIMONIALS slider 2 at a time -->
 <section class="panel-grey">
   <div class="section">
-    <div class="flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <div class="eyebrow">Testimonials</div>
-        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Trusted by riders who expect results.</h2>
-      </div>
-      <div class="flex gap-2">
-        <button type="button" data-testimonial-prev class="flex h-10 w-10 items-center justify-center rounded-none border border-al-line bg-white text-al-navy hover:border-al-navy hover:text-al-navy" aria-label="Previous">{{{icon "arrow-left" "w-4 h-4"}}}</button>
-        <button type="button" data-testimonial-next class="flex h-10 w-10 items-center justify-center rounded-none border border-al-line bg-white text-al-navy hover:border-al-navy hover:text-al-navy" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
-      </div>
+    <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
+      <div class="eyebrow justify-center text-black">Testimonials</div>
+      <h2 class="font-display mt-4 text-3xl font-medium text-black sm:text-4xl lg:text-[2.75rem]">Trusted by riders who expect results.</h2>
     </div>
     <div class="mt-10 overflow-hidden" data-testimonial-slider data-auto-slider>
       <div class="slider-track gap-0" data-testimonial-track>
         {{#each testimonials}}
         <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
           <div class="card h-full p-6">
-            <div class="flex gap-0.5 text-al-navy">
+            <div class="flex gap-0.5 text-black">
               {{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}
             </div>
             <p class="mt-4 text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
-            <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}} <span class="text-al-ink/40">&middot; {{this.product}}</span></p>
+            <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-black">{{this.author}} <span class="text-al-ink/40">&middot; {{this.product}}</span></p>
           </div>
         </div>
         {{/each}}
       </div>
     </div>
+    <div class="mt-6 flex justify-center gap-2" data-testimonial-dots></div>
   </div>
 </section>
 
@@ -289,14 +279,14 @@
   <div class="section !pt-0">
     <div class="relative overflow-hidden">
       <img
-        src="/images/home/feel-difference-banner-bafe5331.jpg"
+        src="/images/home/feel-difference-banner-a1fa4c50.jpg"
         alt="Equestrian athletes across jumping, western, dressage, and racing"
         class="aspect-[16/7] w-full object-cover object-center sm:aspect-[21/9]"
       />
       <div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4">
         <div class="relative inline-block max-w-[75%]">
           <p class="font-sans text-[clamp(1.75rem,7vw,5rem)] font-extrabold lowercase leading-none tracking-tight text-white">feel the difference</p>
-          <img src="/images/brand/animalife-logo.png" alt="Animalife USA" class="ml-auto mt-3 block h-6 w-auto sm:h-8" />
+          <img src="/images/brand/animalife-logo-light.png" alt="Animalife USA" class="ml-auto mt-3 block h-6 w-auto sm:h-8" />
         </div>
       </div>
     </div>
