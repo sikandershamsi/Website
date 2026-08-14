@@ -1109,7 +1109,9 @@
     --hiq-muted: #5c645e;
     --hiq-gold: #c4a56a;
     --hiq-green: #1e3f33;
-    @apply relative isolate flex min-h-[calc(100svh-6.75rem)] items-stretch overflow-hidden bg-[#f4efe6];
+    @apply relative isolate flex items-stretch overflow-hidden bg-[#f4efe6];
+    aspect-ratio: 2 / 1;
+    min-height: 32rem;
   }
   .shop-hero {
     --shop-ink: #2a3530;
@@ -1218,6 +1220,10 @@
     );
   }
   @media (max-width: 639px) {
+    .hiq-hero {
+      aspect-ratio: auto;
+      min-height: 46rem;
+    }
     .hiq-hero__veil {
       background: linear-gradient(
         180deg,
