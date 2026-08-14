@@ -79,9 +79,83 @@
           />
         </figure>
         {{/if}}
+
+        {{#ifCond product.slug "vetrofit"}}
+        <figure class="product-panel mt-8">
+          <img
+            src="/images/vetrofit/page-panel-a.jpg"
+            alt="VetroFit — fast-acting, targeted results"
+            width="1200"
+            height="675"
+            loading="lazy"
+            class="product-panel__img"
+          />
+        </figure>
+        <figure class="product-panel mt-8">
+          <img
+            src="/images/vetrofit/page-panel-b.jpg"
+            alt="Most brands focus on symptoms — Animalife focuses on why it happens"
+            width="1200"
+            height="675"
+            loading="lazy"
+            class="product-panel__img"
+          />
+        </figure>
+        {{/ifCond}}
       </div>
 
       <div data-tab-panel="ingredients" class="hidden py-10">
+        {{#if product.primaryIngredientsCallouts}}
+        <div class="pi-panel">
+          <header class="pi-panel__header">
+            <p class="pi-panel__brand">{{product.trademark}}</p>
+            <h3 class="pi-panel__title">Primary Ingredients</h3>
+            <div class="pi-panel__title-rule" aria-hidden="true"></div>
+          </header>
+
+          {{#with (lookup product.ingredientBenefits 0) as |row|}}
+          <div class="pi-benefit-table">
+            <div class="pi-benefit-table__col">
+              <p class="pi-benefit-table__head">Ingredients</p>
+              <p class="pi-benefit-table__body">{{row.ingredient}}</p>
+            </div>
+            <div class="pi-benefit-table__col">
+              <p class="pi-benefit-table__head">Ingredient Benefits</p>
+              <p class="pi-benefit-table__body">{{row.benefit}}</p>
+            </div>
+            <div class="pi-benefit-table__col">
+              <p class="pi-benefit-table__head">Performance Benefits</p>
+              <p class="pi-benefit-table__body">{{row.performance}}</p>
+            </div>
+            <div class="pi-benefit-table__col">
+              <p class="pi-benefit-table__head">Long-Term Benefits</p>
+              <p class="pi-benefit-table__body">{{row.wellness}}</p>
+            </div>
+          </div>
+          {{/with}}
+
+          <ul class="pi-panel__grid">
+            {{#each product.primaryIngredients}}
+            <li class="pi-panel__item">
+              <div class="pi-panel__media">
+                <img src="{{this.image}}?v=20260814d" alt="{{this.name}}" width="720" height="720" loading="lazy" />
+              </div>
+              <p class="pi-panel__name">{{this.name}}</p>
+              <p class="pi-panel__origin">Origin: {{this.origin}}</p>
+            </li>
+            {{/each}}
+          </ul>
+
+          <div class="pi-panel__callouts">
+            {{#each product.primaryIngredientsCallouts}}
+            <div class="pi-panel__callout">
+              <div class="pi-panel__callout-icon">{{{icon this.icon "w-6 h-6"}}}</div>
+              <p class="pi-panel__callout-text">{{this.text}}</p>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{else}}
         {{#with (lookup product.ingredientBenefits 0) as |row|}}
         <div class="pi-benefit-table">
           <div class="pi-benefit-table__col">
@@ -104,7 +178,7 @@
         {{/with}}
 
         {{#if product.primaryIngredients}}
-        <div class="pi-board{{#if product.primaryIngredientsCallouts}} pi-board--dense{{/if}}">
+        <div class="pi-board">
           <p class="pi-board__brand">{{product.trademark}}</p>
           <h3 class="pi-board__title">Primary Ingredients</h3>
           <div class="pi-board__rule" aria-hidden="true"></div>
@@ -112,7 +186,7 @@
             {{#each product.primaryIngredients}}
             <li class="pi-board__item">
               <div class="pi-board__media">
-                <img src="{{this.image}}?v=20260814c" alt="{{this.name}}" width="640" height="640" loading="lazy" />
+                <img src="{{this.image}}" alt="{{this.name}}" width="640" height="640" loading="lazy" />
               </div>
               <p class="pi-board__name">{{this.name}}</p>
               <div class="pi-board__item-rule" aria-hidden="true"></div>
@@ -120,19 +194,9 @@
             </li>
             {{/each}}
           </ul>
-          {{#if product.primaryIngredientsCallouts}}
-          <div class="pi-board__callouts">
-            {{#each product.primaryIngredientsCallouts}}
-            <div class="pi-board__callout">
-              <div class="pi-board__callout-icon">{{{icon this.icon "w-5 h-5"}}}</div>
-              <p class="pi-board__callout-text">{{this.text}}</p>
-            </div>
-            {{/each}}
-          </div>
-          {{else}}
           <p class="pi-board__footer">{{product.primaryIngredientsFooter}}</p>
-          {{/if}}
         </div>
+        {{/if}}
         {{/if}}
       </div>
 
@@ -282,14 +346,6 @@
 {{/unless}}
 
 {{#ifCond product.slug "vetrofit"}}
-<section class="panel-grey">
-  <div class="section">
-    <div class="overflow-hidden rounded-none">
-      <img src="/images/vetrofit/page-panel-a.jpg" alt="VetroFit banner and product story" class="w-full object-contain" />
-    </div>
-  </div>
-</section>
-
 <section class="panel-white">
   <div class="section">
     <div class="flex flex-wrap items-end justify-between gap-4">
@@ -313,14 +369,6 @@
         </div>
         {{/each}}
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="panel-grey">
-  <div class="section">
-    <div class="overflow-hidden rounded-none bg-white">
-      <img src="/images/vetrofit/page-panel-b.jpg" alt="VetroFit primary ingredients and science" class="w-full object-contain" />
     </div>
   </div>
 </section>
