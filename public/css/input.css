@@ -1803,6 +1803,84 @@
   .race-oxygen__footer {
     @apply mt-10 text-center text-sm font-extrabold uppercase tracking-[0.14em] text-al-navy sm:text-base;
   }
+  .race-distress {
+    @apply bg-white py-16 sm:py-20 lg:py-24;
+  }
+  .race-distress__inner {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+  .race-distress__header {
+    @apply mx-auto max-w-3xl text-center;
+  }
+  .race-distress__title {
+    @apply m-0 flex flex-wrap items-baseline justify-center gap-x-2.5;
+  }
+  .race-distress__title-lead {
+    @apply text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold uppercase leading-none tracking-[0.01em] text-al-orange;
+  }
+  .race-distress__title-accent {
+    @apply text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold uppercase leading-none tracking-[0.01em] text-al-navy;
+  }
+  .race-distress__subtitle {
+    @apply mt-4 text-[11px] font-extrabold uppercase leading-snug tracking-[0.12em] text-al-navy sm:text-xs;
+  }
+  .race-distress__lede {
+    @apply mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-al-navy/75 sm:text-[15px] sm:leading-[1.7];
+  }
+  .race-distress__board {
+    @apply mt-10 flex flex-col gap-8 lg:mt-12 lg:grid lg:grid-cols-[14rem_minmax(0,1fr)_16rem] lg:items-center lg:gap-6 xl:grid-cols-[15rem_minmax(0,1fr)_17rem] xl:gap-8;
+  }
+  .race-distress__stressors {
+    @apply rounded-md border border-al-orange/70 bg-[#fffaf7] px-4 py-5;
+  }
+  .race-distress__stressors-title {
+    @apply m-0 text-[12px] font-extrabold uppercase tracking-[0.1em] text-al-orange;
+  }
+  .race-distress__stressors-list {
+    @apply mt-4 m-0 list-none space-y-3 p-0;
+  }
+  .race-distress__stressor {
+    @apply flex items-center gap-3;
+  }
+  .race-distress__stressor-icon {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-al-orange/50 bg-white text-al-orange;
+  }
+  .race-distress__stressor-text {
+    @apply text-[11px] font-extrabold uppercase tracking-[0.05em] text-al-navy sm:text-xs;
+  }
+  .race-distress__visual {
+    @apply overflow-hidden;
+  }
+  .race-distress__horse {
+    @apply mx-auto block h-auto w-full max-w-2xl object-contain lg:max-w-none;
+  }
+  .race-distress__callouts {
+    @apply flex flex-col gap-4;
+  }
+  .race-distress__callout {
+    @apply flex items-start gap-3 rounded-md border border-al-line bg-[#fafafa] p-3.5;
+  }
+  .race-distress__callout-icon {
+    @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-full border bg-white;
+  }
+  .race-distress__callout--blue .race-distress__callout-icon {
+    @apply border-[#3b82c4]/45 text-[#2f6fad];
+  }
+  .race-distress__callout--orange .race-distress__callout-icon {
+    @apply border-al-orange/45 text-al-orange;
+  }
+  .race-distress__callout--blue .race-distress__callout-title {
+    @apply text-[#2f6fad];
+  }
+  .race-distress__callout--orange .race-distress__callout-title {
+    @apply text-al-orange;
+  }
+  .race-distress__callout-title {
+    @apply m-0 text-[11px] font-extrabold uppercase tracking-[0.06em];
+  }
+  .race-distress__callout-body {
+    @apply mt-1.5 m-0 text-[12px] leading-relaxed text-al-navy/70;
+  }
   /* Inspired-by-nature soft blend (matches reference fade) */
   .inspired-blend {
     @apply relative isolate min-h-[460px] overflow-hidden bg-white sm:min-h-[520px] lg:min-h-[580px];

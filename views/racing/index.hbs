@@ -411,6 +411,55 @@
   </div>
 </section>
 
+<section class="race-distress" aria-labelledby="race-distress-title">
+  <div class="race-distress__inner">
+    <header class="race-distress__header">
+      <h2 id="race-distress-title" class="race-distress__title">
+        <span class="race-distress__title-lead">{{kidneyDistressBanner.titleLead}}</span>
+        <span class="race-distress__title-accent">{{kidneyDistressBanner.titleAccent}}</span>
+      </h2>
+      <p class="race-distress__subtitle">{{kidneyDistressBanner.subtitle}}</p>
+      <p class="race-distress__lede">{{kidneyDistressBanner.body}}</p>
+    </header>
+
+    <div class="race-distress__board">
+      <aside class="race-distress__stressors">
+        <p class="race-distress__stressors-title">{{kidneyDistressBanner.stressorsTitle}}</p>
+        <ul class="race-distress__stressors-list">
+          {{#each kidneyDistressBanner.stressors}}
+          <li class="race-distress__stressor">
+            <span class="race-distress__stressor-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
+            <span class="race-distress__stressor-text">{{this.title}}</span>
+          </li>
+          {{/each}}
+        </ul>
+      </aside>
+
+      <div class="race-distress__visual">
+        <img
+          src="/images/racing/distress/horse.jpg"
+          alt="Racehorse with heart, kidney, and circulatory system highlighted under racing stress"
+          class="race-distress__horse"
+          width="799"
+          height="593"
+        />
+      </div>
+
+      <div class="race-distress__callouts">
+        {{#each kidneyDistressBanner.callouts}}
+        <article class="race-distress__callout race-distress__callout--{{this.tone}}">
+          <span class="race-distress__callout-icon" aria-hidden="true">{{{icon this.icon "w-6 h-6"}}}</span>
+          <div class="race-distress__callout-copy">
+            <h3 class="race-distress__callout-title">{{this.title}}</h3>
+            <p class="race-distress__callout-body">{{this.body}}</p>
+          </div>
+        </article>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="panel-grey">
   <div class="section grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
     <a href="/racing/industry-reality" class="card group p-7 transition-colors hover:bg-al-panel">

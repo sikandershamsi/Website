@@ -80,6 +80,8 @@ export const icons: Record<string, string> = {
   orbit: '<circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="12" r="6.5" stroke-dasharray="1.6 2.2"/><circle cx="12" cy="12" r="10" stroke-dasharray="1.2 2.8"/>',
   crosshair: '<circle cx="12" cy="12" r="7"/><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><circle cx="12" cy="12" r="1.6"/>',
   clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/><path d="m16.5 7.5 1.2-1.2"/>',
+  thermometer:
+    '<path d="M10 14.2V6.5a2 2 0 1 1 4 0v7.7a3.5 3.5 0 1 1-4 0Z"/><path d="M12 17.5v0"/><path d="M10.5 10h3"/><path d="M10.5 7.5h3"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>',
   phone: '<path d="M8.2 3.8 10 3l2.2 4.8-1.7 1a12.5 12.5 0 0 0 4.7 4.7l1-1.7L21 14l-.8 1.8c-.4.9-1.4 1.5-2.4 1.4C10.6 16.5 7.5 13.4 6.8 6.2c-.1-1 .5-2 1.4-2.4Z"/>',
   'map-pin': '<path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/>',

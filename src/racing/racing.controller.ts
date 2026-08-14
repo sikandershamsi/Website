@@ -6,6 +6,7 @@ import {
   kidneyHomeostasisBanner,
   kidneyMasterRegulator,
   oxygenTransport,
+  kidneyDistressBanner,
   industryEffects,
   homeostasisSystems,
   homeostasisImpact,
@@ -29,6 +30,7 @@ export class RacingController {
       kidneyHomeostasisBanner,
       kidneyMasterRegulator,
       oxygenTransport,
+      kidneyDistressBanner,
     };
   }
 

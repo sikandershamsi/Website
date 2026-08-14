@@ -256,6 +256,47 @@ export const oxygenTransport = {
   peak: 'Healthy Kidneys. Efficient Oxygen. Peak Performance.',
 };
 
+export const kidneyDistressBanner = {
+  titleLead: 'Kidney',
+  titleAccent: 'Distress',
+  subtitle: 'Intense Exercise Places Extreme Demand on the Kidney’s Ability to Maintain Homeostasis',
+  body: 'During training and racing, the kidney works harder than almost any other organ to keep the body in balance. When the demand exceeds its capacity, kidney distress can occur—affecting performance, recovery, and overall resilience.',
+  stressorsTitle: 'Major Stressors',
+  stressors: [
+    { icon: 'clock', title: 'High Intensity Exercise' },
+    { icon: 'thermometer', title: 'Heat & Humidity' },
+    { icon: 'droplet', title: 'Dehydration' },
+    { icon: 'o2', title: 'Metabolic Demand' },
+    { icon: 'bolt', title: 'Electrolyte Losses' },
+  ],
+  callouts: [
+    {
+      title: 'Fluid & Electrolyte Imbalance',
+      body: 'Loss of essential electrolytes and fluid can impair kidney regulation and muscle function.',
+      icon: 'droplet',
+      tone: 'blue',
+    },
+    {
+      title: 'Reduced Oxygen Transport',
+      body: 'Kidney distress can impact red blood cell production and oxygen delivery.',
+      icon: 'molecule',
+      tone: 'orange',
+    },
+    {
+      title: 'Early Fatigue',
+      body: 'Imbalances in acid–base balance and waste clearance can lead to muscle fatigue and decreased performance.',
+      icon: 'muscle',
+      tone: 'blue',
+    },
+    {
+      title: 'Waste Accumulation',
+      body: 'When the kidney is overburdened, metabolic waste products can accumulate, slowing recovery and increasing inflammation.',
+      icon: 'orbit',
+      tone: 'orange',
+    },
+  ],
+};
+
 export const industryEffects = [
   { stat: '70–80%', body: 'of racehorses experience Exercise-Induced Pulmonary Hemorrhage (EIPH) at some point in their careers.' },
   { stat: '80–90%', body: 'show musculoskeletal stress markers linked to repeated high-intensity work.' },
