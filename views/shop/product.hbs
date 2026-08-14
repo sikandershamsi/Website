@@ -74,13 +74,32 @@
         {{#if product.inflammationShowcase}}
         <article class="vfen-inflam mt-10">
           <div class="vfen-inflam__grid">
+            <div class="vfen-inflam__copy">
+              <p class="vfen-inflam__logo"><span class="vfen-inflam__logo-lead">Vetro</span><span class="vfen-inflam__logo-tail">fen</span></p>
+              <p class="vfen-inflam__brand">{{product.inflammationShowcase.brandLine}}</p>
+              <h3 class="vfen-inflam__headline">
+                {{#each product.inflammationShowcase.headline}}
+                <span class="vfen-inflam__line{{#if this.accent}} vfen-inflam__line--accent{{/if}}">{{this.text}}</span>
+                {{/each}}
+              </h3>
+              <p class="vfen-inflam__intro">{{product.inflammationShowcase.intro}}</p>
+              <ul class="vfen-inflam__callouts">
+                {{#each product.inflammationShowcase.callouts}}
+                <li class="vfen-inflam__callout">
+                  <img class="vfen-inflam__callout-icon" src="{{this.icon}}" alt="" width="48" height="48" loading="lazy" />
+                  <p class="vfen-inflam__callout-text">{{{this.html}}}</p>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+
             <div class="vfen-inflam__visuals">
               <figure class="vfen-inflam__anatomy">
                 <img
                   src="{{product.inflammationShowcase.anatomyImage}}"
                   alt="{{product.trademark}} equine anatomy highlighting joint inflammation points"
-                  width="1200"
-                  height="348"
+                  width="920"
+                  height="454"
                   loading="lazy"
                 />
               </figure>
@@ -114,6 +133,13 @@
               <div class="vfen-inflam__block">
                 <p class="vfen-inflam__eyebrow">Product <span>({{product.inflammationShowcase.productLabel}})</span></p>
                 <p class="vfen-inflam__body">{{product.whatItIs.summary}}</p>
+                {{#if product.whatItIs.points.length}}
+                <ul class="vfen-inflam__list">
+                  {{#each product.whatItIs.points}}
+                  <li>{{this}}</li>
+                  {{/each}}
+                </ul>
+                {{/if}}
               </div>
               <div class="vfen-inflam__block">
                 <p class="vfen-inflam__eyebrow">Outcomes <span>({{product.inflammationShowcase.outcomesLabel}})</span></p>
@@ -126,26 +152,21 @@
               </div>
               <div class="vfen-inflam__block">
                 <p class="vfen-inflam__eyebrow">Impact <span>({{product.inflammationShowcase.impactLabel}})</span></p>
+                {{#if product.impact.summary}}
+                <p class="vfen-inflam__body">{{product.impact.summary}}</p>
+                {{/if}}
                 <ul class="vfen-inflam__list">
                   {{#each product.impact.points}}
                   <li>{{this}}</li>
                   {{/each}}
                 </ul>
               </div>
-              <ul class="vfen-inflam__callouts">
-                {{#each product.inflammationShowcase.callouts}}
-                <li class="vfen-inflam__callout">
-                  <img class="vfen-inflam__callout-icon" src="{{this.icon}}" alt="" width="48" height="48" loading="lazy" />
-                  <p class="vfen-inflam__callout-text">{{this.text}}</p>
-                </li>
-                {{/each}}
-              </ul>
             </div>
-          </div>
 
-          <div class="vfen-inflam__difference">
-            <p class="vfen-inflam__eyebrow">The Animalife Difference</p>
-            <p class="vfen-inflam__difference-text">{{product.animalifeDifference}}</p>
+            <div class="vfen-inflam__difference">
+              <p class="vfen-inflam__eyebrow">The Animalife Difference</p>
+              <p class="vfen-inflam__difference-text">{{product.animalifeDifference}}</p>
+            </div>
           </div>
         </article>
         {{/if}}

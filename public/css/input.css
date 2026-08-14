@@ -555,10 +555,35 @@
   }
   .vfen-inflam {
     --vf-orange: #e87820;
+    --vf-red: #c43c2c;
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
   }
   .vfen-inflam__grid {
-    @apply grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-start lg:gap-8;
+    @apply grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 xl:gap-10;
+  }
+  .vfen-inflam__copy {
+    @apply flex flex-col;
+  }
+  .vfen-inflam__logo {
+    @apply font-sans text-[clamp(1.75rem,3vw,2.35rem)] font-extrabold leading-none tracking-tight;
+  }
+  .vfen-inflam__logo-lead {
+    color: var(--vf-orange);
+  }
+  .vfen-inflam__logo-tail {
+    color: var(--vf-red);
+  }
+  .vfen-inflam__brand {
+    @apply mt-1 text-[11px] font-medium tracking-[0.04em] text-al-ink/55;
+  }
+  .vfen-inflam__headline {
+    @apply mt-5 flex flex-col gap-0.5 font-sans text-[clamp(1.35rem,2.6vw,1.85rem)] font-extrabold uppercase leading-[1.05] tracking-[0.02em] text-al-navy;
+  }
+  .vfen-inflam__line--accent {
+    color: var(--vf-orange);
+  }
+  .vfen-inflam__intro {
+    @apply mt-4 max-w-md text-sm leading-relaxed text-al-ink/70;
   }
   .vfen-inflam__visuals {
     @apply flex flex-col gap-4;
@@ -617,19 +642,22 @@
     @apply mt-2 list-disc space-y-1.5 pl-5 text-sm leading-snug text-al-ink/70;
   }
   .vfen-inflam__callouts {
-    @apply mt-2 list-none space-y-3 border-t border-al-line p-0 pt-5;
+    @apply mt-8 list-none space-y-0 p-0;
   }
   .vfen-inflam__callout {
-    @apply flex items-center gap-3;
+    @apply flex items-center gap-3 border-t border-[color:var(--vf-orange)]/50 py-3.5;
+  }
+  .vfen-inflam__callout:last-child {
+    @apply border-b border-[color:var(--vf-orange)]/50;
   }
   .vfen-inflam__callout-icon {
-    @apply h-10 w-10 shrink-0 object-contain;
+    @apply h-11 w-11 shrink-0 object-contain;
   }
   .vfen-inflam__callout-text {
     @apply m-0 text-sm leading-snug text-al-ink/80;
   }
   .vfen-inflam__difference {
-    @apply mt-8 bg-[#efefef] px-5 py-5 sm:px-7 sm:py-6;
+    @apply bg-[#efefef] px-5 py-5 sm:px-7 sm:py-6 lg:col-span-2 lg:col-start-2;
   }
   .vfen-inflam__difference-text {
     @apply mt-2 text-sm font-medium leading-relaxed text-al-navy sm:text-base;

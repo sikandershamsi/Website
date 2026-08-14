@@ -104,13 +104,16 @@ export interface Product {
     rows: { ourImage: string; otherImage: string }[];
   };
   inflammationShowcase?: {
+    brandLine: string;
+    headline: { text: string; accent?: boolean }[];
+    intro: string;
     productLabel: string;
     outcomesLabel: string;
     impactLabel: string;
     anatomyImage: string;
     tissueHealthy: { image: string; barLabel: string; tagLabel: string };
     tissueInflamed: { image: string; barLabel: string; tagLabel: string };
-    callouts: { icon: string; text: string }[];
+    callouts: { icon: string; html: string }[];
   };
   controlShowcase?: {
     brandLine?: string;
@@ -691,29 +694,39 @@ export const products: Product[] = [
       'VetroFen® combines powerful plant-derived ingredients with advanced nutritional science to help manage inflammation and discomfort naturally. Designed as a long-term alternative to routine NSAID use, VetroFen supports mobility, comfort, and recovery while working in harmony with the body’s natural healing processes — helping horses remain active, comfortable, and performing at their best.',
     whatItIs: {
       summary:
-        'A natural, competition-safe alternative to NSAIDs designed to reduce chronic inflammation at the cellular level—enabling faster healing, mobility, and performance continuity, with no side effects.',
-      points: [],
+        "A premium botanical nutritional formulation developed to support the horse's natural inflammatory response, tissue resilience, and long-term mobility.",
+      points: [
+        'VetroFen® combines scientifically selected plant-derived ingredients to provide targeted nutritional support for healthy inflammatory balance, joint comfort, and recovery.',
+      ],
     },
     outcomes: {
-      summary: 'Inflammation control without performance trade-offs.',
+      summary: 'Supports Comfort. Mobility. Recovery',
       points: [
-        'Reduces chronic and exercise-induced inflammation',
-        'Supports joint comfort, mobility, and freedom of movement',
-        'Enables cellular repair processes to activate',
-        'Improves willingness to train and compete consistently',
+        'Supports a healthy inflammatory response following exercise',
+        'Helps maintain joint comfort and freedom of movement',
+        "Supports the body's natural tissue repair and recovery processes",
+        'Supports long-term musculoskeletal wellness',
       ],
     },
     impact: {
+      summary: 'A Physiology-First Approach to Long-Term Wellness',
       points: [
-        'Reduces reliance on pharmaceutical intervention (NSAIDs)',
-        'Lowers frequency of injections and drug use',
-        'Supports preventative, daily-use compliance',
-        'Improves training continuity and competitive availability',
+        'Supports everyday mobility and athletic comfort',
+        'Suitable for long-term daily nutritional support',
+        'Supports recovery following normal exercise',
+        'FEI competition compliant',
       ],
     },
     animalifeDifference:
-      'Unlike NSAIDs and steroids, VetroFen controls inflammation without compromising tissue repair, gastric health, or competition eligibility—making it suitable for continuous, long-term use.',
+      'Many products are formulated to address the signs of discomfort. VetroFen® was formulated to support the physiological processes that help maintain a healthy inflammatory response, tissue integrity, and long-term mobility.',
     inflammationShowcase: {
+      brandLine: 'Vetro Collection by animalife®',
+      headline: [
+        { text: 'Natural Relief' },
+        { text: 'Proven Performance', accent: true },
+      ],
+      intro:
+        'A fast-acting, natural anti-inflammatory designed to target pain at its source without the risks associated with traditional NSAIDs.',
       productLabel: 'What It Is',
       outcomesLabel: 'What It Delivers',
       impactLabel: 'Why It Wins',
@@ -731,15 +744,15 @@ export const products: Product[] = [
       callouts: [
         {
           icon: '/images/vetrofen/desc/callout-icon-0.png',
-          text: 'Targets chronic inflammation at the cellular level',
+          html: 'Designed to Reduce chronic inflammation and oxidative damage at the cellular level.',
         },
         {
           icon: '/images/vetrofen/desc/callout-icon-1.png',
-          text: 'Competition-safe alternative to routine NSAID use',
+          html: 'Alternative to NSAID\'s with <strong class="text-red-600">NO SIDE EFFECTS</strong>',
         },
         {
           icon: '/images/vetrofen/desc/callout-icon-2.png',
-          text: 'Gentle daily support for comfort and recovery',
+          html: 'High bioavailability formulation for rapid absorption.',
         },
       ],
     },
