@@ -1,27 +1,17 @@
-<section class="race-hero">
+<section class="race-hero" aria-label="Racing">
   <video
     class="race-hero__video"
     autoplay
     muted
     loop
     playsinline
-    poster="/images/racing/hero-poster.jpg?v=2"
+    poster="/images/racing/hero-poster.jpg?v=20260821e"
   >
-    <source src="/videos/racing/hero.mp4?v=2" type="video/mp4" />
+    <source src="/videos/racing/hero.mp4?v=20260821e" type="video/mp4" />
   </video>
-  <div class="race-hero__veil" aria-hidden="true"></div>
-  <div class="race-hero__copy">
-    <p class="race-hero__eyebrow">Racing</p>
-    <h1 class="race-hero__title">Performance Starts<br />With Physiology</h1>
-    <p class="race-hero__lede">
-      Elite racing pushes a horse&rsquo;s body to its physiological limits. Understanding the industry
-      reality&mdash;and the kidney&rsquo;s role as the body&rsquo;s master regulator&mdash;is the foundation for
-      helping horses perform, recover, and stay sound for longer careers.
-    </p>
-  </div>
 </section>
 
-<section class="race-intro">
+<section class="panel-white race-intro">
   <div class="race-intro__inner">
     <h2 class="race-intro__title">01 <span aria-hidden="true">|</span> The Race Within the Race</h2>
     <p class="race-intro__body">
@@ -34,7 +24,7 @@
   </div>
 </section>
 
-<section class="race-cascade" id="industry-reality" aria-labelledby="race-cascade-title">
+<section class="panel-grey race-cascade" id="industry-reality" aria-labelledby="race-cascade-title">
   <div class="race-cascade__inner">
     <header class="race-cascade__header">
       <h2 id="race-cascade-title" class="race-cascade__title">The Race Within the Race</h2>
@@ -143,7 +133,7 @@
   </div>
 </section>
 
-<section class="race-intro">
+<section class="panel-white race-intro">
   <div class="race-intro__inner">
     <h2 class="race-intro__title">02 <span aria-hidden="true">|</span> When Performance Declines, the Costs Begin</h2>
     <p class="race-intro__body">
@@ -154,7 +144,7 @@
   </div>
 </section>
 
-<section class="race-owners" aria-labelledby="race-owners-title">
+<section class="panel-grey race-owners" aria-labelledby="race-owners-title">
   <div class="race-owners__media-wrap" aria-hidden="true">
     <img
       src="/images/racing/owners/hero.jpg"
@@ -179,53 +169,26 @@
   </div>
 </section>
 
-<section class="race-homeo" id="kidney-homeostasis" aria-labelledby="race-homeo-title">
-  <figure class="race-homeo__stage">
-    <img
-      src="/images/racing/homeostasis/banner.jpg?v=20260815b"
-      alt="Racehorse and jockey wearing a winner&rsquo;s garland"
-      class="race-homeo__media"
-      width="1024"
-      height="545"
-    />
-    <span class="race-homeo__veil" aria-hidden="true"></span>
-    <span class="race-homeo__veil race-homeo__veil--rail" aria-hidden="true"></span>
-  </figure>
-
-  <div class="race-homeo__inner">
-    <div class="race-homeo__copy">
-      <h2 id="race-homeo-title" class="race-homeo__title">
-        <span class="race-homeo__title-lead">{{kidneyHomeostasisBanner.titleLead}}</span>
-        <span class="race-homeo__title-accent">{{kidneyHomeostasisBanner.titleAccent}}</span>
-      </h2>
-      <div class="race-homeo__rule" aria-hidden="true">
-        <span class="race-homeo__rule-line"></span>
-        <span class="race-homeo__rule-icon">{{{icon "gallop" "w-5 h-5"}}}</span>
-        <span class="race-homeo__rule-line"></span>
-      </div>
-      <p class="race-homeo__eyebrow">{{kidneyHomeostasisBanner.eyebrow}}</p>
-      <p class="race-homeo__body">{{kidneyHomeostasisBanner.body}}</p>
-    </div>
-
-    <ul class="race-homeo__features">
-      {{#each kidneyHomeostasisBanner.features}}
-      <li class="race-homeo__feature">
-        <span class="race-homeo__feature-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
-        <p class="race-homeo__feature-text">{{this.title}}</p>
-      </li>
-      {{/each}}
-    </ul>
-  </div>
+<section class="race-homeo race-homeo--board" id="kidney-homeostasis" aria-label="Kidney Homeostasis">
+  <img
+    src="/images/racing/homeostasis/banner-board.jpg?v=20260822a"
+    srcset="/images/racing/homeostasis/banner-board.jpg?v=20260822a 1717w, /images/racing/homeostasis/banner-board@2x.jpg?v=20260822a 3434w"
+    sizes="100vw"
+    alt="Kidney Homeostasis. The foundation of performance. The kidney continually monitors and regulates the body's essential systems—maintaining the physiological balance required for peak performance, efficient recovery, and long-term athletic health. Regulates 7 vital systems. Maintains physiological balance. Supports performance and recovery. Foundation of long-term athletic health."
+    width="1717"
+    height="916"
+    class="race-homeo__board"
+  />
 </section>
 
-<section class="race-statement">
+<section class="panel-white race-statement" id="homeostasis-balance" aria-labelledby="race-statement-01-title">
   <div class="race-statement__inner">
-    <h2 class="race-statement__title">
-      <span class="race-statement__num">01</span>
-      <span class="race-statement__sep" aria-hidden="true">|</span>
-      Homeostasis is the balance that allows every performance system in the horse&rsquo;s body to work together as one.
-    </h2>
-    <div class="race-statement__panel">
+    <div class="race-statement__panel race-statement__panel--full">
+      <h2 id="race-statement-01-title" class="race-statement__title">
+        <span class="race-statement__num">01</span>
+        <span class="race-statement__sep" aria-hidden="true">|</span>
+        Homeostasis is the balance that allows every performance system in the horse&rsquo;s body to work together as one.
+      </h2>
       <p class="race-statement__body">
         It is the body&rsquo;s ability to continuously maintain internal physiological balance, ensuring that critical
         systems such as oxygen transport, cardiovascular function, hydration, electrolyte balance, metabolism, and
@@ -235,77 +198,19 @@
   </div>
 </section>
 
-<section class="race-regulator" aria-labelledby="race-regulator-title">
-  <div class="race-regulator__inner">
-    <header class="race-regulator__header">
-      <h2 id="race-regulator-title" class="race-regulator__title">
-        <span class="race-regulator__title-lead">{{kidneyMasterRegulator.titleLead}}</span>
-        <span class="race-regulator__title-accent">{{kidneyMasterRegulator.titleAccent}}</span>
-      </h2>
-      <p class="race-regulator__subtitle">{{kidneyMasterRegulator.subtitle}}</p>
-      <p class="race-regulator__lede">{{kidneyMasterRegulator.body}}</p>
-    </header>
-
-    <div class="race-regulator__board">
-      <aside class="race-regulator__legend">
-        <p class="race-regulator__legend-title">{{kidneyMasterRegulator.legendTitle}}</p>
-        <p class="race-regulator__legend-accent">{{kidneyMasterRegulator.legendAccent}}</p>
-        <ol class="race-regulator__legend-list">
-          {{#each kidneyMasterRegulator.functions}}
-          <li class="race-regulator__legend-item">
-            <span class="race-regulator__legend-num">{{this.id}}</span>
-            <span class="race-regulator__legend-text">{{this.title}}</span>
-          </li>
-          {{/each}}
-        </ol>
-      </aside>
-
-      <div class="race-regulator__visual">
-        <img
-          src="/images/racing/regulator/horse.jpg?v=20260815a"
-          alt="Racehorse at full gallop with the kidney and circulatory system highlighted"
-          class="race-regulator__image"
-          width="600"
-          height="500"
-        />
-      </div>
-
-      <div class="race-regulator__side">
-        {{#each kidneyMasterRegulator.sideFunctions}}
-        <article class="race-regulator__callout">
-          <span class="race-regulator__callout-icon race-regulator__callout-icon--{{this.tone}}" aria-hidden="true">
-            {{{icon this.icon "w-7 h-7"}}}
-          </span>
-          <div class="race-regulator__callout-copy">
-            <h3 class="race-regulator__callout-title">
-              <span class="race-regulator__callout-num">{{this.id}}.</span>&nbsp;{{this.title}}
-            </h3>
-            <p class="race-regulator__callout-body">{{this.body}}</p>
-          </div>
-        </article>
-        {{/each}}
-      </div>
-    </div>
-
-    <div class="race-regulator__bottom">
-      {{#each kidneyMasterRegulator.bottomFunctions}}
-      <article class="race-regulator__callout">
-        <span class="race-regulator__callout-icon race-regulator__callout-icon--{{this.tone}}" aria-hidden="true">
-          {{{icon this.icon "w-7 h-7"}}}
-        </span>
-        <div class="race-regulator__callout-copy">
-          <h3 class="race-regulator__callout-title">
-            <span class="race-regulator__callout-num">{{this.id}}.</span>&nbsp;{{this.title}}
-          </h3>
-          <p class="race-regulator__callout-body">{{this.body}}</p>
-        </div>
-      </article>
-      {{/each}}
-    </div>
-  </div>
+<section class="race-regulator race-regulator--board" id="kidney-master-regulator" aria-label="Kidney Homeostasis: The Horse's Master Regulator">
+  <img
+    src="/images/racing/regulator/master-board.jpg?v=20260822a"
+    srcset="/images/racing/regulator/master-board.jpg?v=20260822a 1536w, /images/racing/regulator/master-board@2x.jpg?v=20260822a 3072w"
+    sizes="100vw"
+    alt="Kidney Homeostasis: The Horse's Master Regulator. The kidney continuously monitors, adjusts, and regulates essential functions to maintain balance in the body. When the kidney is supported, the whole horse performs, recovers, and thrives. Seven core functions: blood pressure regulation, red blood cell regulation, fluid balance, electrolyte balance, acid-base balance, oxygen transport support, and waste clearance and detoxification."
+    width="1536"
+    height="1024"
+    class="race-regulator__board-img"
+  />
 </section>
 
-<section class="race-statement">
+<section class="panel-grey race-statement">
   <div class="race-statement__inner">
     <div class="race-statement__panel race-statement__panel--full">
       <h2 class="race-statement__title">
@@ -323,167 +228,33 @@
   </div>
 </section>
 
-<section class="race-oxygen" aria-labelledby="race-oxygen-title">
-  <div class="race-oxygen__inner">
-    <div class="race-oxygen__top">
-      <div class="race-oxygen__intro">
-        <p class="race-oxygen__eyebrow"><span>{{oxygenTransport.eyebrow}}</span></p>
-        <h2 id="race-oxygen-title" class="race-oxygen__title">
-          {{oxygenTransport.titleStart}}
-          <span class="race-oxygen__title-accent">{{oxygenTransport.titleAccent}}</span>
-        </h2>
-        <p class="race-oxygen__body">{{oxygenTransport.body}}</p>
-        <div class="race-oxygen__brand">
-          <p class="race-oxygen__logo"><span>Vetro</span><span class="race-oxygen__logo-fit">Fit</span><sup>®</sup></p>
-          <p class="race-oxygen__tagline">
-            {{oxygenTransport.tagline}}
-            <span>{{oxygenTransport.taglineAccent}}</span>
-          </p>
-        </div>
-      </div>
-
-      <div class="race-oxygen__visual">
-        <img
-          src="/images/racing/oxygen/horse.jpg?v=20260815a"
-          alt="Grey racehorse with lungs, heart, kidney, and circulatory system highlighted"
-          class="race-oxygen__horse"
-          width="624"
-          height="497"
-        />
-      </div>
-
-      <div class="race-oxygen__panels">
-        <div class="race-oxygen__journey">
-          <p class="race-oxygen__panel-label"><span>{{oxygenTransport.journeyTitle}}</span></p>
-          <ol class="race-oxygen__journey-list">
-            {{#each oxygenTransport.journey}}
-            <li class="race-oxygen__journey-item">
-              <span class="race-oxygen__journey-icon" aria-hidden="true">{{{icon this.icon "w-8 h-8"}}}</span>
-              <p class="race-oxygen__journey-title">{{this.step}}. {{this.title}}</p>
-              <p class="race-oxygen__journey-body">{{this.body}}</p>
-              {{#unless @last}}
-              <span class="race-oxygen__journey-arrow" aria-hidden="true">{{{icon "arrow-right" "w-4 h-4"}}}</span>
-              {{/unless}}
-            </li>
-            {{/each}}
-          </ol>
-        </div>
-
-        <div class="race-oxygen__systems">
-          <p class="race-oxygen__systems-title">{{oxygenTransport.systemsTitle}}</p>
-          <div class="race-oxygen__systems-grid">
-            {{#each oxygenTransport.systems}}
-            <article class="race-oxygen__system">
-              <span class="race-oxygen__system-icon" aria-hidden="true">{{{icon this.icon "w-7 h-7"}}}</span>
-              <h3 class="race-oxygen__system-name">{{this.title}}</h3>
-              <p class="race-oxygen__system-body">{{this.body}}</p>
-            </article>
-            {{/each}}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="race-oxygen__benefits">
-      <p class="race-oxygen__benefits-title"><span>{{oxygenTransport.benefitsTitle}}</span></p>
-      <div class="race-oxygen__benefits-row">
-        <div class="race-oxygen__benefits-list">
-          {{#each oxygenTransport.benefits}}
-          <article class="race-oxygen__benefit">
-            <span class="race-oxygen__benefit-icon" aria-hidden="true">{{{icon this.icon "w-7 h-7"}}}</span>
-            <div class="race-oxygen__benefit-copy">
-              <h3 class="race-oxygen__benefit-name">{{this.title}}</h3>
-              <p class="race-oxygen__benefit-body">{{this.body}}</p>
-            </div>
-          </article>
-          {{/each}}
-        </div>
-        <aside class="race-oxygen__peak">
-          <span class="race-oxygen__peak-icon" aria-hidden="true">
-            {{{icon "kidney" "w-8 h-8"}}}{{{icon "kidney" "w-8 h-8"}}}
-          </span>
-          <p class="race-oxygen__peak-text">
-            {{oxygenTransport.peakLead}}
-            <span>{{oxygenTransport.peakAccent}}</span>
-          </p>
-        </aside>
-      </div>
-    </div>
-
-    <p class="race-oxygen__footer">
-      {{oxygenTransport.tagline}}
-      <span>{{oxygenTransport.taglineAccent}}</span>
-    </p>
-  </div>
-</section>
-
-<section class="race-distress" id="kidney-distress" aria-labelledby="race-distress-title">
+<section class="race-oxygen race-oxygen--board" id="oxygen-transport" aria-label="The Physiology of Oxygen Transport">
   <img
-    src="/images/racing/distress/scene.jpg?v=20260815a"
-    alt="Racehorse at full gallop on a dirt track with the kidney and circulatory system highlighted"
-    class="race-distress__scene"
-    width="1024"
-    height="682"
+    src="/images/racing/oxygen/transport-board.jpg?v=20260822b"
+    srcset="/images/racing/oxygen/transport-board.jpg?v=20260822b 1505w, /images/racing/oxygen/transport-board@2x.jpg?v=20260822b 3010w"
+    sizes="100vw"
+    alt="The Physiology of Oxygen Transport. Oxygen is the currency of performance. VetroFit supports physiology, not symptoms. Journey of oxygen from inhalation to energy production. Kidney homeostasis supports blood pressure regulation, red blood cell activity, fluid balance, and electrolyte balance. When oxygen delivery is optimized, performance is maximized: sustained speed, delayed fatigue, faster recovery, and long-term resilience."
+    width="1505"
+    height="1021"
+    class="race-oxygen__board"
   />
-  <span class="race-distress__veil" aria-hidden="true"></span>
-
-  <div class="race-distress__inner">
-    <header class="race-distress__header">
-      <h2 id="race-distress-title" class="race-distress__title">
-        <span class="race-distress__title-lead">{{kidneyDistressBanner.titleLead}}</span>
-        <span class="race-distress__title-accent">{{kidneyDistressBanner.titleAccent}}</span>
-      </h2>
-      <p class="race-distress__subtitle">{{kidneyDistressBanner.subtitle}}</p>
-      <p class="race-distress__lede">{{kidneyDistressBanner.body}}</p>
-    </header>
-
-    <div class="race-distress__board">
-      <div class="race-distress__left">
-        <aside class="race-distress__stressors">
-          <p class="race-distress__stressors-title">{{kidneyDistressBanner.stressorsTitle}}</p>
-          <ul class="race-distress__stressors-list">
-            {{#each kidneyDistressBanner.stressors}}
-            <li class="race-distress__stressor">
-              <span class="race-distress__stressor-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
-              <span class="race-distress__stressor-text">{{this.title}}</span>
-            </li>
-            {{/each}}
-          </ul>
-        </aside>
-
-        <article
-          class="race-distress__callout race-distress__callout--{{kidneyDistressBanner.wasteCallout.tone}} race-distress__callout--waste"
-        >
-          <span class="race-distress__callout-icon" aria-hidden="true">
-            {{{icon kidneyDistressBanner.wasteCallout.icon "w-7 h-7"}}}
-          </span>
-          <div class="race-distress__callout-copy">
-            <h3 class="race-distress__callout-title">{{kidneyDistressBanner.wasteCallout.title}}</h3>
-            <p class="race-distress__callout-body">{{kidneyDistressBanner.wasteCallout.body}}</p>
-          </div>
-        </article>
-      </div>
-
-      <div class="race-distress__gap" aria-hidden="true"></div>
-
-      <div class="race-distress__callouts">
-        {{#each kidneyDistressBanner.sideCallouts}}
-        <article class="race-distress__callout race-distress__callout--{{this.tone}}">
-          <span class="race-distress__callout-icon" aria-hidden="true">{{{icon this.icon "w-7 h-7"}}}</span>
-          <div class="race-distress__callout-copy">
-            <h3 class="race-distress__callout-title">{{this.title}}</h3>
-            <p class="race-distress__callout-body">{{this.body}}</p>
-          </div>
-        </article>
-        {{/each}}
-      </div>
-    </div>
-  </div>
 </section>
 
-<section class="race-intro">
+<section class="race-distress race-distress--board" id="kidney-distress" aria-label="Kidney Distress">
+  <img
+    src="/images/racing/distress/distress-board.jpg?v=20260822a"
+    srcset="/images/racing/distress/distress-board.jpg?v=20260822a 1536w, /images/racing/distress/distress-board@2x.jpg?v=20260822a 3072w"
+    sizes="100vw"
+    alt="Kidney Distress. Intense exercise places extreme demand on the kidney's ability to maintain homeostasis. Major stressors include high intensity exercise, heat and humidity, dehydration, metabolic demand, and electrolyte losses. Effects include waste accumulation, fluid and electrolyte imbalance, reduced oxygen transport, and early fatigue. Kidney distress equals compromised performance."
+    width="1536"
+    height="1024"
+    class="race-distress__board-img"
+  />
+</section>
+
+<section class="panel-white race-intro race-intro--compact">
   <div class="race-intro__inner">
-    <h2 class="race-intro__title">02 <span aria-hidden="true">|</span> The Kidney: Where Performance Is Won or Lost</h2>
+    <h2 class="race-intro__title race-intro__title--plain">The Kidney: Where Performance Is Won or Lost</h2>
     <p class="race-intro__body">
       The fatigue you see on the track begins long before it becomes visible. As the kidney struggles to maintain
       physiological homeostasis under extreme athletic demands, oxygen delivery, recovery, and performance begin to
@@ -492,180 +263,31 @@
   </div>
 </section>
 
-<section class="race-compare" aria-label="Kidney homeostasis comparison">
-  <div class="race-compare__inner">
-    <article class="race-compare__panel race-compare__panel--normal">
-      <header class="race-compare__head">
-        <h2 class="race-compare__label">{{homeostasisComparison.normal.label}}</h2>
-      </header>
-      <p class="race-compare__tagline">{{homeostasisComparison.normal.tagline}}</p>
-      <div class="race-compare__visual">
-        <img
-          src="{{homeostasisComparison.normal.image}}"
-          alt="Healthy kidney in a normal state of homeostasis"
-          class="race-compare__kidney"
-          width="410"
-          height="369"
-        />
-      </div>
-      <ul class="race-compare__points">
-        {{#each homeostasisComparison.normal.points}}
-        <li class="race-compare__point">
-          <span class="race-compare__mark" aria-hidden="true">{{{icon "check" "w-4 h-4"}}}</span>
-          <div>
-            <p class="race-compare__point-title">{{this.title}}</p>
-            <p class="race-compare__point-body">{{this.body}}</p>
-          </div>
-        </li>
-        {{/each}}
-      </ul>
-      <div class="race-compare__result">
-        <div class="race-compare__result-icon" aria-hidden="true">{{{icon "shield-check" "w-7 h-7"}}}</div>
-        <div>
-          <p class="race-compare__result-title">{{homeostasisComparison.normal.resultTitle}}</p>
-          <ul class="race-compare__result-list">
-            {{#each homeostasisComparison.normal.result}}
-            <li>{{this}}</li>
-            {{/each}}
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="race-compare__panel race-compare__panel--stress">
-      <header class="race-compare__head">
-        <h2 class="race-compare__label">{{homeostasisComparison.stress.label}}</h2>
-      </header>
-      <p class="race-compare__tagline">{{homeostasisComparison.stress.tagline}}</p>
-      <div class="race-compare__visual">
-        <img
-          src="{{homeostasisComparison.stress.image}}"
-          alt="Kidney under extreme training and competition stress"
-          class="race-compare__kidney"
-          width="410"
-          height="369"
-        />
-      </div>
-      <ul class="race-compare__points">
-        {{#each homeostasisComparison.stress.points}}
-        <li class="race-compare__point">
-          <span class="race-compare__mark" aria-hidden="true">{{{icon "close" "w-4 h-4"}}}</span>
-          <div>
-            <p class="race-compare__point-title">{{this.title}}</p>
-            <p class="race-compare__point-body">{{this.body}}</p>
-          </div>
-        </li>
-        {{/each}}
-      </ul>
-      <div class="race-compare__result">
-        <div class="race-compare__result-icon" aria-hidden="true">{{{icon "alert" "w-7 h-7"}}}</div>
-        <div>
-          <p class="race-compare__result-title">{{homeostasisComparison.stress.resultTitle}}</p>
-          <ul class="race-compare__result-list">
-            {{#each homeostasisComparison.stress.result}}
-            <li>{{this}}</li>
-            {{/each}}
-          </ul>
-        </div>
-      </div>
-    </article>
-  </div>
+<section class="race-compare race-compare--board" id="kidney-comparison" aria-label="Kidney homeostasis comparison">
+  <img
+    src="/images/racing/compare/compare-board.jpg?v=20260822a"
+    srcset="/images/racing/compare/compare-board.jpg?v=20260822a 1506w, /images/racing/compare/compare-board@2x.jpg?v=20260822a 3012w"
+    sizes="100vw"
+    alt="Kidney homeostasis comparison. Left: normal state of homeostasis—well-nourished, hydrated, balanced, resilient—with optimal blood flow, efficient filtration, balanced hydration and electrolytes, strong antioxidant defense, acid-base balance, and overall resilience resulting in optimal performance. Right: extreme stress from intense training or competition—physiological stress, dehydration, inflammation, imbalance—with reduced blood flow, compromised filtration, electrolyte and fluid imbalance, reduced EPO production, oxidative stress and inflammation, acid-base disruption, and lower resilience resulting in reduced performance and recovery."
+    width="1506"
+    height="947"
+    class="race-compare__board-img"
+  />
 </section>
 
-<section class="race-vetrofit" id="vetrofit" aria-labelledby="race-vetrofit-title">
-  <div class="race-vetrofit__inner">
-    <div class="race-vetrofit__copy">
-      <p class="race-vetrofit__brand">{{vetrofitRacingBanner.brand}}</p>
-      <h2 id="race-vetrofit-title" class="race-vetrofit__product">
-        <span class="race-vetrofit__product-mark">{{vetrofitRacingBanner.product}}</span><span
-          class="race-vetrofit__product-reg"
-          aria-hidden="true"
-          >&reg;</span
-        >
-      </h2>
-      <p class="race-vetrofit__tagline">{{vetrofitRacingBanner.tagline}}</p>
-      <div class="race-vetrofit__prose">
-        <p class="race-vetrofit__body">
-          Developed for elite performance horses, VetroFit&reg; is a fast-acting proprietary formulation designed to be
-          administered just <span>2&ndash;4 hours</span> before competition.
-        </p>
-        <p class="race-vetrofit__body">
-          Its highly bioavailable blend of vitamins, minerals, trace elements, amino acids, and antioxidants provides
-          targeted nutritional support for <span>healthy kidney function</span>, helping maintain the physiological
-          balance required for peak performance and efficient recovery.
-        </p>
-      </div>
-    </div>
-
-    <div class="race-vetrofit__visual">
-      <img
-        src="/images/racing/vetrofit/horse.jpg?v=20260815b"
-        alt="Racehorse and jockey at full gallop"
-        class="race-vetrofit__media"
-        width="678"
-        height="620"
-      />
-
-      <img
-        src="/images/racing/vetrofit/syringe-cutout.png?v=20260814c"
-        alt=""
-        class="race-vetrofit__syringe"
-        width="268"
-        height="984"
-        aria-hidden="true"
-      />
-
-      <div
-        class="race-vetrofit__dial"
-        role="img"
-        aria-label="Administer {{vetrofitRacingBanner.timingValue}} {{vetrofitRacingBanner.timingUnit}} {{vetrofitRacingBanner.timingNote}}"
-      >
-        <div class="race-vetrofit__dial-face">
-          <span class="race-vetrofit__dial-ticks" aria-hidden="true"></span>
-          <span class="race-vetrofit__dial-ticks race-vetrofit__dial-ticks--major" aria-hidden="true"></span>
-          <svg class="race-vetrofit__dial-arc" viewBox="0 0 100 100" aria-hidden="true">
-            <defs>
-              <marker id="raceVetrofitArrow" viewBox="0 0 10 10" refX="4" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto">
-                <path d="M0 0 L10 5 L0 10 Z" />
-              </marker>
-            </defs>
-            <path class="race-vetrofit__dial-start" d="M50 4 V12" />
-            <path
-              class="race-vetrofit__dial-sweep"
-              d="M55.8 8.4 A42 42 0 0 1 70.5 85.9"
-              marker-end="url(#raceVetrofitArrow)"
-            />
-          </svg>
-          <div class="race-vetrofit__dial-center">
-            <svg class="race-vetrofit__dial-glyph" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9.6 2.6h4.8" />
-              <path d="M12 2.6v2.2" />
-              <path d="m18.4 6.1 1.3-1.3" />
-              <circle cx="12" cy="13" r="7.6" />
-              <path d="M12 9.2V13l2.7 1.8" />
-            </svg>
-            <p class="race-vetrofit__dial-value">{{vetrofitRacingBanner.timingValue}}</p>
-            <p class="race-vetrofit__dial-unit">{{vetrofitRacingBanner.timingUnit}}</p>
-            <p class="race-vetrofit__dial-note">{{vetrofitRacingBanner.timingNote}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="race-vetrofit__features-wrap">
-      <ul class="race-vetrofit__features">
-        {{#each vetrofitRacingBanner.features}}
-        <li class="race-vetrofit__feature">
-          <span class="race-vetrofit__feature-icon" aria-hidden="true">{{{icon this.icon "w-8 h-8"}}}</span>
-          <p class="race-vetrofit__feature-text">{{this.title}}</p>
-        </li>
-        {{/each}}
-      </ul>
-    </div>
-  </div>
+<section class="race-vetrofit race-vetrofit--board" id="vetrofit" aria-label="VetroFit">
+  <img
+    src="/images/racing/vetrofit/banner-board.jpg?v=20260822a"
+    srcset="/images/racing/vetrofit/banner-board.jpg?v=20260822a 1521w, /images/racing/vetrofit/banner-board@2x.jpg?v=20260822a 3042w"
+    sizes="100vw"
+    alt="Animalife VetroFit. Fast-acting. Targeted. Results. Developed for elite performance horses, VetroFit is a fast-acting proprietary formulation designed to be administered just 2–4 hours before competition. Supports healthy kidney function, maintains physiological balance, and supports peak performance and efficient recovery."
+    width="1521"
+    height="1024"
+    class="race-vetrofit__board-img"
+  />
 </section>
 
-<section class="race-intro">
+<section class="panel-grey race-intro race-intro--compact">
   <div class="race-intro__inner">
     <h2 class="race-intro__title race-intro__title--plain">VetroFit</h2>
     <p class="race-intro__body">
@@ -677,7 +299,7 @@
   </div>
 </section>
 
-<section class="panel-grey">
+<section class="panel-white">
   <div class="section">
     <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
       <div class="eyebrow justify-center text-black">Testimonials</div>
@@ -702,102 +324,19 @@
   </div>
 </section>
 
-<section class="race-science" aria-labelledby="race-science-title">
-  <div class="race-science__hero">
-    <div class="race-science__media-wrap" aria-hidden="true">
-      <img
-        src="{{scienceBehindVetrofit.image}}?v=20260815a"
-        alt=""
-        class="race-science__media"
-        width="1364"
-        height="688"
-        loading="lazy"
-        decoding="async"
-      />
-      <div class="race-science__veil"></div>
-    </div>
-    <div class="race-science__copy">
-      <h2 id="race-science-title" class="race-science__title">
-        <span class="race-science__title-lead">{{scienceBehindVetrofit.titleLead}}</span>
-        <span class="race-science__title-accent">{{scienceBehindVetrofit.titleAccent}}</span>
-      </h2>
-      <p class="race-science__tagline">{{scienceBehindVetrofit.tagline}}</p>
-      <p class="race-science__body">{{scienceBehindVetrofit.body}}</p>
-    </div>
-  </div>
-
-  <ul class="race-science__pillars">
-    {{#each scienceBehindVetrofit.pillars}}
-    <li class="race-science__pillar">
-      <span class="race-science__pillar-icon" aria-hidden="true">{{{icon this.icon "w-9 h-9"}}}</span>
-      <p class="race-science__pillar-title">{{this.title}}</p>
-      <p class="race-science__pillar-text">{{this.text}}</p>
-    </li>
-    {{/each}}
-  </ul>
-
-  {{#if physiologyBenefits}}
-  <div class="race-science__chart">
-    <div class="physio-chart physio-chart--race">
-      <header class="race-science__chart-head">
-        <p class="race-science__chart-brand">VetroFit®</p>
-        <h3 class="physio-chart__title">Physiological Support &amp; Performance Benefits</h3>
-      </header>
-      <div class="physio-chart__scroll">
-        <table class="physio-chart__table">
-          <thead>
-            <tr>
-              <th class="physio-chart__th physio-chart__th--system" colspan="2">{{lookup physiologyBenefits.columns 0}}</th>
-              <th class="physio-chart__th physio-chart__th--nutrition">{{lookup physiologyBenefits.columns 1}}</th>
-              <th class="physio-chart__th physio-chart__th--physiology">{{lookup physiologyBenefits.columns 2}}</th>
-              <th class="physio-chart__th physio-chart__th--performance">{{lookup physiologyBenefits.columns 3}}</th>
-              <th class="physio-chart__th physio-chart__th--wellness">{{lookup physiologyBenefits.columns 4}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each physiologyBenefits.rows}}
-            <tr>
-              <td class="physio-chart__icon-cell">
-                <span class="physio-chart__icon">{{{icon this.icon "w-7 h-7"}}}</span>
-              </td>
-              <td class="physio-chart__system">{{this.system}}</td>
-              <td class="physio-chart__nutrition">{{this.nutrition}}</td>
-              <td class="physio-chart__list physio-chart__list--physiology">
-                <ul>
-                  {{#each this.physiology}}
-                  <li>{{this}}</li>
-                  {{/each}}
-                </ul>
-              </td>
-              <td class="physio-chart__list physio-chart__list--performance">
-                <ul>
-                  {{#each this.performance}}
-                  <li>{{this}}</li>
-                  {{/each}}
-                </ul>
-              </td>
-              <td class="physio-chart__list physio-chart__list--wellness">
-                <ul>
-                  {{#each this.wellness}}
-                  <li>{{this}}</li>
-                  {{/each}}
-                </ul>
-              </td>
-            </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
-      <p class="physio-chart__disclaimer">
-        {{{icon "leaf" "w-3.5 h-3.5"}}}
-        <span>{{physiologyBenefits.disclaimer}}</span>
-      </p>
-    </div>
-  </div>
-  {{/if}}
+<section class="race-science race-science--board" id="science-behind-vetrofit" aria-label="The Science Behind VetroFit">
+  <img
+    src="/images/racing/science/science-board.jpg?v=20260822a"
+    srcset="/images/racing/science/science-board.jpg?v=20260822a 1024w, /images/racing/science/science-board@2x.jpg?v=20260822a 2048w"
+    sizes="100vw"
+    alt="The Science Behind VetroFit. Nature. Research. Results. Six pillars: support natural regulation, enhance the body's defenses, support natural repair, support physiological balance, drive long-term results, and backed by science and nature. Physiological support and performance benefits table covering kidney homeostasis, oxygen transport, cardiovascular function, cellular energy and metabolism, antioxidant defense, fluid and electrolyte balance, and recovery physiology."
+    width="1024"
+    height="1536"
+    class="race-science__board-img"
+  />
 </section>
 
-<section class="race-intro race-intro--muted">
+<section class="panel-grey race-intro race-intro--compact">
   <div class="race-intro__inner">
     <h2 class="race-intro__title">{{physiologyToFormulation.title}}</h2>
     <p class="race-intro__body">{{physiologyToFormulation.body}}</p>
@@ -805,7 +344,7 @@
 </section>
 
 {{#if vetrofitPrimary.primaryIngredients}}
-<section class="primary-ingredients" aria-labelledby="race-primary-ingredients-heading">
+<section class="panel-white primary-ingredients" aria-labelledby="race-primary-ingredients-heading">
   <div class="primary-ingredients__panel">
     <p class="primary-ingredients__brand">{{vetrofitPrimary.trademark}}</p>
     <h2 id="race-primary-ingredients-heading" class="primary-ingredients__title">Primary Ingredients</h2>
@@ -829,101 +368,31 @@
 </section>
 {{/if}}
 
-<section class="race-why" aria-labelledby="race-why-title">
-  <div class="race-why__media-wrap" aria-hidden="true">
-    <img
-      src="{{brandsVsAnimalife.image}}"
-      alt=""
-      class="race-why__media"
-      width="1024"
-      height="512"
-      loading="lazy"
-      decoding="async"
-    />
-    <div class="race-why__veil"></div>
-  </div>
-
-  <div class="race-why__inner">
-    <div class="race-why__copy">
-      <h2 id="race-why-title" class="race-why__before">{{brandsVsAnimalife.before}}</h2>
-      <div class="race-why__vs" aria-hidden="true">
-        <span class="race-why__vs-line"></span>
-        <span class="race-why__vs-label">VS</span>
-        <span class="race-why__vs-line"></span>
-      </div>
-      <p class="race-why__after">{{brandsVsAnimalife.after}}</p>
-    </div>
-
-    <ul class="race-why__features">
-      {{#each brandsVsAnimalife.features}}
-      <li class="race-why__feature">
-        <span class="race-why__feature-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
-        <p class="race-why__feature-text">{{this.title}}</p>
-      </li>
-      {{/each}}
-    </ul>
-  </div>
+<section class="race-why race-why--board" id="brands-vs-animalife" aria-label="Most brands vs Animalife">
+  <img
+    src="/images/racing/why/why-board.jpg?v=20260822a"
+    srcset="/images/racing/why/why-board.jpg?v=20260822a 1774w, /images/racing/why/why-board@2x.jpg?v=20260822a 3548w"
+    sizes="100vw"
+    alt="Most brands focus on what the horse is experiencing versus Animalife focuses on why it happens. VetroFit supports kidney function, maintains physiological balance, and supports peak performance and efficient recovery."
+    width="1774"
+    height="887"
+    class="race-why__board-img"
+  />
 </section>
 
-<section class="race-eval" id="performance-evaluation" aria-labelledby="race-eval-title">
-  <div class="race-eval__media-wrap" aria-hidden="true">
-    <img
-      src="{{performanceEvaluationBanner.image}}"
-      alt=""
-      class="race-eval__media"
-      width="1024"
-      height="492"
-      loading="lazy"
-      decoding="async"
-    />
-  </div>
-
-  <div class="race-eval__inner">
-    <div class="race-eval__main">
-      <p class="race-eval__eyebrow">
-        <span class="race-eval__eyebrow-line" aria-hidden="true"></span>
-        <span>{{performanceEvaluationBanner.eyebrow}}</span>
-        <span class="race-eval__eyebrow-line" aria-hidden="true"></span>
-      </p>
-      <h2 id="race-eval-title" class="race-eval__title">{{performanceEvaluationBanner.title}}</h2>
-      <p class="race-eval__subtitle">{{performanceEvaluationBanner.subtitle}}</p>
-      <p class="race-eval__body">{{performanceEvaluationBanner.body}}</p>
-
-      <ul class="race-eval__benefits">
-        {{#each performanceEvaluationBanner.benefits}}
-        <li class="race-eval__benefit">
-          <span class="race-eval__benefit-icon" aria-hidden="true">{{{icon this.icon "w-6 h-6"}}}</span>
-          <p class="race-eval__benefit-text">{{this.title}}</p>
-        </li>
-        {{/each}}
-      </ul>
-    </div>
-
-    <div class="race-eval__aside" aria-hidden="true">
-      <span class="race-eval__aside-icon">{{{icon "gallop" "w-5 h-5"}}}</span>
-      <p class="race-eval__aside-line">{{performanceEvaluationBanner.aside.line1}}</p>
-      <p class="race-eval__aside-line">{{performanceEvaluationBanner.aside.line2}}</p>
-      <p class="race-eval__aside-accent">{{performanceEvaluationBanner.aside.line3}}</p>
-    </div>
-  </div>
-
-  <a href="{{performanceEvaluationBanner.cta.href}}" class="race-eval__cta">
-    <div class="race-eval__cta-open">
-      <span class="race-eval__cta-icon" aria-hidden="true">{{{icon "file-text" "w-5 h-5"}}}</span>
-      <div>
-        <p class="race-eval__cta-lead">{{performanceEvaluationBanner.cta.lead}}</p>
-        <p class="race-eval__cta-sub">{{performanceEvaluationBanner.cta.sub}}</p>
-      </div>
-    </div>
-    <span class="race-eval__cta-divider" aria-hidden="true"></span>
-    <div class="race-eval__cta-tagline">
-      <p class="race-eval__cta-tagline-main">{{performanceEvaluationBanner.cta.tagline}}</p>
-      <p class="race-eval__cta-tagline-accent">{{performanceEvaluationBanner.cta.taglineAccent}}</p>
-    </div>
-  </a>
+<section class="race-eval race-eval--board" id="performance-evaluation" aria-label="VetroFit Performance Evaluation Program">
+  <img
+    src="/images/racing/eval/eval-board.jpg?v=20260822a"
+    srcset="/images/racing/eval/eval-board.jpg?v=20260822a 1829w, /images/racing/eval/eval-board@2x.jpg?v=20260822a 3658w"
+    sizes="100vw"
+    alt="VetroFit Performance Evaluation Program. Feel the difference. Better balance. Better performance. Better recovery. Supports kidney health, optimizes physiological balance, ultra fast acting, and promotes faster recovery. Applications now open for a limited number of stables."
+    width="1829"
+    height="860"
+    class="race-eval__board-img"
+  />
 </section>
 
-<section class="panel-grey">
+<section class="panel-white">
   <div class="section grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
     <a href="/racing#industry-reality" class="card group p-7 transition-colors hover:bg-al-panel">
       <div class="flex h-12 w-12 items-center justify-center rounded-none bg-al-panel text-al-navy">{{{icon "trend-down" "w-6 h-6"}}}</div>

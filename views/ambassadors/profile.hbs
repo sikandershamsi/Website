@@ -1,14 +1,26 @@
-<main class="jenni-profile">
-  <section class="jenni-hero">
-    <img src="/images/ambassadors/jenni/hero.jpg" alt="Jenni McAllister competing in show jumping" class="jenni-hero__image" />
+<div class="jenni-profile">
+  <section class="jenni-hero" aria-label="Jenni McAllister">
+    <img
+      src="/images/ambassadors/jenni/hero.jpg?v=20260822c"
+      srcset="/images/ambassadors/jenni/hero.jpg?v=20260822c 1269w, /images/ambassadors/jenni/hero@2x.jpg?v=20260822c 2538w"
+      sizes="(min-width: 1024px) 70vw, 100vw"
+      alt="Jenni McAllister competing in show jumping"
+      width="2538"
+      height="2454"
+      class="jenni-hero__image"
+      decoding="async"
+      fetchpriority="high"
+    />
     <div class="jenni-hero__veil" aria-hidden="true"></div>
     <div class="jenni-hero__copy">
-      <img src="/images/brand/animalife-logo.png" alt="Animalife Performance in Mind" class="jenni-hero__logo" />
+      {{> brand-logo class="jenni-hero__logo"}}
       <h1 class="jenni-hero__title">Jenni<br />McAllister</h1>
       <p class="jenni-hero__partner">Animalife Performance Partner</p>
       <p class="jenni-hero__location"><span aria-hidden="true">🇺🇸</span> United States</p>
       <p class="jenni-hero__discipline">Show Jumping <span aria-hidden="true">|</span> FEI Level 4</p>
-      <blockquote class="jenni-hero__quote">Every decision I make begins<br />with my horse's long-term health.<br />Performance follows preparation.</blockquote>
+      <blockquote class="jenni-hero__quote">
+        <span class="jenni-hero__qmark" aria-hidden="true">&ldquo;</span>Every decision I make begins<br />with my horse&rsquo;s long-term health.<br />Performance follows preparation.
+      </blockquote>
     </div>
   </section>
 
@@ -24,37 +36,39 @@
   <section class="jenni-story">
     <article class="jenni-story__bio">
       <h2>Meet Jenni</h2>
-      <p>A true five-Olympic gold medalist, Jenni McAllister stands among equestrian sport's legends. Over three decades, Jenni has combined precision, heart, and the most accomplished show jumping careers in the world.</p>
-      <p>Jenni's success is built on preparation, partnership, and a relentless focus on her horse's health and well-being—inside and out. That's why she trusts Animalife.</p>
+      <p>
+        A true five-Olympic gold medalist, Jenni McAllister stands among equestrian sport&rsquo;s legends. Over three
+        decades, Jenni has combined precision, heart, and one of the most accomplished show jumping careers in the world.
+      </p>
+      <p>
+        Jenni&rsquo;s success is built on preparation, partnership, and a relentless focus on her horse&rsquo;s health and
+        well-being&mdash;inside and out. That&rsquo;s why she trusts Animalife.
+      </p>
       <p class="jenni-story__signature">Jenni McAllister</p>
+      <h3 class="jenni-story__philosophy">Training Philosophy</h3>
     </article>
 
     <article class="jenni-story__products">
       <h2>Why I Ride With Animalife</h2>
       <div class="jenni-products">
-        <article class="jenni-product jenni-product--orange">
-          <p class="jenni-product__name">VitaForte<sup>®</sup><br /><span>Equine</span></p>
-          <img src="/images/products/vetroflex-tub.webp" alt="VetroFlex" />
-          <h3>Advanced Calcium &amp;<br />Electrolyte Pellets</h3>
-          <p>Helps support muscle function, recovery, and electrolyte balance.</p>
-          <a href="/shop/product/vetroflex">Learn More</a>
-        </article>
-        <article class="jenni-product jenni-product--red">
-          <p class="jenni-product__name">VitaPower<sup>®</sup><br /><span>Equine</span></p>
-          <img src="/images/products/vetrofen-tub.webp" alt="VetroFen" />
-          <h3>Essential Daily<br />Vitamin &amp; Mineral Supplement</h3>
-          <p>Smart support for immune function, vitality, and optimum performance.</p>
-          <a href="/shop/product/vetrofen">Learn More</a>
-        </article>
-        <article class="jenni-product jenni-product--blue">
-          <p class="jenni-product__name">Vittonic<sup>®</sup><br /><span>Equine</span></p>
-          <img src="/images/products/vetrofit-syringe.webp" alt="VetroFit" />
-          <h3>Superior<br />B-Complex Performance Tonic</h3>
-          <p>Helps maintain focus, energy levels, and overall well-being.</p>
-          <a href="/shop/product/vetrofit">Learn More</a>
-        </article>
+        {{#each featuredProducts}}
+        <a href="/shop/product/{{this.slug}}" class="card product-card group flex h-full flex-col items-center overflow-hidden p-6 text-center">
+          {{> product-media image=this.image alt=this.trademark tagline=this.tagline}}
+          <div class="flex flex-1 flex-col items-center pt-2">
+            <div class="flex justify-center gap-0.5 text-al-navy">
+              {{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}
+            </div>
+            <p class="font-display mt-3 text-lg font-semibold text-al-navy">{{this.trademark}}</p>
+            <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-navy/55">{{this.category}}</p>
+            <span class="font-display mt-4 text-lg font-medium text-al-navy">{{currency this.price}}</span>
+          </div>
+        </a>
+        {{/each}}
       </div>
-      <blockquote class="jenni-story__product-quote">Animalife helps me give my horses every advantage—so they can give me their best.</blockquote>
+      <blockquote class="jenni-story__product-quote">
+        <span class="jenni-story__qmark" aria-hidden="true">&ldquo;</span>Why I ride with Animalife products&hellip; Animalife helps me give my horses every
+        advantage&mdash;so they can give me their best.<span class="jenni-story__qmark jenni-story__qmark--end" aria-hidden="true">&rdquo;</span>
+      </blockquote>
     </article>
   </section>
 
@@ -62,24 +76,60 @@
     <article class="jenni-connect">
       <h2>Connect With Jenni</h2>
       <ul>
-        <li>{{{icon "instagram" "w-5 h-5"}}} @jennimcallister</li>
-        <li>{{{icon "facebook" "w-5 h-5"}}} @JenniMcAllisterShowJumping</li>
-        <li>{{{icon "globe" "w-5 h-5"}}} jennimcallister.com</li>
+        <li>
+          <a href="https://www.instagram.com/jennimcallister" target="_blank" rel="noopener noreferrer">
+            {{{icon "instagram" "w-5 h-5"}}} @jennimcallister
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/JenniMcAllisterShowJumping" target="_blank" rel="noopener noreferrer">
+            {{{icon "facebook" "w-5 h-5"}}} @JenniMcAllisterShowJumping
+          </a>
+        </li>
+        <li>
+          <a href="https://jennimcallister.com" target="_blank" rel="noopener noreferrer">
+            {{{icon "globe" "w-5 h-5"}}} jennimcallister.com
+          </a>
+        </li>
       </ul>
     </article>
     <article class="jenni-program__flow">
       <h2>Inside the Program</h2>
       <div class="jenni-flow">
-        <div class="jenni-flow__step jenni-flow__step--sun">{{{icon "star" "w-7 h-7"}}}<h3>Immunity</h3><p>Powerful antioxidant support to maintain optimum health and defense.</p></div>
-        <div class="jenni-flow__arrow" aria-hidden="true">→</div>
-        <div class="jenni-flow__step jenni-flow__step--green">{{{icon "bolt" "w-7 h-7"}}}<h3>Stamina</h3><p>Nutritional support work &amp; competition demands for sustained performance.</p></div>
-        <div class="jenni-flow__arrow" aria-hidden="true">→</div>
-        <div class="jenni-flow__step jenni-flow__step--blue">{{{icon "droplet" "w-7 h-7"}}}<h3>Recovery</h3><p>Supports fast recovery before and after intense effort.</p></div>
-        <div class="jenni-flow__arrow" aria-hidden="true">→</div>
-        <div class="jenni-flow__step jenni-flow__step--red">{{{icon "trophy" "w-7 h-7"}}}<h3>Competition</h3><p>Backed by proven ingredients to help horses perform at their best.</p></div>
-        <div class="jenni-flow__arrow" aria-hidden="true">→</div>
-        <div class="jenni-flow__step jenni-flow__step--forest">{{{icon "heart" "w-7 h-7"}}}<h3>Total Connection</h3><p>Fueling the bond between horse and rider for extraordinary results.</p></div>
+        <div class="jenni-flow__step jenni-flow__step--sun">
+          {{{icon "star" "w-7 h-7"}}}
+          <h3>Immunity</h3>
+          <p>Powerful antioxidant support to maintain optimum health and defense.</p>
+        </div>
+        <div class="jenni-flow__arrow" aria-hidden="true">&rarr;</div>
+        <div class="jenni-flow__step jenni-flow__step--green">
+          {{{icon "bolt" "w-7 h-7"}}}
+          <h3>Stamina</h3>
+          <p>Nutritional support for work &amp; competition demands for sustained performance.</p>
+        </div>
+        <div class="jenni-flow__arrow" aria-hidden="true">&rarr;</div>
+        <div class="jenni-flow__step jenni-flow__step--blue">
+          {{{icon "droplet" "w-7 h-7"}}}
+          <h3>Recovery</h3>
+          <p>Supports fast recovery before and after intense effort.</p>
+        </div>
+        <div class="jenni-flow__arrow" aria-hidden="true">&rarr;</div>
+        <div class="jenni-flow__step jenni-flow__step--red">
+          {{{icon "trophy" "w-7 h-7"}}}
+          <h3>Competition</h3>
+          <p>Backed by proven ingredients to help horses perform at their best.</p>
+        </div>
+        <div class="jenni-flow__arrow" aria-hidden="true">&rarr;</div>
+        <div class="jenni-flow__step jenni-flow__step--forest">
+          {{{icon "heart" "w-7 h-7"}}}
+          <h3>Total Connection</h3>
+          <p>Fueling the bond between horse and rider for extraordinary results.</p>
+        </div>
       </div>
     </article>
   </section>
-</main>
+
+  <section class="jenni-banner" aria-label="Brand message">
+    <p>Support <span>Physiology</span>, Not Symptoms.</p>
+  </section>
+</div>

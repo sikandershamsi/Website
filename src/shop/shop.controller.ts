@@ -33,13 +33,16 @@ export class ShopController {
   product(@Param('slug') slug: string) {
     const product = findProduct(slug);
     if (!product) throw new NotFoundException('Product not found');
+    const reviews =
+      slug === 'vetrofit'
+        ? vetrofitTestimonials.map((t) => ({ ...t, product: 'VetroFit' }))
+        : testimonials.filter((t) => t.product.toLowerCase() === product.name.toLowerCase());
     return {
       title: product.name,
       activeNav: 'shop',
       product,
       related: products.filter((p) => p.slug !== slug),
-      reviews: testimonials.filter((t) => t.product.toLowerCase() === product.name.toLowerCase()),
-      vetrofitTestimonials,
+      reviews,
     };
   }
 }

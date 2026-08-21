@@ -11,8 +11,8 @@
     {{/ifCond}}
     <h1 class="font-display mt-3 text-3xl font-medium text-al-navy sm:text-4xl">{{product.trademark}}</h1>
     <p class="mt-2 text-lg text-al-ink/70">{{product.tagline}}</p>
-    <div class="mt-4 flex items-center gap-1 text-al-navy/55">
-      {{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}
+    <div class="mt-4 flex items-center gap-1 text-al-navy">
+      {{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}
       <span class="ml-2 text-xs font-semibold text-al-ink/60">{{reviews.length}} reviews</span>
     </div>
     <p class="font-display mt-5 text-2xl font-medium text-al-navy">{{currency product.price}}</p>
@@ -72,102 +72,17 @@
         <p class="max-w-3xl text-sm leading-relaxed text-al-ink/75">{{product.description}}</p>
 
         {{#if product.inflammationShowcase}}
-        <article class="vfen-inflam mt-10">
-          <div class="vfen-inflam__grid">
-            <div class="vfen-inflam__copy">
-              <p class="vfen-inflam__logo"><span class="vfen-inflam__logo-lead">Vetro</span><span class="vfen-inflam__logo-tail">fen</span></p>
-              <p class="vfen-inflam__brand">{{product.inflammationShowcase.brandLine}}</p>
-              <h3 class="vfen-inflam__headline">
-                {{#each product.inflammationShowcase.headline}}
-                <span class="vfen-inflam__line{{#if this.accent}} vfen-inflam__line--accent{{/if}}">{{this.text}}</span>
-                {{/each}}
-              </h3>
-              <p class="vfen-inflam__intro">{{product.inflammationShowcase.intro}}</p>
-              <ul class="vfen-inflam__callouts">
-                {{#each product.inflammationShowcase.callouts}}
-                <li class="vfen-inflam__callout">
-                  <img class="vfen-inflam__callout-icon" src="{{this.icon}}" alt="" width="48" height="48" loading="lazy" />
-                  <p class="vfen-inflam__callout-text">{{{this.html}}}</p>
-                </li>
-                {{/each}}
-              </ul>
-            </div>
-
-            <div class="vfen-inflam__visuals">
-              <figure class="vfen-inflam__anatomy">
-                <img
-                  src="{{product.inflammationShowcase.anatomyImage}}"
-                  alt="{{product.trademark}} equine anatomy highlighting joint inflammation points"
-                  width="920"
-                  height="454"
-                  loading="lazy"
-                />
-              </figure>
-              <div class="vfen-inflam__tissues">
-                <figure class="vfen-inflam__tissue">
-                  <span class="vfen-inflam__bar vfen-inflam__bar--healthy">{{product.inflammationShowcase.tissueHealthy.barLabel}}</span>
-                  <span class="vfen-inflam__tag vfen-inflam__tag--healthy">{{product.inflammationShowcase.tissueHealthy.tagLabel}}</span>
-                  <img
-                    src="{{product.inflammationShowcase.tissueHealthy.image}}"
-                    alt="Healthy tissue"
-                    width="700"
-                    height="467"
-                    loading="lazy"
-                  />
-                </figure>
-                <figure class="vfen-inflam__tissue">
-                  <span class="vfen-inflam__bar vfen-inflam__bar--inflamed">{{product.inflammationShowcase.tissueInflamed.barLabel}}</span>
-                  <span class="vfen-inflam__tag vfen-inflam__tag--inflamed">{{product.inflammationShowcase.tissueInflamed.tagLabel}}</span>
-                  <img
-                    src="{{product.inflammationShowcase.tissueInflamed.image}}"
-                    alt="Inflamed tissue"
-                    width="700"
-                    height="509"
-                    loading="lazy"
-                  />
-                </figure>
-              </div>
-            </div>
-
-            <div class="vfen-inflam__detail">
-              <div class="vfen-inflam__block">
-                <p class="vfen-inflam__eyebrow">Product <span>({{product.inflammationShowcase.productLabel}})</span></p>
-                <p class="vfen-inflam__body">{{product.whatItIs.summary}}</p>
-                {{#if product.whatItIs.points.length}}
-                <ul class="vfen-inflam__list">
-                  {{#each product.whatItIs.points}}
-                  <li>{{this}}</li>
-                  {{/each}}
-                </ul>
-                {{/if}}
-              </div>
-              <div class="vfen-inflam__block">
-                <p class="vfen-inflam__eyebrow">Outcomes <span>({{product.inflammationShowcase.outcomesLabel}})</span></p>
-                <p class="vfen-inflam__body">{{product.outcomes.summary}}</p>
-                <ul class="vfen-inflam__list">
-                  {{#each product.outcomes.points}}
-                  <li>{{this}}</li>
-                  {{/each}}
-                </ul>
-              </div>
-              <div class="vfen-inflam__block">
-                <p class="vfen-inflam__eyebrow">Impact <span>({{product.inflammationShowcase.impactLabel}})</span></p>
-                {{#if product.impact.summary}}
-                <p class="vfen-inflam__body">{{product.impact.summary}}</p>
-                {{/if}}
-                <ul class="vfen-inflam__list">
-                  {{#each product.impact.points}}
-                  <li>{{this}}</li>
-                  {{/each}}
-                </ul>
-              </div>
-            </div>
-
-            <div class="vfen-inflam__difference">
-              <p class="vfen-inflam__eyebrow">The Animalife Difference</p>
-              <p class="vfen-inflam__difference-text">{{product.animalifeDifference}}</p>
-            </div>
-          </div>
+        <article class="vfen-inflam vfen-inflam--board product-board-bleed mt-10" aria-label="VetroFen description">
+          <img
+            src="/images/vetrofen/description-board.jpg?v=20260821a"
+            srcset="/images/vetrofen/description-board.jpg?v=20260821a 1660w, /images/vetrofen/description-board@2x.jpg?v=20260821a 3320w"
+            sizes="100vw"
+            alt="VetroFen. Natural relief. Proven performance. A fast-acting, natural anti-inflammatory designed to target pain at its source without the risks associated with traditional NSAIDs."
+            width="1660"
+            height="947"
+            class="vfen-inflam__board"
+            loading="lazy"
+          />
         </article>
         {{/if}}
 
@@ -181,6 +96,20 @@
             alt="VetroFlex. Stronger joints. Restored mobility. Built to last. A structurally targeted, veterinary-grade nutraceutical engineered to repair cartilage, strengthen connective tissue, and restore soundness for lasting performance longevity."
             width="1641"
             height="959"
+            class="vf-desc__board"
+            loading="lazy"
+          />
+        </article>
+        {{else}}
+        {{#ifCond product.slug "vetrofit"}}
+        <article class="vf-desc vf-desc--board product-board-bleed mt-10" aria-label="VetroFit description">
+          <img
+            src="/images/vetrofit/description-board.jpg?v=20260821b"
+            srcset="/images/vetrofit/description-board.jpg?v=20260821b 1643w, /images/vetrofit/description-board@2x.jpg?v=20260821b 3286w"
+            sizes="100vw"
+            alt="VetroFit. More oxygen. Less fatigue. Faster recovery. A natural performance-optimization nutraceutical engineered to enhance oxygen delivery, aerobic efficiency, and recovery in high-intensity equine athletes."
+            width="1643"
+            height="957"
             class="vf-desc__board"
             loading="lazy"
           />
@@ -282,6 +211,7 @@
           </div>
         </article>
         {{/ifCond}}
+        {{/ifCond}}
         {{/if}}
 
         {{#if product.controlShowcase}}
@@ -292,6 +222,20 @@
             srcset="/images/vetroflex/control-board.jpg?v=20260821a 1536w, /images/vetroflex/control-board@2x.jpg?v=20260821a 3072w"
             sizes="100vw"
             alt="VetroFlex. Complete joint and connective tissue support. Supporting the body's natural control center with cartilage repair, joint comfort, connective tissue strength, inflammation balance, shock absorption, bone health, and long-term performance."
+            width="1536"
+            height="1024"
+            class="vfen-control__board"
+            loading="lazy"
+          />
+        </article>
+        {{else}}
+        {{#ifCond product.slug "vetrofen"}}
+        <article class="vfen-control vfen-control--board product-board-bleed mt-10" aria-label="VetroFen natural inflammation and pain management">
+          <img
+            src="/images/vetrofen/control-board.jpg?v=20260821a"
+            srcset="/images/vetrofen/control-board.jpg?v=20260821a 1536w, /images/vetrofen/control-board@2x.jpg?v=20260821a 3072w"
+            sizes="100vw"
+            alt="VetroFen. Natural inflammation and pain management. Supporting the body's natural healing defenses with seven targeted benefits around the horse."
             width="1536"
             height="1024"
             class="vfen-control__board"
@@ -368,73 +312,21 @@
           </div>
         </article>
         {{/ifCond}}
+        {{/ifCond}}
         {{/if}}
 
         {{#if product.kidneyShowcase}}
-        <article class="vf-kidney mt-10">
-          <div class="vf-kidney__grid">
-            <div class="vf-kidney__aside">
-              <p class="vf-kidney__logo">{{product.name}}<span class="vf-kidney__reg">®</span></p>
-              <p class="vf-kidney__tagline">{{product.kidneyShowcase.tagline}}</p>
-              <p class="vf-kidney__intro">{{product.kidneyShowcase.intro}}</p>
-              <figure class="vf-kidney__syringe">
-                <img
-                  src="{{product.kidneyShowcase.syringeImage}}"
-                  alt="{{product.trademark}} oral syringe"
-                  width="600"
-                  height="150"
-                  loading="lazy"
-                />
-              </figure>
-              <h3 class="vf-kidney__control-heading">{{product.kidneyShowcase.controlHeading}}</h3>
-              <p class="vf-kidney__control-body">{{product.kidneyShowcase.controlBody}}</p>
-              <p class="vf-kidney__helps">{{product.kidneyShowcase.helpsHeading}}</p>
-              <ul class="vf-kidney__benefits">
-                {{#each product.kidneyShowcase.benefits}}
-                <li class="vf-kidney__benefit">
-                  <img class="vf-kidney__benefit-icon" src="{{this.icon}}" alt="" width="40" height="40" loading="lazy" />
-                  <p class="vf-kidney__benefit-text">{{{this.html}}}</p>
-                </li>
-                {{/each}}
-              </ul>
-            </div>
-
-            <div class="vf-kidney__diagram-wrap">
-              <div class="vf-kidney__diagram">
-                <img
-                  class="vf-kidney__diagram-img"
-                  src="{{product.kidneyShowcase.diagramImage}}"
-                  alt="{{product.trademark}} kidney homeostasis diagram"
-                  width="1100"
-                  height="1010"
-                  loading="lazy"
-                />
-                <ul class="vf-kidney__callouts">
-                  {{#each product.kidneyShowcase.callouts}}
-                  <li class="vf-kidney__callout vf-kidney__callout--{{this.slot}}">
-                    <span class="vf-kidney__num">{{this.num}}</span>
-                    <div class="vf-kidney__callout-copy">
-                      <p class="vf-kidney__callout-title">{{this.title}}</p>
-                      <p class="vf-kidney__callout-body">{{this.body}}</p>
-                    </div>
-                  </li>
-                  {{/each}}
-                </ul>
-              </div>
-
-              <ol class="vf-kidney__callout-list">
-                {{#each product.kidneyShowcase.callouts}}
-                <li class="vf-kidney__callout-list-item">
-                  <span class="vf-kidney__num">{{this.num}}</span>
-                  <div>
-                    <p class="vf-kidney__callout-title">{{this.title}}</p>
-                    <p class="vf-kidney__callout-body">{{this.body}}</p>
-                  </div>
-                </li>
-                {{/each}}
-              </ol>
-            </div>
-          </div>
+        <article class="vf-kidney vf-kidney--board product-board-bleed mt-10" aria-label="VetroFit kidney support and performance optimization">
+          <img
+            src="/images/vetrofit/kidney-board.jpg?v=20260821a"
+            srcset="/images/vetrofit/kidney-board.jpg?v=20260821a 1600w, /images/vetrofit/kidney-board@2x.jpg?v=20260821a 3200w"
+            sizes="100vw"
+            alt="VetroFit. Kidney support and performance optimization. Supporting the body's natural control center with seven benefits around the horse including red blood cell support, detox, electrolytes, hydration, acid-base balance, blood pressure, and stamina."
+            width="1600"
+            height="1065"
+            class="vf-kidney__board"
+            loading="lazy"
+          />
         </article>
         {{/if}}
 
@@ -453,13 +345,35 @@
           />
         </article>
         {{else}}
-        <article class="vf-compare mt-10{{#ifCond product.slug "vetrofen"}} vf-compare--red{{/ifCond}}">
-          {{#ifCond product.slug "vetrofen"}}
-          <div class="vf-compare__banner">
-            <p class="vf-compare__banner-title">{{product.trademark}}</p>
-            <p class="vf-compare__banner-sub">Feel the Difference</p>
-          </div>
-          {{/ifCond}}
+        {{#ifCond product.slug "vetrofen"}}
+        <article class="vf-compare vf-compare--board product-board-bleed mt-10" aria-label="VetroFen feel the difference comparison">
+          <img
+            src="/images/vetrofen/compare-board.jpg?v=20260821a"
+            srcset="/images/vetrofen/compare-board.jpg?v=20260821a 1536w, /images/vetrofen/compare-board@2x.jpg?v=20260821a 3072w"
+            sizes="100vw"
+            alt="VetroFen. Feel the difference. Not all inflammatory supplements are created equal. Comparison of VetroFen botanical extracts versus NSAIDs and steroids."
+            width="1536"
+            height="1024"
+            class="vf-compare__board"
+            loading="lazy"
+          />
+        </article>
+        {{else}}
+        {{#ifCond product.slug "vetrofit"}}
+        <article class="vf-compare vf-compare--board product-board-bleed mt-10" aria-label="VetroFit feel the difference comparison">
+          <img
+            src="/images/vetrofit/compare-board.jpg?v=20260821a"
+            srcset="/images/vetrofit/compare-board.jpg?v=20260821a 1536w, /images/vetrofit/compare-board@2x.jpg?v=20260821a 3072w"
+            sizes="100vw"
+            alt="VetroFit. Feel the difference. Not all performance supplements are created equal. Comparison of VetroFit kidney homeostasis support versus other brands that mask fatigue."
+            width="1536"
+            height="1024"
+            class="vf-compare__board"
+            loading="lazy"
+          />
+        </article>
+        {{else}}
+        <article class="vf-compare mt-10">
           <div class="vf-compare__grid">
             <div class="vf-compare__aside">
               <h3 class="vf-compare__headline">{{product.comparison.headline}}</h3>
@@ -528,6 +442,8 @@
             </div>
           </div>
         </article>
+        {{/ifCond}}
+        {{/ifCond}}
         {{/ifCond}}
         {{/if}}
 
@@ -863,36 +779,6 @@
 {{/unless}}
 {{/unless}}
 
-{{#ifCond product.slug "vetrofit"}}
-<section class="panel-white">
-  <div class="section">
-    <div class="flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <div class="eyebrow">Testimonials</div>
-        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy">What riders &amp; trainers are saying</h2>
-      </div>
-      <div class="flex gap-2">
-        <button type="button" data-testimonial-prev class="flex h-10 w-10 items-center justify-center rounded-none border border-al-line" aria-label="Previous">{{{icon "arrow-left" "w-4 h-4"}}}</button>
-        <button type="button" data-testimonial-next class="flex h-10 w-10 items-center justify-center rounded-none border border-al-line" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
-      </div>
-    </div>
-    <div class="mt-8 overflow-hidden" data-testimonial-slider>
-      <div class="slider-track" data-testimonial-track>
-        {{#each vetrofitTestimonials}}
-        <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
-          <div class="card h-full bg-al-panel p-6">
-            <p class="text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
-            <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}}</p>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-    </div>
-  </div>
-</section>
-{{/ifCond}}
-
-{{#unless (eq product.slug "vetrofit")}}
 {{#if reviews.length}}
 <section class="section">
   <div class="eyebrow">Testimonials</div>
@@ -900,7 +786,7 @@
   <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
     {{#each reviews}}
     <div class="card p-6">
-      <div class="flex gap-0.5 text-al-navy/55">{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}{{{icon "star" "w-4 h-4"}}}</div>
+      <div class="flex gap-0.5 text-al-navy">{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}</div>
       <p class="mt-4 text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
       <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}}</p>
     </div>
@@ -908,7 +794,6 @@
   </div>
 </section>
 {{/if}}
-{{/unless}}
 
 <section class="bg-al-panel">
   <div class="section">

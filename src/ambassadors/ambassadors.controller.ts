@@ -13,7 +13,36 @@ export class AmbassadorsController {
   @Get('jenni-mcallister')
   @Render('ambassadors/profile')
   jenniProfile() {
-    return { title: 'Jenni McAllister | Ambassadors', activeNav: 'ambassadors' };
+    return {
+      title: 'Jenni McAllister | Ambassadors',
+      activeNav: 'ambassadors',
+      featuredProducts: [
+        {
+          slug: 'vetroflex',
+          trademark: 'VetroFlex®',
+          category: 'Cartilage – Joint – Connective Tissue Repair',
+          tagline: 'Joint, Cartilage & Connective Tissue Support',
+          price: 79,
+          image: '/images/products/vetroflex-tub.webp',
+        },
+        {
+          slug: 'vetrofen',
+          trademark: 'VetroFen®',
+          category: 'Inflammation & Pain Management',
+          tagline: 'Advanced Inflammation & Pain Management Support',
+          price: 69,
+          image: '/images/products/vetrofen-tub.webp',
+        },
+        {
+          slug: 'vetrofit',
+          trademark: 'VetroFit®',
+          category: 'Kidney Homeostasis Management',
+          tagline: 'Oxygen Transport, Endurance & Recovery Support',
+          price: 59,
+          image: '/images/products/vetrofit-syringe.webp',
+        },
+      ],
+    };
   }
 
   @Post('apply')

@@ -1,49 +1,27 @@
-<section class="amb-hero">
+<section class="amb-hero amb-hero--board" aria-label="Animalife Ambassadors">
   <img
-    src="/images/ambassadors/hero-horse.jpg"
-    alt="Bay horse behind a paddock fence"
-    class="amb-hero__media"
+    src="/images/ambassadors/hero-board.jpg?v=20260821a"
+    srcset="/images/ambassadors/hero-board.jpg?v=20260821a 1686w, /images/ambassadors/hero-board@2x.jpg?v=20260821a 3372w"
+    sizes="100vw"
+    alt="Animalife Ambassadors. Elite riders. Extraordinary partnerships. United by passion. Driven by excellence. Disciplines: show jumping, dressage, thoroughbred racing, western reining, eventing, polo, and 4 in hand carriage."
+    width="1686"
+    height="933"
+    class="amb-hero__board"
   />
-  <div class="amb-hero__veil" aria-hidden="true"></div>
-  <div class="amb-hero__copy">
-    <p class="amb-hero__eyebrow">Animalife Ambassadors</p>
-    <span class="amb-hero__rule" aria-hidden="true"></span>
-    <h1 class="amb-hero__title">Elite Riders.<br />Extraordinary Partnerships.</h1>
-    <span class="amb-hero__rule" aria-hidden="true"></span>
-    <p class="amb-hero__lede">United by passion. Driven by excellence.<br />Our ambassadors represent the best in every discipline.</p>
-  </div>
-</section>
-
-<section class="amb-disciplines">
-  <div class="amb-disciplines__grid">
-    {{#each disciplines}}
-    <div class="amb-disciplines__item">
-      <div class="amb-disciplines__media">
-        <img src="{{this.image}}" alt="{{this.name}}" class="amb-disciplines__img" />
-      </div>
-      <div class="amb-disciplines__meta">
-        <div class="amb-disciplines__icon">{{{icon this.icon "w-7 h-7"}}}</div>
-        <p class="amb-disciplines__label">{{this.name}}</p>
-      </div>
-    </div>
-    {{/each}}
-  </div>
 </section>
 
 <section class="panel-white">
-  <div class="section mx-auto max-w-3xl text-center">
-    <h2 class="text-xs font-semibold uppercase tracking-[0.18em] text-al-navy/55">Meet Our Animalife Ambassadors</h2>
+  <div class="section">
+    <h2 class="font-display text-3xl font-medium uppercase tracking-wide text-al-navy sm:text-4xl">Meet Our Animalife Ambassadors</h2>
     <p class="mt-5 text-sm leading-relaxed text-al-ink/75">We are honored to partner with an exceptional group of riders, trainers, veterinarians, and equine professionals who share our passion for helping horses live healthier, happier, and more successful lives.</p>
     <p class="mt-5 text-sm leading-relaxed text-al-ink/75">Our ambassadors are more than accomplished professionals&mdash;they are trusted educators, practitioners, advocates, and competitors who believe in treating the whole horse through science-backed nutrition and natural wellness. Their experience, dedication, and commitment to excellence help shape the future of Animalife while inspiring horse owners around the world.</p>
-  </div>
 
-  <div class="section !pt-0">
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <a href="/ambassadors/jenni-mcallister" class="card group overflow-hidden">
         <div class="aspect-[4/5] overflow-hidden bg-al-panel">
           <img src="/images/ambassadors/jenni-mcallister.jpg" alt="Jenni McAllister competing in show jumping" class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
         </div>
-        <div class="p-5">
+        <div class="p-5 text-center">
           <p class="font-display text-lg font-medium text-al-navy">Jenni McAllister</p>
           <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-al-navy/55">Click to Profile</p>
         </div>

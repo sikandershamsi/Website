@@ -370,6 +370,17 @@
     --vf-orange: #e87820;
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
   }
+  .vf-kidney--board {
+    @apply border-0 bg-transparent p-0;
+  }
+  .vf-kidney__board {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
   .vf-kidney__grid {
     @apply grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.55fr)] lg:items-start lg:gap-8 xl:gap-10;
   }
@@ -595,6 +606,17 @@
     --vf-orange: #e87820;
     --vf-red: #c43c2c;
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
+  }
+  .vfen-inflam--board {
+    @apply border-0 bg-transparent p-0;
+  }
+  .vfen-inflam__board {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
   }
   .vfen-inflam__grid {
     @apply grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 xl:gap-10;
@@ -1340,7 +1362,7 @@
     @apply block h-[4.5rem] w-full sm:h-[5.5rem] lg:h-[6.5rem];
   }
   .race-hero {
-    @apply relative isolate flex min-h-[calc(100svh-6.75rem)] items-end overflow-hidden bg-al-navy text-white sm:items-center;
+    @apply relative isolate block min-h-[calc(100svh-6.75rem)] w-full overflow-hidden bg-al-navy;
   }
   #industry-reality,
   #kidney-homeostasis,
@@ -1352,32 +1374,23 @@
   .race-hero__video {
     @apply absolute inset-0 h-full w-full object-cover object-center;
   }
-  .race-hero__veil {
-    @apply pointer-events-none absolute inset-0;
-    background:
-      linear-gradient(90deg, rgba(12, 14, 18, 0.78) 0%, rgba(12, 14, 18, 0.45) 42%, rgba(12, 14, 18, 0.18) 68%, rgba(12, 14, 18, 0.28) 100%),
-      linear-gradient(180deg, rgba(12, 14, 18, 0.2) 0%, transparent 28%, transparent 62%, rgba(12, 14, 18, 0.55) 100%);
-  }
-  .race-hero__copy {
-    @apply relative z-10 mx-auto w-full max-w-7xl px-6 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24;
-  }
-  .race-hero__eyebrow {
-    @apply text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 sm:text-xs;
-  }
-  .race-hero__title {
-    @apply font-display mt-5 max-w-3xl text-[clamp(2.5rem,7vw,5.5rem)] font-medium leading-[1.05] tracking-tight text-white;
-  }
-  .race-hero__lede {
-    @apply mt-6 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base;
-  }
   .race-intro {
     @apply flex min-h-[calc(100svh-6.75rem)] items-center bg-white;
+  }
+  .race-intro--compact {
+    @apply min-h-0 items-stretch;
+  }
+  .race-intro.panel-grey {
+    @apply bg-al-panel;
   }
   .race-intro--muted {
     @apply bg-al-panel;
   }
   .race-intro__inner {
     @apply relative mx-auto w-full max-w-4xl px-6 py-20 sm:px-10 lg:px-16 lg:py-24;
+  }
+  .race-intro--compact .race-intro__inner {
+    @apply py-12 sm:py-14 lg:py-16;
   }
   .race-intro__inner::before {
     content: "";
@@ -1400,6 +1413,9 @@
   }
   .race-cascade {
     @apply overflow-x-clip bg-white py-16 text-[#0d1b2e] sm:py-20 lg:py-24;
+  }
+  .race-cascade.panel-grey {
+    @apply bg-al-panel;
   }
   .race-cascade__inner {
     @apply mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8;
@@ -1637,6 +1653,19 @@
   .race-owners {
     @apply relative isolate mb-16 flex min-h-[34rem] items-center overflow-hidden bg-white sm:mb-20 lg:mb-24;
   }
+  .race-owners.panel-grey {
+    @apply bg-al-panel;
+  }
+  .race-owners.panel-grey .race-owners__veil {
+    background: linear-gradient(
+      90deg,
+      #f5f5f5 0%,
+      #f5f5f5 28%,
+      rgba(245, 245, 245, 0.88) 40%,
+      rgba(245, 245, 245, 0.4) 52%,
+      rgba(245, 245, 245, 0) 64%
+    );
+  }
   @media (min-width: 640px) {
     /* Match the artwork's proportions so its baked-in fade lands beside the copy,
        and scale the copy with the width so it stays inside the fade's white band. */
@@ -1669,6 +1698,15 @@
       rgba(255, 255, 255, 0.96) 52%,
       rgba(255, 255, 255, 0.88) 76%,
       rgba(255, 255, 255, 0.6) 100%
+    );
+  }
+  .race-owners.panel-grey .race-owners__veil {
+    background: linear-gradient(
+      180deg,
+      #f5f5f5 0%,
+      rgba(245, 245, 245, 0.96) 52%,
+      rgba(245, 245, 245, 0.88) 76%,
+      rgba(245, 245, 245, 0.6) 100%
     );
   }
   @media (min-width: 640px) {
@@ -1723,8 +1761,25 @@
   .race-homeo {
     @apply relative isolate overflow-hidden bg-[#f7f4ee];
   }
+  .race-homeo--board {
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+  }
+  .race-homeo__board {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+  .race-homeo.panel-white {
+    @apply bg-white;
+  }
+  .race-homeo.panel-grey {
+    @apply bg-al-panel;
+  }
   @media (min-width: 1024px) {
-    .race-homeo {
+    .race-homeo:not(.race-homeo--board) {
       min-height: calc(100svh - 6.75rem);
     }
   }
@@ -1808,20 +1863,26 @@
   .race-statement {
     @apply flex min-h-[calc(100svh-6.75rem)] items-center bg-white;
   }
+  .race-statement.panel-grey {
+    @apply bg-al-panel;
+  }
+  .race-statement.panel-white {
+    @apply bg-white;
+  }
   .race-statement__inner {
-    @apply relative mx-auto w-full max-w-4xl px-6 py-20 sm:px-10 lg:px-16 lg:py-24;
+    @apply relative mx-auto w-full max-w-4xl px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24;
   }
   .race-statement__title {
-    @apply relative z-[1] max-w-3xl text-[clamp(1.05rem,2.1vw,1.35rem)] font-extrabold leading-snug tracking-[0.01em] text-al-navy;
+    @apply relative z-[1] max-w-3xl font-display text-[clamp(1.35rem,2.8vw,1.85rem)] font-medium leading-snug tracking-[0.01em] text-al-navy;
   }
   .race-statement__num {
-    @apply font-extrabold;
+    @apply font-semibold;
   }
   .race-statement__sep {
-    @apply mx-1.5 font-semibold text-al-navy/45;
+    @apply mx-1.5 font-medium text-al-navy/45;
   }
   .race-statement__panel {
-    @apply relative mt-6 max-w-3xl bg-[#efefef] px-6 py-7 sm:mt-8 sm:px-8 sm:py-8;
+    @apply relative mt-7 max-w-3xl bg-transparent px-6 py-7 sm:mt-8 sm:px-9 sm:py-9;
   }
   .race-statement__panel--full {
     @apply mt-0;
@@ -1834,16 +1895,30 @@
   }
   .race-statement__panel::before {
     content: "";
-    @apply absolute -left-0 top-0 h-0.5 w-8 bg-al-orange sm:-left-3;
+    @apply absolute left-0 top-0 h-0.5 w-9 -translate-y-[1.15rem] bg-al-orange;
   }
   .race-statement__panel--full::before {
-    @apply top-7;
+    @apply top-7 translate-y-0;
   }
   .race-statement__body {
-    @apply m-0 text-[15px] leading-relaxed text-al-navy/85 sm:text-base sm:leading-[1.75];
+    @apply m-0 font-sans text-[15px] font-normal leading-relaxed text-al-navy/80 sm:text-base sm:leading-[1.75];
   }
   .race-regulator {
     @apply bg-white py-16 sm:py-20 lg:py-24;
+  }
+  .race-regulator--board {
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0 py-0 sm:py-0 lg:py-0;
+  }
+  .race-regulator__board-img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+  .race-regulator.panel-grey {
+    @apply bg-al-panel;
   }
   .race-regulator__inner {
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
@@ -1943,6 +2018,20 @@
   }
   .race-oxygen {
     @apply bg-white py-16 sm:py-20 lg:py-24;
+  }
+  .race-oxygen--board {
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0 py-0 sm:py-0 lg:py-0;
+  }
+  .race-oxygen__board {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+  .race-oxygen.panel-grey {
+    @apply bg-al-panel;
   }
   .race-oxygen__inner {
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
@@ -2096,6 +2185,17 @@
   .race-distress {
     @apply relative isolate overflow-hidden bg-[#15110c];
   }
+  .race-distress--board {
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+  }
+  .race-distress__board-img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
   .race-distress__scene {
     @apply absolute inset-0 -z-10 h-full w-full object-cover object-[62%_38%] lg:object-[58%_center];
   }
@@ -2217,6 +2317,23 @@
   .race-compare {
     @apply bg-[#f4f4f2] py-14 sm:py-16 lg:py-20;
   }
+  .race-compare--board {
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0 py-0 sm:py-0 lg:py-0;
+  }
+  .race-compare__board-img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+  .race-compare.panel-white {
+    @apply bg-white;
+  }
+  .race-compare.panel-grey {
+    @apply bg-al-panel;
+  }
   .race-compare__inner {
     @apply mx-auto grid w-full max-w-7xl gap-6 px-5 sm:px-8 lg:grid-cols-2 lg:gap-8 lg:px-10;
   }
@@ -2316,8 +2433,22 @@
   .race-vetrofit {
     @apply relative isolate overflow-x-clip bg-white;
   }
+  .race-vetrofit--board {
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+  }
+  .race-vetrofit__board-img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+  .race-vetrofit.panel-grey {
+    @apply bg-al-panel;
+  }
   @media (min-width: 1024px) {
-    .race-vetrofit {
+    .race-vetrofit:not(.race-vetrofit--board) {
       min-height: calc(100svh - 6.75rem);
     }
   }
@@ -2471,6 +2602,21 @@
     @apply relative isolate mb-16 overflow-hidden bg-white sm:mb-20 lg:mb-24;
     min-height: calc(100svh - 6.75rem);
   }
+  .race-why--board {
+    @apply mb-0 block min-h-0 w-full overflow-hidden bg-white p-0;
+    min-height: 0;
+  }
+  .race-why__board-img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+  .race-why.panel-grey {
+    @apply bg-al-panel;
+  }
   .race-why__media-wrap {
     @apply absolute inset-0;
   }
@@ -2526,6 +2672,21 @@
     --race-eval-gold: #b8923a;
     @apply relative isolate overflow-hidden bg-white;
     min-height: calc(100svh - 6.75rem);
+  }
+  .race-eval--board {
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+    min-height: 0;
+  }
+  .race-eval__board-img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+  .race-eval.panel-grey {
+    @apply bg-al-panel;
   }
   .race-eval__media-wrap {
     @apply absolute inset-0;
@@ -2621,6 +2782,20 @@
     --race-science-blue: #2b5797;
     --race-science-hero-h: 19rem;
     @apply bg-white;
+  }
+  .race-science--board {
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+  }
+  .race-science__board-img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+  .race-science.panel-grey {
+    @apply bg-al-panel;
   }
   @media (min-width: 640px) {
     .race-science {
@@ -2811,8 +2986,85 @@
   .about-hero-blend__copy {
     @apply min-h-[calc(100svh-6.75rem)] py-16 text-white sm:py-20 lg:py-24;
   }
+  .about-story-hero {
+    @apply relative isolate w-full overflow-hidden bg-al-navy;
+  }
+  .about-story-hero__media {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+  .about-story-hero__copy {
+    @apply absolute inset-0 z-10 flex max-w-2xl flex-col justify-center px-8 py-12 text-white sm:max-w-3xl sm:px-12 sm:py-16 lg:max-w-[52%] lg:px-14 lg:py-20;
+  }
+  .about-story-layout {
+    @apply grid gap-10;
+  }
+  .about-story-photo {
+    @apply m-0 mx-auto w-full max-w-md;
+  }
+  .about-story-photo__frame {
+    @apply overflow-hidden rounded-none bg-al-panel;
+  }
+  .about-story-photo__img {
+    @apply block h-auto w-full object-contain object-center;
+  }
+  .about-story-photo__caption {
+    @apply mt-3 text-center text-xs font-semibold uppercase tracking-wide text-al-navy;
+  }
+  .about-story-copy {
+    @apply max-w-3xl;
+  }
+  @media (min-width: 1024px) {
+    /* Photo scales to text height; column widens so the full image stays visible (no crop). */
+    .about-story-layout {
+      grid-template-columns: max-content minmax(0, 1fr);
+      align-items: stretch;
+    }
+    .about-story-photo {
+      display: flex;
+      flex-direction: column;
+      width: max-content;
+      max-width: none;
+      height: 100%;
+      margin: 0;
+      align-self: stretch;
+    }
+    .about-story-photo__frame {
+      flex: 1 1 0;
+      min-height: 0;
+      width: auto;
+      height: auto;
+      aspect-ratio: 762 / 1024;
+      background-color: transparent;
+    }
+    .about-story-photo__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center top;
+    }
+    .about-story-photo__caption {
+      flex: 0 0 auto;
+    }
+  }
   .pro-hero {
     @apply flex min-h-[calc(100svh-6.75rem)] w-full flex-col bg-[#faf9f6];
+  }
+  .pro-hero--board {
+    @apply block min-h-0 w-full overflow-hidden bg-[#faf9f6] p-0;
+  }
+  .pro-hero__board {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
   }
   .pro-hero__banner {
     @apply relative isolate flex min-h-0 flex-1 items-center overflow-hidden;
@@ -2900,6 +3152,17 @@
   }
   .amb-hero {
     @apply relative isolate flex min-h-[calc(100svh-6.75rem)] items-center overflow-hidden bg-white;
+  }
+  .amb-hero--board {
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+  }
+  .amb-hero__board {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
   }
   .amb-hero__media {
     @apply absolute inset-0 h-full w-full object-cover object-center;
@@ -3396,8 +3659,14 @@
   .primary-ingredients {
     @apply bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-10 lg:py-20;
   }
+  .primary-ingredients.panel-grey {
+    @apply bg-al-panel;
+  }
+  .primary-ingredients.panel-white {
+    @apply bg-white;
+  }
   .primary-ingredients__panel {
-    @apply mx-auto max-w-6xl bg-white px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14;
+    @apply mx-auto max-w-6xl border-0 bg-white px-5 py-10 shadow-none sm:px-8 sm:py-12 lg:px-12 lg:py-14;
   }
   .primary-ingredients__brand {
     @apply text-center text-[11px] font-semibold uppercase tracking-[0.22em] text-black/70 sm:text-xs;
@@ -3469,14 +3738,84 @@
   .discipline-chip:hover .discipline-chip__icon {
     @apply border-al-navy bg-al-navy text-white;
   }
+  .jenni-profile-board {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #fff;
+  }
+  .jenni-profile-board__img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+  }
+  .jenni-profile-board__hotspots {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .jenni-profile-board__hotspot {
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    text-indent: -9999px;
+    white-space: nowrap;
+    pointer-events: auto;
+  }
+  /* Product Learn More — three cards in Why I Ride With Animalife */
+  .jenni-profile-board__hotspot--p1 {
+    left: 34.5%;
+    top: 62.5%;
+    width: 18.5%;
+    height: 4.2%;
+  }
+  .jenni-profile-board__hotspot--p2 {
+    left: 55.5%;
+    top: 62.5%;
+    width: 18.5%;
+    height: 4.2%;
+  }
+  .jenni-profile-board__hotspot--p3 {
+    left: 76.5%;
+    top: 62.5%;
+    width: 18.5%;
+    height: 4.2%;
+  }
+  /* Connect With Jenni */
+  .jenni-profile-board__hotspot--ig {
+    left: 2.5%;
+    top: 79.5%;
+    width: 28%;
+    height: 3.2%;
+  }
+  .jenni-profile-board__hotspot--fb {
+    left: 2.5%;
+    top: 83.2%;
+    width: 28%;
+    height: 3.2%;
+  }
+  .jenni-profile-board__hotspot--web {
+    left: 2.5%;
+    top: 86.8%;
+    width: 28%;
+    height: 3.2%;
+  }
   .jenni-profile {
-    @apply bg-white text-al-navy;
+    @apply w-full bg-white text-al-navy;
   }
   .jenni-hero {
-    @apply relative isolate flex min-h-[480px] items-center overflow-hidden bg-white sm:min-h-[560px] lg:min-h-[640px];
+    @apply relative isolate flex min-h-[520px] w-full items-center overflow-hidden bg-white sm:min-h-[600px] lg:min-h-[min(780px,calc(100svh-6.75rem))];
   }
   .jenni-hero__image {
     @apply absolute inset-y-0 right-0 h-full w-full object-cover object-[68%_12%] sm:w-[74%] sm:object-[62%_10%] lg:w-[70%] lg:object-[58%_8%];
+    image-rendering: auto;
   }
   .jenni-hero__veil {
     @apply pointer-events-none absolute inset-0 z-[1];
@@ -3493,7 +3832,9 @@
   .jenni-hero__copy {
     @apply relative z-10 w-full max-w-xl px-6 py-14 sm:max-w-[53%] sm:px-10 lg:max-w-[48%] lg:px-16;
   }
-  .jenni-hero__logo {
+  .jenni-hero__logo,
+  .jenni-hero__copy .brand-logo,
+  .jenni-hero__copy img {
     @apply h-auto w-28 object-contain sm:w-32;
   }
   .jenni-hero__title {
@@ -3515,10 +3856,13 @@
     @apply mx-2 text-al-ink/35;
   }
   .jenni-hero__quote {
-    @apply font-display mt-7 border-l-2 border-al-orange pl-4 text-lg italic leading-snug text-[#0b2445] sm:text-xl;
+    @apply font-display relative mt-7 pl-2 text-lg italic leading-snug text-[#0b2445] sm:pl-3 sm:text-xl;
+  }
+  .jenni-hero__qmark {
+    @apply font-display mr-1 text-4xl font-semibold leading-none text-al-orange sm:text-5xl;
   }
   .jenni-stats {
-    @apply grid grid-cols-2 border-y border-al-line bg-white sm:grid-cols-3 lg:grid-cols-6;
+    @apply grid w-full grid-cols-2 border-y border-al-line bg-white sm:grid-cols-3 lg:grid-cols-6;
   }
   .jenni-stats__item {
     @apply flex items-center justify-center gap-3 border-al-line px-4 py-5 text-al-orange sm:px-5 sm:py-6;
@@ -3552,11 +3896,17 @@
     @apply font-display mt-9 text-3xl italic text-[#0b2445];
     color: #0b2445 !important;
   }
+  .jenni-story__philosophy {
+    @apply mt-10 inline-block border-b-2 border-al-orange pb-2 text-xl font-semibold tracking-tight text-[#0b2445] sm:text-2xl;
+  }
   .jenni-story__products {
     @apply px-6 py-10 sm:px-10 lg:px-12;
   }
   .jenni-products {
-    @apply mt-5 grid gap-3 sm:grid-cols-3;
+    @apply mt-5 grid gap-4 sm:grid-cols-3;
+  }
+  .jenni-products .product-card {
+    @apply min-h-0;
   }
   .jenni-product {
     @apply relative flex min-h-[22rem] flex-col rounded-lg border border-al-line px-4 pb-4 pt-5 text-center;
@@ -3587,10 +3937,16 @@
   .jenni-product--red a { @apply border-red-500 text-red-600; }
   .jenni-product--blue a { @apply border-blue-800 text-blue-900; }
   .jenni-story__product-quote {
-    @apply font-display mt-7 border-x-2 border-al-orange px-5 text-center text-base italic text-[#0b2445];
+    @apply font-display mt-7 text-center text-base italic text-[#0b2445] sm:text-lg;
+  }
+  .jenni-story__qmark {
+    @apply font-display text-2xl font-semibold text-al-orange;
+  }
+  .jenni-story__qmark--end {
+    @apply ml-1;
   }
   .jenni-program {
-    @apply grid border-b border-al-line lg:grid-cols-[27%_73%];
+    @apply grid w-full border-b border-al-line lg:grid-cols-[27%_73%];
   }
   .jenni-connect {
     @apply border-al-line px-6 py-10 sm:px-10 lg:border-r lg:px-12;
@@ -3601,7 +3957,10 @@
   .jenni-connect li {
     @apply flex items-center gap-3;
   }
-  .jenni-connect svg { @apply text-al-orange; }
+  .jenni-connect a {
+    @apply text-[#0b2445] transition-colors hover:text-al-orange;
+  }
+  .jenni-connect svg { @apply shrink-0 text-[#1d4ed8]; }
   .jenni-program__flow {
     @apply px-6 py-10 sm:px-10 lg:px-12;
   }
@@ -3627,6 +3986,15 @@
   }
   .jenni-flow__arrow {
     @apply hidden pt-3 text-lg text-[#0b2445] sm:block;
+  }
+  .jenni-banner {
+    @apply flex w-full items-center justify-center bg-[#0b2445] px-6 py-5 text-center;
+  }
+  .jenni-banner p {
+    @apply text-xs font-bold uppercase tracking-[0.14em] text-white sm:text-sm sm:tracking-[0.18em];
+  }
+  .jenni-banner span {
+    @apply text-al-orange;
   }
   .slider-track {
     @apply flex transition-transform duration-500 ease-out;
