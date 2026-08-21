@@ -1,66 +1,45 @@
-<section class="science-hero">
+<section class="science-hero" aria-label="The Science Behind Performance">
   <img
-    src="/images/science/hero-performance-ed9890d2.jpg"
-    alt="Laboratory glassware with botanical ingredients used in Animalife research"
-    class="science-hero__media"
+    src="/images/science/hero-performance-board.jpg?v=20260821a"
+    srcset="/images/science/hero-performance-board.jpg?v=20260821a 1752w, /images/science/hero-performance-board@2x.jpg?v=20260821a 3504w"
+    sizes="100vw"
+    alt="The Science Behind Performance. Nature. Research. Results. We combine the wisdom of nature with advanced nutritional science to create targeted formulations that deliver real, measurable results."
+    width="1752"
+    height="897"
+    class="science-hero__board"
   />
-  <div class="science-hero__veil" aria-hidden="true"></div>
-  <div class="science-hero__copy">
-    <h1 class="science-hero__title">
-      The Science<br />Behind Performance
-    </h1>
-    <div class="science-hero__rule" aria-hidden="true"></div>
-    <p class="science-hero__eyebrow">Nature. Research. Results.</p>
-    <p class="science-hero__body">We combine the wisdom of nature with advanced nutritional science to create targeted formulations that deliver real, measurable results.</p>
-  </div>
 </section>
 
-<section class="panel-white">
-  <div class="section max-w-3xl text-center">
+<section class="panel-grey">
+  <div class="section text-center">
     <h2 class="font-display text-3xl font-medium text-al-navy sm:text-4xl lg:text-[2.75rem]">Our Philosophy</h2>
     <div class="mx-auto mt-5 h-0.5 w-12 bg-al-orange" aria-hidden="true"></div>
-    <p class="font-display mx-auto mt-8 max-w-2xl text-2xl font-medium leading-snug text-al-navy sm:text-[1.75rem] sm:leading-snug">
+    <p class="font-display mt-8 text-2xl font-medium leading-snug text-al-navy sm:text-[1.75rem] sm:leading-snug">
       Most equine supplements begin with ingredients.<br class="hidden sm:inline" />
       Animalife<sup>&reg;</sup> begins with physiology.
     </p>
-    <p class="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-al-ink/75 sm:text-[15px]">
+    <p class="mt-8 text-sm leading-relaxed text-al-ink/75 sm:text-[15px]">
       Before selecting a single ingredient, we identify the biological system we want to support and understand how that system influences performance, recovery, and long-term health. Every formulation is then built from the ground up using scientifically selected nutrients that work synergistically to support the body's natural regulatory processes.
     </p>
   </div>
 </section>
 
-<section class="panel-white">
+<section class="panel-white border-t border-al-line">
   <div class="targeted-support">
-    <div class="targeted-support__stage">
-      <img
-        src="/images/science/targeted-support-stage-a0dbe5e5.jpg"
-        alt="Horse anatomy highlighting joint, inflammation, and kidney support systems"
-        class="targeted-support__media"
-      />
-      <div class="targeted-support__copy">
-        <h2 class="targeted-support__title">Targeted Support</h2>
-        <div class="targeted-support__ornament" aria-hidden="true">
-          <span class="targeted-support__ornament-line"></span>
-          <span class="targeted-support__ornament-dot"></span>
-          <span class="targeted-support__ornament-line"></span>
-        </div>
-        <p class="targeted-support__lead">Targeted support for the systems that power performance, recovery, and long-term health.</p>
-        <div class="targeted-support__rule" aria-hidden="true"></div>
-        <p class="targeted-support__body">Our science-backed solutions work in harmony with your horse&rsquo;s body to support what matters most.</p>
-      </div>
-    </div>
-
-    <div class="targeted-support__products">
+    <img
+      src="/images/science/targeted-support-board.jpg?v=20260821a"
+      srcset="/images/science/targeted-support-board.jpg?v=20260821a 1536w, /images/science/targeted-support-board@2x.jpg?v=20260821a 3072w"
+      sizes="100vw"
+      alt="Targeted Support. Targeted support for the systems that power performance, recovery, and long-term health. Our science-backed solutions work in harmony with your horse's body to support what matters most. VetroFlex cartilage and connective tissue. VetroFen inflammation and pain relief. VetroFit kidney homeostasis management."
+      width="1536"
+      height="1024"
+      class="targeted-support__board"
+    />
+    <nav class="targeted-support__hotspots" aria-label="Targeted support products">
       {{#each targetedSupportProducts}}
-      <a href="{{this.href}}" class="targeted-support__product targeted-support__product--{{this.tone}}">
-        <span class="targeted-support__product-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</span>
-        <span class="targeted-support__product-text">
-          <span class="targeted-support__product-name">{{this.name}}</span>
-          <span class="targeted-support__product-focus">{{this.focus}}</span>
-        </span>
-      </a>
+      <a href="{{this.href}}" class="targeted-support__hotspot" aria-label="{{this.name}} — {{this.focus}}"></a>
       {{/each}}
-    </div>
+    </nav>
   </div>
 </section>
 
@@ -100,27 +79,19 @@
         </tbody>
       </table>
     </div>
-    <div class="mt-10 flex flex-wrap gap-4">
-      <a href="/the-science/ingredients" class="btn-outline">Explore the Ingredient Library</a>
-      <a href="/racing#industry-reality" class="btn-primary">Racing: The Industry Reality</a>
-    </div>
   </div>
 </section>
 
-<section class="rooted-nature">
+<section class="rooted-nature" aria-label="Science Rooted In Nature">
   <img
-    src="/images/science/rooted-in-nature-95843edf.jpg"
-    alt="Petri dish with a green leaf, river stones, and botanical foliage"
-    class="rooted-nature__media"
+    src="/images/science/rooted-in-nature-board.jpg?v=20260821b"
+    srcset="/images/science/rooted-in-nature-board.jpg?v=20260821b 1749w, /images/science/rooted-in-nature-board@2x.jpg?v=20260821b 3498w"
+    sizes="100vw"
+    alt="Science Rooted In Nature. Every ingredient is selected to serve a specific purpose—working together to support the healing process at the cellular level to ensure optimized performance and long-term wellness."
+    width="1749"
+    height="856"
+    class="rooted-nature__board"
   />
-  <div class="rooted-nature__copy">
-    <h2 class="rooted-nature__title">
-      <span class="rooted-nature__title-dark">Science Rooted</span><br />
-      <span class="rooted-nature__title-accent">In Nature.</span>
-    </h2>
-    <div class="rooted-nature__rule" aria-hidden="true"></div>
-    <p class="rooted-nature__body">Every ingredient is selected to serve a specific purpose&mdash;working together to support the healing process at the cellular level to ensure optimized performance and long-term wellness.</p>
-  </div>
 </section>
 
 {{#if vetrofenPrimary.primaryIngredients}}

@@ -1,9 +1,9 @@
 <header class="site-header relative sticky top-0 z-40 border-b border-al-line bg-white" data-site-header>
-  <div class="mx-auto flex max-w-7xl items-center gap-6 px-6 py-4 sm:px-8 lg:gap-8 lg:px-10">
+  <div class="flex w-full items-center justify-between gap-4 px-3 py-4 sm:px-4 lg:gap-6 lg:px-5">
     {{> brand-logo class="h-14 w-auto shrink-0"}}
 
-    <nav class="site-nav ml-auto hidden lg:block" data-site-nav aria-label="Primary">
-      <ul class="flex items-center gap-7 text-[13px] font-semibold tracking-wide uppercase xl:gap-8">
+    <nav class="site-nav hidden min-w-0 flex-1 px-4 lg:block" data-site-nav aria-label="Primary">
+      <ul class="flex items-center justify-center gap-6 text-[13px] font-semibold tracking-wide uppercase xl:gap-8">
         <li class="site-nav__item" data-nav-item>
           <a href="/the-science" class="site-nav__link {{#ifCond activeNav "science"}}is-active{{/ifCond}}">The Science</a>
           <div class="site-nav__dropdown" data-nav-dropdown>
@@ -54,13 +54,11 @@
             </ul>
           </div>
         </li>
-        <li class="site-nav__item">
-          <a href="/horse-iq" class="site-nav__link {{#ifCond activeNav "horseiq"}}is-active{{/ifCond}}">Horse IQ</a>
-        </li>
       </ul>
     </nav>
 
-    <div class="flex shrink-0 items-center gap-4 text-al-navy">
+    <div class="flex shrink-0 items-center gap-4 text-al-navy lg:gap-5">
+      <a href="/horse-iq" class="hidden text-[13px] font-semibold uppercase tracking-wide transition-colors hover:text-al-orange lg:inline {{#ifCond activeNav "horseiq"}}text-al-orange{{/ifCond}}">Horse IQ</a>
       <button type="button" data-search-toggle aria-label="Search" class="transition-colors hover:text-al-orange">{{{icon "search" "w-5 h-5"}}}</button>
       <a href="/account" aria-label="Account" class="transition-colors hover:text-al-orange">{{{icon "user" "w-5 h-5"}}}</a>
       <a href="/cart" aria-label="Cart" class="relative transition-colors hover:text-al-orange">

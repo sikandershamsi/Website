@@ -1,61 +1,13 @@
-<section class="shop-hero">
+<section class="shop-hero" aria-label="Shop Animalife">
   <img
-    src="/images/shop/hero.jpg?v=3"
-    alt="VetroFlex, VetroFen, and VetroFit with a horse in golden-hour light"
-    class="shop-hero__media"
-    width="1024"
-    height="550"
+    src="/images/shop/hero-board.jpg?v=20260821a"
+    srcset="/images/shop/hero-board.jpg?v=20260821a 1600w, /images/shop/hero-board@2x.jpg?v=20260821a 3200w"
+    sizes="100vw"
+    alt="Shop Animalife. Root Cause Based Treatments for every stage of performance and wellness. Science-backed nutrition, targeted support, research driven, equine focused. VetroFlex, VetroFen, and VetroFit."
+    width="1600"
+    height="860"
+    class="shop-hero__board"
   />
-  <div class="shop-hero__veil" aria-hidden="true"></div>
-
-  <div class="shop-hero__content">
-    <div class="shop-hero__copy">
-      <div class="shop-hero__eyebrow-row">
-        <span class="shop-hero__rule" aria-hidden="true"></span>
-        <p class="shop-hero__eyebrow">Shop Animalife</p>
-        <span class="shop-hero__rule" aria-hidden="true"></span>
-      </div>
-      <h1 class="shop-hero__title">
-        <span class="shop-hero__title-line">Root Cause Based</span>
-        <span class="shop-hero__title-line">Treatments</span>
-      </h1>
-      <p class="shop-hero__lede">
-        <span class="shop-hero__lede-line">For Every Stage of</span>
-        <span class="shop-hero__lede-em">Performance &amp; Wellness</span>
-      </p>
-      <div class="shop-hero__mark" aria-hidden="true">
-        <span class="shop-hero__rule shop-hero__rule--long"></span>
-        <span class="shop-hero__mark-icon">{{{icon "gallop" "w-6 h-6"}}}</span>
-        <span class="shop-hero__rule shop-hero__rule--long"></span>
-      </div>
-    </div>
-
-    <ul class="shop-hero__features">
-      <li class="shop-hero__feature">
-        <div class="shop-hero__feature-icon">{{{icon "leaf" "w-5 h-5"}}}</div>
-        <p class="shop-hero__feature-label">Science-Backed Nutrition</p>
-      </li>
-      <li class="shop-hero__feature">
-        <div class="shop-hero__feature-icon">{{{icon "shield-check" "w-5 h-5"}}}</div>
-        <p class="shop-hero__feature-label">Targeted Support</p>
-      </li>
-      <li class="shop-hero__feature">
-        <div class="shop-hero__feature-icon">{{{icon "microscope" "w-5 h-5"}}}</div>
-        <p class="shop-hero__feature-label">Research Driven</p>
-      </li>
-      <li class="shop-hero__feature">
-        <div class="shop-hero__feature-icon">{{{icon "horse" "w-5 h-5"}}}</div>
-        <p class="shop-hero__feature-label">Equine Focused</p>
-      </li>
-    </ul>
-  </div>
-
-  <div class="shop-hero__wave" aria-hidden="true">
-    <svg class="shop-hero__wave-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" focusable="false">
-      <path fill="#1e3f33" d="M0,72 C360,18 720,18 1080,72 C1260,98 1380,110 1440,114 L1440,120 L0,120 Z"></path>
-      <path fill="none" stroke="#c4a56a" stroke-width="2" d="M0,72 C360,18 720,18 1080,72 C1260,98 1380,110 1440,114"></path>
-    </svg>
-  </div>
 </section>
 
 <section class="panel-grey" aria-labelledby="shop-by-category-title">
@@ -66,7 +18,15 @@
       {{#each categories}}
       <a href="/shop/category/{{this.slug}}" class="category-card category-card--{{this.accent}}">
         <figure class="category-card__media">
-          <img src="{{this.image}}" alt="{{this.name}}" width="1024" height="576" loading="lazy" />
+          <img
+            src="{{this.image}}?v=20260821a"
+            srcset="{{this.image}}?v=20260821a 1672w, {{this.image2x}}?v=20260821a 3344w"
+            sizes="(min-width: 768px) 33vw, 100vw"
+            alt="{{this.name}}"
+            width="1672"
+            height="941"
+            loading="lazy"
+          />
         </figure>
         <div class="category-card__body-wrap">
           <h3 class="category-card__title">{{this.name}}</h3>

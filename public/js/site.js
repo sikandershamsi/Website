@@ -103,7 +103,8 @@
   var heroSlides = document.querySelectorAll('[data-hero-slide]');
   if (heroSlides.length) {
     var heroIndex = 0;
-    var HERO_HOLD_MS = 6500;
+    var heroTimer = null;
+    var HERO_FALLBACK_MS = 6500;
 
     function isVideo(el) {
       return el && el.tagName === 'VIDEO';
@@ -126,6 +127,26 @@
       } catch (e) {}
     }
 
+    function slideHoldMs(el) {
+      if (isVideo(el) && isFinite(el.duration) && el.duration > 0) {
+        return Math.max(1000, Math.round(el.duration * 1000));
+      }
+      var attr = el && el.getAttribute('data-hero-hold');
+      if (attr) {
+        var parsed = parseInt(attr, 10);
+        if (!isNaN(parsed) && parsed > 0) return parsed;
+      }
+      return HERO_FALLBACK_MS;
+    }
+
+    function scheduleNext() {
+      if (heroTimer) clearTimeout(heroTimer);
+      if (heroSlides.length < 2) return;
+      heroTimer = setTimeout(function () {
+        showHero((heroIndex + 1) % heroSlides.length);
+      }, slideHoldMs(heroSlides[heroIndex]));
+    }
+
     function showHero(next) {
       pauseSlide(heroSlides[heroIndex]);
       heroSlides[heroIndex].classList.remove('opacity-100');
@@ -134,15 +155,37 @@
       heroSlides[heroIndex].classList.remove('opacity-0');
       heroSlides[heroIndex].classList.add('opacity-100');
       playSlide(heroSlides[heroIndex]);
+      scheduleNext();
     }
 
-    playSlide(heroSlides[0]);
-
-    if (heroSlides.length > 1) {
-      setInterval(function () {
-        showHero((heroIndex + 1) % heroSlides.length);
-      }, HERO_HOLD_MS);
+    function startHero() {
+      playSlide(heroSlides[0]);
+      scheduleNext();
     }
+
+    // Wait for metadata so hold times match trimmed clip lengths
+    var pending = 0;
+    Array.prototype.forEach.call(heroSlides, function (el) {
+      if (!isVideo(el)) return;
+      if (!isFinite(el.duration) || el.duration === 0) {
+        pending += 1;
+        el.addEventListener(
+          'loadedmetadata',
+          function () {
+            pending -= 1;
+            if (pending === 0) startHero();
+          },
+          { once: true },
+        );
+      }
+    });
+    if (pending === 0) startHero();
+    else setTimeout(function () {
+      if (pending > 0) {
+        pending = 0;
+        startHero();
+      }
+    }, 2000);
   }
 
   function initPairSlider(options) {

@@ -168,8 +168,11 @@ export const categories = [
     accentLabel: 'Strength | Mobility | Longevity',
     summary:
       'Advanced nutrition that supports the body\u2019s natural ability to repair, rebuild, and protect cartilage and connective tissue\u2014for comfort and long-term healthy performance, every day. For years to come.',
-    image: '/images/shop/categories/cartilage.jpg',
+    image: '/images/shop/categories/cartilage-board.jpg',
     panel: '/images/shop/categories/cartilage-panel.jpg',
+    image2x: '/images/shop/categories/cartilage-board@2x.jpg',
+    imageWidth: 1672,
+    imageHeight: 941,
     rangeLine: 'VetroFlex\u00ae Range | Joint + Connective Tissue Support',
     cta: 'Shop Category',
     benefits: [
@@ -189,8 +192,11 @@ export const categories = [
     accentLabel: 'NSAID Alternative',
     summary:
       'Targeted support that helps moderate inflammation and discomfort\u2014so your horse can move freely, recover faster, and perform at its best.',
-    image: '/images/shop/categories/inflammation.jpg',
+    image: '/images/shop/categories/inflammation-board.jpg',
     panel: '/images/shop/categories/inflammation-panel.jpg',
+    image2x: '/images/shop/categories/inflammation-board@2x.jpg',
+    imageWidth: 1672,
+    imageHeight: 941,
     rangeLine: 'VetroFen\u00ae Range | Inflammation & Pain Management',
     cta: 'Shop Category',
     benefits: [
@@ -210,8 +216,11 @@ export const categories = [
     accentLabel: 'Oxygen Transport',
     summary:
       'Support the kidneys\u2014your horse\u2019s homeostasis engine. VetroFit\u00ae helps maintain fluid balance, regulate electrolytes, transport oxygen, and remove waste\u2014so your horse can perform, recover, and thrive every day.',
-    image: '/images/shop/categories/kidney.jpg',
+    image: '/images/shop/categories/kidney-board.jpg',
     panel: '/images/shop/categories/kidney-panel.jpg',
+    image2x: '/images/shop/categories/kidney-board@2x.jpg',
+    imageWidth: 1672,
+    imageHeight: 941,
     rangeLine: 'VetroFit\u00ae Range | Kidney Homeostasis & Oxygen Transport',
     cta: 'Shop Category',
     benefits: [
@@ -231,7 +240,7 @@ export const products: Product[] = [
     trademark: 'VetroFlex®',
     category: 'Cartilage – Joint – Connective Tissue Repair',
     categorySlug: 'cartilage-joint-connective-tissue',
-    tagline: 'Joint, Cartilage & Connective Tissue Restoration',
+    tagline: 'Joint, Cartilage & Connective Tissue Support',
     price: 79,
     size: '500g / 25 Days',
     heroStat: 'Hydrolyzed Collagen Type II',

@@ -172,14 +172,24 @@
         {{/if}}
 
         {{#if product.descriptionShowcase}}
-        <article class="vf-desc mt-10{{#ifCond product.slug "vetroflex"}} vf-desc--flex{{/ifCond}}">
+        {{#ifCond product.slug "vetroflex"}}
+        <article class="vf-desc vf-desc--board product-board-bleed mt-10" aria-label="VetroFlex description">
+          <img
+            src="/images/vetroflex/description-board.jpg?v=20260821a"
+            srcset="/images/vetroflex/description-board.jpg?v=20260821a 1641w, /images/vetroflex/description-board@2x.jpg?v=20260821a 3282w"
+            sizes="100vw"
+            alt="VetroFlex. Stronger joints. Restored mobility. Built to last. A structurally targeted, veterinary-grade nutraceutical engineered to repair cartilage, strengthen connective tissue, and restore soundness for lasting performance longevity."
+            width="1641"
+            height="959"
+            class="vf-desc__board"
+            loading="lazy"
+          />
+        </article>
+        {{else}}
+        <article class="vf-desc mt-10">
           <div class="vf-desc__grid">
             <div class="vf-desc__copy">
-              {{#ifCond product.slug "vetroflex"}}
-              <p class="vf-desc__logo"><span class="vf-desc__logo-lead">Vetro</span><span class="vf-desc__logo-tail">flex</span></p>
-              {{else}}
               <p class="vf-desc__logo">{{product.name}}</p>
-              {{/ifCond}}
               <p class="vf-desc__brand">{{product.descriptionShowcase.brandLine}}</p>
               <h3 class="vf-desc__headline">
                 {{#each product.descriptionShowcase.headline}}
@@ -271,10 +281,25 @@
             </div>
           </div>
         </article>
+        {{/ifCond}}
         {{/if}}
 
         {{#if product.controlShowcase}}
-        <article class="vfen-control mt-10{{#ifCond product.slug "vetroflex"}} vfen-control--flex{{/ifCond}}">
+        {{#ifCond product.slug "vetroflex"}}
+        <article class="vfen-control vfen-control--board product-board-bleed mt-10" aria-label="VetroFlex complete joint and connective tissue support">
+          <img
+            src="/images/vetroflex/control-board.jpg?v=20260821a"
+            srcset="/images/vetroflex/control-board.jpg?v=20260821a 1536w, /images/vetroflex/control-board@2x.jpg?v=20260821a 3072w"
+            sizes="100vw"
+            alt="VetroFlex. Complete joint and connective tissue support. Supporting the body's natural control center with cartilage repair, joint comfort, connective tissue strength, inflammation balance, shock absorption, bone health, and long-term performance."
+            width="1536"
+            height="1024"
+            class="vfen-control__board"
+            loading="lazy"
+          />
+        </article>
+        {{else}}
+        <article class="vfen-control mt-10">
           <div class="vfen-control__grid">
             <div class="vfen-control__aside">
               <p class="vfen-control__logo">{{product.name}}<span class="vfen-control__reg">®</span></p>
@@ -342,6 +367,7 @@
             </div>
           </div>
         </article>
+        {{/ifCond}}
         {{/if}}
 
         {{#if product.kidneyShowcase}}
@@ -413,14 +439,22 @@
         {{/if}}
 
         {{#if product.comparisonShowcase}}
-        <article class="vf-compare mt-10{{#ifCond product.slug "vetrofen"}} vf-compare--red{{/ifCond}}{{#ifCond product.slug "vetroflex"}} vf-compare--blue{{/ifCond}}">
+        {{#ifCond product.slug "vetroflex"}}
+        <article class="vf-compare vf-compare--board product-board-bleed mt-10" aria-label="VetroFlex feel the difference comparison">
+          <img
+            src="/images/vetroflex/compare-board.jpg?v=20260821a"
+            srcset="/images/vetroflex/compare-board.jpg?v=20260821a 1536w, /images/vetroflex/compare-board@2x.jpg?v=20260821a 3072w"
+            sizes="100vw"
+            alt="VetroFlex. Feel the difference. Not all joint supplements are created equal. Comparison of VetroFlex collagen Type II peptides versus other brands that only lubricate."
+            width="1536"
+            height="1024"
+            class="vf-compare__board"
+            loading="lazy"
+          />
+        </article>
+        {{else}}
+        <article class="vf-compare mt-10{{#ifCond product.slug "vetrofen"}} vf-compare--red{{/ifCond}}">
           {{#ifCond product.slug "vetrofen"}}
-          <div class="vf-compare__banner">
-            <p class="vf-compare__banner-title">{{product.trademark}}</p>
-            <p class="vf-compare__banner-sub">Feel the Difference</p>
-          </div>
-          {{/ifCond}}
-          {{#ifCond product.slug "vetroflex"}}
           <div class="vf-compare__banner">
             <p class="vf-compare__banner-title">{{product.trademark}}</p>
             <p class="vf-compare__banner-sub">Feel the Difference</p>
@@ -494,6 +528,7 @@
             </div>
           </div>
         </article>
+        {{/ifCond}}
         {{/if}}
 
         {{#unless (eq product.slug "vetrofit")}}

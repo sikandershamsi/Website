@@ -65,7 +65,7 @@
     @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-3.5 text-xs font-semibold tracking-[0.14em] uppercase transition-colors duration-200 border border-white/80 text-white hover:bg-white hover:text-al-navy;
   }
   .section {
-    @apply mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-10 lg:py-24;
+    @apply w-full px-4 py-16 sm:px-6 lg:px-8 lg:py-24;
   }
   .panel-white {
     @apply bg-white;
@@ -118,8 +118,7 @@
     @apply m-0 overflow-hidden border-b border-al-line bg-white;
   }
   .category-card__media img {
-    @apply block h-auto w-full object-cover object-[72%_center];
-    aspect-ratio: 4 / 3;
+    @apply block h-auto w-full object-contain object-center;
   }
   .category-card__body-wrap {
     @apply flex flex-1 flex-col p-5 sm:p-6;
@@ -153,10 +152,14 @@
     @apply overflow-hidden border-b border-al-line bg-white;
   }
   .category-hero__panel {
-    @apply m-0 hidden lg:block;
+    @apply m-0 hidden w-full lg:block;
   }
   .category-hero__panel img {
-    @apply mx-auto block h-auto w-full max-w-[1400px];
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
   }
   .category-hero__compact {
     @apply lg:hidden;
@@ -224,6 +227,38 @@
   .vf-desc {
     --vf-orange: #e87820;
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
+  }
+  .vf-desc--board {
+    @apply border-0 bg-transparent p-0;
+  }
+  .vf-desc__board {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+  /* Full-viewport boards under product Description (no crop, aspect preserved) */
+  .product-board-bleed {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+  .product-board-bleed img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+  #ingredients.panel-grey {
+    overflow-x: clip;
   }
   .vf-desc__grid {
     @apply grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 xl:gap-10;
@@ -438,6 +473,17 @@
   .vf-compare {
     --vf-orange: #e87820;
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
+  }
+  .vf-compare--board {
+    @apply border-0 bg-transparent p-0;
+  }
+  .vf-compare__board {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
   }
   .vf-compare--red {
     --vf-orange: #c43c2c;
@@ -658,6 +704,17 @@
     --vf-orange: #e87820;
     --vf-red: #c43c2c;
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
+  }
+  .vfen-control--board {
+    @apply border-0 bg-transparent p-0;
+  }
+  .vfen-control__board {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
   }
   .vfen-control--flex {
     --vf-red: #e87820;
@@ -1118,7 +1175,15 @@
     --shop-muted: #3d4a43;
     --shop-gold: #c4a56a;
     --shop-green: #1e3f33;
-    @apply relative isolate flex min-h-[calc(100svh-6.75rem)] items-stretch overflow-hidden bg-[#f7f2ea];
+    @apply relative isolate w-full bg-[#f7f2ea];
+  }
+  .shop-hero__board {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
   }
   .shop-hero__media {
     @apply absolute inset-0 h-full w-full object-cover object-[80%_center] sm:object-[72%_center] lg:object-[64%_center];
@@ -3167,7 +3232,10 @@
     @apply mt-2 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-al-ink/55;
   }
   .science-hero {
-    @apply relative isolate flex min-h-[calc(100svh-6.75rem)] items-center overflow-hidden bg-[#f3f2ee];
+    @apply relative isolate w-full bg-[#1a1a16];
+  }
+  .science-hero__board {
+    @apply block h-auto w-full;
   }
   .science-hero__media {
     @apply absolute inset-0 h-full w-full object-cover object-[78%_center] sm:object-[72%_center] lg:object-[62%_center];
@@ -3215,7 +3283,16 @@
     @apply text-al-navy;
   }
   .targeted-support {
-    @apply w-full bg-white;
+    @apply relative w-full bg-white;
+  }
+  .targeted-support__board {
+    @apply block h-auto w-full;
+  }
+  .targeted-support__hotspots {
+    @apply absolute inset-x-0 bottom-0 grid h-[13%] grid-cols-3;
+  }
+  .targeted-support__hotspot {
+    @apply block;
   }
   .targeted-support__stage {
     @apply relative w-full overflow-hidden bg-white;
@@ -3284,7 +3361,15 @@
     @apply text-[11px] font-semibold uppercase tracking-[0.08em] text-al-ink/80;
   }
   .rooted-nature {
-    @apply relative isolate w-full overflow-hidden bg-white;
+    @apply relative isolate w-full overflow-visible bg-[#f5f5f3];
+  }
+  .rooted-nature__board {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
   }
   .rooted-nature__media {
     @apply block min-h-[320px] w-full object-cover object-right sm:min-h-[400px] lg:min-h-[480px];
@@ -3309,10 +3394,10 @@
     @apply mt-6 max-w-md text-sm leading-relaxed text-black/80 sm:text-[15px];
   }
   .primary-ingredients {
-    @apply bg-[#f7f7f5] px-4 py-12 sm:px-6 sm:py-16 lg:px-10 lg:py-20;
+    @apply bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-10 lg:py-20;
   }
   .primary-ingredients__panel {
-    @apply mx-auto max-w-6xl border border-black/70 bg-white px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14;
+    @apply mx-auto max-w-6xl bg-white px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14;
   }
   .primary-ingredients__brand {
     @apply text-center text-[11px] font-semibold uppercase tracking-[0.22em] text-black/70 sm:text-xs;

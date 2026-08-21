@@ -19,7 +19,7 @@ export class HomeController {
           slug: 'vetroflex',
           trademark: 'VetroFlex®',
           category: 'Cartilage – Joint – Connective Tissue Repair',
-          tagline: 'Joint, Cartilage & Connective Tissue Restoration',
+          tagline: 'Joint, Cartilage & Connective Tissue Support',
           price: 79,
           image: '/images/products/vetroflex-tub.webp',
         },
