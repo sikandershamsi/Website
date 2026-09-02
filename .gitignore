@@ -31,3 +31,5 @@ Thumbs.db
 mockup-extract/
 assets-extract/
 .tmp-client-images/
+.vercel
+.env*
