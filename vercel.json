@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "views/**"
+    }
+  },
+  "rewrites": [
+    { "source": "/((?!images/|css/|js/|videos/).*)", "destination": "/api/index" }
+  ]
+}
