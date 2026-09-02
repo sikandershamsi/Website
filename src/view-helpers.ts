@@ -11,6 +11,8 @@ export function registerHelpers(hbsInstance: unknown) {
   );
   hbs.registerHelper('eq', (a: unknown, b: unknown) => a === b);
   hbs.registerHelper('gt', (a: number, b: number) => a > b);
+  hbs.registerHelper('inc', (value: unknown) => Number(value) + 1);
+  hbs.registerHelper('pad2', (value: unknown) => String(Number(value)).padStart(2, '0'));
   hbs.registerHelper('currency', (value: number) =>
     typeof value === 'number' ? `$${value.toFixed(2)}` : value,
   );

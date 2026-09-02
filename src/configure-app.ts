@@ -14,7 +14,7 @@ export function configureApp(app: NestExpressApplication) {
   const viewsDir = join(process.cwd(), 'views');
   app.useStaticAssets(join(process.cwd(), 'public'));
   app.setBaseViewsDir(viewsDir);
-  hbs.registerPartials(join(viewsDir, 'partials'), { rename: (name: string) => name } as any);
+  hbs.registerPartials(join(viewsDir, 'partials'), { rename: (name: string) => name } as any); // includes section-head, testimonial-slider
   registerHelpers(hbs);
   app.engine('hbs', hbsLayoutEngine(viewsDir));
   app.setViewEngine('hbs');

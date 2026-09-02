@@ -13,7 +13,7 @@
 
 <section class="panel-white race-intro">
   <div class="race-intro__inner">
-    <h2 class="race-intro__title">01 <span aria-hidden="true">|</span> The Race Within the Race</h2>
+    <h2 class="race-intro__title">The Race Within the Race</h2>
     <p class="race-intro__body">
       Racing places extraordinary demands on the equine athlete. During intense exercise, the horse&rsquo;s demand
       for oxygen and energy can exceed its ability to maintain physiological balance. As the body shifts from
@@ -24,118 +24,21 @@
   </div>
 </section>
 
-<section class="panel-grey race-cascade" id="industry-reality" aria-labelledby="race-cascade-title">
-  <div class="race-cascade__inner">
-    <header class="race-cascade__header">
-      <h2 id="race-cascade-title" class="race-cascade__title">The Race Within the Race</h2>
-      <p class="race-cascade__subtitle">
-        The unseen physiological events that affect speed, stamina, recovery, and long-term health.
-      </p>
-    </header>
-
-    <ul class="race-cascade__mobile">
-      {{#each performanceCascade}}
-      <li class="race-cascade__mobile-card" style="--phase-color: {{this.color}}; --phase-soft: {{this.soft}}">
-        <div class="race-cascade__mobile-head">
-          <span class="race-cascade__mobile-num">{{this.phase}}</span>
-          <div class="race-cascade__mobile-meta">
-            <h3 class="race-cascade__mobile-name">{{this.name}}</h3>
-            <p class="race-cascade__mobile-range">{{this.range}}</p>
-          </div>
-          <div class="race-cascade__mobile-icon" aria-hidden="true">{{{icon this.icon "w-5 h-5"}}}</div>
-        </div>
-        <div class="race-cascade__mobile-media">
-          <img src="{{this.image}}" alt="" class="race-cascade__mobile-img" loading="lazy" width="220" height="140" />
-        </div>
-        <p class="race-cascade__mobile-body">{{this.body}}</p>
-        <p class="race-cascade__mobile-tag">{{this.tag}}</p>
-      </li>
-      {{/each}}
-    </ul>
-
-    <div class="race-cascade__mobile-foot">
-      <div class="race-cascade__graph race-cascade__graph--mobile">
-        <p class="race-cascade__graph-label">Performance Level (Relative)</p>
-        {{> cascade-plot gradientId="cascadeLineMobile"}}
-      </div>
-    </div>
-
-    <div class="race-cascade__scroller">
-      <div class="race-cascade__board">
-        <div class="race-cascade__rail-cell race-cascade__rail-cell--phase">
-          <span class="race-cascade__rail-tab">Phase</span>
-          <span class="race-cascade__rail-label">
-            Race Progress
-            <span class="race-cascade__rail-note">(Approx.)</span>
-          </span>
-        </div>
-        {{#each performanceCascade}}
-        <div class="race-cascade__phase-head" style="--phase-color: {{this.color}}">
-          <span class="race-cascade__phase-num">{{this.phase}}</span>
-          <h3 class="race-cascade__phase-name">{{this.name}}</h3>
-          <p class="race-cascade__phase-range">{{this.range}}</p>
-          <div class="race-cascade__phase-media">
-            <img src="{{this.image}}?v=20260815a" alt="" class="race-cascade__phase-img" loading="lazy" width="254" height="234" />
-          </div>
-        </div>
-        {{/each}}
-
-        <div class="race-cascade__rail-cell">
-          <span class="race-cascade__rail-label">What&rsquo;s Happening</span>
-        </div>
-        {{#each performanceCascade}}
-        <div class="race-cascade__happening" style="--phase-soft: {{this.soft}}">
-          <p class="race-cascade__happening-body">{{this.body}}</p>
-        </div>
-        {{/each}}
-
-        <div class="race-cascade__rail-cell">
-          <span class="race-cascade__rail-label">Physiological Cascade</span>
-        </div>
-        {{#each performanceCascade}}
-        <div class="race-cascade__physio" style="--phase-color: {{this.color}}">
-          <span class="race-cascade__physio-icon" aria-hidden="true">{{{icon this.icon "w-9 h-9"}}}</span>
-          <p class="race-cascade__physio-tag">{{this.tag}}</p>
-          {{#unless @last}}
-          <span class="race-cascade__physio-arrow" aria-hidden="true">{{{icon "arrow-right" "w-5 h-5"}}}</span>
-          {{/unless}}
-        </div>
-        {{/each}}
-
-        <div class="race-cascade__rail-cell race-cascade__rail-cell--last">
-          <span class="race-cascade__rail-label">
-            Performance Level
-            <span class="race-cascade__rail-note">(Relative)</span>
-          </span>
-        </div>
-        <div class="race-cascade__graph">
-          {{> cascade-plot gradientId="cascadeLine"}}
-        </div>
-      </div>
-    </div>
-
-    <div class="race-cascade__summary">
-      <div class="race-cascade__summary-head">
-        <span class="race-cascade__summary-icon" aria-hidden="true">{{{icon "alert-solid" "w-8 h-8"}}}</span>
-        <p class="race-cascade__summary-title">The Cascade in Summary</p>
-      </div>
-      <ol class="race-cascade__summary-list">
-        {{#each cascadeSummary}}
-        <li class="race-cascade__summary-item" style="--sum-color: {{this.color}}">
-          <span class="race-cascade__summary-text">{{this.label}}</span>
-          {{#unless @last}}
-          <span class="race-cascade__summary-arrow" aria-hidden="true">{{{icon "arrow-right" "w-4 h-4"}}}</span>
-          {{/unless}}
-        </li>
-        {{/each}}
-      </ol>
-    </div>
-  </div>
+<section class="race-cascade-board" id="industry-reality" aria-label="The Race Within the Race">
+  <img
+    src="/images/racing/race-cascade-board.jpg?v=20260902b"
+    sizes="100vw"
+    alt="The Race Within the Race. The unseen physiological events that affect speed, stamina, recovery, and long-term health. Phase 1, Optimal Performance, 0 to 1 furlong: muscles receive adequate oxygen, energy production efficient, horse feels strong and powerful. Phase 2, Oxygen Demand Exceeds Supply, 1 to 2 furlongs: oxygen demand begins to outpace supply as pace increases. Phase 3, Lactic Acid Accumulates, 2 to 4 furlongs: anaerobic metabolism increases, lactic acid builds up in muscle tissues. Phase 4, Cardiovascular Stress Increases, 4 to 5.5 furlongs: heart rate and blood lactate rise, cardiovascular system works harder to deliver limited oxygen. Phase 5, Performance Begins to Decline, 5.5 to 6.5 furlongs: fatigue sets in, stride length shortens, power and speed begin to fall. Phase 6, Pulmonary Stress Develops, 6.5 to 7.5 furlongs: breathing becomes labored, oxygen exchange efficiency declines. Phase 7, Recovery Slows and Damage Accumulates, 7.5+ furlongs (finish): severe fatigue, recovery is slow, damage accumulates with repeated stress. The cascade in summary: oxygen demand exceeds supply, lactic acid accumulates, cardiovascular stress increases, performance declines, pulmonary stress develops, recovery slows, long-term structural damage accumulates."
+    class="race-cascade-board__img"
+    width="1662"
+    height="592"
+  />
+  <h2 class="sr-only">The Race Within the Race</h2>
 </section>
 
 <section class="panel-white race-intro">
   <div class="race-intro__inner">
-    <h2 class="race-intro__title">02 <span aria-hidden="true">|</span> When Performance Declines, the Costs Begin</h2>
+    <h2 class="race-intro__title">When Performance Declines, the Costs Begin</h2>
     <p class="race-intro__body">
       The physiological cascade doesn&rsquo;t end at the finish line. Its consequences extend far beyond race
       day&mdash;impacting soundness, longevity, veterinary costs, and the financial success of every horse owner
@@ -144,39 +47,25 @@
   </div>
 </section>
 
-<section class="panel-grey race-owners" aria-labelledby="race-owners-title">
-  <div class="race-owners__media-wrap" aria-hidden="true">
-    <img
-      src="/images/racing/owners/hero.jpg"
-      alt=""
-      class="race-owners__media"
-      width="1024"
-      height="682"
-    />
-    <div class="race-owners__veil"></div>
-  </div>
-  <div class="race-owners__copy">
-    <p class="race-owners__eyebrow">Owners &amp; Trainers</p>
-    <h2 id="race-owners-title" class="race-owners__title">Face</h2>
-    <ul class="race-owners__list">
-      {{#each ownersTrainersFace}}
-      <li class="race-owners__item">
-        <span class="race-owners__icon" aria-hidden="true">{{{icon this.icon ""}}}</span>
-        <p class="race-owners__text">{{this.title}}</p>
-      </li>
-      {{/each}}
-    </ul>
-  </div>
+<section class="race-owners-board" aria-label="Owners and Trainers Face">
+  <img
+    src="/images/racing/owners-face-board.jpg?v=20260903a"
+    sizes="100vw"
+    alt="Owners &amp; Trainers Face. Increased veterinary and rehabilitation costs. Loss of elite equine sports horses. Shortened competitive careers. Reduced earnings potential."
+    class="race-owners-board__img"
+    width="2000"
+    height="870"
+  />
+  <h2 class="sr-only">Owners &amp; Trainers Face</h2>
 </section>
 
 <section class="race-homeo race-homeo--board" id="kidney-homeostasis" aria-label="Kidney Homeostasis">
   <img
-    src="/images/racing/homeostasis/banner-board.jpg?v=20260822a"
-    srcset="/images/racing/homeostasis/banner-board.jpg?v=20260822a 1717w, /images/racing/homeostasis/banner-board@2x.jpg?v=20260822a 3434w"
+    src="/images/racing/homeostasis/banner-board.jpg?v=20260902e"
     sizes="100vw"
     alt="Kidney Homeostasis. The foundation of performance. The kidney continually monitors and regulates the body's essential systems—maintaining the physiological balance required for peak performance, efficient recovery, and long-term athletic health. Regulates 7 vital systems. Maintains physiological balance. Supports performance and recovery. Foundation of long-term athletic health."
-    width="1717"
-    height="916"
+    width="2000"
+    height="870"
     class="race-homeo__board"
   />
 </section>
@@ -185,8 +74,6 @@
   <div class="race-statement__inner">
     <div class="race-statement__panel race-statement__panel--full">
       <h2 id="race-statement-01-title" class="race-statement__title">
-        <span class="race-statement__num">01</span>
-        <span class="race-statement__sep" aria-hidden="true">|</span>
         Homeostasis is the balance that allows every performance system in the horse&rsquo;s body to work together as one.
       </h2>
       <p class="race-statement__body">
@@ -200,12 +87,11 @@
 
 <section class="race-regulator race-regulator--board" id="kidney-master-regulator" aria-label="Kidney Homeostasis: The Horse's Master Regulator">
   <img
-    src="/images/racing/regulator/master-board.jpg?v=20260822a"
-    srcset="/images/racing/regulator/master-board.jpg?v=20260822a 1536w, /images/racing/regulator/master-board@2x.jpg?v=20260822a 3072w"
+    src="/images/racing/regulator/master-board.jpg?v=20260903a"
     sizes="100vw"
     alt="Kidney Homeostasis: The Horse's Master Regulator. The kidney continuously monitors, adjusts, and regulates essential functions to maintain balance in the body. When the kidney is supported, the whole horse performs, recovers, and thrives. Seven core functions: blood pressure regulation, red blood cell regulation, fluid balance, electrolyte balance, acid-base balance, oxygen transport support, and waste clearance and detoxification."
-    width="1536"
-    height="1024"
+    width="2000"
+    height="870"
     class="race-regulator__board-img"
   />
 </section>
@@ -214,8 +100,6 @@
   <div class="race-statement__inner">
     <div class="race-statement__panel race-statement__panel--full">
       <h2 class="race-statement__title">
-        <span class="race-statement__num">02</span>
-        <span class="race-statement__sep" aria-hidden="true">|</span>
         Oxygen Is the Currency of Performance.
       </h2>
       <p class="race-statement__body">
@@ -230,24 +114,22 @@
 
 <section class="race-oxygen race-oxygen--board" id="oxygen-transport" aria-label="The Physiology of Oxygen Transport">
   <img
-    src="/images/racing/oxygen/transport-board.jpg?v=20260822b"
-    srcset="/images/racing/oxygen/transport-board.jpg?v=20260822b 1505w, /images/racing/oxygen/transport-board@2x.jpg?v=20260822b 3010w"
+    src="/images/racing/oxygen/transport-board.jpg?v=20260903a"
     sizes="100vw"
     alt="The Physiology of Oxygen Transport. Oxygen is the currency of performance. VetroFit supports physiology, not symptoms. Journey of oxygen from inhalation to energy production. Kidney homeostasis supports blood pressure regulation, red blood cell activity, fluid balance, and electrolyte balance. When oxygen delivery is optimized, performance is maximized: sustained speed, delayed fatigue, faster recovery, and long-term resilience."
-    width="1505"
-    height="1021"
+    width="2000"
+    height="870"
     class="race-oxygen__board"
   />
 </section>
 
-<section class="race-distress race-distress--board" id="kidney-distress" aria-label="Kidney Distress">
+<section class="race-distress--board" id="kidney-distress" aria-label="Kidney Distress">
   <img
-    src="/images/racing/distress/distress-board.jpg?v=20260822a"
-    srcset="/images/racing/distress/distress-board.jpg?v=20260822a 1536w, /images/racing/distress/distress-board@2x.jpg?v=20260822a 3072w"
+    src="/images/racing/distress/distress-board.jpg?v=20260903a"
     sizes="100vw"
     alt="Kidney Distress. Intense exercise places extreme demand on the kidney's ability to maintain homeostasis. Major stressors include high intensity exercise, heat and humidity, dehydration, metabolic demand, and electrolyte losses. Effects include waste accumulation, fluid and electrolyte imbalance, reduced oxygen transport, and early fatigue. Kidney distress equals compromised performance."
-    width="1536"
-    height="1024"
+    width="2000"
+    height="870"
     class="race-distress__board-img"
   />
 </section>
@@ -263,26 +145,24 @@
   </div>
 </section>
 
-<section class="race-compare race-compare--board" id="kidney-comparison" aria-label="Kidney homeostasis comparison">
+<section class="race-compare--board" id="kidney-comparison" aria-label="Kidney homeostasis comparison">
   <img
-    src="/images/racing/compare/compare-board.jpg?v=20260822a"
-    srcset="/images/racing/compare/compare-board.jpg?v=20260822a 1506w, /images/racing/compare/compare-board@2x.jpg?v=20260822a 3012w"
+    src="/images/racing/compare/compare-board.jpg?v=20260903a"
     sizes="100vw"
     alt="Kidney homeostasis comparison. Left: normal state of homeostasis—well-nourished, hydrated, balanced, resilient—with optimal blood flow, efficient filtration, balanced hydration and electrolytes, strong antioxidant defense, acid-base balance, and overall resilience resulting in optimal performance. Right: extreme stress from intense training or competition—physiological stress, dehydration, inflammation, imbalance—with reduced blood flow, compromised filtration, electrolyte and fluid imbalance, reduced EPO production, oxidative stress and inflammation, acid-base disruption, and lower resilience resulting in reduced performance and recovery."
-    width="1506"
-    height="947"
+    width="2000"
+    height="870"
     class="race-compare__board-img"
   />
 </section>
 
-<section class="race-vetrofit race-vetrofit--board" id="vetrofit" aria-label="VetroFit">
+<section class="race-vetrofit--board" id="vetrofit" aria-label="VetroFit">
   <img
-    src="/images/racing/vetrofit/banner-board.jpg?v=20260822a"
-    srcset="/images/racing/vetrofit/banner-board.jpg?v=20260822a 1521w, /images/racing/vetrofit/banner-board@2x.jpg?v=20260822a 3042w"
+    src="/images/racing/vetrofit/banner-board.jpg?v=20260903a"
     sizes="100vw"
     alt="Animalife VetroFit. Fast-acting. Targeted. Results. Developed for elite performance horses, VetroFit is a fast-acting proprietary formulation designed to be administered just 2–4 hours before competition. Supports healthy kidney function, maintains physiological balance, and supports peak performance and efficient recovery."
-    width="1521"
-    height="1024"
+    width="2000"
+    height="870"
     class="race-vetrofit__board-img"
   />
 </section>
@@ -299,39 +179,16 @@
   </div>
 </section>
 
-<section class="panel-white">
-  <div class="section">
-    <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
-      <div class="eyebrow justify-center text-black">Testimonials</div>
-      <h2 class="font-display mt-4 text-3xl font-medium text-black sm:text-4xl lg:text-[2.75rem]">Trusted by horsemen who expect results.</h2>
-    </div>
-    <div class="mt-10 overflow-hidden" data-testimonial-slider data-auto-slider>
-      <div class="slider-track gap-0" data-testimonial-track>
-        {{#each testimonials}}
-        <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
-          <div class="card h-full p-6">
-            <div class="flex gap-0.5 text-black">
-              {{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}
-            </div>
-            <p class="mt-4 text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
-            <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-black">{{this.author}}</p>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-    </div>
-    <div class="mt-6 flex justify-center gap-2" data-testimonial-dots></div>
-  </div>
-</section>
+{{> testimonial-slider items=testimonials heading="Trusted by horsemen who expect results."}}
 
 <section class="race-science race-science--board" id="science-behind-vetrofit" aria-label="The Science Behind VetroFit">
   <img
-    src="/images/racing/science/science-board.jpg?v=20260822a"
-    srcset="/images/racing/science/science-board.jpg?v=20260822a 1024w, /images/racing/science/science-board@2x.jpg?v=20260822a 2048w"
+    src="/images/racing/science/science-board.jpg?v=20260903a"
+    srcset="/images/racing/science/science-board.jpg?v=20260903a 1018w, /images/racing/science/science-board@2x.jpg?v=20260903a 2036w"
     sizes="100vw"
     alt="The Science Behind VetroFit. Nature. Research. Results. Six pillars: support natural regulation, enhance the body's defenses, support natural repair, support physiological balance, drive long-term results, and backed by science and nature. Physiological support and performance benefits table covering kidney homeostasis, oxygen transport, cardiovascular function, cellular energy and metabolism, antioxidant defense, fluid and electrolyte balance, and recovery physiology."
-    width="1024"
-    height="1536"
+    width="1018"
+    height="1530"
     class="race-science__board-img"
   />
 </section>
@@ -348,7 +205,6 @@
   <div class="primary-ingredients__panel">
     <p class="primary-ingredients__brand">{{vetrofitPrimary.trademark}}</p>
     <h2 id="race-primary-ingredients-heading" class="primary-ingredients__title">Primary Ingredients</h2>
-    <div class="primary-ingredients__title-rule" aria-hidden="true"></div>
     <ul class="primary-ingredients__grid">
       {{#each vetrofitPrimary.primaryIngredients}}
       <li class="primary-ingredients__item">
@@ -356,7 +212,6 @@
           <img src="{{this.image}}" alt="{{this.name}}" width="640" height="640" loading="lazy" />
         </div>
         <p class="primary-ingredients__name">{{this.name}}</p>
-        <div class="primary-ingredients__rule" aria-hidden="true"></div>
         <p class="primary-ingredients__origin">{{this.origin}}</p>
       </li>
       {{/each}}
@@ -392,27 +247,3 @@
   />
 </section>
 
-<section class="panel-white">
-  <div class="section grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-    <a href="/racing#industry-reality" class="card group p-7 transition-colors hover:bg-al-panel">
-      <div class="flex h-12 w-12 items-center justify-center rounded-none bg-al-panel text-al-navy">{{{icon "trend-down" "w-6 h-6"}}}</div>
-      <p class="font-display mt-4 text-lg font-medium text-al-navy group-hover:text-al-navy">Industry Reality</p>
-      <p class="mt-2 text-sm text-al-ink/65">What happens when oxygen demand outpaces supply during a race.</p>
-    </a>
-    <a href="/racing#kidney-homeostasis" class="card group p-7 transition-colors hover:bg-al-panel">
-      <div class="flex h-12 w-12 items-center justify-center rounded-none bg-al-panel text-al-navy">{{{icon "lungs" "w-6 h-6"}}}</div>
-      <p class="font-display mt-4 text-lg font-medium text-al-navy group-hover:text-al-navy">Kidney Homeostasis</p>
-      <p class="mt-2 text-sm text-al-ink/65">The master regulator behind oxygen transport and recovery.</p>
-    </a>
-    <a href="/racing#kidney-distress" class="card group p-7 transition-colors hover:bg-al-panel">
-      <div class="flex h-12 w-12 items-center justify-center rounded-none bg-al-panel text-al-navy">{{{icon "crosshair" "w-6 h-6"}}}</div>
-      <p class="font-display mt-4 text-lg font-medium text-al-navy group-hover:text-al-navy">Kidney Distress</p>
-      <p class="mt-2 text-sm text-al-ink/65">The cost of physiological stress under extreme athletic demand.</p>
-    </a>
-    <a href="/racing#vetrofit" class="card group p-7 transition-colors hover:bg-al-panel">
-      <div class="flex h-12 w-12 items-center justify-center rounded-none bg-al-panel text-al-navy">{{{icon "bolt" "w-6 h-6"}}}</div>
-      <p class="font-display mt-4 text-lg font-medium text-al-navy group-hover:text-al-navy">VetroFit&reg;</p>
-      <p class="mt-2 text-sm text-al-ink/65">From physiology to formulation&mdash;built for race day.</p>
-    </a>
-  </div>
-</section>

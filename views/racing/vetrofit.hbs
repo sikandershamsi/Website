@@ -29,8 +29,7 @@
 
 <section class="panel-grey">
   <div class="section max-w-3xl text-center">
-    <h2 class="font-display text-3xl font-medium text-al-navy sm:text-4xl">From Physiology to Formulation</h2>
-    <p class="mt-6 text-sm leading-relaxed text-al-ink/75">Every ingredient in VetroFit&reg; is selected for a defined physiological purpose. Together, they form a highly bioavailable nutritional system that supports healthy kidney homeostasis&mdash;the foundation for efficient oxygen transport, cardiovascular performance, metabolic balance, hydration, and recovery.</p>
+    {{> section-head heading="From Physiology to Formulation" lede="Every ingredient in VetroFit® is selected for a defined physiological purpose. Together, they form a highly bioavailable nutritional system that supports healthy kidney homeostasis—the foundation for efficient oxygen transport, cardiovascular performance, metabolic balance, hydration, and recovery."}}
   </div>
 </section>
 
@@ -47,29 +46,4 @@
   </div>
 </section>
 
-<section class="panel-white">
-  <div class="section">
-    <div class="flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <div class="eyebrow">Testimonials</div>
-        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy">North America Product Trials</h2>
-      </div>
-      <div class="flex gap-2">
-        <button type="button" data-testimonial-prev class="flex h-10 w-10 items-center justify-center rounded-none border border-al-line" aria-label="Previous">{{{icon "arrow-left" "w-4 h-4"}}}</button>
-        <button type="button" data-testimonial-next class="flex h-10 w-10 items-center justify-center rounded-none border border-al-line" aria-label="Next">{{{icon "arrow-right" "w-4 h-4"}}}</button>
-      </div>
-    </div>
-    <div class="mt-8 overflow-hidden" data-testimonial-slider>
-      <div class="slider-track" data-testimonial-track>
-        {{#each testimonials}}
-        <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
-          <div class="card h-full p-6">
-            <p class="text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
-            <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}}</p>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-    </div>
-  </div>
-</section>
+{{> testimonial-slider items=testimonials heading="North America Product Trials"}}

@@ -60,7 +60,7 @@
 <section class="panel-grey" id="ingredients">
   <div class="section">
     <div data-tabs>
-      <div class="flex gap-8 overflow-x-auto border-b border-al-line">
+      <div class="flex justify-start gap-8 overflow-x-auto border-b border-al-line sm:justify-center">
         <button type="button" data-tab-btn="description" class="tab-btn is-active whitespace-nowrap">Description</button>
         <button type="button" data-tab-btn="ingredients" class="tab-btn whitespace-nowrap">Ingredients &amp; Benefits</button>
         <button type="button" data-tab-btn="feeding" class="tab-btn whitespace-nowrap">Feeding Instructions</button>
@@ -69,7 +69,7 @@
       </div>
 
       <div data-tab-panel="description" class="py-10">
-        <p class="max-w-3xl text-sm leading-relaxed text-al-ink/75">{{product.description}}</p>
+        <p class="mx-auto max-w-3xl text-center text-sm leading-relaxed text-al-ink/75">{{product.description}}</p>
 
         {{#if product.inflammationShowcase}}
         <article class="vfen-inflam vfen-inflam--board product-board-bleed mt-10" aria-label="VetroFen description">
@@ -90,12 +90,12 @@
         {{#ifCond product.slug "vetroflex"}}
         <article class="vf-desc vf-desc--board product-board-bleed mt-10" aria-label="VetroFlex description">
           <img
-            src="/images/vetroflex/description-board.jpg?v=20260821a"
-            srcset="/images/vetroflex/description-board.jpg?v=20260821a 1641w, /images/vetroflex/description-board@2x.jpg?v=20260821a 3282w"
+            src="/images/vetroflex/description-board.jpg?v=20260903a"
+            srcset="/images/vetroflex/description-board.jpg?v=20260903a 1635w, /images/vetroflex/description-board@2x.jpg?v=20260903a 3270w"
             sizes="100vw"
             alt="VetroFlex. Stronger joints. Restored mobility. Built to last. A structurally targeted, veterinary-grade nutraceutical engineered to repair cartilage, strengthen connective tissue, and restore soundness for lasting performance longevity."
-            width="1641"
-            height="959"
+            width="1635"
+            height="953"
             class="vf-desc__board"
             loading="lazy"
           />
@@ -469,7 +469,6 @@
           <header class="pi-panel__header">
             <p class="pi-panel__brand">{{product.trademark}}</p>
             <h3 class="pi-panel__title">Primary Ingredients</h3>
-            <div class="pi-panel__title-rule" aria-hidden="true"></div>
           </header>
 
           {{#with (lookup product.ingredientBenefits 0) as |row|}}
@@ -605,7 +604,6 @@
         <div class="pi-board">
           <p class="pi-board__brand">{{product.trademark}}</p>
           <h3 class="pi-board__title">Primary Ingredients</h3>
-          <div class="pi-board__rule" aria-hidden="true"></div>
           <ul class="pi-board__grid">
             {{#each product.primaryIngredients}}
             <li class="pi-board__item">
@@ -613,7 +611,6 @@
                 <img src="{{this.image}}" alt="{{this.name}}" width="640" height="640" loading="lazy" />
               </div>
               <p class="pi-board__name">{{this.name}}</p>
-              <div class="pi-board__item-rule" aria-hidden="true"></div>
               <p class="pi-board__origin">Origin: {{this.origin}}</p>
             </li>
             {{/each}}
@@ -624,12 +621,12 @@
         {{/if}}
       </div>
 
-      <div data-tab-panel="feeding" class="hidden max-w-4xl py-10" id="feeding">
+      <div data-tab-panel="feeding" class="mx-auto hidden max-w-4xl py-10 text-center" id="feeding">
         {{#each product.feedingIntro}}
         <p class="mt-2 text-sm leading-relaxed text-al-ink/75 first:mt-0">{{this}}</p>
         {{/each}}
 
-        <div class="mt-8 overflow-x-auto rounded-none border border-al-line">
+        <div class="mt-8 overflow-x-auto rounded-none border border-al-line text-left">
           <table class="w-full min-w-[500px] border-collapse text-left text-sm">
             <thead>
               <tr class="bg-al-navy text-white">
@@ -652,7 +649,7 @@
           </table>
         </div>
 
-        <div class="mt-8">
+        <div class="mt-8 text-left">
           <p class="text-xs font-semibold uppercase tracking-wide text-al-navy">Additional Information</p>
           <ul class="mt-3 space-y-1.5 text-sm text-al-ink/70">
             {{#each product.feedingNotes}}
@@ -662,8 +659,8 @@
         </div>
       </div>
 
-      <div data-tab-panel="faq" class="hidden max-w-3xl py-10">
-        <div class="space-y-3">
+      <div data-tab-panel="faq" class="mx-auto hidden max-w-3xl py-10">
+        <div class="space-y-3 text-left">
           {{#each product.faqs}}
           <div data-accordion-item class="card overflow-hidden">
             <button type="button" data-accordion-trigger class="flex w-full items-center justify-between gap-4 p-5 text-left">
@@ -676,7 +673,7 @@
         </div>
       </div>
 
-      <div data-tab-panel="horseiq" class="hidden max-w-3xl py-10">
+      <div data-tab-panel="horseiq" class="mx-auto hidden max-w-3xl py-10 text-center">
         <p class="text-sm leading-relaxed text-al-ink/75">Explore the podcasts, videos, white papers, and infographics behind {{product.trademark}}&mdash;straight from the Animalife science team.</p>
         <a href="/horse-iq" class="btn-outline mt-6">Browse Horse IQ</a>
       </div>
@@ -780,25 +777,12 @@
 {{/unless}}
 
 {{#if reviews.length}}
-<section class="section">
-  <div class="eyebrow">Testimonials</div>
-  <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">What riders are saying.</h2>
-  <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-    {{#each reviews}}
-    <div class="card p-6">
-      <div class="flex gap-0.5 text-al-navy">{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}</div>
-      <p class="mt-4 text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
-      <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}}</p>
-    </div>
-    {{/each}}
-  </div>
-</section>
+{{> testimonial-slider items=reviews heading="What riders are saying."}}
 {{/if}}
 
 <section class="bg-al-panel">
   <div class="section">
-    <div class="eyebrow">Complete the System</div>
-    <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Explore the other formulations.</h2>
+    {{> section-head eyebrow="Complete the System" heading="Explore the other formulations."}}
     <div class="mt-10 grid gap-8 md:grid-cols-2">
       {{#each related}}
       <a href="/shop/product/{{this.slug}}" class="card group flex items-center gap-5 p-5 transition-colors hover:bg-al-panel">

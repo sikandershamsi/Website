@@ -20,7 +20,7 @@
           Long Term Equine Performance<br />
           Starts Here
         </p>
-        <h1 class="mt-5 whitespace-nowrap text-[clamp(2.5rem,9.2vw,7.25rem)] font-bold leading-none tracking-tight text-white" style="font-family: Calibri, Carlito, 'Segoe UI', sans-serif;">
+        <h1 class="font-display mt-5 whitespace-nowrap text-[clamp(2.5rem,8vw,6.25rem)] font-normal leading-none text-white">
           Feel the Difference
         </h1>
       </div>
@@ -32,10 +32,7 @@
 <!-- HORSE TRUTHS: auto slide bar, 2 at a time -->
 <section class="panel-white flex min-h-[calc(100svh-6.75rem)] w-full flex-col justify-center px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
   <div class="mx-auto flex w-full max-w-none flex-col items-center text-center">
-    <div class="eyebrow justify-center text-al-navy">Horse Truths</div>
-    <h2 class="font-display mt-5 max-w-5xl text-[clamp(2.5rem,5.5vw,4.25rem)] font-medium leading-[1.1] text-black">
-      Seven truths behind every Animalife formulation.
-    </h2>
+    {{> section-head eyebrow="Horse Truths" heading="Seven truths behind every Animalife formulation."}}
   </div>
   <div class="mt-14 w-full overflow-hidden" data-truth-slider data-auto-slider>
     <div class="slider-track" data-truth-track>
@@ -59,11 +56,9 @@
     <div class="mission-panel">
       <div class="mission-panel__copy">
         <p class="mission-panel__eyebrow">Inspired by Nature. Proven by Science.</p>
-        <div class="mission-panel__rule" aria-hidden="true"></div>
         <h2 class="mission-panel__title">
           Powerful Ingredients.<br />Purposeful Nutrition.
         </h2>
-        <div class="mission-panel__rule" aria-hidden="true"></div>
         <p class="mission-panel__body">We combine nature&rsquo;s most powerful compounds with advanced nutritional science to create solutions that work with your animal&rsquo;s biology&mdash;not against it.</p>
       </div>
 
@@ -122,8 +117,8 @@
 
 <!-- OUR STANDARDS -->
 <section class="panel-white border-t border-al-line">
-  <div class="section text-center">
-    <h2 class="font-display text-4xl font-medium text-al-navy sm:text-5xl">Our Standards</h2>
+  <div class="section">
+    {{> section-head heading="Our Standards"}}
     <div class="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-5 sm:gap-8">
       {{#each standards}}
       <div class="flex flex-col items-center">
@@ -140,10 +135,7 @@
 <!-- FEATURED PRODUCTS + benefits table -->
 <section class="panel-grey">
   <div class="section">
-    <div>
-      <div class="eyebrow">Featured Products</div>
-      <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Natural &ndash; Safe &ndash; FEI Clean Sport Compliant</h2>
-    </div>
+    {{> section-head eyebrow="Featured Products" heading="Natural. Safe. FEI Clean Sport Compliant"}}
     <div class="mt-12 overflow-hidden" data-auto-slider>
       <div class="slider-track" data-products-track>
         {{#each featuredProducts}}
@@ -165,7 +157,7 @@
     </div>
 
     <div class="mt-14">
-      <h3 class="font-display text-2xl font-medium text-al-navy">Ingredients &amp; Benefits</h3>
+      <h3 class="section-heading section-heading--sm">Ingredients &amp; Benefits</h3>
       <div class="mt-6 overflow-x-auto rounded-none border border-al-line bg-white">
         <table class="w-full min-w-[900px] border-collapse text-left text-sm">
           <thead>
@@ -196,71 +188,58 @@
   </div>
 </section>
 
-<!-- INSPIRED BY NATURE — soft white fade into horse (matches reference) -->
-<!-- INSPIRED BY NATURE -->
-<section class="panel-white" aria-label="Inspired by nature">
+<!-- INSPIRED BY NATURE — copy over horse, one screen on desktop -->
+<section class="inspired-nature" aria-label="Inspired by nature">
   <img
-    src="/images/home/inspired-by-nature-board.jpg?v=20260821b"
-    alt="Inspired by nature. Inspired by our founder's enduring passion for horses and a simple belief that nature often holds the answers modern medicine overlooks, Animalife was founded to explore the extraordinary healing potential of botanicals. By combining nature's most powerful ingredients with advanced nutritional science, we create innovative formulations that address the root causes of disease and dysfunction—empowering horses to perform with greater strength, recover more naturally, and enjoy longer, healthier lives."
-    width="1535"
+    src="/images/home/inspired-nature-horse.jpg"
+    alt="White horse in a sunlit meadow"
+    class="inspired-nature__media"
+    width="1536"
     height="1024"
-    class="block h-auto w-full"
     loading="lazy"
   />
+  <div class="inspired-nature__copy">
+    <p class="inspired-nature__eyebrow">Inspired by Nature</p>
+    <h2 class="inspired-nature__title">Inspired by nature</h2>
+    <p class="inspired-nature__body">
+      Inspired by our founder&rsquo;s enduring passion for horses and a simple belief that nature often holds the answers modern medicine overlooks, Animalife was founded to explore the extraordinary <span class="inspired-nature__em">healing potential of botanicals</span>.
+    </p>
+    <p class="inspired-nature__body">
+      By combining nature&rsquo;s most powerful ingredients with advanced nutritional science, we create innovative formulations that address the root causes of disease and dysfunction&mdash;empowering horses to perform with <strong>greater strength</strong>, recover <strong>more naturally</strong>, and enjoy longer, healthier lives.
+    </p>
+  </div>
 </section>
 
 <!-- CLEAN SPORT COMPLIANT -->
 <section class="panel-grey">
   <div class="section">
-    <div class="grid items-center gap-10 lg:grid-cols-[auto_1fr] lg:gap-14">
-      <img src="/images/badges/clean-sport-plus.png" alt="CleanSport+ Tested — Anti-Doping Programme" class="mx-auto h-36 w-auto sm:h-44" />
-      <div class="text-center lg:text-left">
-        <div class="eyebrow justify-center text-al-navy lg:justify-start">FEI Clean Sport Compliant</div>
-        <h2 class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl">Natural. Safe. Competition Compliant.</h2>
-        <p class="mt-5 max-w-2xl text-sm leading-relaxed text-al-ink/75 lg:mx-0 mx-auto">Every Animalife formulation is screened for Naturally Occurring Prohibited Substances (NOPS) and Herbal, Spice &amp; Plant Substance (HSPS) contamination through our CleanSport+ Programme&mdash;giving owners, trainers, and riders complete confidence on competition day.</p>
+    <div class="flex flex-col items-center gap-10 text-center lg:flex-row lg:items-center lg:gap-14 lg:text-left">
+      <img src="/images/badges/clean-sport-plus.png" alt="CleanSport+ Tested — Anti-Doping Programme" class="h-36 w-auto shrink-0 sm:h-44" />
+      <div class="lg:flex-1">
+        <p class="eyebrow lg:!justify-start lg:!text-left">FEI Clean Sport Compliant</p>
+        <h2 class="section-heading section-heading--sm lg:!mx-0 lg:!text-left">Natural. Safe. Competition Compliant.</h2>
+        <p class="section-head__lede mx-auto lg:mx-0">Every Animalife formulation is screened for Naturally Occurring Prohibited Substances (NOPS) and Herbal, Spice &amp; Plant Substance (HSPS) contamination through our CleanSport+ Programme&mdash;giving owners, trainers, and riders complete confidence on competition day.</p>
         <a href="/about/difference" class="btn-outline mt-8 bg-white">Learn About CleanSport+</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS slider 2 at a time -->
-<section class="panel-grey border-t border-al-line">
-  <div class="section text-center">
-    <h2 class="font-display text-4xl font-medium text-al-navy sm:text-5xl">Testimonials</h2>
-    <p class="font-display mt-4 text-3xl font-medium text-al-navy sm:text-4xl lg:text-[2.75rem]">Trusted by riders who expect results.</p>
-    <div class="mt-14 overflow-hidden" data-testimonial-slider data-auto-slider>
-      <div class="slider-track gap-0" data-testimonial-track>
-        {{#each testimonials}}
-        <div class="w-full shrink-0 px-2 md:w-1/2" data-testimonial-slide>
-          <div class="card h-full p-6 text-left">
-            <div class="flex gap-0.5 text-al-navy">
-              {{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}{{{icon "star-solid" "w-4 h-4"}}}
-            </div>
-            <p class="mt-4 text-sm leading-relaxed text-al-ink/75">&ldquo;{{this.quote}}&rdquo;</p>
-            <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-al-navy">{{this.author}} <span class="text-al-ink/40">&middot; {{this.product}}</span></p>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-    </div>
-    <div class="mt-6 flex justify-center gap-2" data-testimonial-dots></div>
-  </div>
-</section>
+{{> testimonial-slider items=testimonials heading="Trusted by riders who expect results."}}
 
 <!-- FEEL THE DIFFERENCE BANNER -->
 <section class="panel-white">
-  <div class="relative w-full">
+  <div class="home-feel-board relative w-full">
     <img
-      src="/images/home/feel-difference-banner-a1fa4c50.jpg"
-      alt="Equestrian athletes across jumping, western, dressage, and racing"
-      width="1920"
-      height="780"
+      src="/images/shared/feel-the-difference-panorama.jpg"
+      alt="Equestrian athletes across polo, western reining, show jumping, and eventing"
+      width="2172"
+      height="724"
       class="block h-auto w-full"
     />
     <div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4">
       <div class="relative inline-block max-w-[75%]">
-        <p class="font-sans text-[clamp(1.75rem,7vw,5rem)] font-extrabold leading-none tracking-tight text-white">Feel the difference</p>
+        <p class="font-display text-[clamp(1.75rem,6vw,4.5rem)] font-normal leading-none text-white">Feel the difference</p>
         <img src="/images/brand/animalife-logo-light.png" alt="Animalife USA" class="ml-auto mt-3 block h-9 w-auto sm:h-12" />
       </div>
     </div>

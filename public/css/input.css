@@ -1,21 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Cormorant Garamond", "Georgia", "Times New Roman", serif;
-  --font-sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  /* Root Science type pairing: Classico URW ≈ Marcellus, Proxima Nova ≈ Montserrat */
+  --font-display: "Marcellus", "Optima", "Georgia", "Times New Roman", serif;
+  --font-sans: "Montserrat", "Proxima Nova", "Helvetica Neue", Arial, sans-serif;
 
-  /* Root Science–aligned greyscale panels + Animalife accent */
-  --color-al-navy: #1c1c1c;
-  --color-al-navy-light: #3d3d3d;
+  /* Root Science palette: pure black/white, warm off-white panels, gold accent */
+  --color-al-navy: #000000;
+  --color-al-navy-light: #2b2b2b;
   --color-al-orange: #c45c32;
   --color-al-orange-light: #d88966;
+  --color-al-gold: #e8ae3c;
   --color-al-cream: #ffffff;
-  --color-al-cream-dark: #f0f0f0;
-  --color-al-panel: #f5f5f5;
-  --color-al-panel-alt: #ebebeb;
-  --color-al-forest: #2a2a2a;
-  --color-al-ink: #2b2b2b;
-  --color-al-line: #e4e4e4;
+  --color-al-cream-dark: #f3f2f1;
+  --color-al-panel: #f3f2f1;
+  --color-al-panel-alt: #eceae7;
+  --color-al-forest: #1a1a1a;
+  --color-al-ink: #000000;
+  --color-al-line: #e6e4e1;
 }
 
 @layer base {
@@ -26,18 +28,22 @@
   }
   body {
     font-family: var(--font-sans);
-    font-weight: 500;
-    letter-spacing: -0.011em;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
     line-height: 1.6;
     color: var(--color-al-ink);
     background-color: #ffffff;
   }
   h1, h2, h3, .font-display {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.25;
     text-wrap: balance;
+    /* Marcellus ships a single 400 weight; keep headings at the reference's
+       regular weight instead of letting the browser fake a bold */
+    font-synthesis-weight: none;
   }
   p {
     text-wrap: pretty;
@@ -46,31 +52,31 @@
 
 @layer components {
   .eyebrow {
-    @apply flex w-full items-center justify-center text-center text-xs font-semibold tracking-[0.18em] uppercase text-al-navy/55;
+    @apply flex w-full items-center justify-center text-center text-[13px] font-medium tracking-[0.15em] uppercase text-al-navy/55;
   }
   .section-head {
     @apply mx-auto flex w-full flex-col items-center text-center;
   }
   .section-heading {
-    @apply font-display mx-auto mt-5 max-w-5xl text-balance text-center text-[clamp(2.5rem,5.5vw,4.25rem)] font-medium leading-[1.1] text-black;
+    @apply font-display mx-auto mt-5 max-w-5xl text-balance text-center text-[clamp(2rem,3.6vw,2.75rem)] font-normal leading-[1.25] text-black;
   }
   .section-heading--sm {
-    @apply mt-0 text-[clamp(1.75rem,3.2vw,2.5rem)];
+    @apply mt-0 text-[clamp(1.5rem,2.6vw,2rem)];
   }
   .section-head__lede {
     @apply mt-5 max-w-2xl text-sm leading-relaxed text-al-ink/70 sm:text-base;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-3.5 text-xs font-semibold tracking-[0.14em] uppercase transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-3.5 text-[13px] font-medium tracking-[0.15em] uppercase transition-colors duration-200;
   }
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-3.5 text-xs font-semibold tracking-[0.14em] uppercase transition-colors duration-200 bg-al-navy text-white hover:bg-al-navy-light;
+    @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-3.5 text-[13px] font-medium tracking-[0.15em] uppercase transition-colors duration-200 bg-al-navy text-white hover:bg-al-navy-light;
   }
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-3.5 text-xs font-semibold tracking-[0.14em] uppercase transition-colors duration-200 border border-al-navy text-al-navy hover:bg-al-navy hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-3.5 text-[13px] font-medium tracking-[0.15em] uppercase transition-colors duration-200 border border-al-navy text-al-navy hover:bg-al-navy hover:text-white;
   }
   .btn-outline-light {
-    @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-3.5 text-xs font-semibold tracking-[0.14em] uppercase transition-colors duration-200 border border-white/80 text-white hover:bg-white hover:text-al-navy;
+    @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-3.5 text-[13px] font-medium tracking-[0.15em] uppercase transition-colors duration-200 border border-white/80 text-white hover:bg-white hover:text-al-navy;
   }
   .section {
     @apply w-full px-4 py-16 sm:px-6 lg:px-8 lg:py-24;
@@ -167,7 +173,6 @@
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
   }
   .category-hero__compact {
     @apply lg:hidden;
@@ -1212,20 +1217,6 @@
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: cover;
-    object-position: center bottom;
-  }
-  @media (min-width: 1024px) {
-    .shop-hero {
-      height: calc(100svh - 5.5625rem);
-      max-height: calc(100svh - 5.5625rem);
-    }
-    .shop-hero__board {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center bottom;
-    }
   }
   .shop-hero__media {
     @apply absolute inset-0 h-full w-full object-cover object-[80%_center] sm:object-[72%_center] lg:object-[64%_center];
@@ -1431,341 +1422,23 @@
   .race-intro__body strong {
     @apply font-extrabold;
   }
-  .race-cascade {
-    @apply overflow-x-clip bg-white py-16 text-[#0d1b2e] sm:py-20 lg:py-24;
-  }
-  .race-cascade.panel-grey {
-    @apply bg-al-panel;
-  }
-  .race-cascade__inner {
-    @apply mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8;
-  }
-  .race-cascade__header {
-    @apply mx-auto max-w-4xl text-center;
-  }
-  .race-cascade__title {
-    @apply relative m-0 inline-block font-sans text-[clamp(1.65rem,4vw,3.1rem)] font-extrabold uppercase leading-[1.05] tracking-[0.005em] text-[#0d1b2e];
-  }
-  .race-cascade__subtitle {
-    @apply mx-auto mt-3 max-w-3xl text-[13px] italic leading-relaxed text-[#0d1b2e]/80 sm:text-[15px] lg:text-[17px];
-  }
-  .race-cascade__mobile {
-    @apply mt-10 grid list-none gap-3 p-0 sm:grid-cols-2 xl:hidden;
-  }
-  .race-cascade__mobile-card {
-    @apply overflow-hidden rounded-sm border border-white/10 bg-[#0f1a2a];
-  }
-  .race-cascade__mobile-head {
-    @apply flex items-start gap-3 bg-[color:var(--phase-color)] px-3 py-3 text-white;
-  }
-  .race-cascade__mobile-num {
-    @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-xs font-bold text-[#0b1220];
-  }
-  .race-cascade__mobile-meta {
-    @apply min-w-0 flex-1;
-  }
-  .race-cascade__mobile-name {
-    @apply m-0 text-[11px] font-extrabold uppercase leading-snug tracking-[0.04em];
-  }
-  .race-cascade__mobile-range {
-    @apply mt-1 text-[9px] font-semibold uppercase tracking-wide text-white/80;
-  }
-  .race-cascade__mobile-icon {
-    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/35 bg-black/15;
-  }
-  .race-cascade__mobile-media {
-    @apply overflow-hidden;
-    background: color-mix(in srgb, var(--phase-color) 70%, #000 30%);
-  }
-  .race-cascade__mobile-img {
-    @apply block h-28 w-full object-cover object-center;
-  }
-  .race-cascade__mobile-body {
-    @apply m-0 px-3 py-3 text-[12px] leading-relaxed text-white/80;
-    background: color-mix(in srgb, var(--phase-soft) 18%, #0f1a2a 82%);
-  }
-  .race-cascade__mobile-tag {
-    @apply m-0 border-t border-white/10 px-3 py-2.5 text-[10px] font-bold uppercase tracking-[0.06em] text-[#f5c518];
-  }
-  .race-cascade__mobile-foot {
-    @apply mt-4 space-y-3 xl:hidden;
-  }
-  .race-cascade__graph--mobile {
-    @apply rounded-sm border border-white/15 bg-[#0a1524] py-4 text-white;
-  }
-  .race-cascade__graph--mobile .cascade-plot {
-    @apply px-3;
-  }
-  .race-cascade__scroller {
-    @apply mt-8 hidden max-w-full overflow-x-auto pb-2 xl:block;
-  }
-  .race-cascade__board {
-    @apply grid min-w-[1120px] overflow-hidden rounded-[3px] border border-white/25 bg-[#0d1b2e];
-    grid-template-columns: 7.5rem repeat(7, minmax(0, 1fr));
-  }
-  .race-cascade__rail-cell {
-    @apply flex flex-col items-center justify-center border-b border-r border-white/25 bg-[#0d1b2e] px-2 py-4 text-center;
-  }
-  .race-cascade__rail-cell--phase {
-    @apply justify-start;
-  }
-  .race-cascade__rail-cell--phase .race-cascade__rail-label {
-    @apply my-auto;
-  }
-  .race-cascade__rail-cell--last {
-    @apply border-b-0;
-  }
-  .race-cascade__rail-tab {
-    @apply border-b-2 border-white/60 pb-1 text-[11px] font-extrabold uppercase tracking-[0.08em] text-white;
-  }
-  .race-cascade__rail-label {
-    @apply text-[10px] font-extrabold uppercase leading-[1.3] tracking-[0.07em] text-white;
-  }
-  .race-cascade__rail-note {
-    @apply block;
-  }
-  .race-cascade__phase-head {
-    @apply flex flex-col border-b border-r border-white/25 pt-3 text-center text-white;
-    background: var(--phase-color);
-  }
-  .race-cascade__phase-num {
-    @apply mx-auto flex h-8 w-8 items-center justify-center rounded-full bg-white text-[13px] font-extrabold text-[#101828];
-  }
-  .race-cascade__phase-name {
-    @apply mt-2 min-h-[2.5em] px-2 font-sans text-[12px] font-extrabold uppercase leading-[1.18] tracking-[0.01em];
-  }
-  .race-cascade__phase-range {
-    @apply mb-3 mt-1.5 px-2 font-sans text-[11px] font-semibold uppercase tracking-[0.01em] text-white/95;
-  }
-  .race-cascade__phase-media {
-    @apply mt-auto overflow-hidden;
-  }
-  .race-cascade__phase-img {
-    @apply block h-[9rem] w-full object-cover object-center;
-  }
-  .race-cascade__happening {
-    @apply flex items-center justify-center border-b border-r border-white/25 px-3 py-4 text-center;
-    background: var(--phase-soft);
-  }
-  .race-cascade__happening-body {
-    @apply m-0 text-[11.5px] font-medium leading-[1.5] text-[#16241d];
-  }
-  .race-cascade__physio {
-    @apply relative flex flex-col items-center gap-2.5 border-b border-r border-white/25 px-2 py-4 text-center text-white;
-    background: var(--phase-color);
-  }
-  .race-cascade__physio-icon {
-    @apply flex items-center justify-center text-white;
-  }
-  .race-cascade__physio-tag {
-    @apply m-0 text-[10px] font-extrabold uppercase leading-[1.3] tracking-[0.03em] text-white;
-  }
-  .race-cascade__physio-arrow {
-    @apply absolute -right-[0.7rem] top-[1.6rem] z-[2] text-white;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
-  }
-  .race-cascade__graph {
-    @apply col-span-7 bg-[#0a1524] pb-4 pt-5;
-  }
-  .race-cascade__graph-label {
-    @apply mb-3 text-[10px] font-extrabold uppercase tracking-[0.12em] text-white/80;
-  }
-  /* The plot box spans the seven phase columns exactly, so the dashed furlong
-     dividers line up with the column edges above it. */
-  .cascade-plot {
-    @apply relative;
-    --plot-h: 8.5rem;
-  }
-  @media (min-width: 1280px) {
-    .cascade-plot {
-      --plot-h: 10rem;
-    }
-  }
-  .cascade-plot__axis {
-    @apply pointer-events-none absolute left-1.5 top-0 z-[2];
-    height: var(--plot-h);
-  }
-  .cascade-plot__axis span {
-    @apply absolute left-0 -translate-y-1/2 text-[10px] font-bold text-white/80;
-  }
-  .cascade-plot__axis span:nth-child(1) {
-    @apply top-0;
-  }
-  .cascade-plot__axis span:nth-child(2) {
-    @apply top-1/2;
-  }
-  .cascade-plot__axis span:nth-child(3) {
-    @apply top-full;
-  }
-  .cascade-plot__area {
-    @apply relative;
-    height: var(--plot-h);
-  }
-  .cascade-plot__hline {
-    @apply pointer-events-none absolute inset-x-0 border-t border-dashed border-white/20;
-  }
-  .cascade-plot__hline--base {
-    @apply border-solid border-white/35;
-  }
-  .cascade-plot__vline {
-    @apply pointer-events-none absolute inset-y-0 border-l border-dashed border-white/25;
-  }
-  .cascade-plot__svg {
-    @apply absolute inset-0 h-full w-full overflow-visible;
-  }
-  .cascade-plot__line {
-    stroke-width: 3;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .cascade-plot__dot {
-    @apply absolute h-[10px] w-[10px] -translate-x-1/2 -translate-y-1/2 rounded-full;
-    box-shadow: 0 0 0 2px rgba(10, 21, 36, 0.9);
-  }
-  .cascade-plot__ticks {
-    @apply relative mt-2.5 h-4;
-  }
-  .cascade-plot__tick {
-    @apply absolute -translate-x-1/2 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.08em] text-white/70;
-  }
-  .cascade-plot__tick:first-child {
-    @apply translate-x-0;
-  }
-  .cascade-plot__tick:last-child {
-    @apply -translate-x-full;
-  }
-  .cascade-plot__caption {
-    @apply m-0 mt-1 text-center text-[10px] font-extrabold uppercase tracking-[0.14em] text-white/65;
-  }
-  .race-cascade__summary {
-    @apply mt-4 flex flex-col overflow-hidden rounded-[3px] border border-white/25 bg-[#0d1b2e] sm:flex-row;
-  }
-  .race-cascade__summary-head {
-    @apply flex shrink-0 items-center gap-3 border-b border-white/25 px-4 py-3 sm:w-[13rem] sm:border-b-0 sm:border-r;
-  }
-  .race-cascade__summary-icon {
-    @apply shrink-0 text-[#f5c518];
-  }
-  .race-cascade__summary-title {
-    @apply m-0 text-[12px] font-extrabold uppercase leading-[1.2] tracking-[0.05em] text-white;
-  }
-  .race-cascade__summary-list {
-    @apply m-0 flex flex-1 list-none flex-wrap items-center gap-x-2 gap-y-3 p-0 px-3 py-3 xl:flex-nowrap;
-  }
-  .race-cascade__summary-item {
-    @apply flex items-center justify-center gap-2 text-center text-[10px] font-extrabold uppercase leading-[1.25] tracking-[0.03em] xl:flex-1;
-    color: var(--sum-color);
-  }
-  .race-cascade__summary-arrow {
-    @apply shrink-0 text-white/80;
-  }
-  .race-owners {
-    @apply relative isolate mb-16 flex min-h-[34rem] items-center overflow-hidden bg-white sm:mb-20 lg:mb-24;
-  }
-  .race-owners.panel-grey {
-    @apply bg-al-panel;
-  }
-  .race-owners.panel-grey .race-owners__veil {
-    background: linear-gradient(
-      90deg,
-      #f5f5f5 0%,
-      #f5f5f5 28%,
-      rgba(245, 245, 245, 0.88) 40%,
-      rgba(245, 245, 245, 0.4) 52%,
-      rgba(245, 245, 245, 0) 64%
-    );
-  }
-  @media (min-width: 640px) {
-    /* Match the artwork's proportions so its baked-in fade lands beside the copy,
-       and scale the copy with the width so it stays inside the fade's white band. */
-    .race-owners {
-      @apply w-full;
-      aspect-ratio: 1024 / 682;
-      max-height: 52rem;
-      --owners-pad: clamp(1.5rem, 5.6vw, 5rem);
-      --owners-icon: clamp(2.75rem, 4.45vw, 4rem);
-      --owners-glyph: clamp(1.5rem, 2.5vw, 2.25rem);
-      --owners-gap: clamp(1rem, 3.35vw, 3rem);
-      --owners-text: clamp(0.9375rem, 1.53vw, 1.375rem);
-      --owners-text-w: clamp(11.5rem, 18.9vw, 17rem);
-      --owners-list-w: clamp(15rem, 25.5vw, 23rem);
-      --owners-row-y: clamp(0.85rem, 2.5vw, 2.25rem);
-      --owners-list-top: clamp(1.5rem, 3vw, 2.75rem);
-    }
-  }
-  .race-owners__media-wrap {
-    @apply absolute inset-0;
-  }
-  .race-owners__media {
-    @apply absolute inset-0 h-full w-full object-cover object-[74%_center] sm:object-center;
-  }
-  .race-owners__veil {
-    @apply pointer-events-none absolute inset-0 z-[1];
-    background: linear-gradient(
-      180deg,
-      #ffffff 0%,
-      rgba(255, 255, 255, 0.96) 52%,
-      rgba(255, 255, 255, 0.88) 76%,
-      rgba(255, 255, 255, 0.6) 100%
-    );
-  }
-  .race-owners.panel-grey .race-owners__veil {
-    background: linear-gradient(
-      180deg,
-      #f5f5f5 0%,
-      rgba(245, 245, 245, 0.96) 52%,
-      rgba(245, 245, 245, 0.88) 76%,
-      rgba(245, 245, 245, 0.6) 100%
-    );
-  }
-  @media (min-width: 640px) {
-    /* Tablets get a wider version of the artwork's fade so the copy stays legible. */
-    .race-owners__veil {
-      background: linear-gradient(
-        90deg,
-        #ffffff 0%,
-        #ffffff 28%,
-        rgba(255, 255, 255, 0.88) 40%,
-        rgba(255, 255, 255, 0.4) 52%,
-        rgba(255, 255, 255, 0) 64%
-      );
-    }
-  }
-  @media (min-width: 1024px) {
-    /* The artwork's own fade takes over once the copy fits inside its white band. */
-    .race-owners__veil {
-      @apply hidden;
-    }
-  }
-  .race-owners__copy {
-    @apply relative z-10 flex w-full max-w-xl flex-col justify-center px-6 py-16 sm:max-w-[46%] sm:px-[var(--owners-pad)] sm:py-[clamp(2rem,4.4vw,4rem)];
-  }
-  .race-owners__eyebrow {
-    @apply text-[clamp(1.35rem,3.05vw,2.75rem)] font-extrabold uppercase leading-none tracking-[0.01em] text-al-navy;
-  }
-  .race-owners__title {
-    @apply mt-1 text-[clamp(2.75rem,9.2vw,7.5rem)] font-extrabold uppercase leading-[0.86] tracking-[0.015em] text-al-orange;
-    font-family: var(--font-sans);
-  }
-  .race-owners__list {
-    @apply m-0 mt-8 max-w-[21rem] list-none space-y-0 p-0 sm:mt-[var(--owners-list-top)] sm:max-w-[var(--owners-list-w)];
-  }
-  .race-owners__item {
-    @apply flex items-center gap-5 border-b border-al-line py-4 first:pt-0 last:border-b-0 last:pb-0 sm:gap-[var(--owners-gap)] sm:py-[var(--owners-row-y)];
-  }
-  .race-owners__icon {
-    @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-al-orange text-al-navy sm:h-[var(--owners-icon)] sm:w-[var(--owners-icon)];
-  }
-  .race-owners__icon svg {
-    @apply h-6 w-6 sm:h-[var(--owners-glyph)] sm:w-[var(--owners-glyph)];
-  }
-  .race-owners__text {
-    @apply m-0 max-w-[13rem] text-[15px] font-medium leading-snug text-al-navy sm:max-w-[var(--owners-text-w)];
-  }
-  @media (min-width: 640px) {
-    .race-owners__text {
-      font-size: var(--owners-text);
-    }
+  .race-cascade-board {
+    @apply relative isolate w-full overflow-hidden bg-white;
+  }
+  .race-cascade-board__img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+  .race-owners-board {
+    @apply relative isolate mb-16 w-full overflow-hidden bg-white sm:mb-20 lg:mb-24;
+  }
+  .race-owners-board__img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
   }
   .race-homeo {
     @apply relative isolate overflow-hidden bg-[#f7f4ee];
@@ -1778,8 +1451,6 @@
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center top;
   }
   .race-homeo.panel-white {
     @apply bg-white;
@@ -1923,276 +1594,18 @@
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center top;
-  }
-  .race-regulator.panel-grey {
-    @apply bg-al-panel;
-  }
-  .race-regulator__inner {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
-  }
-  .race-regulator__header {
-    @apply mx-auto max-w-3xl text-center;
-  }
-  .race-regulator__title {
-    @apply m-0 flex flex-wrap items-baseline justify-center gap-x-3;
-  }
-  .race-regulator__title-lead {
-    @apply text-[clamp(2.1rem,5vw,3.6rem)] font-extrabold leading-none tracking-[-0.01em] text-al-navy;
-  }
-  .race-regulator__title-accent {
-    @apply text-[clamp(2.1rem,5vw,3.6rem)] font-extrabold leading-none tracking-[-0.01em] text-al-orange;
-  }
-  .race-regulator__subtitle {
-    @apply mt-3 text-[12px] font-semibold uppercase tracking-[0.22em] text-al-navy sm:text-[15px];
-  }
-  .race-regulator__lede {
-    @apply mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-al-navy/75 sm:text-[15px] sm:leading-[1.7];
-  }
-  .race-regulator__board {
-    @apply mt-10 flex flex-col gap-8 lg:mt-12 lg:grid lg:grid-cols-[13.5rem_minmax(0,1fr)_16.5rem] lg:items-center lg:gap-6 xl:grid-cols-[14.5rem_minmax(0,1fr)_18rem] xl:gap-8;
-  }
-  .race-regulator__legend {
-    @apply order-2 rounded-lg border border-al-navy/10 bg-white px-5 py-6 shadow-[0_10px_30px_rgba(15,23,42,0.06)] lg:order-none lg:self-center;
-  }
-  .race-regulator__legend-title {
-    @apply m-0 text-[12px] font-extrabold uppercase tracking-[0.08em] text-al-navy;
-  }
-  .race-regulator__legend-accent {
-    @apply mt-0.5 text-[13px] font-extrabold uppercase tracking-[0.06em] text-al-orange;
-  }
-  .race-regulator__legend-list {
-    @apply mt-4 m-0 list-none space-y-2.5 p-0;
-  }
-  .race-regulator__legend-item {
-    @apply flex items-start gap-2.5;
-  }
-  .race-regulator__legend-num {
-    @apply mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-al-orange text-[10px] font-extrabold text-al-orange;
-  }
-  .race-regulator__legend-text {
-    @apply pt-0.5 text-[11px] font-semibold leading-snug text-al-navy sm:text-xs;
-  }
-  .race-regulator__visual {
-    @apply order-1 overflow-hidden lg:order-none;
-  }
-  .race-regulator__image {
-    @apply mx-auto block h-auto w-full max-w-2xl object-contain lg:max-w-none;
-  }
-  .race-regulator__side {
-    @apply order-3 grid gap-6 sm:grid-cols-2 lg:order-none lg:flex lg:flex-col lg:gap-7;
-  }
-  .race-regulator__bottom {
-    @apply mt-10 grid gap-6 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3 lg:gap-8;
-  }
-  .race-regulator__callout {
-    @apply relative flex items-start gap-4;
-  }
-  .race-regulator__callout-copy {
-    @apply min-w-0;
-  }
-  .race-regulator__callout-icon {
-    @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white shadow-[0_6px_18px_rgba(15,23,42,0.08)] sm:h-14 sm:w-14;
-  }
-  .race-regulator__callout-icon--rose {
-    @apply border-rose-400/60 text-rose-600;
-  }
-  .race-regulator__callout-icon--sky {
-    @apply border-sky-400/60 text-sky-600;
-  }
-  .race-regulator__callout-icon--violet {
-    @apply border-violet-400/60 text-violet-600;
-  }
-  .race-regulator__callout-icon--amber {
-    @apply border-amber-400/70 text-amber-600;
-  }
-  /* leader lines echoing the connectors that run back to the kidney */
-  .race-regulator__side .race-regulator__callout::before {
-    content: "";
-    @apply pointer-events-none absolute right-full top-7 hidden h-px w-7 bg-al-navy/20 lg:block xl:w-8;
-  }
-  .race-regulator__bottom .race-regulator__callout::before {
-    content: "";
-    @apply pointer-events-none absolute bottom-full left-6 hidden h-6 w-px bg-al-navy/20 sm:left-7 lg:block;
-  }
-  .race-regulator__callout-title {
-    @apply m-0 text-[11px] font-extrabold uppercase leading-snug tracking-[0.06em] text-al-orange sm:text-xs;
-  }
-  .race-regulator__callout-num {
-    @apply text-al-navy;
-  }
-  .race-regulator__callout-body {
-    @apply mt-1.5 m-0 text-[12px] leading-relaxed text-al-navy/75 sm:text-[13px] sm:leading-[1.55];
   }
   .race-oxygen {
     @apply bg-white py-16 sm:py-20 lg:py-24;
   }
   .race-oxygen--board {
-    @apply block min-h-0 w-full overflow-hidden bg-white p-0 py-0 sm:py-0 lg:py-0;
+    @apply mb-16 block min-h-0 w-full overflow-hidden bg-white p-0 py-0 sm:mb-20 sm:py-0 lg:mb-24 lg:py-0;
   }
   .race-oxygen__board {
     display: block;
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center top;
-  }
-  .race-oxygen.panel-grey {
-    @apply bg-al-panel;
-  }
-  .race-oxygen__inner {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
-  }
-  .race-oxygen__top {
-    @apply grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-8 xl:grid-cols-[minmax(0,0.75fr)_minmax(0,1.3fr)_minmax(0,1.2fr)] xl:gap-8;
-  }
-  .race-oxygen__intro {
-    @apply lg:col-start-1 lg:row-start-1 xl:col-auto xl:row-auto;
-  }
-  .race-oxygen__eyebrow {
-    @apply flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[0.12em] text-al-orange sm:text-[11px] xl:whitespace-nowrap xl:text-[9.5px];
-  }
-  .race-oxygen__eyebrow::after {
-    content: "";
-    @apply h-px min-w-8 flex-1 bg-al-orange/45;
-  }
-  .race-oxygen__title {
-    @apply mt-3 max-w-xl text-[clamp(1.75rem,3.8vw,2.75rem)] font-extrabold leading-[1.12] tracking-tight text-al-navy;
-  }
-  .race-oxygen__title-accent {
-    @apply text-al-orange lg:block;
-  }
-  .race-oxygen__body {
-    @apply mt-4 max-w-xl text-sm leading-relaxed text-al-navy/75 sm:text-[15px] sm:leading-[1.7];
-  }
-  .race-oxygen__brand {
-    @apply mt-6;
-  }
-  .race-oxygen__logo {
-    @apply m-0 text-2xl font-extrabold uppercase tracking-[0.04em] text-[#1f4d38] sm:text-3xl;
-  }
-  .race-oxygen__logo-fit {
-    @apply text-al-orange;
-  }
-  .race-oxygen__logo sup {
-    @apply ml-0.5 text-[0.45em] font-bold;
-  }
-  .race-oxygen__tagline {
-    @apply mt-1 text-[11px] font-extrabold uppercase tracking-[0.12em] text-al-navy;
-  }
-  .race-oxygen__tagline span,
-  .race-oxygen__footer span {
-    @apply text-al-orange;
-  }
-  .race-oxygen__visual {
-    @apply lg:col-start-1 lg:row-start-2 xl:col-auto xl:row-auto xl:-mx-6 xl:mt-2;
-  }
-  .race-oxygen__horse {
-    @apply mx-auto block h-auto w-full max-w-xl object-contain lg:max-w-none;
-  }
-  .race-oxygen__panels {
-    @apply flex flex-col gap-8 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:h-full lg:justify-between lg:gap-10 xl:col-auto xl:row-auto;
-  }
-  .race-oxygen__panel-label {
-    @apply m-0 flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.14em] text-al-navy;
-  }
-  .race-oxygen__panel-label::before,
-  .race-oxygen__panel-label::after {
-    content: "";
-    @apply h-px flex-1 bg-al-line;
-  }
-  .race-oxygen__journey-list {
-    @apply m-0 mt-5 grid list-none grid-cols-2 gap-x-3 gap-y-6 p-0 sm:grid-cols-4;
-  }
-  .race-oxygen__journey-item {
-    @apply relative flex flex-col items-center px-1 text-center;
-  }
-  .race-oxygen__journey-icon {
-    @apply flex h-16 w-16 items-center justify-center rounded-full border border-al-line bg-white text-rose-600 sm:h-[68px] sm:w-[68px];
-  }
-  .race-oxygen__journey-title {
-    @apply mt-3 m-0 text-[11px] font-extrabold uppercase leading-snug tracking-[0.05em] text-al-navy;
-  }
-  .race-oxygen__journey-body {
-    @apply mt-1.5 m-0 text-[11px] leading-relaxed text-al-navy/70;
-  }
-  .race-oxygen__journey-arrow {
-    @apply absolute -right-2 top-8 z-[1] hidden text-al-navy/40 sm:flex;
-  }
-  .race-oxygen__systems {
-    @apply rounded-lg border border-al-line bg-white p-5 sm:p-6;
-  }
-  .race-oxygen__systems-title {
-    @apply mx-auto m-0 max-w-md text-center text-[11px] font-extrabold uppercase leading-snug tracking-[0.08em] text-al-navy sm:text-xs;
-  }
-  .race-oxygen__systems-grid {
-    @apply mt-5 grid grid-cols-2 gap-y-6 sm:grid-cols-4 sm:divide-x sm:divide-al-line;
-  }
-  .race-oxygen__system {
-    @apply px-2 text-center sm:px-2.5;
-  }
-  .race-oxygen__system-icon {
-    @apply mb-2.5 inline-flex items-center justify-center text-al-orange;
-  }
-  .race-oxygen__system-name {
-    @apply m-0 text-[10px] font-extrabold uppercase leading-snug tracking-[0.02em] text-al-navy xl:text-[9.5px];
-  }
-  .race-oxygen__system-body {
-    @apply mt-1.5 m-0 text-[10.5px] leading-[1.5] text-al-navy/70 xl:text-[10px];
-  }
-  .race-oxygen__benefits {
-    @apply mt-10 rounded-lg border border-al-line bg-white p-5 sm:mt-12 sm:p-6 lg:p-7;
-  }
-  .race-oxygen__benefits-title {
-    @apply m-0 flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.12em] text-al-navy sm:text-xs;
-  }
-  .race-oxygen__benefits-title::after {
-    content: "";
-    @apply h-px flex-1 bg-al-line;
-  }
-  .race-oxygen__benefits-row {
-    @apply mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_15rem] lg:items-center lg:gap-8;
-  }
-  .race-oxygen__benefits-list {
-    @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-al-line;
-  }
-  .race-oxygen__benefit {
-    @apply flex items-start gap-3 lg:px-4 lg:first:pl-0;
-  }
-  .race-oxygen__benefit-icon {
-    @apply inline-flex shrink-0 items-center justify-center text-[#1f4d38];
-  }
-  .race-oxygen__benefit-copy {
-    @apply min-w-0;
-  }
-  .race-oxygen__benefit-name {
-    @apply m-0 text-[11px] font-extrabold uppercase leading-snug tracking-[0.05em] text-al-navy;
-  }
-  .race-oxygen__benefit-body {
-    @apply mt-1.5 m-0 text-[11px] leading-relaxed text-al-navy/70;
-  }
-  .race-oxygen__peak {
-    @apply flex items-center gap-3 rounded-lg border border-al-line bg-white p-4;
-  }
-  .race-oxygen__peak-icon {
-    @apply flex shrink-0 items-center text-rose-700 [&_svg]:h-9 [&_svg]:w-9;
-  }
-  .race-oxygen__peak-icon svg:last-child {
-    @apply -ml-4 -scale-x-100;
-  }
-  .race-oxygen__peak-text {
-    @apply m-0 text-[11px] font-extrabold uppercase leading-snug tracking-[0.05em] text-al-navy sm:text-xs;
-  }
-  .race-oxygen__peak-text span {
-    @apply block text-al-orange;
-  }
-  .race-oxygen__footer {
-    @apply mt-10 border-t border-al-orange/50 pt-6 text-center text-sm font-extrabold uppercase tracking-[0.14em] text-al-navy sm:text-base;
-  }
-  .race-distress {
-    @apply relative isolate overflow-hidden bg-[#15110c];
   }
   .race-distress--board {
     @apply block min-h-0 w-full overflow-hidden bg-white p-0;
@@ -2202,245 +1615,15 @@
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center top;
-  }
-  .race-distress__scene {
-    @apply absolute inset-0 -z-10 h-full w-full object-cover object-[62%_38%] lg:object-[58%_center];
-  }
-  .race-distress__veil {
-    @apply pointer-events-none absolute inset-0 -z-10;
-    background:
-      linear-gradient(to right, rgba(14, 11, 8, 0.92) 0%, rgba(14, 11, 8, 0.64) 30%, rgba(14, 11, 8, 0.12) 52%, rgba(14, 11, 8, 0.2) 66%, rgba(14, 11, 8, 0.64) 80%, rgba(14, 11, 8, 0.88) 100%),
-      linear-gradient(to top, rgba(14, 11, 8, 0.82) 0%, rgba(14, 11, 8, 0.1) 44%),
-      linear-gradient(to bottom, rgba(14, 11, 8, 0.74) 0%, rgba(14, 11, 8, 0) 34%);
-  }
-  @media (max-width: 1023px) {
-    .race-distress__veil {
-      background: linear-gradient(to bottom, rgba(14, 11, 8, 0.9) 0%, rgba(14, 11, 8, 0.7) 45%, rgba(14, 11, 8, 0.9) 100%);
-    }
-  }
-  .race-distress__inner {
-    @apply relative mx-auto w-full max-w-7xl px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20;
-  }
-  .race-distress__header {
-    @apply max-w-[34rem];
-  }
-  .race-distress__title {
-    @apply m-0 flex flex-wrap items-baseline gap-x-3;
-  }
-  .race-distress__title-lead {
-    @apply text-[clamp(2.25rem,5vw,3.75rem)] font-extrabold uppercase leading-none tracking-[-0.01em] text-al-orange;
-  }
-  .race-distress__title-accent {
-    @apply text-[clamp(2.25rem,5vw,3.75rem)] font-extrabold uppercase leading-none tracking-[-0.01em] text-white;
-  }
-  .race-distress__subtitle {
-    @apply mt-4 text-[11px] font-extrabold uppercase leading-snug tracking-[0.08em] text-white sm:text-[13px];
-  }
-  .race-distress__lede {
-    @apply mt-4 max-w-lg text-sm leading-relaxed text-white/80 sm:text-[15px] sm:leading-[1.7];
-  }
-  .race-distress__board {
-    @apply mt-10 flex flex-col gap-8 lg:mt-12 lg:grid lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)_minmax(0,17rem)] lg:items-stretch lg:gap-6 xl:grid-cols-[minmax(0,17rem)_minmax(0,1fr)_minmax(0,19rem)] xl:gap-8;
-  }
-  .race-distress__left {
-    @apply flex flex-col gap-8 lg:justify-between;
-  }
-  .race-distress__gap {
-    @apply hidden lg:block;
-  }
-  .race-distress__stressors {
-    @apply relative rounded-lg border border-al-orange/60 bg-[#140f09]/70 px-5 py-5 backdrop-blur-[2px];
-  }
-  .race-distress__stressors::after {
-    content: "";
-    @apply pointer-events-none absolute left-full top-1/2 hidden h-px w-6 bg-al-orange/50 lg:block xl:w-9;
-  }
-  .race-distress__stressors-title {
-    @apply m-0 text-[12px] font-extrabold uppercase tracking-[0.1em] text-al-orange;
-  }
-  .race-distress__stressors-list {
-    @apply mt-4 m-0 list-none space-y-3.5 p-0;
-  }
-  .race-distress__stressor {
-    @apply flex items-center gap-3;
-  }
-  .race-distress__stressor-icon {
-    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-al-orange/50 bg-white/5 text-al-orange;
-  }
-  .race-distress__stressor-text {
-    @apply text-[11px] font-extrabold uppercase leading-snug tracking-[0.05em] text-white sm:text-xs;
-  }
-  .race-distress__callouts {
-    @apply flex flex-col gap-8 lg:justify-between;
-  }
-  .race-distress__callout {
-    @apply relative flex items-start gap-4;
-  }
-  .race-distress__callout-copy {
-    @apply min-w-0;
-  }
-  .race-distress__callout-icon {
-    @apply flex h-14 w-14 shrink-0 items-center justify-center rounded-full border bg-[#120e09]/70 backdrop-blur-[2px] sm:h-16 sm:w-16;
-  }
-  .race-distress__callouts .race-distress__callout::before {
-    content: "";
-    @apply pointer-events-none absolute right-full top-7 hidden h-px w-6 lg:block xl:w-9;
-  }
-  .race-distress__callout--waste::after {
-    content: "";
-    @apply pointer-events-none absolute left-full top-7 hidden h-px w-6 bg-al-orange/50 lg:block xl:w-9;
-  }
-  .race-distress__callout--blue .race-distress__callout-icon {
-    @apply border-sky-400/60 text-sky-300;
-  }
-  .race-distress__callout--orange .race-distress__callout-icon {
-    @apply border-al-orange/70 text-al-orange;
-  }
-  .race-distress__callout--blue::before {
-    @apply bg-sky-400/50;
-  }
-  .race-distress__callout--orange::before {
-    @apply bg-al-orange/50;
-  }
-  .race-distress__callout--blue .race-distress__callout-title {
-    @apply text-sky-300;
-  }
-  .race-distress__callout--orange .race-distress__callout-title {
-    @apply text-al-orange;
-  }
-  .race-distress__callout-title {
-    @apply m-0 text-[11px] font-extrabold uppercase leading-snug tracking-[0.06em] sm:text-xs;
-    text-shadow: 0 0 5px rgba(10, 8, 6, 0.9), 0 1px 16px rgba(10, 8, 6, 0.9);
-  }
-  .race-distress__callout-body {
-    @apply mt-1.5 m-0 text-[12px] leading-relaxed text-white/80 sm:text-[13px];
-    text-shadow: 0 0 5px rgba(10, 8, 6, 0.9), 0 1px 14px rgba(10, 8, 6, 0.9);
-  }
-  .race-distress__title,
-  .race-distress__subtitle,
-  .race-distress__lede {
-    text-shadow: 0 2px 18px rgba(10, 8, 6, 0.8);
-  }
-  .race-compare {
-    @apply bg-[#f4f4f2] py-14 sm:py-16 lg:py-20;
   }
   .race-compare--board {
-    @apply block min-h-0 w-full overflow-hidden bg-white p-0 py-0 sm:py-0 lg:py-0;
+    @apply mb-16 block min-h-0 w-full overflow-hidden bg-white p-0 py-0 sm:mb-20 sm:py-0 lg:mb-24 lg:py-0;
   }
   .race-compare__board-img {
     display: block;
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center top;
-  }
-  .race-compare.panel-white {
-    @apply bg-white;
-  }
-  .race-compare.panel-grey {
-    @apply bg-al-panel;
-  }
-  .race-compare__inner {
-    @apply mx-auto grid w-full max-w-7xl gap-6 px-5 sm:px-8 lg:grid-cols-2 lg:gap-8 lg:px-10;
-  }
-  .race-compare__panel {
-    @apply flex flex-col overflow-hidden rounded-md border bg-white shadow-sm;
-  }
-  .race-compare__panel--normal {
-    @apply border-green-800/20;
-  }
-  .race-compare__panel--stress {
-    @apply border-red-800/20;
-  }
-  .race-compare__head {
-    @apply px-5 py-4 sm:px-6;
-  }
-  .race-compare__panel--normal .race-compare__head {
-    @apply bg-[#1f5c3a] text-white;
-  }
-  .race-compare__panel--stress .race-compare__head {
-    @apply bg-[#8b1e1e] text-white;
-  }
-  .race-compare__label {
-    @apply m-0 text-[13px] font-extrabold uppercase leading-snug tracking-[0.06em] sm:text-sm;
-  }
-  .race-compare__tagline {
-    @apply m-0 px-5 pt-4 text-center text-[10px] font-semibold uppercase tracking-[0.08em] sm:px-6 sm:text-[11px];
-  }
-  .race-compare__panel--normal .race-compare__tagline {
-    @apply text-green-800/80;
-  }
-  .race-compare__panel--stress .race-compare__tagline {
-    @apply text-red-800/80;
-  }
-  .race-compare__visual {
-    @apply mx-auto flex w-full max-w-xs items-center justify-center px-4 py-5;
-  }
-  .race-compare__panel--normal .race-compare__visual {
-    background: radial-gradient(circle at center, rgba(46, 125, 70, 0.14) 0%, transparent 68%);
-  }
-  .race-compare__panel--stress .race-compare__visual {
-    background: radial-gradient(circle at center, rgba(180, 40, 40, 0.14) 0%, transparent 68%);
-  }
-  .race-compare__kidney {
-    @apply h-auto w-full object-contain;
-  }
-  .race-compare__points {
-    @apply m-0 grid flex-1 list-none gap-3 px-5 pb-5 sm:grid-cols-2 sm:px-6;
-  }
-  .race-compare__point {
-    @apply flex items-start gap-2.5;
-  }
-  .race-compare__mark {
-    @apply mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full;
-  }
-  .race-compare__panel--normal .race-compare__mark {
-    @apply bg-green-700 text-white;
-  }
-  .race-compare__panel--stress .race-compare__mark {
-    @apply bg-red-700 text-white;
-  }
-  .race-compare__point-title {
-    @apply m-0 text-[11px] font-extrabold uppercase tracking-[0.04em] text-al-navy;
-  }
-  .race-compare__point-body {
-    @apply mt-1 m-0 text-[12px] leading-relaxed text-al-navy/70;
-  }
-  .race-compare__result {
-    @apply mt-auto flex items-start gap-3 border-t px-5 py-5 sm:px-6;
-  }
-  .race-compare__panel--normal .race-compare__result {
-    @apply border-green-800/10 bg-[#eef7f0];
-  }
-  .race-compare__panel--stress .race-compare__result {
-    @apply border-red-800/10 bg-[#fceeee];
-  }
-  .race-compare__result-icon {
-    @apply mt-0.5 shrink-0;
-  }
-  .race-compare__panel--normal .race-compare__result-icon {
-    @apply text-green-800;
-  }
-  .race-compare__panel--stress .race-compare__result-icon {
-    @apply text-red-700;
-  }
-  .race-compare__result-title {
-    @apply m-0 text-[11px] font-extrabold uppercase tracking-[0.08em];
-  }
-  .race-compare__panel--normal .race-compare__result-title {
-    @apply text-green-800;
-  }
-  .race-compare__panel--stress .race-compare__result-title {
-    @apply text-red-800;
-  }
-  .race-compare__result-list {
-    @apply mt-2 m-0 list-disc space-y-1 pl-4 text-[12px] leading-relaxed text-al-navy/75;
-  }
-  .race-vetrofit {
-    @apply relative isolate overflow-x-clip bg-white;
   }
   .race-vetrofit--board {
     @apply block min-h-0 w-full overflow-hidden bg-white p-0;
@@ -2450,169 +1633,13 @@
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center top;
-  }
-  .race-vetrofit.panel-grey {
-    @apply bg-al-panel;
-  }
-  @media (min-width: 1024px) {
-    .race-vetrofit:not(.race-vetrofit--board) {
-      min-height: calc(100svh - 6.75rem);
-    }
-  }
-  .race-vetrofit__inner {
-    @apply relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-6 py-12 sm:px-8 sm:py-14 lg:min-h-[calc(100svh-6.75rem)] lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:items-center lg:gap-8 lg:px-10 lg:py-14 xl:grid-cols-[minmax(0,25rem)_minmax(0,1fr)] xl:gap-10;
-  }
-  .race-vetrofit__copy {
-    @apply relative z-[4] max-w-md lg:max-w-none lg:self-center;
-  }
-  .race-vetrofit__visual {
-    @apply relative mx-auto w-full max-w-xl sm:max-w-2xl lg:pointer-events-none lg:absolute lg:inset-x-0 lg:bottom-[18%] lg:top-[2%] lg:m-0 lg:max-w-none;
-  }
-  .race-vetrofit__media {
-    @apply relative z-[2] block h-auto w-full lg:absolute lg:bottom-0 lg:left-[2%] lg:h-full lg:w-auto lg:max-w-[62%] lg:object-contain lg:object-left-bottom;
-    /* the plate is a white-backed JPEG: multiply lets the horse sit over the dial */
-    mix-blend-mode: multiply;
-  }
-  .race-vetrofit__syringe {
-    @apply pointer-events-none hidden h-auto lg:absolute lg:bottom-[2%] lg:right-[2%] lg:z-[3] lg:block lg:h-[88%] lg:w-auto lg:max-w-none;
-    filter: drop-shadow(0 20px 32px rgba(15, 23, 42, 0.16));
-  }
-  .race-vetrofit__brand {
-    @apply m-0 text-[11px] font-extrabold uppercase tracking-[0.22em] text-al-orange sm:text-xs;
-  }
-  .race-vetrofit__product {
-    @apply mt-1.5 m-0 flex items-start font-sans text-[clamp(2.9rem,7.5vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.03em];
-  }
-  .race-vetrofit__product-mark {
-    background: linear-gradient(100deg, #ef5a1a 0%, #f4801a 46%, #f7a81c 78%, #f9bd25 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .race-vetrofit__product-reg {
-    @apply mt-[0.6em] text-[0.28em] font-bold leading-none;
-    color: #f7a81c;
-  }
-  .race-vetrofit__tagline {
-    @apply mt-3 m-0 text-[13px] font-extrabold uppercase tracking-[0.06em] text-al-navy sm:text-[15px];
-  }
-  .race-vetrofit__prose {
-    @apply mt-6 border-l border-al-navy/12 pl-5 sm:mt-7;
-  }
-  .race-vetrofit__body {
-    @apply m-0 text-sm leading-[1.75] text-al-navy/85 sm:text-[15px];
-  }
-  .race-vetrofit__body + .race-vetrofit__body {
-    @apply mt-5;
-  }
-  .race-vetrofit__body span {
-    @apply font-extrabold text-al-orange;
-  }
-  .race-vetrofit__dial {
-    @apply absolute left-[1%] top-[4%] z-[3] flex w-[38%] max-w-[11rem] flex-col items-center sm:left-[3%] sm:w-[32%] sm:max-w-[13rem] lg:left-auto lg:right-[11%] lg:top-[5%] lg:z-[1] lg:w-[21%] lg:max-w-none;
-  }
-  .race-vetrofit__dial-face {
-    @apply relative aspect-square w-full rounded-full bg-white/95;
-    box-shadow:
-      0 20px 55px rgba(15, 23, 42, 0.14),
-      0 0 0 1px rgba(15, 23, 42, 0.06) inset;
-  }
-  .race-vetrofit__dial-ticks {
-    @apply pointer-events-none absolute inset-0 rounded-full;
-    background: repeating-conic-gradient(
-      from -90deg,
-      rgba(15, 23, 42, 0.55) 0deg 0.55deg,
-      transparent 0.55deg 6deg
-    );
-    -webkit-mask: radial-gradient(
-      circle at center,
-      transparent 0 calc(50% - 15px),
-      #000 calc(50% - 15px) calc(50% - 7px),
-      transparent calc(50% - 7px)
-    );
-    mask: radial-gradient(
-      circle at center,
-      transparent 0 calc(50% - 15px),
-      #000 calc(50% - 15px) calc(50% - 7px),
-      transparent calc(50% - 7px)
-    );
-  }
-  .race-vetrofit__dial-ticks--major {
-    background: repeating-conic-gradient(
-      from -90deg,
-      rgba(15, 23, 42, 0.8) 0deg 0.9deg,
-      transparent 0.9deg 30deg
-    );
-    -webkit-mask: radial-gradient(
-      circle at center,
-      transparent 0 calc(50% - 22px),
-      #000 calc(50% - 22px) calc(50% - 7px),
-      transparent calc(50% - 7px)
-    );
-    mask: radial-gradient(
-      circle at center,
-      transparent 0 calc(50% - 22px),
-      #000 calc(50% - 22px) calc(50% - 7px),
-      transparent calc(50% - 7px)
-    );
-  }
-  .race-vetrofit__dial-arc {
-    @apply pointer-events-none absolute -inset-[6%] overflow-visible;
-  }
-  .race-vetrofit__dial-sweep,
-  .race-vetrofit__dial-start {
-    fill: none;
-    stroke: #f2711c;
-    stroke-width: 4.5;
-    stroke-linecap: round;
-  }
-  .race-vetrofit__dial-arc marker path {
-    fill: #f2711c;
-    stroke: none;
-  }
-  .race-vetrofit__dial-center {
-    @apply absolute inset-0 flex flex-col items-center justify-center text-center;
-  }
-  .race-vetrofit__dial-glyph {
-    @apply h-6 w-6 text-al-navy sm:h-7 sm:w-7 lg:h-8 lg:w-8;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.6;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .race-vetrofit__dial-value {
-    @apply m-0 mt-1 text-[clamp(2.1rem,5.4vw,4.1rem)] font-extrabold leading-[0.9] tracking-[-0.03em] text-al-orange;
-  }
-  .race-vetrofit__dial-unit {
-    @apply m-0 mt-1 text-[clamp(0.85rem,2vw,1.55rem)] font-extrabold uppercase leading-none tracking-[0.04em] text-al-navy;
-  }
-  .race-vetrofit__dial-note {
-    @apply m-0 mt-1.5 max-w-[5.5rem] text-[clamp(0.5rem,0.95vw,0.78rem)] font-extrabold uppercase leading-snug tracking-[0.07em] text-al-navy/85 sm:max-w-[6.5rem];
-  }
-  .race-vetrofit__features-wrap {
-    @apply relative z-10 w-full border-t border-al-navy/12 pt-8 lg:col-span-2 lg:mt-2;
-  }
-  .race-vetrofit__features {
-    @apply mx-auto grid w-full max-w-3xl list-none grid-cols-1 gap-5 p-0 sm:grid-cols-3 sm:gap-0 lg:ml-[5%] lg:mr-auto;
-  }
-  .race-vetrofit__feature {
-    @apply flex items-center gap-3.5 sm:flex-col sm:items-center sm:border-l sm:border-al-navy/12 sm:px-5 sm:text-center first:sm:border-l-0;
-  }
-  .race-vetrofit__feature-icon {
-    @apply flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-al-orange bg-white text-al-orange lg:h-16 lg:w-16;
-  }
-  .race-vetrofit__feature-text {
-    @apply m-0 max-w-[13rem] text-[10px] font-extrabold uppercase leading-snug tracking-[0.05em] text-al-navy sm:mt-3.5 sm:text-[12px];
   }
   .race-why {
     @apply relative isolate mb-16 overflow-hidden bg-white sm:mb-20 lg:mb-24;
     min-height: calc(100svh - 6.75rem);
   }
   .race-why--board {
-    @apply mb-0 block min-h-0 w-full overflow-hidden bg-white p-0;
+    @apply mb-16 block min-h-0 w-full overflow-hidden bg-white p-0 sm:mb-20 lg:mb-24;
     min-height: 0;
   }
   .race-why__board-img {
@@ -2785,11 +1812,6 @@
     color: var(--race-eval-gold);
   }
   .race-science {
-    --race-science-green: #2d5a27;
-    --race-science-green-deep: #1f4d32;
-    --race-science-gold: #d49a44;
-    --race-science-blue: #2b5797;
-    --race-science-hero-h: 19rem;
     @apply bg-white;
   }
   .race-science--board {
@@ -2800,152 +1822,9 @@
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center top;
   }
   .race-science.panel-grey {
     @apply bg-al-panel;
-  }
-  @media (min-width: 640px) {
-    .race-science {
-      --race-science-hero-h: 23rem;
-    }
-  }
-  @media (min-width: 1024px) {
-    /* Track the plate aspect so the jockey stays inside the cover window. */
-    .race-science {
-      --race-science-hero-h: clamp(30rem, 43vw, 56rem);
-    }
-  }
-  .race-science__hero {
-    @apply relative isolate overflow-hidden;
-    min-height: var(--race-science-hero-h);
-  }
-  .race-science__media-wrap {
-    @apply absolute inset-0;
-  }
-  .race-science__media {
-    @apply absolute inset-0 h-full w-full object-cover object-[60%_22%] sm:object-[58%_28%] lg:object-[54%_25%];
-  }
-  .race-science__veil {
-    @apply pointer-events-none absolute inset-0 z-[1];
-    background: linear-gradient(
-      90deg,
-      #ffffff 0%,
-      #ffffff 18%,
-      rgba(255, 255, 255, 0.96) 30%,
-      rgba(255, 255, 255, 0.7) 42%,
-      rgba(255, 255, 255, 0.28) 54%,
-      rgba(255, 255, 255, 0.06) 64%,
-      transparent 74%
-    );
-  }
-  @media (max-width: 639px) {
-    .race-science__veil {
-      background: linear-gradient(
-        180deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.1) 20%,
-        rgba(255, 255, 255, 0.72) 34%,
-        rgba(255, 255, 255, 0.96) 44%,
-        #ffffff 52%,
-        #ffffff 100%
-      );
-    }
-  }
-  .race-science__copy {
-    @apply relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-end px-5 pb-10 pt-44 sm:justify-center sm:px-8 sm:py-12 lg:px-10 lg:py-14;
-    min-height: var(--race-science-hero-h);
-  }
-  .race-science__title {
-    @apply m-0 max-w-[13.5rem] lg:max-w-[19rem];
-  }
-  .race-science__title-lead {
-    @apply block font-display text-[clamp(1.9rem,3.6vw,3rem)] font-medium leading-[1.14] text-al-navy;
-  }
-  .race-science__title-accent {
-    @apply mt-1.5 block font-display text-[clamp(2.1rem,4vw,3.35rem)] font-medium italic leading-none tracking-tight;
-    color: var(--race-science-gold);
-  }
-  .race-science__tagline {
-    @apply mt-6 m-0 max-w-lg text-[11px] font-extrabold uppercase tracking-[0.16em] text-al-navy sm:text-[13px] sm:tracking-[0.18em];
-  }
-  .race-science__body {
-    @apply mt-4 m-0 max-w-[22rem] text-sm leading-relaxed text-al-navy/75 sm:text-[14px] sm:leading-[1.75];
-  }
-  .race-science__pillars {
-    @apply mx-auto grid w-full max-w-7xl list-none grid-cols-1 gap-0 border-y border-al-line p-0 sm:grid-cols-2 lg:grid-cols-6;
-  }
-  .race-science__pillar {
-    @apply flex flex-col items-center border-b border-al-line px-4 py-8 text-center last:border-b-0 sm:border-b sm:odd:border-r lg:border-b-0 lg:border-r lg:px-3.5 lg:py-9 lg:last:border-r-0;
-  }
-  .race-science__pillar-icon {
-    @apply flex items-center justify-center;
-    color: var(--race-science-green-deep);
-  }
-  .race-science__pillar-title {
-    @apply m-0 mt-4 max-w-[11rem] text-[10px] font-extrabold uppercase leading-snug tracking-[0.05em] text-al-navy sm:text-[11px];
-  }
-  .race-science__pillar-text {
-    @apply m-0 mt-2.5 max-w-[13.5rem] text-[11px] leading-relaxed text-al-ink/65 sm:text-[12px];
-  }
-  .race-science__chart {
-    @apply mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14;
-  }
-  .race-science__chart-head {
-    @apply mb-6 text-center;
-  }
-  .race-science__chart-brand {
-    @apply m-0 text-[11px] font-extrabold uppercase tracking-[0.18em] sm:text-xs;
-    color: var(--race-science-green);
-  }
-  .race-science__chart-head .physio-chart__title {
-    @apply mb-0 mt-2 text-[clamp(1.3rem,2.9vw,2.15rem)] tracking-[0.01em];
-  }
-
-  .physio-chart--race {
-    @apply mt-0;
-  }
-  .physio-chart--race .physio-chart__scroll {
-    @apply overflow-hidden rounded-md border border-al-line;
-  }
-  .physio-chart--race .physio-chart__th--system,
-  .physio-chart--race .physio-chart__th--nutrition,
-  .physio-chart--race .physio-chart__th--physiology {
-    @apply bg-al-navy;
-  }
-  .physio-chart--race .physio-chart__th--performance {
-    background-color: var(--race-science-gold);
-  }
-  .physio-chart--race .physio-chart__th--wellness {
-    background-color: var(--race-science-green);
-  }
-  .physio-chart--race .physio-chart__th--nutrition,
-  .physio-chart--race .physio-chart__th--physiology,
-  .physio-chart--race .physio-chart__th--performance,
-  .physio-chart--race .physio-chart__th--wellness {
-    border-left: 1px solid rgba(255, 255, 255, 0.28);
-  }
-  .physio-chart--race .physio-chart__th {
-    @apply py-3.5 text-center;
-  }
-  .physio-chart--race .physio-chart__nutrition,
-  .physio-chart--race .physio-chart__list {
-    @apply border-l border-al-line;
-  }
-  .physio-chart--race .physio-chart__list--physiology,
-  .physio-chart--race .physio-chart__list--wellness {
-    color: #1f2a37;
-  }
-  .physio-chart--race .physio-chart__list--performance {
-    color: #d2691c;
-  }
-  .physio-chart--race .physio-chart__disclaimer {
-    @apply mt-5 justify-start text-left;
-  }
-  .physio-chart--race .physio-chart__disclaimer svg {
-    @apply mt-px h-6 w-6 shrink-0 rounded-full border border-al-line p-1;
-    color: var(--race-science-green);
   }
   /* Inspired-by-nature soft blend (matches reference fade) */
 
@@ -2978,8 +1857,7 @@
   }
   @media (min-width: 1024px) {
     .inspired-nature {
-      height: calc(100svh - 5.5625rem);
-      max-height: calc(100svh - 5.5625rem);
+      min-height: calc(100svh - 5.5625rem);
     }
     .inspired-nature__media {
       position: absolute;
@@ -2990,8 +1868,9 @@
       object-position: 68% center;
     }
     .inspired-nature__copy {
+      position: relative;
       display: flex;
-      height: 100%;
+      min-height: calc(100svh - 5.5625rem);
       max-width: 46%;
       flex-direction: column;
       justify-content: center;
@@ -3061,11 +1940,6 @@
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center;
-  }
-  .about-story-hero__copy {
-    @apply absolute inset-0 z-10 flex max-w-2xl flex-col justify-center px-8 py-12 text-white sm:max-w-3xl sm:px-12 sm:py-16 lg:max-w-[52%] lg:px-14 lg:py-20;
   }
   .about-story-layout {
     @apply grid gap-10;
@@ -3130,8 +2004,6 @@
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center top;
   }
   .pro-hero__banner {
     @apply relative isolate flex min-h-0 flex-1 items-center overflow-hidden;
@@ -3228,8 +2100,23 @@
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center;
+  }
+  /* Desktop: a fixed wide aspect ratio (not a viewport-height calc) so the crop is a
+     constant, safe percentage of the photo at any screen width — just enough sky above
+     the horse's ears to fit the section within one screen, never enough to reach the
+     ears themselves or the discipline photo strip at the bottom. */
+  @media (min-width: 1024px) {
+    .amb-hero--board {
+      aspect-ratio: 1.8127;
+      height: auto;
+      min-height: 0;
+    }
+    .amb-hero__board {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+    }
   }
   .amb-hero__media {
     @apply absolute inset-0 h-full w-full object-cover object-center;
@@ -3308,8 +2195,7 @@
     @apply relative mx-auto w-full overflow-hidden;
   }
   .amb-feel__banner-img {
-    @apply block w-full object-cover object-center;
-    aspect-ratio: 953 / 310;
+    @apply block h-auto w-full;
   }
   .amb-feel__overlay {
     @apply pointer-events-none absolute inset-0 bg-black/15;
@@ -3329,165 +2215,14 @@
   .amb-feel__icon-label {
     @apply text-[9px] font-semibold uppercase tracking-[0.12em] text-al-orange sm:text-[10px] sm:tracking-[0.14em];
   }
-  .al-diff {
-    --al-diff-gold: #c9a24a;
-    --al-diff-bg: #f3f3f1;
-    @apply bg-white py-14 sm:py-16 lg:py-20;
+  .al-diff-board {
+    @apply relative isolate w-full overflow-hidden bg-white;
   }
-  .al-diff__inner {
-    @apply mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-8;
-  }
-  .al-diff__header {
-    @apply mx-auto max-w-4xl text-center;
-  }
-  .al-diff__title {
-    @apply font-display mt-0 max-w-5xl text-balance text-[clamp(2.5rem,5.5vw,4.25rem)] font-medium leading-[1.1] text-black;
-  }
-  .al-diff__rule {
-    @apply mx-auto mt-4 h-px w-full max-w-3xl;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      var(--al-diff-gold) 12%,
-      var(--al-diff-gold) 88%,
-      transparent 100%
-    );
-  }
-  .al-diff__subtitle {
-    @apply mt-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-al-navy sm:text-[11px] sm:tracking-[0.22em];
-  }
-  .al-diff__subtitle + .al-diff__rule {
-    @apply mt-4;
-  }
-  .al-diff__board {
-    @apply mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:max-w-none lg:px-0;
-  }
-  .al-diff__band {
-    @apply hidden;
-  }
-  .al-diff__panels {
-    @apply mt-10 grid gap-10 sm:mt-12 sm:grid-cols-2 sm:gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-0;
-  }
-  .al-diff__panel {
-    @apply relative flex flex-col items-center bg-[color:var(--al-diff-bg)] text-center lg:bg-transparent;
-  }
-  .al-diff__media {
-    @apply relative w-full overflow-hidden bg-[color:var(--al-diff-bg)];
-    aspect-ratio: 3 / 4;
-  }
-  .al-diff__img {
-    @apply absolute inset-0 h-full w-full object-cover object-center;
-  }
-  .al-diff__fade {
-    @apply pointer-events-none absolute inset-x-0 bottom-0 h-[48%];
-    background: linear-gradient(
-      to top,
-      var(--al-diff-bg) 0%,
-      rgba(243, 243, 241, 0.92) 28%,
-      rgba(243, 243, 241, 0.35) 62%,
-      transparent 100%
-    );
-  }
-  .al-diff__badge {
-    @apply absolute right-2 top-2 z-[2] h-12 w-auto drop-shadow-sm sm:h-14 lg:right-3 lg:top-3 lg:h-12 xl:h-14;
-  }
-  .al-diff__num {
-    @apply relative z-[3] -mt-5 mb-1 flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-semibold text-al-navy;
-    border: 2px solid var(--al-diff-gold);
-  }
-  .al-diff__panel-title {
-    @apply mt-3 px-3 text-[11px] font-extrabold uppercase tracking-[0.1em] text-al-navy sm:text-xs;
-    font-family: var(--font-sans);
-  }
-  .al-diff__panel-text {
-    @apply mt-3 max-w-[17rem] px-3 pb-6 text-[12px] leading-relaxed text-al-ink/70 sm:max-w-none lg:px-3 lg:pb-8 lg:text-[11px] xl:px-4 xl:text-xs;
-  }
-  @media (min-width: 1024px) {
-    .al-diff__board {
-      @apply mt-12 xl:mt-14;
-      background: var(--al-diff-bg);
-    }
-    .al-diff__band {
-      @apply relative block w-full;
-    }
-    .al-diff__band-img {
-      @apply block w-full align-bottom;
-    }
-    .al-diff__band-badge {
-      @apply absolute z-[2] w-auto drop-shadow-sm;
-      left: 68.4%;
-      top: 2%;
-      height: 44%;
-    }
-    .al-diff__band-fade {
-      @apply pointer-events-none absolute inset-x-0 bottom-0 h-[30%];
-      background: linear-gradient(
-        to top,
-        var(--al-diff-bg) 0%,
-        rgba(243, 243, 241, 0.72) 45%,
-        transparent 100%
-      );
-    }
-    /* Column widths follow the slanted panel edges baked into the artwork. */
-    .al-diff__panels {
-      grid-template-columns: 19.1% 18.53% 18.93% 20.56% 22.88%;
-      background: var(--al-diff-bg);
-    }
-    .al-diff__panel {
-      @apply min-w-0 bg-transparent pb-4 pt-3;
-    }
-    .al-diff__media {
-      @apply hidden;
-    }
-    .al-diff__panel:not(:last-child)::after {
-      content: "";
-      @apply pointer-events-none absolute inset-y-0 right-0 z-[1] w-px;
-      transform-origin: top;
-      background: linear-gradient(
-        to bottom,
-        color-mix(in srgb, var(--al-diff-gold) 75%, transparent) 0%,
-        color-mix(in srgb, var(--al-diff-gold) 45%, transparent) 72%,
-        transparent 100%
-      );
-    }
-    .al-diff__panel:nth-child(1)::after {
-      transform: skewX(-9.7deg);
-    }
-    .al-diff__panel:nth-child(2)::after {
-      transform: skewX(-9.3deg);
-    }
-    .al-diff__panel:nth-child(3)::after {
-      transform: skewX(-7.8deg);
-    }
-    .al-diff__panel:nth-child(4)::after {
-      transform: skewX(-6.9deg);
-    }
-    .al-diff__num {
-      @apply mt-0 h-8 w-8 text-[13px];
-    }
-    .al-diff__panel-title {
-      @apply mt-3 px-4 text-[13px] tracking-[0.08em] xl:text-[15px];
-    }
-    .al-diff__panel-text {
-      @apply px-5 pb-6 text-[11.5px] xl:px-6 xl:text-[12.5px];
-    }
-  }
-  .al-diff__bar {
-    @apply mt-10 flex list-none flex-col items-stretch gap-0 border-t border-al-navy/10 bg-[color:var(--al-diff-bg)] px-2 py-6 sm:mt-12 sm:flex-row sm:items-stretch sm:justify-between sm:px-0 sm:py-7 lg:mt-0 lg:border-t-0;
-  }
-  .al-diff__bar-item {
-    @apply relative flex flex-1 flex-col items-center justify-center gap-2 px-3 py-3 text-center;
-  }
-  .al-diff__bar-item + .al-diff__bar-item::before {
-    content: "";
-    @apply absolute left-1/2 top-0 h-px w-10 -translate-x-1/2 sm:left-0 sm:top-1/2 sm:h-10 sm:w-px sm:translate-x-0 sm:-translate-y-1/2;
-    background-color: color-mix(in srgb, var(--al-diff-gold) 70%, transparent);
-  }
-  .al-diff__bar-icon {
-    @apply flex h-6 w-6 items-center justify-center text-al-navy;
-  }
-  .al-diff__bar-label {
-    @apply text-[9px] font-semibold uppercase tracking-[0.14em] text-al-navy sm:text-[10px];
+  .al-diff-board__img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
   }
   .mission-section {
     @apply bg-white;
@@ -3561,19 +2296,10 @@
   .mission-ingredient__origin {
     @apply mt-2 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-al-ink/55;
   }
-  /* Desktop: fullscreen section, content flows naturally (never hard-clipped). */
+  /* Desktop: compact single-row banner — sized to content, not forced to fill the viewport. */
   @media (min-width: 1024px) {
-    .mission-section {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: calc(100svh - 5.5625rem);
-    }
     .mission-section > .section {
-      display: grid;
-      grid-template-rows: auto auto;
-      row-gap: clamp(1.5rem, 3svh, 3rem);
-      padding-block: clamp(1.5rem, 3.5svh, 3.5rem);
+      padding-block: 3.5rem;
     }
     .mission-panel {
       align-items: center;
@@ -3583,12 +2309,15 @@
       width: 100%;
       height: auto;
       max-width: none;
-      max-height: 56svh;
+      max-height: 26rem;
       object-fit: contain;
     }
+    .mission-ingredients {
+      margin-top: 3.5rem;
+    }
     .mission-ingredient__media {
-      height: clamp(5.75rem, 14svh, 10rem);
-      width: clamp(5.75rem, 14svh, 10rem);
+      height: 8rem;
+      width: 8rem;
     }
   }
   .science-hero {
@@ -3643,7 +2372,10 @@
     @apply text-al-navy;
   }
   .targeted-support {
-    @apply relative w-full overflow-hidden bg-white;
+    @apply relative w-full bg-white;
+  }
+  .targeted-support__frame {
+    @apply relative mx-auto w-full;
   }
   .targeted-support__board {
     @apply block h-auto w-full;
@@ -3654,72 +2386,6 @@
   .targeted-support__hotspot {
     @apply block;
   }
-  .targeted-support__stage {
-    @apply relative w-full overflow-hidden bg-white;
-  }
-  .targeted-support__media {
-    @apply block h-auto w-full object-cover object-right bg-white sm:min-h-[420px] lg:min-h-[520px];
-  }
-  .targeted-support__copy {
-    @apply relative z-10 mx-auto max-w-7xl px-6 py-10 sm:px-8 sm:py-12 lg:absolute lg:inset-y-0 lg:left-0 lg:flex lg:w-[42%] lg:max-w-none lg:flex-col lg:justify-center lg:px-10 lg:py-14 xl:px-16;
-  }
-  .targeted-support__title {
-    @apply font-display text-4xl font-medium uppercase tracking-wide text-black sm:text-5xl lg:text-[3.25rem] lg:leading-none;
-  }
-  .targeted-support__ornament {
-    @apply mt-5 flex max-w-[11rem] items-center gap-2;
-  }
-  .targeted-support__ornament-line {
-    @apply h-px flex-1 bg-al-orange/70;
-  }
-  .targeted-support__ornament-dot {
-    @apply h-2 w-2 shrink-0 rounded-full bg-al-orange;
-  }
-  .targeted-support__lead {
-    @apply mt-6 max-w-md text-[15px] font-medium leading-relaxed text-black sm:text-base;
-  }
-  .targeted-support__rule {
-    @apply mt-6 h-px w-full max-w-sm bg-al-line;
-  }
-  .targeted-support__body {
-    @apply mt-6 max-w-md text-sm leading-relaxed text-al-ink/70 sm:text-[15px];
-  }
-  .targeted-support__products {
-    @apply mx-auto grid max-w-7xl border-t border-al-line divide-y divide-al-line sm:grid-cols-3 sm:divide-x sm:divide-y-0;
-  }
-  .targeted-support__product {
-    @apply flex items-center gap-4 px-5 py-6 transition-colors duration-200 hover:bg-al-panel sm:justify-center sm:px-6 lg:px-8;
-  }
-  .targeted-support__product-icon {
-    @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-white;
-  }
-  .targeted-support__product--orange .targeted-support__product-icon {
-    background-color: #c45c32;
-  }
-  .targeted-support__product--blue .targeted-support__product-icon {
-    background-color: #0b4aa5;
-  }
-  .targeted-support__product--red .targeted-support__product-icon {
-    background-color: #d32f2f;
-  }
-  .targeted-support__product--orange .targeted-support__product-name {
-    color: #c45c32;
-  }
-  .targeted-support__product--blue .targeted-support__product-name {
-    color: #0b4aa5;
-  }
-  .targeted-support__product--red .targeted-support__product-name {
-    color: #d32f2f;
-  }
-  .targeted-support__product-text {
-    @apply flex min-w-0 flex-col gap-1;
-  }
-  .targeted-support__product-name {
-    @apply text-sm font-bold uppercase tracking-[0.04em];
-  }
-  .targeted-support__product-focus {
-    @apply text-[11px] font-semibold uppercase tracking-[0.08em] text-al-ink/80;
-  }
   .rooted-nature {
     @apply relative isolate w-full overflow-visible bg-[#f5f5f3];
   }
@@ -3728,30 +2394,6 @@
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center;
-  }
-  .rooted-nature__media {
-    @apply block min-h-[320px] w-full object-cover object-right sm:min-h-[400px] lg:min-h-[480px];
-  }
-  .rooted-nature__copy {
-    @apply relative z-10 mx-auto max-w-7xl px-6 py-12 sm:px-8 sm:py-14 lg:absolute lg:inset-y-0 lg:left-0 lg:flex lg:w-[48%] lg:max-w-none lg:flex-col lg:justify-center lg:px-10 lg:py-16 xl:px-16;
-  }
-  .rooted-nature__title {
-    @apply font-sans text-[clamp(2rem,4.5vw,3.5rem)] font-extrabold uppercase leading-[1.05] tracking-[0.02em];
-  }
-  .rooted-nature__title-dark {
-    @apply text-black;
-  }
-  .rooted-nature__title-accent {
-    color: #a49e6a;
-  }
-  .rooted-nature__rule {
-    @apply mt-5 h-px w-28;
-    background-color: #a49e6a;
-  }
-  .rooted-nature__body {
-    @apply mt-6 max-w-md text-sm leading-relaxed text-black/80 sm:text-[15px];
   }
   .primary-ingredients {
     @apply bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-10 lg:py-20;
@@ -4160,25 +2802,9 @@
   /* Designed boards: edge-to-edge, one screen tall, crop top if needed */
   @media (min-width: 1024px) {
     .science-hero,
-    .targeted-support,
-    .rooted-nature,
-    .shop-hero,
-    .amb-hero--board,
-    .pro-hero--board,
     .hiq-hero,
-    .category-hero__panel,
-    .about-story-hero,
-    .home-feel-board,
-    .race-homeo--board,
-    .race-regulator--board,
-    .race-oxygen--board,
-    .race-distress--board,
-    .race-compare--board,
-    .race-vetrofit--board,
     .race-why--board,
-    .race-eval--board,
-    .race-science--board,
-    .product-board-bleed {
+    .race-eval--board {
       height: calc(100svh - 5.5625rem);
       max-height: calc(100svh - 5.5625rem);
       min-height: 0;
@@ -4188,33 +2814,39 @@
       aspect-ratio: auto;
     }
     .science-hero__board,
-    .targeted-support__board,
-    .rooted-nature__board,
-    .shop-hero__board,
-    .amb-hero__board,
-    .pro-hero__board,
-    .category-hero__panel img,
-    .about-story-hero__media,
-    .home-feel-board > img,
-    .race-homeo__board,
-    .race-regulator__board-img,
-    .race-oxygen__board,
-    .race-distress__board-img,
-    .race-compare__board-img,
-    .race-vetrofit__board-img,
     .race-why__board-img,
-    .race-eval__board-img,
-    .race-science__board-img,
-    .vf-desc__board,
-    .vf-kidney__board,
-    .vf-compare__board,
-    .vfen-inflam__board,
-    .vfen-control__board {
+    .race-eval__board-img {
       width: 100%;
       height: 100%;
       max-width: none;
       object-fit: cover;
       object-position: center bottom;
+    }
+    /* Product description boards: each board fills exactly one screen
+       (viewport minus header) with zero cropping. Side padding is allowed;
+       it blends invisibly because the background matches the boards'
+       baked-in near-white background. */
+    .product-board-bleed {
+      height: calc(100svh - 5.5625rem);
+      max-height: calc(100svh - 5.5625rem);
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fdfdfd;
+    }
+    .product-board-bleed img,
+    .vf-desc__board,
+    .vf-kidney__board,
+    .vf-compare__board,
+    .vfen-inflam__board,
+    .vfen-control__board {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
   }
 }

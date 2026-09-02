@@ -1,18 +1,16 @@
 <section class="category-hero category-hero--{{category.accent}}">
   <figure class="category-hero__panel">
     <img
-      src="{{category.panel}}?v=20260821a"
-      srcset="{{category.panel}}?v=20260821a 1672w, {{category.image2x}}?v=20260821a 3344w"
+      src="{{category.panel}}?v=20260902e"
       sizes="100vw"
       alt="{{category.name}} — {{category.summary}}"
-      width="1672"
-      height="941"
+      width="{{category.panelWidth}}"
+      height="{{category.panelHeight}}"
     />
   </figure>
 
   <div class="category-hero__compact">
     <div class="category-hero__copy">
-      <div class="category-hero__rule" aria-hidden="true"></div>
       <h1 class="category-hero__title">{{category.name}}</h1>
       {{#if category.accentLabel}}
       <p class="category-hero__accent">{{category.accentLabel}}</p>
@@ -36,10 +34,9 @@
   </div>
 </section>
 
-<section class="panel-white">
+<section class="panel-white" id="category-products">
   <div class="section">
-    <div class="eyebrow">Products in this category</div>
-    <h2 class="font-display mt-3 text-3xl font-medium text-al-navy sm:text-4xl">{{category.short}}</h2>
+    {{> section-head eyebrow="Products in this category" heading=category.short}}
 
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {{#each products}}

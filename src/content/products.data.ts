@@ -173,6 +173,8 @@ export const categories = [
     image2x: '/images/shop/categories/cartilage-board@2x.jpg',
     imageWidth: 1672,
     imageHeight: 941,
+    panelWidth: 1584,
+    panelHeight: 672,
     rangeLine: 'VetroFlex\u00ae Range | Joint + Connective Tissue Support',
     cta: 'Shop Category',
     benefits: [
@@ -197,6 +199,8 @@ export const categories = [
     image2x: '/images/shop/categories/inflammation-board@2x.jpg',
     imageWidth: 1672,
     imageHeight: 941,
+    panelWidth: 1584,
+    panelHeight: 672,
     rangeLine: 'VetroFen\u00ae Range | Inflammation & Pain Management',
     cta: 'Shop Category',
     benefits: [
@@ -221,6 +225,8 @@ export const categories = [
     image2x: '/images/shop/categories/kidney-board@2x.jpg',
     imageWidth: 1672,
     imageHeight: 941,
+    panelWidth: 1584,
+    panelHeight: 672,
     rangeLine: 'VetroFit\u00ae Range | Kidney Homeostasis & Oxygen Transport',
     cta: 'Shop Category',
     benefits: [

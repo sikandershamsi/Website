@@ -12,8 +12,7 @@
 
 <section class="panel-grey">
   <div class="section text-center">
-    <h2 class="font-display text-3xl font-medium text-al-navy sm:text-4xl lg:text-[2.75rem]">Our Philosophy</h2>
-    <div class="mx-auto mt-5 h-0.5 w-12 bg-al-orange" aria-hidden="true"></div>
+    {{> section-head heading="Our Philosophy"}}
     <p class="font-display mt-8 text-2xl font-medium leading-snug text-al-navy sm:text-[1.75rem] sm:leading-snug">
       Most equine supplements begin with ingredients.<br class="hidden sm:inline" />
       Animalife<sup>&reg;</sup> begins with physiology.
@@ -26,27 +25,27 @@
 
 <section class="panel-white border-t border-al-line">
   <div class="targeted-support">
-    <img
-      src="/images/science/targeted-support-board.jpg?v=20260821a"
-      srcset="/images/science/targeted-support-board.jpg?v=20260821a 1536w, /images/science/targeted-support-board@2x.jpg?v=20260821a 3072w"
-      sizes="100vw"
-      alt="Targeted Support. Targeted support for the systems that power performance, recovery, and long-term health. Our science-backed solutions work in harmony with your horse's body to support what matters most. VetroFlex cartilage and connective tissue. VetroFen inflammation and pain relief. VetroFit kidney homeostasis management."
-      width="1536"
-      height="1024"
-      class="targeted-support__board"
-    />
-    <nav class="targeted-support__hotspots" aria-label="Targeted support products">
-      {{#each targetedSupportProducts}}
-      <a href="{{this.href}}" class="targeted-support__hotspot" aria-label="{{this.name}} — {{this.focus}}"></a>
-      {{/each}}
-    </nav>
+    <div class="targeted-support__frame">
+      <img
+        src="/images/science/targeted-support-board.jpg?v=20260903a"
+        sizes="100vw"
+        alt="Targeted Support. Targeted support for the systems that power performance, recovery, and long-term health. Our science-backed solutions work in harmony with your horse's body to support what matters most. VetroFlex cartilage and connective tissue. VetroFen inflammation and pain relief. VetroFit kidney homeostasis management."
+        width="2000"
+        height="870"
+        class="targeted-support__board"
+      />
+      <nav class="targeted-support__hotspots" aria-label="Targeted support products">
+        {{#each targetedSupportProducts}}
+        <a href="{{this.href}}" class="targeted-support__hotspot" aria-label="{{this.name}} — {{this.focus}}"></a>
+        {{/each}}
+      </nav>
+    </div>
   </div>
 </section>
 
 <section class="panel-white">
   <div class="section">
-    <h2 class="font-display text-3xl font-medium text-al-navy sm:text-4xl">Product Science Comparison</h2>
-    <p class="mt-4 max-w-3xl text-sm text-al-ink/70">Every Animalife formula combines premium natural ingredients with science-backed nutritional research to deliver measurable physiological benefits.</p>
+    {{> section-head heading="Product Science Comparison" lede="Every Animalife formula combines premium natural ingredients with science-backed nutritional research to deliver measurable physiological benefits."}}
     <div class="mt-10 overflow-x-auto rounded-none border border-al-line">
       <table class="w-full min-w-[960px] border-collapse text-left text-sm">
         <thead>
@@ -84,12 +83,11 @@
 
 <section class="rooted-nature" aria-label="Science Rooted In Nature">
   <img
-    src="/images/science/rooted-in-nature-board.jpg?v=20260821b"
-    srcset="/images/science/rooted-in-nature-board.jpg?v=20260821b 1749w, /images/science/rooted-in-nature-board@2x.jpg?v=20260821b 3498w"
+    src="/images/science/rooted-in-nature-board.jpg?v=20260903a"
     sizes="100vw"
     alt="Science Rooted In Nature. Every ingredient is selected to serve a specific purpose—working together to support the healing process at the cellular level to ensure optimized performance and long-term wellness."
-    width="1749"
-    height="856"
+    width="2000"
+    height="940"
     class="rooted-nature__board"
   />
 </section>
@@ -99,7 +97,6 @@
   <div class="primary-ingredients__panel">
     <p class="primary-ingredients__brand">{{vetrofenPrimary.trademark}}</p>
     <h2 id="primary-ingredients-heading" class="primary-ingredients__title">Primary Ingredients</h2>
-    <div class="primary-ingredients__title-rule" aria-hidden="true"></div>
     <ul class="primary-ingredients__grid">
       {{#each vetrofenPrimary.primaryIngredients}}
       <li class="primary-ingredients__item">
@@ -107,7 +104,6 @@
           <img src="{{this.image}}?v=20260814b" alt="{{this.name}}" width="640" height="640" loading="lazy" />
         </div>
         <p class="primary-ingredients__name">{{this.name}}</p>
-        <div class="primary-ingredients__rule" aria-hidden="true"></div>
         <p class="primary-ingredients__origin">{{this.origin}}</p>
       </li>
       {{/each}}
