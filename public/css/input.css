@@ -46,11 +46,19 @@
 
 @layer components {
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] uppercase text-al-navy/55;
+    @apply flex w-full items-center justify-center text-center text-xs font-semibold tracking-[0.18em] uppercase text-al-navy/55;
   }
-  .eyebrow::before {
-    content: "";
-    @apply block h-px w-6 bg-al-navy/35;
+  .section-head {
+    @apply mx-auto flex w-full flex-col items-center text-center;
+  }
+  .section-heading {
+    @apply font-display mx-auto mt-5 max-w-5xl text-balance text-center text-[clamp(2.5rem,5.5vw,4.25rem)] font-medium leading-[1.1] text-black;
+  }
+  .section-heading--sm {
+    @apply mt-0 text-[clamp(1.75rem,3.2vw,2.5rem)];
+  }
+  .section-head__lede {
+    @apply mt-5 max-w-2xl text-sm leading-relaxed text-al-ink/70 sm:text-base;
   }
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-none px-8 py-3.5 text-xs font-semibold tracking-[0.14em] uppercase transition-colors duration-200;
@@ -239,7 +247,7 @@
     object-fit: contain;
     object-position: center;
   }
-  /* Full-viewport boards under product Description (no crop, aspect preserved) */
+  /* Full-bleed designed boards under product Description */
   .product-board-bleed {
     position: relative;
     left: 50%;
@@ -1197,15 +1205,27 @@
     --shop-muted: #3d4a43;
     --shop-gold: #c4a56a;
     --shop-green: #1e3f33;
-    @apply relative isolate w-full bg-[#f7f2ea];
+    @apply relative isolate w-full overflow-hidden bg-[#f7f2ea];
   }
   .shop-hero__board {
     display: block;
     width: 100%;
     max-width: none;
     height: auto;
-    object-fit: contain;
-    object-position: center;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+  @media (min-width: 1024px) {
+    .shop-hero {
+      height: calc(100svh - 5.5625rem);
+      max-height: calc(100svh - 5.5625rem);
+    }
+    .shop-hero__board {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+    }
   }
   .shop-hero__media {
     @apply absolute inset-0 h-full w-full object-cover object-[80%_center] sm:object-[72%_center] lg:object-[64%_center];
@@ -1425,17 +1445,6 @@
   }
   .race-cascade__title {
     @apply relative m-0 inline-block font-sans text-[clamp(1.65rem,4vw,3.1rem)] font-extrabold uppercase leading-[1.05] tracking-[0.005em] text-[#0d1b2e];
-  }
-  .race-cascade__title::before,
-  .race-cascade__title::after {
-    content: "";
-    @apply absolute top-1/2 hidden h-[3px] w-9 -translate-y-1/2 rounded-full bg-[#eaa521] lg:block;
-  }
-  .race-cascade__title::before {
-    @apply -left-14;
-  }
-  .race-cascade__title::after {
-    @apply -right-14;
   }
   .race-cascade__subtitle {
     @apply mx-auto mt-3 max-w-3xl text-[13px] italic leading-relaxed text-[#0d1b2e]/80 sm:text-[15px] lg:text-[17px];
@@ -2940,6 +2949,68 @@
   }
   /* Inspired-by-nature soft blend (matches reference fade) */
 
+  .inspired-nature {
+    @apply relative isolate overflow-hidden bg-white;
+  }
+  .inspired-nature__media {
+    @apply relative block h-[42vh] min-h-[220px] w-full object-cover object-[72%_center] sm:h-[48vh];
+  }
+  .inspired-nature__copy {
+    @apply relative z-10 px-6 py-10 sm:px-8 sm:py-12;
+  }
+  .inspired-nature__eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-al-orange sm:text-xs;
+  }
+  .inspired-nature__title {
+    @apply font-display mt-4 text-[clamp(2.35rem,5.4vw,4.35rem)] font-medium leading-[1.05] tracking-[-0.02em] text-al-navy;
+  }
+  .inspired-nature__rule {
+    @apply mt-5 h-px w-14 bg-al-navy/20;
+  }
+  .inspired-nature__body {
+    @apply mt-5 max-w-md text-[15px] leading-relaxed text-al-ink/80 sm:text-base;
+  }
+  .inspired-nature__em {
+    @apply not-italic text-al-orange;
+  }
+  .inspired-nature__body strong {
+    @apply font-semibold text-al-navy;
+  }
+  @media (min-width: 1024px) {
+    .inspired-nature {
+      height: calc(100svh - 5.5625rem);
+      max-height: calc(100svh - 5.5625rem);
+    }
+    .inspired-nature__media {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+      object-position: 68% center;
+    }
+    .inspired-nature__copy {
+      display: flex;
+      height: 100%;
+      max-width: 46%;
+      flex-direction: column;
+      justify-content: center;
+      padding-inline: clamp(2rem, 4vw, 4.5rem);
+      padding-block: clamp(1.25rem, 3.5svh, 3.5rem);
+    }
+    .inspired-nature__title {
+      margin-top: clamp(0.65rem, 1.6svh, 1.25rem);
+    }
+    .inspired-nature__rule {
+      margin-top: clamp(0.75rem, 1.8svh, 1.25rem);
+    }
+    .inspired-nature__body {
+      margin-top: clamp(0.75rem, 1.8svh, 1.25rem);
+      max-width: 28rem;
+      font-size: clamp(0.875rem, 1.35svh, 1.05rem);
+      line-height: 1.65;
+    }
+  }
   .inspired-blend {
     @apply relative isolate min-h-[460px] overflow-hidden bg-white sm:min-h-[520px] lg:min-h-[580px];
   }
@@ -2965,11 +3036,7 @@
     @apply relative z-10 flex max-w-lg flex-col justify-center px-8 py-14 sm:max-w-xl sm:px-12 sm:py-16 lg:max-w-[44%] lg:px-14 lg:py-20;
   }
   .inspired-blend__eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] uppercase text-al-orange;
-  }
-  .inspired-blend__eyebrow::before {
-    content: "";
-    @apply block h-px w-6 bg-al-orange;
+    @apply text-xs font-semibold tracking-[0.18em] uppercase text-al-orange;
   }
   .inspired-blend__rule {
     @apply mt-5 h-px w-10 bg-al-orange;
@@ -3274,7 +3341,7 @@
     @apply mx-auto max-w-4xl text-center;
   }
   .al-diff__title {
-    @apply font-display text-3xl font-medium text-al-navy sm:text-4xl lg:text-[2.85rem];
+    @apply font-display mt-0 max-w-5xl text-balance text-[clamp(2.5rem,5.5vw,4.25rem)] font-medium leading-[1.1] text-black;
   }
   .al-diff__rule {
     @apply mx-auto mt-4 h-px w-full max-w-3xl;
@@ -3494,8 +3561,38 @@
   .mission-ingredient__origin {
     @apply mt-2 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-al-ink/55;
   }
+  /* Desktop: fullscreen section, content flows naturally (never hard-clipped). */
+  @media (min-width: 1024px) {
+    .mission-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: calc(100svh - 5.5625rem);
+    }
+    .mission-section > .section {
+      display: grid;
+      grid-template-rows: auto auto;
+      row-gap: clamp(1.5rem, 3svh, 3rem);
+      padding-block: clamp(1.5rem, 3.5svh, 3.5rem);
+    }
+    .mission-panel {
+      align-items: center;
+      gap: clamp(1rem, 1.6vw, 2.5rem);
+    }
+    .mission-panel__media img {
+      width: 100%;
+      height: auto;
+      max-width: none;
+      max-height: 56svh;
+      object-fit: contain;
+    }
+    .mission-ingredient__media {
+      height: clamp(5.75rem, 14svh, 10rem);
+      width: clamp(5.75rem, 14svh, 10rem);
+    }
+  }
   .science-hero {
-    @apply relative isolate w-full bg-[#1a1a16];
+    @apply relative isolate w-full overflow-hidden bg-[#1a1a16];
   }
   .science-hero__board {
     @apply block h-auto w-full;
@@ -3546,7 +3643,7 @@
     @apply text-al-navy;
   }
   .targeted-support {
-    @apply relative w-full bg-white;
+    @apply relative w-full overflow-hidden bg-white;
   }
   .targeted-support__board {
     @apply block h-auto w-full;
@@ -4058,5 +4155,66 @@
   .site-nav__list a:hover {
     background-size: 100% 100%;
     opacity: 1;
+  }
+
+  /* Designed boards: edge-to-edge, one screen tall, crop top if needed */
+  @media (min-width: 1024px) {
+    .science-hero,
+    .targeted-support,
+    .rooted-nature,
+    .shop-hero,
+    .amb-hero--board,
+    .pro-hero--board,
+    .hiq-hero,
+    .category-hero__panel,
+    .about-story-hero,
+    .home-feel-board,
+    .race-homeo--board,
+    .race-regulator--board,
+    .race-oxygen--board,
+    .race-distress--board,
+    .race-compare--board,
+    .race-vetrofit--board,
+    .race-why--board,
+    .race-eval--board,
+    .race-science--board,
+    .product-board-bleed {
+      height: calc(100svh - 5.5625rem);
+      max-height: calc(100svh - 5.5625rem);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .hiq-hero {
+      aspect-ratio: auto;
+    }
+    .science-hero__board,
+    .targeted-support__board,
+    .rooted-nature__board,
+    .shop-hero__board,
+    .amb-hero__board,
+    .pro-hero__board,
+    .category-hero__panel img,
+    .about-story-hero__media,
+    .home-feel-board > img,
+    .race-homeo__board,
+    .race-regulator__board-img,
+    .race-oxygen__board,
+    .race-distress__board-img,
+    .race-compare__board-img,
+    .race-vetrofit__board-img,
+    .race-why__board-img,
+    .race-eval__board-img,
+    .race-science__board-img,
+    .vf-desc__board,
+    .vf-kidney__board,
+    .vf-compare__board,
+    .vfen-inflam__board,
+    .vfen-control__board {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      object-position: center bottom;
+    }
   }
 }
