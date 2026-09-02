@@ -1,0 +1,26 @@
+{{> page-header eyebrow="My Account" heading="Create Your Account" subheading="An account is required to manage recurring subscriptions and view order history."}}
+
+<section class="section flex justify-center">
+  <div class="card w-full max-w-md p-8">
+    {{#if notice}}
+    <div class="mb-6 rounded-none bg-al-navy/10 p-4 text-sm text-al-navy">{{notice}}</div>
+    {{/if}}
+    <form action="/account/register" method="post" class="space-y-5">
+      <div>
+        <label class="field-label" for="name">Full Name</label>
+        <input id="name" name="name" type="text" class="input-field" />
+      </div>
+      <div>
+        <label class="field-label" for="email">Email Address</label>
+        <input id="email" name="email" type="email" required class="input-field" />
+      </div>
+      <div>
+        <label class="field-label" for="password">Password</label>
+        <input id="password" name="password" type="password" minlength="8" required class="input-field" />
+        <p class="mt-1 text-xs text-al-ink/50">At least 8 characters.</p>
+      </div>
+      <button type="submit" class="btn-primary w-full">Create Account</button>
+    </form>
+    <p class="mt-6 text-center text-sm text-al-ink/60">Already have an account? <a href="/account" class="font-semibold text-al-navy hover:underline">Sign in</a></p>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+<a href="/admin/subscriptions" class="text-xs font-semibold uppercase tracking-wide text-al-ink/50 hover:text-al-navy">&larr; All Subscriptions</a>
+<h1 class="font-display mt-2 text-2xl font-medium text-al-navy">{{subscription.productName}}</h1>
+
+<div class="mt-6 max-w-md rounded-none border border-al-line bg-white p-6">
+  <dl class="space-y-3 text-sm">
+    <div class="flex justify-between"><dt class="text-al-ink/50">Status</dt><dd class="font-semibold text-al-navy">{{subscription.status}}</dd></div>
+    <div class="flex justify-between"><dt class="text-al-ink/50">Interval</dt><dd>{{subscription.interval}}ly</dd></div>
+    <div class="flex justify-between"><dt class="text-al-ink/50">Current period ends</dt><dd>{{subscription.currentPeriodEnd}}</dd></div>
+    <div class="flex justify-between"><dt class="text-al-ink/50">Cancels at period end</dt><dd>{{#if subscription.cancelAtPeriodEnd}}Yes{{else}}No{{/if}}</dd></div>
+  </dl>
+
+  {{#unless subscription.cancelAtPeriodEnd}}
+  <form action="/admin/subscriptions/{{subscription._id}}/cancel" method="post" class="mt-6">
+    <button type="submit" class="text-xs font-semibold uppercase tracking-wide text-red-600 hover:underline">Cancel at period end</button>
+  </form>
+  {{/unless}}
+</div>

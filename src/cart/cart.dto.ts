@@ -1,11 +1,15 @@
-import { IsIn, IsInt, IsOptional, IsString, Min } from 'class-validator';
-import { Type } from 'class-transformer';
-import { products } from '../content/products.data';
+import { IsBoolean, IsInt, IsOptional, IsString, Min } from 'class-validator';
+import { Transform, Type } from 'class-transformer';
 
-const slugs = products.map((p) => p.slug);
+/** Handles HTML form values ("true"/"false" strings) correctly, unlike the naive Boolean() cast. */
+function toBoolean({ value }: { value: unknown }): boolean | unknown {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'string') return value.toLowerCase() === 'true';
+  return value;
+}
 
 export class AddToCartDto {
-  @IsIn(slugs)
+  @IsString()
   slug: string;
 
   @Type(() => Number)
@@ -16,10 +20,15 @@ export class AddToCartDto {
   @IsOptional()
   @IsString()
   redirectTo?: string;
+
+  @IsOptional()
+  @Transform(toBoolean)
+  @IsBoolean()
+  isSubscription?: boolean;
 }
 
 export class UpdateCartDto {
-  @IsIn(slugs)
+  @IsString()
   slug: string;
 
   @Type(() => Number)

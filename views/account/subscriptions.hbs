@@ -1,0 +1,24 @@
+{{> page-header eyebrow="My Account" heading=heading}}
+
+<section class="section grid gap-8 lg:grid-cols-[240px_1fr]">
+  {{> account-sidebar}}
+
+  {{#if isEmpty}}
+  <div class="card flex flex-col items-center justify-center px-8 py-16 text-center">
+    <div class="flex h-14 w-14 items-center justify-center rounded-none bg-al-navy/5 text-al-navy">{{{icon "check" "w-6 h-6"}}}</div>
+    <p class="mt-5 max-w-sm text-sm text-al-ink/65">You have no active subscriptions. Set up recurring delivery on any product page to never run out.</p>
+    <a href="/shop" class="btn-primary mt-6">Shop Products</a>
+  </div>
+  {{else}}
+  <div class="card divide-y divide-al-line overflow-hidden">
+    {{#each subscriptions}}
+    <div class="flex flex-wrap items-center justify-between gap-3 p-6">
+      <div>
+        <p class="font-display text-base font-medium text-al-navy">{{this.productName}}</p>
+        <p class="mt-1 text-xs text-al-ink/50">Renews {{this.interval}}ly &middot; {{this.status}}{{#if this.cancelAtPeriodEnd}} (cancels at period end){{/if}}</p>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</section>

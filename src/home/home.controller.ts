@@ -1,80 +1,35 @@
 import { Controller, Get, Render } from '@nestjs/common';
-import { horseTruths, standards, testimonials } from '../content/site.data';
-import { products } from '../content/products.data';
+import { PagesService } from '../pages/pages.service';
+import { ProductsService } from '../products/products.service';
 
 @Controller()
 export class HomeController {
+  constructor(
+    private readonly pagesService: PagesService,
+    private readonly productsService: ProductsService,
+  ) {}
+
   @Get('/')
   @Render('home/index')
-  index() {
+  async index() {
+    const sections = await this.pagesService.getSectionDataByKey('home');
+    const products = await this.productsService.findAll();
+
+    const horseTruths = (sections['horse-truths'] as { items?: unknown[] })?.items ?? [];
+    const standards = (sections['standards'] as { items?: unknown[] })?.items ?? [];
+    const testimonials = (sections['testimonials'] as { items?: unknown[] })?.items ?? [];
+    const featuredProducts = (sections['featured-products'] as { items?: unknown[] })?.items ?? [];
+    const featuredIngredients = (sections['featured-ingredients'] as { items?: unknown[] })?.items ?? [];
+
     return {
       title: undefined,
       activeNav: 'home',
       horseTruths,
       standards,
-      testimonials: testimonials.slice(0, 8),
+      testimonials,
       products,
-      featuredProducts: [
-        {
-          slug: 'vetroflex',
-          trademark: 'VetroFlex®',
-          category: 'Cartilage – Joint – Connective Tissue Repair',
-          tagline: 'Joint, Cartilage & Connective Tissue Support',
-          price: 79,
-          image: '/images/products/vetroflex-tub.webp',
-        },
-        {
-          slug: 'vetrofen',
-          trademark: 'VetroFen®',
-          category: 'Inflammation & Pain Management',
-          tagline: 'Advanced Inflammation & Pain Management Support',
-          price: 69,
-          image: '/images/products/vetrofen-tub.webp',
-        },
-        {
-          slug: 'vetrofen',
-          trademark: 'VetroFen®',
-          category: 'Inflammation & Pain Management',
-          tagline: 'Advanced Inflammation & Pain Management Support',
-          price: 39,
-          image: '/images/products/vetrofen-syringe.webp',
-        },
-        {
-          slug: 'vetrofit',
-          trademark: 'VetroFit®',
-          category: 'Kidney Homeostasis Management',
-          tagline: 'Oxygen Transport, Endurance & Recovery Support',
-          price: 59,
-          image: '/images/products/vetrofit-syringe.webp',
-        },
-      ],
-      featuredIngredients: [
-        {
-          name: 'Hydrolyzed Collagen Type II',
-          origin: 'Brazil',
-          image: '/images/ingredients/inspired/hydrolyzed-collagen.jpg',
-        },
-        {
-          name: 'ACV (Chondroitin)',
-          origin: 'France',
-          image: '/images/ingredients/inspired/acv-chondroitin.jpg',
-        },
-        {
-          name: 'FOS (Fructooligosaccharides)',
-          origin: 'Belgium',
-          image: '/images/ingredients/inspired/fos.jpg',
-        },
-        {
-          name: 'Manganese, Copper & Zinc',
-          origin: 'Global',
-          image: '/images/ingredients/inspired/manganese-copper-zinc.jpg',
-        },
-        {
-          name: 'Biotin',
-          origin: 'Switzerland',
-          image: '/images/ingredients/inspired/biotin.jpg',
-        },
-      ],
+      featuredProducts,
+      featuredIngredients,
     };
   }
 }

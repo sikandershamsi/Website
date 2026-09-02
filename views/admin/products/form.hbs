@@ -1,0 +1,89 @@
+<h1 class="font-display text-2xl font-medium text-al-navy">{{title}}</h1>
+
+<form action="{{#if isNew}}/admin/products/new{{else}}/admin/products/{{product._id}}{{/if}}" method="post" class="mt-6 max-w-2xl space-y-5 rounded-none border border-al-line bg-white p-6">
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label class="field-label" for="slug">Slug (URL-safe, unique)</label>
+      <input id="slug" name="slug" value="{{product.slug}}" {{#unless isNew}}readonly{{/unless}} required class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="name">Name</label>
+      <input id="name" name="name" value="{{product.name}}" required class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="trademark">Trademark (display name)</label>
+      <input id="trademark" name="trademark" value="{{product.trademark}}" class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="price">Price (USD)</label>
+      <input id="price" name="price" type="number" step="0.01" value="{{product.price}}" required class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="categorySlug">Category</label>
+      <select id="categorySlug" name="categorySlug" class="input-field">
+        <option value="">&mdash;</option>
+        {{#each categories}}
+        <option value="{{this.slug}}" {{#ifCond ../product.categorySlug this.slug}}selected{{/ifCond}}>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div>
+      <label class="field-label" for="category">Category (display label)</label>
+      <input id="category" name="category" value="{{product.category}}" class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="size">Size</label>
+      <input id="size" name="size" value="{{product.size}}" class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="heroStat">Hero Stat</label>
+      <input id="heroStat" name="heroStat" value="{{product.heroStat}}" class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="image">Image path</label>
+      <input id="image" name="image" value="{{product.image}}" class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="accent">Accent color key</label>
+      <input id="accent" name="accent" value="{{product.accent}}" class="input-field" />
+    </div>
+  </div>
+
+  <div>
+    <label class="field-label" for="tagline">Tagline</label>
+    <input id="tagline" name="tagline" value="{{product.tagline}}" class="input-field" />
+  </div>
+
+  <div>
+    <label class="field-label" for="description">Description</label>
+    <textarea id="description" name="description" rows="3" class="input-field">{{product.description}}</textarea>
+  </div>
+
+  <div>
+    <label class="field-label" for="keyIngredients">Key Ingredients (one per line)</label>
+    <textarea id="keyIngredients" name="keyIngredients" rows="4" class="input-field">{{#each product.keyIngredients}}{{this}}
+{{/each}}</textarea>
+  </div>
+
+  <div>
+    <label class="field-label" for="supports">Supports (one per line)</label>
+    <textarea id="supports" name="supports" rows="4" class="input-field">{{#each product.supports}}{{this}}
+{{/each}}</textarea>
+  </div>
+
+  <label class="flex items-center gap-2 text-sm text-al-ink/75">
+    <input type="checkbox" name="active" value="true" {{#unless isNew}}{{#if product.active}}checked{{/if}}{{else}}checked{{/unless}} class="accent-al-navy" />
+    Active (visible in shop)
+  </label>
+
+  <div class="flex items-center gap-3 pt-2">
+    <button type="submit" class="btn-primary">Save Product</button>
+    <a href="/admin/products" class="btn-outline">Cancel</a>
+  </div>
+</form>
+
+{{#unless isNew}}
+<form action="/admin/products/{{product._id}}/delete" method="post" class="mt-4 max-w-2xl">
+  <button type="submit" class="text-xs font-semibold uppercase tracking-wide text-red-600 hover:underline">Deactivate this product</button>
+</form>
+{{/unless}}

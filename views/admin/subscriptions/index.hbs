@@ -1,0 +1,28 @@
+<h1 class="font-display text-2xl font-medium text-al-navy">Subscriptions</h1>
+
+<div class="mt-6 overflow-hidden rounded-none border border-al-line bg-white">
+  {{#if subscriptions.length}}
+  <table class="w-full text-left text-sm">
+    <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+      <tr>
+        <th class="px-4 py-3">Product</th>
+        <th class="px-4 py-3">Status</th>
+        <th class="px-4 py-3">Renews</th>
+        <th class="px-4 py-3"></th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-al-line">
+      {{#each subscriptions}}
+      <tr>
+        <td class="px-4 py-3 font-semibold text-al-navy">{{this.productName}}</td>
+        <td class="px-4 py-3">{{this.status}}{{#if this.cancelAtPeriodEnd}} (cancelling){{/if}}</td>
+        <td class="px-4 py-3 text-al-ink/60">{{this.currentPeriodEnd}}</td>
+        <td class="px-4 py-3 text-right"><a href="/admin/subscriptions/{{this._id}}" class="text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">View</a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <p class="p-6 text-sm text-al-ink/60">No subscriptions yet.</p>
+  {{/if}}
+</div>

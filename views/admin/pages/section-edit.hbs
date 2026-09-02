@@ -1,0 +1,10 @@
+<a href="/admin/pages/home" class="text-xs font-semibold uppercase tracking-wide text-al-ink/50 hover:text-al-navy">&larr; Home Page Sections</a>
+<h1 class="font-display mt-2 text-2xl font-medium text-al-navy">{{title}}</h1>
+
+<form action="/admin/pages/home/sections/{{section.key}}" method="post" class="mt-6 max-w-3xl rounded-none border border-al-line bg-white p-6">
+  {{> (lookup . 'partial')}}
+  <div class="mt-6 flex items-center gap-3">
+    <button type="submit" class="btn-primary">Save Section</button>
+    <a href="/admin/pages/home" class="btn-outline">Cancel</a>
+  </div>
+</form>

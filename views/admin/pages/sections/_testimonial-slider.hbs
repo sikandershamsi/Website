@@ -1,0 +1,17 @@
+<p class="text-xs text-al-ink/50">One row per testimonial. Leave a row's Quote blank to remove it.</p>
+<div class="mt-4 space-y-4">
+  {{#each section.data.items}}
+  <div class="grid gap-2 border-b border-al-line pb-4 sm:grid-cols-[1fr_2fr_1fr]">
+    <input name="product" value="{{this.product}}" placeholder="Product" class="input-field" />
+    <textarea name="quote" rows="2" placeholder="Quote" class="input-field">{{this.quote}}</textarea>
+    <input name="author" value="{{this.author}}" placeholder="Author" class="input-field" />
+  </div>
+  {{/each}}
+  {{#each (array 1 2 3)}}
+  <div class="grid gap-2 border-b border-al-line pb-4 sm:grid-cols-[1fr_2fr_1fr]">
+    <input name="product" placeholder="Product" class="input-field" />
+    <textarea name="quote" rows="2" placeholder="Quote" class="input-field"></textarea>
+    <input name="author" placeholder="Author" class="input-field" />
+  </div>
+  {{/each}}
+</div>

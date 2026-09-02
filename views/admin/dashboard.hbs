@@ -1,0 +1,44 @@
+<h1 class="font-display text-2xl font-medium text-al-navy">Dashboard</h1>
+
+<div class="mt-6 grid gap-5 sm:grid-cols-3">
+  <div class="rounded-none border border-al-line bg-white p-6">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Products</p>
+    <p class="font-display mt-2 text-3xl font-medium text-al-navy">{{productCount}}</p>
+  </div>
+  <div class="rounded-none border border-al-line bg-white p-6">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Orders (7 days)</p>
+    <p class="font-display mt-2 text-3xl font-medium text-al-navy">{{ordersThisWeek}}</p>
+  </div>
+  <div class="rounded-none border border-al-line bg-white p-6">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Active Subscriptions</p>
+    <p class="font-display mt-2 text-3xl font-medium text-al-navy">{{activeSubscriptions}}</p>
+  </div>
+</div>
+
+<div class="mt-10">
+  <p class="font-display text-lg font-medium text-al-navy">Recent Orders</p>
+  <div class="mt-4 overflow-hidden rounded-none border border-al-line bg-white">
+    {{#if recentOrders.length}}
+    <table class="w-full text-left text-sm">
+      <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+        <tr>
+          <th class="px-4 py-3">Order</th>
+          <th class="px-4 py-3">Status</th>
+          <th class="px-4 py-3">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-al-line">
+        {{#each recentOrders}}
+        <tr>
+          <td class="px-4 py-3"><a href="/admin/orders/{{this._id}}" class="font-semibold text-al-navy hover:underline">{{this.orderNumber}}</a></td>
+          <td class="px-4 py-3">{{this.status}}</td>
+          <td class="px-4 py-3">{{currency this.subtotal}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    <p class="p-6 text-sm text-al-ink/60">No orders yet.</p>
+    {{/if}}
+  </div>
+</div>

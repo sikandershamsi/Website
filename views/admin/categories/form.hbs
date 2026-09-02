@@ -1,0 +1,52 @@
+<h1 class="font-display text-2xl font-medium text-al-navy">{{title}}</h1>
+
+<form action="{{#if isNew}}/admin/categories/new{{else}}/admin/categories/{{category.slug}}{{/if}}" method="post" class="mt-6 max-w-2xl space-y-5 rounded-none border border-al-line bg-white p-6">
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label class="field-label" for="slug">Slug</label>
+      <input id="slug" name="slug" value="{{category.slug}}" {{#unless isNew}}readonly{{/unless}} required class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="name">Name</label>
+      <input id="name" name="name" value="{{category.name}}" required class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="short">Short label</label>
+      <input id="short" name="short" value="{{category.short}}" class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="accent">Accent color key</label>
+      <input id="accent" name="accent" value="{{category.accent}}" class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="accentLabel">Accent label</label>
+      <input id="accentLabel" name="accentLabel" value="{{category.accentLabel}}" class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="cta">CTA text</label>
+      <input id="cta" name="cta" value="{{category.cta}}" class="input-field" />
+    </div>
+    <div class="sm:col-span-2">
+      <label class="field-label" for="image">Card image path</label>
+      <input id="image" name="image" value="{{category.image}}" class="input-field" />
+    </div>
+  </div>
+
+  <div>
+    <label class="field-label" for="strapline">Strapline</label>
+    <input id="strapline" name="strapline" value="{{category.strapline}}" class="input-field" />
+  </div>
+  <div>
+    <label class="field-label" for="rangeLine">Range line</label>
+    <input id="rangeLine" name="rangeLine" value="{{category.rangeLine}}" class="input-field" />
+  </div>
+  <div>
+    <label class="field-label" for="summary">Summary</label>
+    <textarea id="summary" name="summary" rows="3" class="input-field">{{category.summary}}</textarea>
+  </div>
+
+  <div class="flex items-center gap-3 pt-2">
+    <button type="submit" class="btn-primary">Save Category</button>
+    <a href="/admin/categories" class="btn-outline">Cancel</a>
+  </div>
+</form>

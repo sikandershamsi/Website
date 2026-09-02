@@ -1,0 +1,28 @@
+<h1 class="font-display text-2xl font-medium text-al-navy">Orders</h1>
+
+<div class="mt-6 overflow-hidden rounded-none border border-al-line bg-white">
+  {{#if orders.length}}
+  <table class="w-full text-left text-sm">
+    <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+      <tr>
+        <th class="px-4 py-3">Order</th>
+        <th class="px-4 py-3">Source</th>
+        <th class="px-4 py-3">Status</th>
+        <th class="px-4 py-3">Subtotal</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-al-line">
+      {{#each orders}}
+      <tr>
+        <td class="px-4 py-3"><a href="/admin/orders/{{this._id}}" class="font-semibold text-al-navy hover:underline">{{this.orderNumber}}</a></td>
+        <td class="px-4 py-3 text-al-ink/60">{{this.source}}</td>
+        <td class="px-4 py-3">{{this.status}}</td>
+        <td class="px-4 py-3">{{currency this.subtotal}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <p class="p-6 text-sm text-al-ink/60">No orders yet.</p>
+  {{/if}}
+</div>

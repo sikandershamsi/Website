@@ -1,0 +1,15 @@
+<p class="text-xs text-al-ink/50">One row per statement. Leave a row's Title blank to remove it. A few blank spares are included for adding new ones.</p>
+<div class="mt-4 space-y-4">
+  {{#each section.data.items}}
+  <div class="grid gap-2 border-b border-al-line pb-4 sm:grid-cols-[1fr_2fr]">
+    <input name="title" value="{{this.title}}" placeholder="Title" class="input-field" />
+    <textarea name="body" rows="2" placeholder="Body" class="input-field">{{this.body}}</textarea>
+  </div>
+  {{/each}}
+  {{#each (array 1 2 3)}}
+  <div class="grid gap-2 border-b border-al-line pb-4 sm:grid-cols-[1fr_2fr]">
+    <input name="title" placeholder="Title" class="input-field" />
+    <textarea name="body" rows="2" placeholder="Body" class="input-field"></textarea>
+  </div>
+  {{/each}}
+</div>

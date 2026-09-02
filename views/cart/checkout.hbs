@@ -7,26 +7,42 @@
     <a href="/shop" class="btn-primary mt-6">Shop All Products</a>
   </div>
   {{else}}
+  {{#if cancelled}}
+  <div class="mb-8 rounded-none border border-al-line bg-al-panel p-4 text-sm text-al-ink/75">
+    Checkout was cancelled &mdash; your cart is unchanged.
+  </div>
+  {{/if}}
+  {{#if multipleSubscriptionsError}}
+  <div class="mb-8 rounded-none border border-al-orange/40 bg-al-orange/10 p-4 text-sm text-al-ink/80">
+    Only one subscription product can be checked out at a time. Please remove one before continuing, or check it out separately.
+  </div>
+  {{/if}}
   <div class="grid gap-10 lg:grid-cols-[1fr_360px]">
-    <form action="/checkout/place-order" method="post" class="space-y-8">
-      <div>
-        <h2 class="font-display text-lg font-medium text-al-navy">Shipping Information</h2>
-        <div class="mt-5 grid gap-5 sm:grid-cols-2">
-          <div><label class="field-label" for="fullName">Full Name</label><input id="fullName" name="fullName" required class="input-field" /></div>
-          <div><label class="field-label" for="email">Email</label><input id="email" name="email" type="email" required class="input-field" /></div>
-          <div class="sm:col-span-2"><label class="field-label" for="address">Address</label><input id="address" name="address" required class="input-field" /></div>
-          <div><label class="field-label" for="city">City</label><input id="city" name="city" required class="input-field" /></div>
-          <div><label class="field-label" for="state">State</label><input id="state" name="state" required class="input-field" /></div>
-          <div><label class="field-label" for="zip">Zip Code</label><input id="zip" name="zip" required class="input-field" /></div>
+    <div class="space-y-5">
+      <h2 class="font-display text-lg font-medium text-al-navy">Review Your Order</h2>
+      {{#each lines}}
+      <div class="flex items-center gap-4 border-b border-al-line pb-5">
+        <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-none bg-al-panel">
+          <img src="{{this.image}}" alt="{{this.name}}" class="h-full w-full object-contain p-1" />
         </div>
+        <div class="min-w-0 flex-1">
+          <p class="font-display text-sm font-medium text-al-navy">{{this.name}}</p>
+          <p class="text-xs text-al-ink/55">
+            {{#if this.isSubscription}}Subscribe monthly{{else}}One-time purchase{{/if}} &times; {{this.qty}}
+          </p>
+        </div>
+        <p class="text-sm font-semibold text-al-navy">{{currency this.price}}</p>
       </div>
+      {{/each}}
 
       <div class="rounded-none border border-dashed border-al-line bg-al-cream-dark/30 p-5 text-sm text-al-ink/65">
-        This is a demo checkout &mdash; no payment is processed and no charge will be made. Placing an order simply confirms this flow works end-to-end.
+        Payment and shipping details are collected securely on Stripe's checkout page &mdash; card details never touch our servers.
       </div>
 
-      <button type="submit" class="btn-primary w-full sm:w-auto">Place Order</button>
-    </form>
+      <form action="/checkout/start" method="post">
+        <button type="submit" class="btn-primary w-full sm:w-auto">Continue to Payment</button>
+      </form>
+    </div>
 
     <div class="card h-max p-6">
       <p class="font-display text-lg font-medium text-al-navy">Order Summary</p>
@@ -42,6 +58,7 @@
         <span>Subtotal</span>
         <span class="font-display text-base font-medium text-al-navy">{{currency subtotal}}</span>
       </div>
+      <p class="mt-2 text-xs text-al-ink/50">Shipping and taxes calculated at the next step.</p>
     </div>
   </div>
   {{/if}}

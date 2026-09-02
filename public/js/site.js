@@ -334,4 +334,17 @@
       });
     });
   }
+
+  // PDP image gallery — thumbnails swap the main product image
+  document.querySelectorAll('[data-pdp-gallery]').forEach(function (gallery) {
+    var main = gallery.querySelector('[data-pdp-main]');
+    var thumbs = gallery.querySelectorAll('[data-pdp-thumb]');
+    if (!main || !thumbs.length) return;
+    thumbs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        main.src = btn.getAttribute('data-pdp-thumb');
+        thumbs.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+      });
+    });
+  });
 })();

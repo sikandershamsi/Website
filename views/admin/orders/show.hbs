@@ -1,0 +1,45 @@
+<a href="/admin/orders" class="text-xs font-semibold uppercase tracking-wide text-al-ink/50 hover:text-al-navy">&larr; All Orders</a>
+<h1 class="font-display mt-2 text-2xl font-medium text-al-navy">Order {{order.orderNumber}}</h1>
+
+<div class="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
+  <div class="rounded-none border border-al-line bg-white p-6">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Line Items</p>
+    <div class="mt-4 space-y-3">
+      {{#each order.lines}}
+      <div class="flex justify-between border-b border-al-line pb-3 text-sm">
+        <span>{{this.name}} &times; {{this.qty}}{{#if this.isSubscription}} (subscription){{/if}}</span>
+        <span class="font-semibold text-al-navy">{{currency this.price}}</span>
+      </div>
+      {{/each}}
+    </div>
+    <div class="mt-4 flex justify-between text-sm font-semibold text-al-navy">
+      <span>Subtotal</span>
+      <span>{{currency order.subtotal}}</span>
+    </div>
+
+    {{#if order.shipping}}
+    <p class="mt-6 text-xs font-semibold uppercase tracking-wide text-al-ink/50">Shipping</p>
+    <p class="mt-2 text-sm text-al-ink/75">
+      {{order.shipping.fullName}}<br />
+      {{order.shipping.address}}<br />
+      {{order.shipping.city}}, {{order.shipping.state}} {{order.shipping.zip}}<br />
+      {{order.shipping.country}}
+    </p>
+    {{/if}}
+  </div>
+
+  <div class="rounded-none border border-al-line bg-white p-6">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Status</p>
+    <form action="/admin/orders/{{order._id}}/status" method="post" class="mt-3 flex items-center gap-2">
+      <select name="status" class="input-field">
+        {{#each (array "pending" "paid" "fulfilled" "cancelled" "refunded")}}
+        <option value="{{this}}" {{#ifCond this ../order.status}}selected{{/ifCond}}>{{this}}</option>
+        {{/each}}
+      </select>
+      <button type="submit" class="btn-outline !px-3 !py-2 text-xs">Update</button>
+    </form>
+
+    <p class="mt-6 text-xs font-semibold uppercase tracking-wide text-al-ink/50">Stripe</p>
+    <p class="mt-2 break-all text-xs text-al-ink/60">{{order.stripe.checkoutSessionId}}</p>
+  </div>
+</div>

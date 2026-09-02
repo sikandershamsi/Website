@@ -2,6 +2,10 @@
 
 <section class="section flex justify-center">
   <div class="card w-full max-w-md p-8">
+    {{#if loggedIn}}
+    <p class="text-center text-sm text-al-ink/70">You're already signed in.</p>
+    <a href="/account/orders" class="btn-primary mt-6 block text-center">Go to My Orders</a>
+    {{else}}
     {{#if notice}}
     <div class="mb-6 rounded-none bg-al-navy/10 p-4 text-sm text-al-navy">{{notice}}</div>
     {{/if}}
@@ -16,6 +20,7 @@
       </div>
       <button type="submit" class="btn-primary w-full">Sign In</button>
     </form>
-    <p class="mt-6 text-center text-sm text-al-ink/60">New here? Creating an account happens automatically at checkout.</p>
+    <p class="mt-6 text-center text-sm text-al-ink/60">New here? <a href="/account/register" class="font-semibold text-al-navy hover:underline">Create an account</a></p>
+    {{/if}}
   </div>
 </section>

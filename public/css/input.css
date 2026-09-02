@@ -93,6 +93,13 @@
   .card {
     @apply rounded-none border border-al-line bg-white;
   }
+  /* PDP gallery — thumbnail rail beside the main product image */
+  .pdp-thumb {
+    @apply flex aspect-[3/4] w-16 shrink-0 cursor-pointer items-center justify-center border border-al-line bg-white p-2 transition-colors hover:border-al-navy/50 sm:w-full;
+  }
+  .pdp-thumb.is-active {
+    @apply border-al-navy;
+  }
   .product-card__media-link {
     @apply block;
   }
@@ -1385,39 +1392,37 @@
   .race-hero__video {
     @apply absolute inset-0 h-full w-full object-cover object-center;
   }
+  /* Racing page text interludes — one consistent "separator band" design:
+     warm panel bg, centered gold rule + serif title, regardless of variant */
   .race-intro {
-    @apply flex min-h-[calc(100svh-6.75rem)] items-center bg-white;
+    @apply flex items-center bg-al-panel;
   }
   .race-intro--compact {
-    @apply min-h-0 items-stretch;
+    @apply min-h-0;
   }
-  .race-intro.panel-grey {
-    @apply bg-al-panel;
-  }
+  .race-intro.panel-white,
+  .race-intro.panel-grey,
   .race-intro--muted {
     @apply bg-al-panel;
   }
   .race-intro__inner {
-    @apply relative mx-auto w-full max-w-4xl px-6 py-20 sm:px-10 lg:px-16 lg:py-24;
-  }
-  .race-intro--compact .race-intro__inner {
-    @apply py-12 sm:py-14 lg:py-16;
+    @apply relative mx-auto w-full max-w-4xl px-6 py-14 text-center sm:px-10 sm:py-16 lg:px-16 lg:py-20;
   }
   .race-intro__inner::before {
     content: "";
-    @apply absolute left-0 top-1/2 hidden h-10 w-px -translate-y-1/2 bg-al-navy/20 sm:left-4 sm:block lg:left-8;
+    @apply mx-auto mb-6 block h-0.5 w-10 bg-al-orange;
   }
   .race-intro__title {
-    @apply text-[clamp(1.15rem,2.4vw,1.65rem)] font-extrabold uppercase tracking-[0.08em] text-al-navy;
+    @apply font-display text-[clamp(1.5rem,2.8vw,2rem)] font-normal normal-case leading-snug tracking-normal text-al-navy;
   }
   .race-intro__title--plain {
     @apply normal-case tracking-normal;
   }
   .race-intro__title span {
-    @apply mx-1 font-semibold text-al-navy/45;
+    @apply mx-1 text-al-navy/45;
   }
   .race-intro__body {
-    @apply mt-6 max-w-3xl text-[15px] leading-relaxed text-al-navy sm:mt-8 sm:text-base sm:leading-[1.75];
+    @apply mx-auto mt-5 max-w-3xl text-[15px] leading-relaxed text-al-navy sm:mt-6 sm:text-base sm:leading-[1.75];
   }
   .race-intro__body strong {
     @apply font-extrabold;
@@ -1432,7 +1437,7 @@
     height: auto;
   }
   .race-owners-board {
-    @apply relative isolate mb-16 w-full overflow-hidden bg-white sm:mb-20 lg:mb-24;
+    @apply relative isolate w-full overflow-hidden bg-white;
   }
   .race-owners-board__img {
     display: block;
@@ -1541,19 +1546,17 @@
     @apply m-0 max-w-[12rem] text-[10px] font-extrabold uppercase leading-snug tracking-[0.08em] text-[#16281f] sm:text-[11px];
   }
   .race-statement {
-    @apply flex min-h-[calc(100svh-6.75rem)] items-center bg-white;
+    @apply flex items-center bg-al-panel;
   }
-  .race-statement.panel-grey {
+  .race-statement.panel-grey,
+  .race-statement.panel-white {
     @apply bg-al-panel;
   }
-  .race-statement.panel-white {
-    @apply bg-white;
-  }
   .race-statement__inner {
-    @apply relative mx-auto w-full max-w-4xl px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24;
+    @apply relative mx-auto w-full max-w-4xl px-6 py-14 text-center sm:px-10 sm:py-16 lg:px-16 lg:py-20;
   }
   .race-statement__title {
-    @apply relative z-[1] max-w-3xl font-display text-[clamp(1.35rem,2.8vw,1.85rem)] font-medium leading-snug tracking-[0.01em] text-al-navy;
+    @apply relative z-[1] mx-auto max-w-3xl font-display text-[clamp(1.5rem,2.8vw,2rem)] font-normal leading-snug tracking-normal text-al-navy;
   }
   .race-statement__num {
     @apply font-semibold;
@@ -1562,7 +1565,7 @@
     @apply mx-1.5 font-medium text-al-navy/45;
   }
   .race-statement__panel {
-    @apply relative mt-7 max-w-3xl bg-transparent px-6 py-7 sm:mt-8 sm:px-9 sm:py-9;
+    @apply relative mx-auto mt-0 max-w-3xl bg-transparent p-0;
   }
   .race-statement__panel--full {
     @apply mt-0;
@@ -1575,13 +1578,10 @@
   }
   .race-statement__panel::before {
     content: "";
-    @apply absolute left-0 top-0 h-0.5 w-9 -translate-y-[1.15rem] bg-al-orange;
-  }
-  .race-statement__panel--full::before {
-    @apply top-7 translate-y-0;
+    @apply mx-auto mb-6 block h-0.5 w-10 bg-al-orange;
   }
   .race-statement__body {
-    @apply m-0 font-sans text-[15px] font-normal leading-relaxed text-al-navy/80 sm:text-base sm:leading-[1.75];
+    @apply m-0 mx-auto max-w-3xl font-sans text-[15px] font-normal leading-relaxed text-al-navy/80 sm:text-base sm:leading-[1.75];
   }
   .race-regulator {
     @apply bg-white py-16 sm:py-20 lg:py-24;
@@ -1599,7 +1599,7 @@
     @apply bg-white py-16 sm:py-20 lg:py-24;
   }
   .race-oxygen--board {
-    @apply mb-16 block min-h-0 w-full overflow-hidden bg-white p-0 py-0 sm:mb-20 sm:py-0 lg:mb-24 lg:py-0;
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
   }
   .race-oxygen__board {
     display: block;
@@ -1617,7 +1617,7 @@
     height: auto;
   }
   .race-compare--board {
-    @apply mb-16 block min-h-0 w-full overflow-hidden bg-white p-0 py-0 sm:mb-20 sm:py-0 lg:mb-24 lg:py-0;
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
   }
   .race-compare__board-img {
     display: block;
@@ -1635,11 +1635,11 @@
     height: auto;
   }
   .race-why {
-    @apply relative isolate mb-16 overflow-hidden bg-white sm:mb-20 lg:mb-24;
+    @apply relative isolate overflow-hidden bg-white;
     min-height: calc(100svh - 6.75rem);
   }
   .race-why--board {
-    @apply mb-16 block min-h-0 w-full overflow-hidden bg-white p-0 sm:mb-20 lg:mb-24;
+    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
     min-height: 0;
   }
   .race-why__board-img {
@@ -2201,7 +2201,7 @@
     @apply pointer-events-none absolute inset-0 bg-black/15;
   }
   .amb-feel__title {
-    @apply pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4 text-center font-sans text-[clamp(1.75rem,6.5vw,4.75rem)] font-extrabold lowercase leading-none tracking-tight text-white;
+    @apply pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4 text-center font-display text-[clamp(1.75rem,6vw,4.5rem)] font-normal leading-none text-white;
   }
   .amb-feel__icons {
     @apply mx-auto mt-8 flex w-full list-none flex-wrap items-start justify-between gap-y-6 px-6 sm:mt-10 sm:flex-nowrap sm:px-8 lg:mt-12 lg:px-12;

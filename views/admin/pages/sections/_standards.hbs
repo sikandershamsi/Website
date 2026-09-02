@@ -1,0 +1,21 @@
+<p class="text-xs text-al-ink/50">One row per standard. Leave a row's Title blank to remove it.</p>
+<div class="mt-4 space-y-4">
+  {{#each section.data.items}}
+  <div class="grid gap-2 border-b border-al-line pb-4 sm:grid-cols-5">
+    <input name="icon" value="{{this.icon}}" placeholder="Icon key" class="input-field" />
+    <input name="title" value="{{this.title}}" placeholder="Title" class="input-field" />
+    <input name="line1" value="{{this.line1}}" placeholder="Line 1" class="input-field" />
+    <input name="line2" value="{{this.line2}}" placeholder="Line 2" class="input-field" />
+    <textarea name="body" rows="2" placeholder="Body" class="input-field">{{this.body}}</textarea>
+  </div>
+  {{/each}}
+  {{#each (array 1 2)}}
+  <div class="grid gap-2 border-b border-al-line pb-4 sm:grid-cols-5">
+    <input name="icon" placeholder="Icon key" class="input-field" />
+    <input name="title" placeholder="Title" class="input-field" />
+    <input name="line1" placeholder="Line 1" class="input-field" />
+    <input name="line2" placeholder="Line 2" class="input-field" />
+    <textarea name="body" rows="2" placeholder="Body" class="input-field"></textarea>
+  </div>
+  {{/each}}
+</div>

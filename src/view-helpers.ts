@@ -18,6 +18,7 @@ export function registerHelpers(hbsInstance: unknown) {
   );
   hbs.registerHelper('year', () => new Date().getFullYear());
   hbs.registerHelper('pick', (obj: Record<string, unknown>, key: string) => obj?.[key]);
+  hbs.registerHelper('or', (...args: unknown[]) => args.slice(0, -1).find((v) => v) ?? null);
   hbs.registerHelper('array', (...args: unknown[]) => args.slice(0, -1));
   hbs.registerHelper(
     'ifCond',

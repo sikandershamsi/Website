@@ -1,0 +1,37 @@
+{{> page-header eyebrow="My Account" heading=heading}}
+
+<section class="section grid gap-8 lg:grid-cols-[240px_1fr]">
+  {{> account-sidebar}}
+
+  {{#if isEmpty}}
+  <div class="card flex flex-col items-center justify-center px-8 py-16 text-center">
+    <div class="flex h-14 w-14 items-center justify-center rounded-none bg-al-navy/5 text-al-navy">{{{icon "check" "w-6 h-6"}}}</div>
+    <p class="mt-5 max-w-sm text-sm text-al-ink/65">You haven't placed any orders yet.</p>
+    <a href="/shop" class="btn-primary mt-6">Start Shopping</a>
+  </div>
+  {{else}}
+  <div class="card divide-y divide-al-line overflow-hidden">
+    {{#each orders}}
+    <div class="p-6">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <p class="font-display text-base font-medium text-al-navy">Order #{{this.orderNumber}}</p>
+        <span class="tag-pill">{{this.status}}</span>
+      </div>
+      <p class="mt-1 text-xs text-al-ink/50">{{this.createdAt}}</p>
+      <div class="mt-4 space-y-2">
+        {{#each this.lines}}
+        <div class="flex justify-between text-sm text-al-ink/70">
+          <span>{{this.name}} &times; {{this.qty}}{{#if this.isSubscription}} (subscription){{/if}}</span>
+          <span class="font-semibold text-al-navy">{{currency this.price}}</span>
+        </div>
+        {{/each}}
+      </div>
+      <div class="mt-3 flex justify-between border-t border-al-line pt-3 text-sm font-semibold text-al-navy">
+        <span>Total</span>
+        <span>{{currency this.subtotal}}</span>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</section>

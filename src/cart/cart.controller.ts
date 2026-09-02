@@ -1,17 +1,27 @@
-import { Body, Controller, Get, Param, Post, Render, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Post, Query, Render, Req, Res } from '@nestjs/common';
 import type { Request, Response } from 'express';
-import { CartService } from './cart.service';
+import { CartService, CartKey } from './cart.service';
 import { AddToCartDto, UpdateCartDto } from './cart.dto';
+import { StripeService } from '../stripe/stripe.service';
+
+function cartKeyFromRequest(req: Request): CartKey {
+  if (req.session?.userId) return { userId: req.session.userId };
+  return { guestCartId: req.cartId };
+}
 
 @Controller()
 export class CartController {
-  constructor(private readonly cartService: CartService) {}
+  constructor(
+    private readonly cartService: CartService,
+    private readonly stripeService: StripeService,
+  ) {}
 
   @Get('cart')
   @Render('cart/index')
-  viewCart(@Req() req: Request) {
-    const lines = this.cartService.get(req.cartId);
-    const subtotal = this.cartService.subtotal(req.cartId);
+  async viewCart(@Req() req: Request) {
+    const key = cartKeyFromRequest(req);
+    const lines = await this.cartService.get(key);
+    const subtotal = await this.cartService.subtotal(key);
     return {
       title: 'Your Cart',
       activeNav: '',
@@ -22,50 +32,90 @@ export class CartController {
   }
 
   @Post('cart/add')
-  addToCart(@Req() req: Request, @Res() res: Response, @Body() body: AddToCartDto) {
-    this.cartService.add(req.cartId, body.slug, Number(body.qty) || 1);
+  async addToCart(@Req() req: Request, @Res() res: Response, @Body() body: AddToCartDto) {
+    const key = cartKeyFromRequest(req);
+    await this.cartService.add(key, body.slug, Number(body.qty) || 1, Boolean(body.isSubscription));
     res.redirect(body.redirectTo || '/cart');
   }
 
   @Post('cart/update')
-  updateCart(@Req() req: Request, @Res() res: Response, @Body() body: UpdateCartDto) {
-    this.cartService.updateQty(req.cartId, body.slug, Number(body.qty));
+  async updateCart(@Req() req: Request, @Res() res: Response, @Body() body: UpdateCartDto) {
+    const key = cartKeyFromRequest(req);
+    await this.cartService.updateQty(key, body.slug, Number(body.qty));
     res.redirect('/cart');
   }
 
   @Post('cart/remove/:slug')
-  removeFromCart(@Req() req: Request, @Res() res: Response, @Param('slug') slug: string) {
-    this.cartService.remove(req.cartId, slug);
+  async removeFromCart(@Req() req: Request, @Res() res: Response, @Param('slug') slug: string) {
+    const key = cartKeyFromRequest(req);
+    await this.cartService.remove(key, slug);
     res.redirect('/cart');
   }
 
   @Get('checkout')
   @Render('cart/checkout')
-  checkout(@Req() req: Request) {
-    const lines = this.cartService.get(req.cartId);
-    const subtotal = this.cartService.subtotal(req.cartId);
+  async checkout(@Req() req: Request, @Query('error') error?: string) {
+    const key = cartKeyFromRequest(req);
+    const lines = await this.cartService.get(key);
+    const subtotal = await this.cartService.subtotal(key);
     return {
       title: 'Checkout',
       activeNav: '',
       lines,
       subtotal,
       isEmpty: lines.length === 0,
+      multipleSubscriptionsError: error === 'multiple-subscriptions',
     };
   }
 
-  @Post('checkout/place-order')
+  @Post('checkout/start')
+  async startCheckout(@Req() req: Request, @Res() res: Response) {
+    const key = cartKeyFromRequest(req);
+    const lines = await this.cartService.get(key);
+    if (lines.length === 0) {
+      return res.redirect('/cart');
+    }
+    const subscriptionLines = lines.filter((l) => l.isSubscription);
+    if (subscriptionLines.length > 1) {
+      // Stripe Checkout only supports one recurring price per session.
+      return res.redirect('/checkout?error=multiple-subscriptions');
+    }
+    const url = await this.stripeService.createCheckoutSession({
+      key,
+      lines,
+      email: req.session?.email,
+    });
+    res.redirect(url);
+  }
+
+  @Get('checkout/success')
   @Render('cart/order-confirmation')
-  placeOrder(@Req() req: Request) {
-    const lines = this.cartService.get(req.cartId);
-    const subtotal = this.cartService.subtotal(req.cartId);
-    const orderNumber = 'AL-' + Math.floor(100000 + Math.random() * 900000);
-    this.cartService.clear(req.cartId);
+  async checkoutSuccess(@Query('session_id') sessionId: string) {
+    if (!sessionId) throw new NotFoundException('Missing checkout session.');
+    const order = await this.stripeService.getOrderForSession(sessionId);
+    if (!order) throw new NotFoundException('Order not found for this checkout session.');
     return {
       title: 'Order Confirmed',
       activeNav: '',
+      lines: order.lines,
+      subtotal: order.subtotal,
+      orderNumber: order.orderNumber,
+    };
+  }
+
+  @Get('checkout/cancel')
+  @Render('cart/checkout')
+  async checkoutCancel(@Req() req: Request) {
+    const key = cartKeyFromRequest(req);
+    const lines = await this.cartService.get(key);
+    const subtotal = await this.cartService.subtotal(key);
+    return {
+      title: 'Checkout',
+      activeNav: '',
       lines,
       subtotal,
-      orderNumber,
+      isEmpty: lines.length === 0,
+      cancelled: true,
     };
   }
 }

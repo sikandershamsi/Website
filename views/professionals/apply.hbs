@@ -1,6 +1,6 @@
 {{> page-header eyebrow="Animalife Affiliate Partner Program" heading="Application Form" subheading="Thank you for your interest in becoming an Animalife Affiliate Partner. A member of our team will review your submission and contact you within 5–10 business days."}}
 
-<section class="section max-w-3xl">
+<section class="section mx-auto max-w-3xl">
   {{#if submitted}}
   <div class="card flex flex-col items-center px-8 py-16 text-center">
     <div class="flex h-16 w-16 items-center justify-center rounded-none bg-al-navy/10 text-al-navy/55">{{{icon "check" "w-8 h-8"}}}</div>
@@ -19,7 +19,7 @@
   <form action="/professionals/apply" method="post" class="space-y-12">
 
     <div>
-      <h2 class="font-display text-xl font-medium text-al-navy">Applicant Information</h2>
+      <h2 class="font-display text-center text-xl font-medium text-al-navy">Applicant Information</h2>
       <div class="mt-6 grid gap-5 sm:grid-cols-2">
         <div class="sm:col-span-2"><label class="field-label" for="fullName">Full Name</label><input id="fullName" name="fullName" required class="input-field" /></div>
         <div><label class="field-label" for="businessName">Business Name (if applicable)</label><input id="businessName" name="businessName" class="input-field" /></div>
@@ -39,8 +39,8 @@
     </div>
 
     <div>
-      <h2 class="font-display text-xl font-medium text-al-navy">Professional Background</h2>
-      <p class="mt-1 text-sm text-al-ink/60">Please select the category that best describes your primary profession.</p>
+      <h2 class="font-display text-center text-xl font-medium text-al-navy">Professional Background</h2>
+      <p class="mt-1 text-center text-sm text-al-ink/60">Please select the category that best describes your primary profession.</p>
       <select name="profession" required class="input-field mt-4 sm:max-w-sm">
         <option value="trainer">Trainer</option>
         <option value="veterinarian">Veterinarian</option>
@@ -58,8 +58,8 @@
     </div>
 
     <div>
-      <h2 class="font-display text-xl font-medium text-al-navy">Experience</h2>
-      <p class="mt-1 text-sm text-al-ink/60">How many years have you been involved in the equine industry?</p>
+      <h2 class="font-display text-center text-xl font-medium text-al-navy">Experience</h2>
+      <p class="mt-1 text-center text-sm text-al-ink/60">How many years have you been involved in the equine industry?</p>
       <select name="experience" required class="input-field mt-4 sm:max-w-sm">
         <option value="under-2">Less than 2 years</option>
         <option value="2-5">2–5 years</option>
@@ -70,8 +70,8 @@
     </div>
 
     <div>
-      <h2 class="font-display text-xl font-medium text-al-navy">Business Reach</h2>
-      <p class="mt-1 text-sm text-al-ink/60">Approximately how many horse owners, riders, clients, or followers do you regularly influence?</p>
+      <h2 class="font-display text-center text-xl font-medium text-al-navy">Business Reach</h2>
+      <p class="mt-1 text-center text-sm text-al-ink/60">Approximately how many horse owners, riders, clients, or followers do you regularly influence?</p>
       <select name="reach" required class="input-field mt-4 sm:max-w-sm">
         <option value="under-25">Less than 25</option>
         <option value="25-50">25–50</option>
@@ -84,8 +84,8 @@
     </div>
 
     <div>
-      <h2 class="font-display text-xl font-medium text-al-navy">Client Profile</h2>
-      <p class="mt-1 text-sm text-al-ink/60">Which disciplines best describe your audience? (select all that apply)</p>
+      <h2 class="font-display text-center text-xl font-medium text-al-navy">Client Profile</h2>
+      <p class="mt-1 text-center text-sm text-al-ink/60">Which disciplines best describe your audience? (select all that apply)</p>
       <div class="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
         {{#each (array "Hunter/Jumper" "Dressage" "Eventing" "Thoroughbred Racing" "Quarter Horse Racing" "Western Performance" "Barrel Racing" "Reining" "Breeding Operations" "Pleasure Horses" "Veterinary Practice" "Therapy/Rehabilitation" "Multi-Discipline")}}
         <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="disciplines" value="{{this}}" class="accent-al-navy" />{{this}}</label>
@@ -94,8 +94,8 @@
     </div>
 
     <div>
-      <h2 class="font-display text-xl font-medium text-al-navy">Current Product Recommendations</h2>
-      <p class="mt-1 text-sm text-al-ink/60">Do you currently recommend equine supplements or nutraceutical products?</p>
+      <h2 class="font-display text-center text-xl font-medium text-al-navy">Current Product Recommendations</h2>
+      <p class="mt-1 text-center text-sm text-al-ink/60">Do you currently recommend equine supplements or nutraceutical products?</p>
       <div class="mt-3 flex gap-6 text-sm text-al-ink/75">
         <label class="flex items-center gap-2"><input type="radio" name="currentlyRecommends" value="yes" required class="accent-al-navy" />Yes</label>
         <label class="flex items-center gap-2"><input type="radio" name="currentlyRecommends" value="no" class="accent-al-navy" />No</label>
@@ -107,8 +107,8 @@
     </div>
 
     <div>
-      <h2 class="font-display text-xl font-medium text-al-navy">Why Animalife?</h2>
-      <p class="mt-1 text-sm text-al-ink/60">What interests you most about the Affiliate Partner Program?</p>
+      <h2 class="font-display text-center text-xl font-medium text-al-navy">Why Animalife?</h2>
+      <p class="mt-1 text-center text-sm text-al-ink/60">What interests you most about the Affiliate Partner Program?</p>
       <div class="mt-4 grid gap-2.5 sm:grid-cols-2">
         {{#each (array "Industry-Leading Commissions" "Free Product Opportunities" "Innovative Products" "Additional Revenue Stream" "Supporting Horse Health & Performance" "Professional Development" "Long-Term Partnership Opportunity")}}
         <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="whyAnimalife" value="{{this}}" class="accent-al-navy" />{{this}}</label>
@@ -117,8 +117,8 @@
     </div>
 
     <div>
-      <h2 class="font-display text-xl font-medium text-al-navy">Product Interest</h2>
-      <p class="mt-1 text-sm text-al-ink/60">Which Animalife products are you most interested in representing?</p>
+      <h2 class="font-display text-center text-xl font-medium text-al-navy">Product Interest</h2>
+      <p class="mt-1 text-center text-sm text-al-ink/60">Which Animalife products are you most interested in representing?</p>
       <div class="mt-4 grid gap-2.5 sm:grid-cols-2">
         {{#each (array "VetroFit™ – Performance & Oxygen Transport" "VetroFen™ – Inflammation & Comfort Support" "VetroFlex™ – Joint & Cartilage Support" "All Animalife Products")}}
         <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="productInterest" value="{{this}}" class="accent-al-navy" />{{this}}</label>
@@ -127,8 +127,8 @@
     </div>
 
     <div>
-      <h2 class="font-display text-xl font-medium text-al-navy">Marketing &amp; Promotion</h2>
-      <p class="mt-1 text-sm text-al-ink/60">How do you intend to promote Animalife products?</p>
+      <h2 class="font-display text-center text-xl font-medium text-al-navy">Marketing &amp; Promotion</h2>
+      <p class="mt-1 text-center text-sm text-al-ink/60">How do you intend to promote Animalife products?</p>
       <div class="mt-4 grid gap-2.5 sm:grid-cols-2">
         {{#each (array "Direct Client Recommendations" "Social Media" "Email Marketing" "Clinics & Educational Events" "Veterinary Consultations" "Training Programs" "Retail Store Sales" "Podcast / Media Content" "Website or Blog")}}
         <label class="flex items-center gap-2 text-sm text-al-ink/75"><input type="checkbox" name="promotion" value="{{this}}" class="accent-al-navy" />{{this}}</label>
@@ -137,8 +137,8 @@
     </div>
 
     <div>
-      <h2 class="font-display text-xl font-medium text-al-navy">Sales Goals</h2>
-      <p class="mt-1 text-sm text-al-ink/60">How many new Animalife customers do you believe you could introduce during your first 12 months?</p>
+      <h2 class="font-display text-center text-xl font-medium text-al-navy">Sales Goals</h2>
+      <p class="mt-1 text-center text-sm text-al-ink/60">How many new Animalife customers do you believe you could introduce during your first 12 months?</p>
       <select name="salesGoal" required class="input-field mt-4 sm:max-w-sm">
         <option value="1-10">1–10</option>
         <option value="11-25">11–25</option>
@@ -150,13 +150,13 @@
     </div>
 
     <div>
-      <h2 class="font-display text-xl font-medium text-al-navy">Personal Statement</h2>
-      <p class="mt-1 text-sm text-al-ink/60">Please tell us why you would like to become an Animalife Affiliate Partner and how you believe Animalife products could benefit your clients, followers, or customers.</p>
+      <h2 class="font-display text-center text-xl font-medium text-al-navy">Personal Statement</h2>
+      <p class="mt-1 text-center text-sm text-al-ink/60">Please tell us why you would like to become an Animalife Affiliate Partner and how you believe Animalife products could benefit your clients, followers, or customers.</p>
       <textarea name="personalStatement" rows="5" required class="input-field mt-4"></textarea>
     </div>
 
     <div class="card p-6">
-      <h2 class="font-display text-lg font-medium text-al-navy">Agreement</h2>
+      <h2 class="font-display text-center text-lg font-medium text-al-navy">Agreement</h2>
       <p class="mt-2 text-sm text-al-ink/65">By submitting, I certify that the information provided is accurate and complete to the best of my knowledge. I understand that submission does not guarantee acceptance into the Animalife Affiliate Partner Program, and if accepted, I agree to represent the Animalife brand professionally and ethically.</p>
       <label class="mt-4 flex items-center gap-2 text-sm font-semibold text-al-navy"><input type="checkbox" name="agree" required class="accent-al-navy" />I agree to the terms above</label>
     </div>

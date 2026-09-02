@@ -14,11 +14,15 @@ export function hbsLayoutEngine(viewsDir: string) {
   ) => void;
 
   return (filePath: string, options: any, callback: (err: any, html?: string) => void) => {
+    // Note: hbs (pillarjs) has its own native `options.layout` handling that resolves
+    // relative to the base views dir (not views/layouts/), so we use a differently-named
+    // option here to avoid colliding with it.
     express(filePath, options, (err, html) => {
       if (err) return callback(err);
       if (options.layout === false) return callback(null, html);
 
-      const layoutFile = join(viewsDir, 'layouts', 'main.hbs');
+      const layoutName = typeof options.layoutName === 'string' ? options.layoutName : 'main';
+      const layoutFile = join(viewsDir, 'layouts', `${layoutName}.hbs`);
       express(
         layoutFile,
         { ...options, body: new (hbs as any).SafeString(html) },
