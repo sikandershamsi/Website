@@ -37,6 +37,6 @@ export class AdminPagesController {
     if (!definition) throw new NotFoundException(`Unknown section type "${section.type}"`);
     const data = definition.parseFormData(body);
     await this.pagesService.updateSectionData('home', key, data);
-    res.redirect('/admin/pages/home');
+    res.redirect(303, '/admin/pages/home');
   }
 }

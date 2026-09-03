@@ -26,7 +26,7 @@ export class AdminAuthController {
       req.session.userId = String(user._id);
       req.session.role = user.role;
       req.session.email = user.email;
-      res.redirect('/admin');
+      res.redirect(303, '/admin');
     } catch {
       res.render('admin/login', { title: 'Sign In', notice: 'Invalid email or password.' });
     }
@@ -34,6 +34,6 @@ export class AdminAuthController {
 
   @Post('logout')
   logout(@Req() req: Request, @Res() res: Response) {
-    req.session.destroy(() => res.redirect('/admin/login'));
+    req.session.destroy(() => res.redirect(303, '/admin/login'));
   }
 }

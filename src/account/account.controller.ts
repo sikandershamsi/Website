@@ -42,7 +42,7 @@ export class AccountController {
       req.session.role = user.role;
       req.session.email = user.email;
       await this.authService.loginAndMergeCart(String(user._id), req.cartId);
-      res.redirect('/account/orders');
+      res.redirect(303, '/account/orders');
     } catch {
       res.render('account/login', {
         title: 'My Account',
@@ -65,7 +65,7 @@ export class AccountController {
       req.session.userId = String(user._id);
       req.session.role = user.role;
       req.session.email = user.email;
-      res.redirect('/account/orders');
+      res.redirect(303, '/account/orders');
     } catch (err) {
       res.render('account/register', {
         title: 'Create Account',
@@ -77,7 +77,7 @@ export class AccountController {
 
   @Post('logout')
   logout(@Req() req: Request, @Res() res: Response) {
-    req.session.destroy(() => res.redirect('/'));
+    req.session.destroy(() => res.redirect(303, '/'));
   }
 
   @Get('orders')

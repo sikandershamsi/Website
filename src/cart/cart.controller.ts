@@ -35,21 +35,21 @@ export class CartController {
   async addToCart(@Req() req: Request, @Res() res: Response, @Body() body: AddToCartDto) {
     const key = cartKeyFromRequest(req);
     await this.cartService.add(key, body.slug, Number(body.qty) || 1, Boolean(body.isSubscription));
-    res.redirect(body.redirectTo || '/cart');
+    res.redirect(303, body.redirectTo || '/cart');
   }
 
   @Post('cart/update')
   async updateCart(@Req() req: Request, @Res() res: Response, @Body() body: UpdateCartDto) {
     const key = cartKeyFromRequest(req);
     await this.cartService.updateQty(key, body.slug, Number(body.qty));
-    res.redirect('/cart');
+    res.redirect(303, '/cart');
   }
 
   @Post('cart/remove/:slug')
   async removeFromCart(@Req() req: Request, @Res() res: Response, @Param('slug') slug: string) {
     const key = cartKeyFromRequest(req);
     await this.cartService.remove(key, slug);
-    res.redirect('/cart');
+    res.redirect(303, '/cart');
   }
 
   @Get('checkout')
@@ -73,19 +73,19 @@ export class CartController {
     const key = cartKeyFromRequest(req);
     const lines = await this.cartService.get(key);
     if (lines.length === 0) {
-      return res.redirect('/cart');
+      return res.redirect(303, '/cart');
     }
     const subscriptionLines = lines.filter((l) => l.isSubscription);
     if (subscriptionLines.length > 1) {
       // Stripe Checkout only supports one recurring price per session.
-      return res.redirect('/checkout?error=multiple-subscriptions');
+      return res.redirect(303, '/checkout?error=multiple-subscriptions');
     }
     const url = await this.stripeService.createCheckoutSession({
       key,
       lines,
       email: req.session?.email,
     });
-    res.redirect(url);
+    res.redirect(303, url);
   }
 
   @Get('checkout/success')

@@ -35,7 +35,7 @@ export class AdminProductsController {
     if (this.stripeService.isConfigured()) {
       await this.stripeService.syncProductToStripe(String(doc._id)).catch(() => undefined);
     }
-    res.redirect('/admin/products');
+    res.redirect(303, '/admin/products');
   }
 
   @Get(':id/edit')
@@ -53,12 +53,12 @@ export class AdminProductsController {
     if (this.stripeService.isConfigured()) {
       await this.stripeService.syncProductToStripe(id).catch(() => undefined);
     }
-    res.redirect('/admin/products');
+    res.redirect(303, '/admin/products');
   }
 
   @Post(':id/delete')
   async softDelete(@Param('id') id: string, @Res() res: Response) {
     await this.productsService.setActive(id, false);
-    res.redirect('/admin/products');
+    res.redirect(303, '/admin/products');
   }
 }

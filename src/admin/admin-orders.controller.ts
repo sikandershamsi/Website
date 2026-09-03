@@ -33,6 +33,6 @@ export class AdminOrdersController {
   @Post(':id/status')
   async updateStatus(@Param('id') id: string, @Body() body: UpdateOrderStatusDto, @Res() res: Response) {
     await this.ordersService.setStatus(id, body.status);
-    res.redirect(`/admin/orders/${id}`);
+    res.redirect(303, `/admin/orders/${id}`);
   }
 }

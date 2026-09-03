@@ -8,7 +8,7 @@ export class HorseIqController {
   subscribe(@Body('email') email: string, @Req() req: Request, @Res() res: Response) {
     const referer = req.get('referer') || '/';
     const separator = referer.includes('?') ? '&' : '?';
-    res.redirect(email ? `${referer}${separator}subscribed=1` : referer);
+    res.redirect(303, email ? `${referer}${separator}subscribed=1` : referer);
   }
 
   @Get()

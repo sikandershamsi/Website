@@ -12,6 +12,6 @@ export class RedirectException extends HttpException {
 export class RedirectExceptionFilter implements ExceptionFilter {
   catch(exception: RedirectException, host: ArgumentsHost) {
     const res = host.switchToHttp().getResponse<Response>();
-    res.redirect(exception.location);
+    res.redirect(303, exception.location);
   }
 }

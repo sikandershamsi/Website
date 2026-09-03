@@ -33,6 +33,6 @@ export class AdminSubscriptionsController {
     if (subscription) {
       await this.stripeService.cancelAtPeriodEnd(subscription.stripe.subscriptionId);
     }
-    res.redirect(`/admin/subscriptions/${id}`);
+    res.redirect(303, `/admin/subscriptions/${id}`);
   }
 }

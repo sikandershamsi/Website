@@ -25,7 +25,7 @@ export class AdminCategoriesController {
   @Post('new')
   async create(@Body() body: CategoryFormDto, @Res() res: Response) {
     await this.categoriesService.upsertBySlug(body.slug, body);
-    res.redirect('/admin/categories');
+    res.redirect(303, '/admin/categories');
   }
 
   @Get(':slug/edit')
@@ -39,6 +39,6 @@ export class AdminCategoriesController {
   @Post(':slug')
   async update(@Param('slug') slug: string, @Body() body: CategoryFormDto, @Res() res: Response) {
     await this.categoriesService.upsertBySlug(slug, body);
-    res.redirect('/admin/categories');
+    res.redirect(303, '/admin/categories');
   }
 }
