@@ -3,7 +3,7 @@ import type { Request } from 'express';
 
 export interface CurrentUserPayload {
   userId: string;
-  role: 'customer' | 'admin';
+  role: 'customer' | 'admin' | 'affiliate';
   email: string;
 }
 

@@ -88,6 +88,18 @@ export class Order {
 
   @Prop()
   paidAt?: Date;
+
+  @Prop()
+  referralCode?: string;
+
+  @Prop({ type: SchemaTypes.ObjectId, ref: 'Affiliate' })
+  affiliateId?: Types.ObjectId;
+
+  @Prop()
+  commissionAmount?: number;
+
+  @Prop({ enum: ['pending', 'paid'] })
+  commissionStatus?: 'pending' | 'paid';
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

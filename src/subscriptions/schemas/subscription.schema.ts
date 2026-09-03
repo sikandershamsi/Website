@@ -55,6 +55,12 @@ export class Subscription {
 
   @Prop({ default: false })
   cancelAtPeriodEnd: boolean;
+
+  @Prop({ type: SchemaTypes.ObjectId, ref: 'Affiliate' })
+  affiliateId?: Types.ObjectId;
+
+  @Prop()
+  commissionRate?: number;
 }
 
 export const SubscriptionSchema = SchemaFactory.createForClass(Subscription);

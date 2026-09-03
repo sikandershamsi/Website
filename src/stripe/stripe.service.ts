@@ -6,6 +6,7 @@ import { ProductsService } from '../products/products.service';
 import { OrdersService } from '../orders/orders.service';
 import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 import { CartService, CartKey } from '../cart/cart.service';
+import { AffiliatesService } from '../affiliates/affiliates.service';
 import type { CartLine } from '../cart/schemas/cart.schema';
 
 function toCents(dollars: number): number {
@@ -25,6 +26,7 @@ export class StripeService {
     private readonly ordersService: OrdersService,
     private readonly subscriptionsService: SubscriptionsService,
     private readonly cartService: CartService,
+    private readonly affiliatesService: AffiliatesService,
   ) {
     const secretKey = this.config.get<string>('stripe.secretKey');
     this.baseUrl = this.config.get<string>('app.baseUrl') ?? 'http://localhost:3000';
@@ -85,7 +87,12 @@ export class StripeService {
     });
   }
 
-  async createCheckoutSession(params: { key: CartKey; lines: CartLine[]; email?: string }): Promise<string> {
+  async createCheckoutSession(params: {
+    key: CartKey;
+    lines: CartLine[];
+    email?: string;
+    referralCode?: string;
+  }): Promise<string> {
     const stripe = this.requireStripe();
     const hasSubscription = params.lines.some((l) => l.isSubscription);
 
@@ -110,7 +117,7 @@ export class StripeService {
       shipping_address_collection: { allowed_countries: ['US', 'CA'] },
       success_url: `${this.baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${this.baseUrl}/checkout/cancel`,
-      metadata: { cartKey: JSON.stringify(cartKeyMetadata) },
+      metadata: { cartKey: JSON.stringify(cartKeyMetadata), referralCode: params.referralCode ?? '' },
     });
 
     if (!session.url) throw new Error('Stripe did not return a Checkout URL.');
@@ -167,6 +174,11 @@ export class StripeService {
     const cart = await this.cartService.findRawByKey(cartKey);
     const lines = cart?.lines ?? [];
     const subtotal = lines.reduce((sum, l) => sum + l.price * l.qty, 0);
+
+    const referralCode = session.metadata?.referralCode || undefined;
+    const affiliate = referralCode ? await this.affiliatesService.findByReferralCode(referralCode) : null;
+    const commissionAmount = affiliate ? Math.round(subtotal * affiliate.commissionRate * 100) / 100 : undefined;
+
     const shipping = session.customer_details
       ? {
           fullName: session.customer_details.name ?? undefined,
@@ -198,6 +210,9 @@ export class StripeService {
       })),
       subtotal,
       shipping,
+      referralCode: affiliate ? referralCode : undefined,
+      affiliateId: affiliate ? String(affiliate._id) : undefined,
+      commissionAmount,
     });
 
     if (session.mode === 'subscription' && typeof session.subscription === 'string' && 'userId' in cartKey) {
@@ -216,6 +231,8 @@ export class StripeService {
           priceId: firstItem.price.id,
           currentPeriodStart: new Date(firstItem.current_period_start * 1000),
           currentPeriodEnd: new Date(firstItem.current_period_end * 1000),
+          affiliateId: affiliate ? String(affiliate._id) : undefined,
+          commissionRate: affiliate ? affiliate.commissionRate : undefined,
         });
       }
     }
@@ -246,13 +263,17 @@ export class StripeService {
 
     const sub = await this.subscriptionsService.findByStripeId(subscriptionId);
     if (!sub) return;
+    const price = (invoice.amount_paid ?? 0) / 100;
+    const commissionAmount = sub.affiliateId && sub.commissionRate ? Math.round(price * sub.commissionRate * 100) / 100 : undefined;
     await this.ordersService.createRenewalOrder({
       userId: String(sub.user),
       subscriptionId,
       customerId: sub.stripe.customerId,
       slug: sub.productSlug,
       name: sub.productName,
-      price: (invoice.amount_paid ?? 0) / 100,
+      price,
+      affiliateId: sub.affiliateId ? String(sub.affiliateId) : undefined,
+      commissionAmount,
     });
   }
 

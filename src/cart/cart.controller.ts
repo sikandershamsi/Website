@@ -88,6 +88,7 @@ export class CartController {
       key,
       lines,
       email: req.session?.email,
+      referralCode: req.cookies?.al_ref,
     });
     res.redirect(303, url);
   }

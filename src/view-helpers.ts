@@ -16,6 +16,10 @@ export function registerHelpers(hbsInstance: unknown) {
   hbs.registerHelper('currency', (value: number) =>
     typeof value === 'number' ? `$${value.toFixed(2)}` : value,
   );
+  hbs.registerHelper('pct', (value: number) =>
+    typeof value === 'number' ? `${Math.round(value * 100)}%` : value,
+  );
+  hbs.registerHelper('mul', (a: number, b: number) => Number(a) * Number(b));
   hbs.registerHelper('year', () => new Date().getFullYear());
   hbs.registerHelper('pick', (obj: Record<string, unknown>, key: string) => obj?.[key]);
   hbs.registerHelper('or', (...args: unknown[]) => args.slice(0, -1).find((v) => v) ?? null);

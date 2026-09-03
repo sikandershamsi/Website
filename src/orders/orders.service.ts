@@ -39,6 +39,9 @@ export class OrdersService {
     }>;
     subtotal: number;
     shipping?: Record<string, unknown>;
+    referralCode?: string;
+    affiliateId?: string;
+    commissionAmount?: number;
   }) {
     const orderNumber = await this.generateOrderNumber();
     return this.orderModel.create({
@@ -57,6 +60,10 @@ export class OrdersService {
         subscriptionId: data.subscriptionId,
         customerId: data.customerId,
       },
+      referralCode: data.referralCode,
+      affiliateId: data.affiliateId ? new Types.ObjectId(data.affiliateId) : undefined,
+      commissionAmount: data.commissionAmount,
+      commissionStatus: data.affiliateId ? 'pending' : undefined,
     });
   }
 
@@ -69,6 +76,8 @@ export class OrdersService {
     price: number;
     size?: string;
     image?: string;
+    affiliateId?: string;
+    commissionAmount?: number;
   }) {
     const orderNumber = await this.generateOrderNumber();
     return this.orderModel.create({
@@ -90,6 +99,9 @@ export class OrdersService {
       source: 'subscription_renewal',
       paidAt: new Date(),
       stripe: { subscriptionId: data.subscriptionId, customerId: data.customerId },
+      affiliateId: data.affiliateId ? new Types.ObjectId(data.affiliateId) : undefined,
+      commissionAmount: data.commissionAmount,
+      commissionStatus: data.affiliateId ? 'pending' : undefined,
     });
   }
 
@@ -112,5 +124,30 @@ export class OrdersService {
   async countRecent(sinceDays = 7) {
     const since = new Date(Date.now() - sinceDays * 24 * 60 * 60 * 1000);
     return this.orderModel.countDocuments({ createdAt: { $gte: since } }).exec();
+  }
+
+  async findForAffiliate(affiliateId: string) {
+    return this.orderModel
+      .find({ affiliateId: new Types.ObjectId(affiliateId) })
+      .sort({ createdAt: -1 })
+      .lean()
+      .exec();
+  }
+
+  async commissionTotalsForAffiliate(affiliateId: string) {
+    const orders = await this.findForAffiliate(affiliateId);
+    const pending = orders
+      .filter((o) => o.commissionStatus === 'pending')
+      .reduce((sum, o) => sum + (o.commissionAmount ?? 0), 0);
+    const paid = orders
+      .filter((o) => o.commissionStatus === 'paid')
+      .reduce((sum, o) => sum + (o.commissionAmount ?? 0), 0);
+    return { pending, paid, lifetime: pending + paid, orderCount: orders.length };
+  }
+
+  async markCommissionPaid(orderId: string) {
+    return this.orderModel
+      .findByIdAndUpdate(orderId, { $set: { commissionStatus: 'paid' } }, { returnDocument: 'after' })
+      .exec();
   }
 }

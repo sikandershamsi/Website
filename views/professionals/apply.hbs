@@ -16,6 +16,9 @@
     <a href="/professionals" class="btn-outline mt-8">Back to Affiliate Program</a>
   </div>
   {{else}}
+  {{#if notice}}
+  <div class="mb-8 rounded-none border border-al-orange/40 bg-al-orange/10 p-4 text-sm text-al-ink/80">{{notice}}</div>
+  {{/if}}
   <form action="/professionals/apply" method="post" class="space-y-12">
 
     <div>

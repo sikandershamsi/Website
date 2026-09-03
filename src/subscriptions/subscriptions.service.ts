@@ -19,6 +19,8 @@ export class SubscriptionsService {
     priceId: string;
     currentPeriodStart: Date;
     currentPeriodEnd: Date;
+    affiliateId?: string;
+    commissionRate?: number;
   }) {
     return this.subscriptionModel.create({
       user: new Types.ObjectId(data.userId),
@@ -33,6 +35,8 @@ export class SubscriptionsService {
       status: 'active',
       currentPeriodStart: data.currentPeriodStart,
       currentPeriodEnd: data.currentPeriodEnd,
+      affiliateId: data.affiliateId ? new Types.ObjectId(data.affiliateId) : undefined,
+      commissionRate: data.commissionRate,
     });
   }
 

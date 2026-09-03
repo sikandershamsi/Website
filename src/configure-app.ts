@@ -13,6 +13,7 @@ import { CartService } from './cart/cart.service';
 import type { AppConfig } from './config/configuration';
 
 const CART_COOKIE = 'al_cart_id';
+const REF_COOKIE = 'al_ref';
 
 export function configureApp(app: NestExpressApplication) {
   const config = app.get(ConfigService<AppConfig>);
@@ -43,6 +44,18 @@ export function configureApp(app: NestExpressApplication) {
       },
     }),
   );
+
+  app.use((req: any, res: any, next: any) => {
+    const ref = typeof req.query?.ref === 'string' ? req.query.ref.trim() : '';
+    if (ref) {
+      res.cookie(REF_COOKIE, ref, {
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+        httpOnly: true,
+        sameSite: 'lax',
+      });
+    }
+    next();
+  });
 
   const cartService = app.get(CartService);
   app.use((req: any, res: any, next: any) => {

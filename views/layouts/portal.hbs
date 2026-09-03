@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{#if title}}{{title}} | Admin{{else}}Admin{{/if}} — Animalife USA</title>
+  <title>{{#if title}}{{title}} | Affiliate Portal{{else}}Affiliate Portal{{/if}} — Animalife USA</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e2662a' d='M12 2c4 3 6 7 6 11a6 6 0 0 1-12 0c0-4 2-8 6-11Z'/%3E%3C/svg%3E" />
   <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/tailwind.css" />
@@ -13,18 +13,13 @@
   <div class="flex min-h-screen">
     <aside class="hidden w-56 shrink-0 border-r border-al-line bg-white sm:block">
       <div class="border-b border-al-line px-5 py-5">
-        <a href="/admin" class="font-display text-lg font-medium text-al-navy">Animalife Admin</a>
+        <a href="/professionals/portal" class="font-display text-lg font-medium text-al-navy">Affiliate Portal</a>
       </div>
       <nav class="flex flex-col py-3 text-sm">
-        <a href="/admin" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Dashboard</a>
-        <a href="/admin/products" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Products</a>
-        <a href="/admin/categories" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Categories</a>
-        <a href="/admin/orders" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Orders</a>
-        <a href="/admin/subscriptions" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Subscriptions</a>
-        <a href="/admin/affiliates" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Affiliates</a>
-        <a href="/admin/pages/home" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Home Page</a>
+        <a href="/professionals/portal" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Dashboard</a>
+        <a href="/professionals" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Rewards Program</a>
       </nav>
-      <form action="/admin/logout" method="post" class="border-t border-al-line px-5 py-4">
+      <form action="/professionals/logout" method="post" class="border-t border-al-line px-5 py-4">
         <button type="submit" class="text-xs font-semibold uppercase tracking-wide text-al-ink/50 hover:text-al-navy">Sign Out</button>
       </form>
     </aside>

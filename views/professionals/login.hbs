@@ -2,6 +2,10 @@
 
 <section class="section flex justify-center">
   <div class="card w-full max-w-md p-8">
+    {{#if alreadyIn}}
+    <p class="text-center text-sm text-al-ink/70">You're already signed in.</p>
+    <a href="/professionals/portal" class="btn-primary mt-6 block text-center">Go to Portal</a>
+    {{else}}
     {{#if notice}}
     <div class="mb-6 rounded-none bg-al-navy/10 p-4 text-sm text-al-navy">{{notice}}</div>
     {{/if}}
@@ -17,5 +21,6 @@
       <button type="submit" class="btn-primary w-full">Log In</button>
     </form>
     <p class="mt-6 text-center text-sm text-al-ink/60">Not an affiliate yet? <a href="/professionals/apply" class="font-semibold text-al-navy/55">Apply today</a></p>
+    {{/if}}
   </div>
 </section>

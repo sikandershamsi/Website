@@ -1,0 +1,45 @@
+<div class="flex items-center justify-between">
+  <h1 class="font-display text-2xl font-medium text-al-navy">Affiliates</h1>
+</div>
+
+<div class="mt-4 flex gap-4 text-xs font-semibold uppercase tracking-wide">
+  <a href="/admin/affiliates" class="{{#unless statusFilter}}text-al-navy underline{{else}}text-al-ink/50{{/unless}}">All</a>
+  <a href="/admin/affiliates?status=pending" class="{{#if (eq statusFilter "pending")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Pending</a>
+  <a href="/admin/affiliates?status=approved" class="{{#if (eq statusFilter "approved")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Approved</a>
+  <a href="/admin/affiliates?status=rejected" class="{{#if (eq statusFilter "rejected")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Rejected</a>
+</div>
+
+<div class="mt-6 overflow-hidden rounded-none border border-al-line bg-white">
+  {{#if affiliates.length}}
+  <table class="w-full text-left text-sm">
+    <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+      <tr>
+        <th class="px-4 py-3">Name</th>
+        <th class="px-4 py-3">Email</th>
+        <th class="px-4 py-3">Profession</th>
+        <th class="px-4 py-3">Status</th>
+        <th class="px-4 py-3">Commission</th>
+        <th class="px-4 py-3"></th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-al-line">
+      {{#each affiliates}}
+      <tr>
+        <td class="px-4 py-3 font-semibold text-al-navy">{{this.fullName}}</td>
+        <td class="px-4 py-3 text-al-ink/60">{{this.email}}</td>
+        <td class="px-4 py-3 text-al-ink/60">{{this.profession}}</td>
+        <td class="px-4 py-3">
+          {{#if (eq this.status "approved")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-green-100 text-green-700">Approved</span>{{/if}}
+          {{#if (eq this.status "pending")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-al-panel text-al-ink/60">Pending</span>{{/if}}
+          {{#if (eq this.status "rejected")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-red-100 text-red-700">Rejected</span>{{/if}}
+        </td>
+        <td class="px-4 py-3">{{pct this.commissionRate}}</td>
+        <td class="px-4 py-3 text-right"><a href="/admin/affiliates/{{this._id}}" class="text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">View</a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <p class="p-6 text-sm text-al-ink/60">No affiliates yet.</p>
+  {{/if}}
+</div>
