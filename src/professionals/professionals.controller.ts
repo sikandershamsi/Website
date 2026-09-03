@@ -1,8 +1,15 @@
-import { Body, Controller, Get, Post, Render, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Render, Req, Res } from '@nestjs/common';
 import type { Request, Response } from 'express';
 import { affiliateAudiences } from '../content/site.data';
 import { AffiliateApplicationDto } from './affiliate-application.dto';
 import { AffiliatesService } from '../affiliates/affiliates.service';
+
+/** Matches the earnings calculator's own slider bounds (5-40%) on the professionals page. */
+function clampRatePercent(raw?: string): number | undefined {
+  const n = Number(raw);
+  if (!raw || Number.isNaN(n)) return undefined;
+  return Math.min(40, Math.max(5, Math.round(n)));
+}
 
 @Controller('professionals')
 export class ProfessionalsController {
@@ -16,15 +23,20 @@ export class ProfessionalsController {
 
   @Get('apply')
   @Render('professionals/apply')
-  applyForm() {
-    return { title: 'Affiliate Application', activeNav: 'professionals' };
+  applyForm(@Query('rate') rate?: string) {
+    const requestedRatePercent = clampRatePercent(rate);
+    return { title: 'Affiliate Application', activeNav: 'professionals', requestedRatePercent };
   }
 
   @Post('apply')
   @Render('professionals/apply')
   async submitApplication(@Body() body: AffiliateApplicationDto) {
     try {
-      await this.affiliatesService.createApplication({ ...body });
+      const requestedRatePercent = clampRatePercent(String(body.requestedRatePercent ?? ''));
+      await this.affiliatesService.createApplication({
+        ...body,
+        commissionRate: requestedRatePercent !== undefined ? requestedRatePercent / 100 : undefined,
+      });
       return {
         title: 'Affiliate Application',
         activeNav: 'professionals',

@@ -89,4 +89,22 @@ export class AffiliatesService {
   async countByStatus(status: AffiliateStatus) {
     return this.affiliateModel.countDocuments({ status }).exec();
   }
+
+  /** Fire-and-forget click tracking for a referral link visit; silently no-ops for unknown/unapproved codes. */
+  async recordClick(code: string): Promise<void> {
+    await this.affiliateModel.updateOne({ referralCode: code, status: 'approved' }, { $inc: { clickCount: 1 } }).exec();
+  }
+
+  async changePassword(id: string, currentPassword: string, newPassword: string) {
+    const affiliate = await this.affiliateModel.findById(id).exec();
+    if (!affiliate || !affiliate.passwordHash) throw new NotFoundException('Affiliate not found');
+    const valid = await bcrypt.compare(currentPassword, affiliate.passwordHash);
+    if (!valid) throw new UnauthorizedException('Current password is incorrect.');
+    affiliate.passwordHash = await bcrypt.hash(newPassword, SALT_ROUNDS);
+    await affiliate.save();
+  }
+
+  async setPayoutEmail(id: string, payoutEmail: string) {
+    return this.affiliateModel.findByIdAndUpdate(id, { $set: { payoutEmail } }, { returnDocument: 'after' }).exec();
+  }
 }

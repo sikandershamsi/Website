@@ -10,6 +10,7 @@ import { randomUUID } from 'crypto';
 import { registerHelpers } from './view-helpers';
 import { hbsLayoutEngine } from './hbs-layout-engine';
 import { CartService } from './cart/cart.service';
+import { AffiliatesService } from './affiliates/affiliates.service';
 import type { AppConfig } from './config/configuration';
 
 const CART_COOKIE = 'al_cart_id';
@@ -45,14 +46,16 @@ export function configureApp(app: NestExpressApplication) {
     }),
   );
 
+  const affiliatesService = app.get(AffiliatesService);
   app.use((req: any, res: any, next: any) => {
     const ref = typeof req.query?.ref === 'string' ? req.query.ref.trim() : '';
-    if (ref) {
+    if (ref && req.cookies?.[REF_COOKIE] !== ref) {
       res.cookie(REF_COOKIE, ref, {
         maxAge: 1000 * 60 * 60 * 24 * 30,
         httpOnly: true,
         sameSite: 'lax',
       });
+      affiliatesService.recordClick(ref).catch(() => undefined);
     }
     next();
   });

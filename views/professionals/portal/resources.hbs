@@ -1,0 +1,60 @@
+<h1 class="font-display text-2xl font-medium text-al-navy">Marketing Resources</h1>
+<p class="mt-1 text-sm text-al-ink/60">Everything you need to promote Animalife to your network.</p>
+
+<div class="mt-6 rounded-none border border-al-line bg-white p-6">
+  <p class="field-label">Your Personalized Shop Link</p>
+  <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
+    <input type="text" readonly value="{{shopLink}}" onclick="this.select()" class="input-field flex-1 text-sm" />
+    <button type="button" onclick="navigator.clipboard.writeText('{{shopLink}}'); this.textContent='Copied!'" class="btn-outline !px-4 text-sm whitespace-nowrap">Copy Link</button>
+  </div>
+  <p class="mt-3 text-xs text-al-ink/55">Use this instead of your homepage link when promoting a specific product category &mdash; referrals are still credited to you.</p>
+</div>
+
+<div class="mt-8">
+  <h2 class="font-display text-lg font-medium text-al-navy">Logo Assets</h2>
+  <div class="mt-4 grid gap-4 sm:grid-cols-2">
+    <div class="rounded-none border border-al-line bg-white p-5">
+      <img src="/images/brand/animalife-logo.png" alt="Animalife USA logo" class="h-12" />
+      <a href="/images/brand/animalife-logo.png" download class="mt-4 block text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">Download (dark)</a>
+    </div>
+    <div class="rounded-none border border-al-line bg-al-navy p-5">
+      <img src="/images/brand/animalife-logo-light.png" alt="Animalife USA logo, light" class="h-12" />
+      <a href="/images/brand/animalife-logo-light.png" download class="mt-4 block text-xs font-semibold uppercase tracking-wide text-white hover:underline">Download (light)</a>
+    </div>
+  </div>
+</div>
+
+<div class="mt-8">
+  <h2 class="font-display text-lg font-medium text-al-navy">Product Images</h2>
+  <div class="mt-4 grid gap-4 sm:grid-cols-3">
+    <div class="rounded-none border border-al-line bg-white p-5 text-center">
+      <img src="/images/products/vetroflex-tub.png" alt="VetroFlex" class="mx-auto h-32 object-contain" />
+      <p class="mt-3 text-sm font-semibold text-al-navy">VetroFlex</p>
+      <a href="/images/products/vetroflex-tub.png" download class="mt-1 block text-xs font-semibold uppercase tracking-wide text-al-navy/60 hover:underline">Download</a>
+    </div>
+    <div class="rounded-none border border-al-line bg-white p-5 text-center">
+      <img src="/images/products/vetrofen-tub.png" alt="VetroFen" class="mx-auto h-32 object-contain" />
+      <p class="mt-3 text-sm font-semibold text-al-navy">VetroFen</p>
+      <a href="/images/products/vetrofen-tub.png" download class="mt-1 block text-xs font-semibold uppercase tracking-wide text-al-navy/60 hover:underline">Download</a>
+    </div>
+    <div class="rounded-none border border-al-line bg-white p-5 text-center">
+      <img src="/images/products/vetrofit-syringe.png" alt="VetroFit" class="mx-auto h-32 object-contain" />
+      <p class="mt-3 text-sm font-semibold text-al-navy">VetroFit</p>
+      <a href="/images/products/vetrofit-syringe.png" download class="mt-1 block text-xs font-semibold uppercase tracking-wide text-al-navy/60 hover:underline">Download</a>
+    </div>
+  </div>
+</div>
+
+<div class="mt-8">
+  <h2 class="font-display text-lg font-medium text-al-navy">Sample Messaging</h2>
+  <div class="mt-4 space-y-4">
+    <div class="rounded-none border border-al-line bg-white p-5">
+      <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Social Caption</p>
+      <p class="mt-2 text-sm text-al-ink/80">I trust Animalife USA's root-cause, science-backed nutrition for the horses in my care &mdash; from joint support to recovery. Check them out: {{shopLink}}</p>
+    </div>
+    <div class="rounded-none border border-al-line bg-white p-5">
+      <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Email / Newsletter Blurb</p>
+      <p class="mt-2 text-sm text-al-ink/80">I've partnered with Animalife USA because their formulations target the physiological root causes of equine performance and recovery, not just symptoms. If you're looking to support your horse's joints, inflammation response, or long-term wellness, I recommend taking a look: {{shopLink}}</p>
+    </div>
+  </div>
+</div>

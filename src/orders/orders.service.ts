@@ -147,7 +147,7 @@ export class OrdersService {
 
   async markCommissionPaid(orderId: string) {
     return this.orderModel
-      .findByIdAndUpdate(orderId, { $set: { commissionStatus: 'paid' } }, { returnDocument: 'after' })
+      .findByIdAndUpdate(orderId, { $set: { commissionStatus: 'paid', commissionPaidAt: new Date() } }, { returnDocument: 'after' })
       .exec();
   }
 }

@@ -51,6 +51,12 @@ export class Affiliate {
   commissionRate: number;
 
   @Prop() approvedAt?: Date;
+
+  @Prop({ default: 0 })
+  clickCount: number;
+
+  @Prop()
+  payoutEmail?: string;
 }
 
 export const AffiliateSchema = SchemaFactory.createForClass(Affiliate);

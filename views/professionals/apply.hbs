@@ -19,7 +19,13 @@
   {{#if notice}}
   <div class="mb-8 rounded-none border border-al-orange/40 bg-al-orange/10 p-4 text-sm text-al-ink/80">{{notice}}</div>
   {{/if}}
+  {{#if requestedRatePercent}}
+  <div class="mb-8 rounded-none border border-al-line bg-al-panel p-4 text-sm text-al-ink/80">
+    Based on the earnings calculator, you're applying at a <span class="font-semibold text-al-navy">{{requestedRatePercent}}%</span> commission rate. Our team confirms this during application review.
+  </div>
+  {{/if}}
   <form action="/professionals/apply" method="post" class="space-y-12">
+    {{#if requestedRatePercent}}<input type="hidden" name="requestedRatePercent" value="{{requestedRatePercent}}" />{{/if}}
 
     <div>
       <h2 class="font-display text-center text-xl font-medium text-al-navy">Applicant Information</h2>

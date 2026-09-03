@@ -20,6 +20,7 @@ export function registerHelpers(hbsInstance: unknown) {
     typeof value === 'number' ? `${Math.round(value * 100)}%` : value,
   );
   hbs.registerHelper('mul', (a: number, b: number) => Number(a) * Number(b));
+  hbs.registerHelper('round', (value: number) => Math.round(Number(value)));
   hbs.registerHelper('year', () => new Date().getFullYear());
   hbs.registerHelper('pick', (obj: Record<string, unknown>, key: string) => obj?.[key]);
   hbs.registerHelper('or', (...args: unknown[]) => args.slice(0, -1).find((v) => v) ?? null);

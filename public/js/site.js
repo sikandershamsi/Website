@@ -295,6 +295,7 @@
     var horsesVal = calc.querySelector('[data-calc-horses-val]');
     var conversionVal = calc.querySelector('[data-calc-conversion-val]');
     var commissionVal = calc.querySelector('[data-calc-commission-val]');
+    var applyLink = calc.querySelector('[data-calc-apply-link]');
 
     function fmt(n) {
       return '$' + Math.round(n).toLocaleString('en-US');
@@ -310,6 +311,9 @@
       horsesVal.textContent = h.toLocaleString('en-US');
       conversionVal.textContent = c + '%';
       commissionVal.textContent = m + '%';
+      if (applyLink) {
+        applyLink.href = '/professionals/apply?rate=' + Math.round(m);
+      }
     }
 
     [horses, spend, conversion, commission].forEach(function (el) {

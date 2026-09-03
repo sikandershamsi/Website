@@ -145,4 +145,9 @@ export class AffiliateApplicationDto {
   @Transform(toBool)
   @IsBoolean()
   agree: boolean;
+
+  /** Carried over from the earnings calculator's commission slider, if the applicant arrived via "Become an Affiliate". */
+  @IsOptional()
+  @IsString()
+  requestedRatePercent?: string;
 }

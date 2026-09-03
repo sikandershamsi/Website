@@ -100,6 +100,9 @@ export class Order {
 
   @Prop({ enum: ['pending', 'paid'] })
   commissionStatus?: 'pending' | 'paid';
+
+  @Prop()
+  commissionPaidAt?: Date;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

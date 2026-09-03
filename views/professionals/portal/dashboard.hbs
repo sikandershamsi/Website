@@ -5,11 +5,12 @@
   <p class="field-label">Your Referral Link</p>
   <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
     <input type="text" readonly value="{{referralLink}}" onclick="this.select()" class="input-field flex-1 text-sm" />
+    <button type="button" onclick="navigator.clipboard.writeText('{{referralLink}}'); this.textContent='Copied!'" class="btn-outline !px-4 text-sm whitespace-nowrap">Copy Link</button>
   </div>
   <p class="mt-3 text-xs text-al-ink/55">Share this link &mdash; any purchase made after a visitor clicks it is automatically credited to you at your current commission rate of <span class="font-semibold text-al-navy">{{pct affiliate.commissionRate}}</span>.</p>
 </div>
 
-<div class="mt-6 grid gap-4 sm:grid-cols-3">
+<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
   <div class="rounded-none border border-al-line bg-white p-5">
     <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Lifetime Commission</p>
     <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{currency totals.lifetime}}</p>
@@ -19,8 +20,16 @@
     <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{currency totals.pending}}</p>
   </div>
   <div class="rounded-none border border-al-line bg-white p-5">
-    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Referred Orders</p>
-    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{totals.orderCount}}</p>
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Already Paid</p>
+    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{currency totals.paid}}</p>
+  </div>
+  <div class="rounded-none border border-al-line bg-white p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Link Clicks</p>
+    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{clickCount}}</p>
+  </div>
+  <div class="rounded-none border border-al-line bg-white p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Conversion Rate</p>
+    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{#if conversionRate}}{{round conversionRate}}%{{else}}&mdash;{{/if}}</p>
   </div>
 </div>
 
@@ -32,6 +41,7 @@
       <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
         <tr>
           <th class="px-4 py-3">Order</th>
+          <th class="px-4 py-3">Products</th>
           <th class="px-4 py-3">Order Total</th>
           <th class="px-4 py-3">Your Commission</th>
           <th class="px-4 py-3">Status</th>
@@ -41,6 +51,11 @@
         {{#each orders}}
         <tr>
           <td class="px-4 py-3 font-semibold text-al-navy">{{this.orderNumber}}</td>
+          <td class="px-4 py-3 text-al-ink/70">
+            {{#each this.lines}}
+            <div>{{this.name}} &times;{{this.qty}}{{#if this.isSubscription}} <span class="text-xs text-al-ink/45">(subscription)</span>{{/if}}</div>
+            {{/each}}
+          </td>
           <td class="px-4 py-3">{{currency this.subtotal}}</td>
           <td class="px-4 py-3">{{currency this.commissionAmount}}</td>
           <td class="px-4 py-3">
