@@ -65,11 +65,15 @@ export class CartController {
       subtotal,
       isEmpty: lines.length === 0,
       multipleSubscriptionsError: error === 'multiple-subscriptions',
+      paymentsConfigured: this.stripeService.isConfigured(),
     };
   }
 
   @Post('checkout/start')
   async startCheckout(@Req() req: Request, @Res() res: Response) {
+    if (!this.stripeService.isConfigured()) {
+      return res.redirect(303, '/checkout?error=payments-coming-soon');
+    }
     const key = cartKeyFromRequest(req);
     const lines = await this.cartService.get(key);
     if (lines.length === 0) {
@@ -116,6 +120,7 @@ export class CartController {
       subtotal,
       isEmpty: lines.length === 0,
       cancelled: true,
+      paymentsConfigured: this.stripeService.isConfigured(),
     };
   }
 }

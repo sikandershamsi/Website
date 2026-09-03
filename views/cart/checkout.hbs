@@ -17,6 +17,11 @@
     Only one subscription product can be checked out at a time. Please remove one before continuing, or check it out separately.
   </div>
   {{/if}}
+  {{#unless paymentsConfigured}}
+  <div class="mb-8 rounded-none border border-al-orange/40 bg-al-orange/10 p-4 text-sm text-al-ink/80">
+    <span class="font-semibold">Online payment is coming soon.</span> We're finishing setup on our secure checkout &mdash; you won't be able to complete payment here just yet. Check back shortly, or contact us to place your order directly.
+  </div>
+  {{/unless}}
   <div class="grid gap-10 lg:grid-cols-[1fr_360px]">
     <div class="space-y-5">
       <h2 class="font-display text-lg font-medium text-al-navy">Review Your Order</h2>
@@ -39,9 +44,13 @@
         Payment and shipping details are collected securely on Stripe's checkout page &mdash; card details never touch our servers.
       </div>
 
+      {{#if paymentsConfigured}}
       <form action="/checkout/start" method="post">
         <button type="submit" class="btn-primary w-full sm:w-auto">Continue to Payment</button>
       </form>
+      {{else}}
+      <button type="button" disabled class="btn-primary w-full cursor-not-allowed opacity-50 sm:w-auto">Payment Coming Soon</button>
+      {{/if}}
     </div>
 
     <div class="card h-max p-6">
