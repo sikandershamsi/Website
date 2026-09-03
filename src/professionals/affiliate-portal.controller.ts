@@ -27,6 +27,8 @@ export class AffiliatePortalController {
     const conversionRate = clickCount > 0 ? (totals.orderCount / clickCount) * 100 : undefined;
     return {
       title: 'Affiliate Portal',
+      activeNav: 'professionals',
+      portalTab: 'dashboard',
       affiliate,
       referralLink: `${baseUrl}/?ref=${affiliate?.referralCode}`,
       orders,
@@ -43,6 +45,8 @@ export class AffiliatePortalController {
     const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
     return {
       title: 'Marketing Resources',
+      activeNav: 'professionals',
+      portalTab: 'resources',
       affiliate,
       referralLink: `${baseUrl}/?ref=${affiliate?.referralCode}`,
       shopLink: `${baseUrl}/shop?ref=${affiliate?.referralCode}`,
@@ -53,17 +57,18 @@ export class AffiliatePortalController {
   @Render('professionals/portal/settings')
   async settingsForm(@Req() req: Request) {
     const affiliate = await this.affiliatesService.findById(req.session.userId as string);
-    return { title: 'Account Settings', affiliate };
+    return { title: 'Account Settings', activeNav: 'professionals', portalTab: 'settings', affiliate };
   }
 
   @Post('settings/password')
   async changePassword(@Req() req: Request, @Res() res: Response, @Body() body: ChangeAffiliatePasswordDto) {
     const affiliate = await this.affiliatesService.findById(req.session.userId as string);
+    const base = { title: 'Account Settings', activeNav: 'professionals', portalTab: 'settings', affiliate };
     try {
       await this.affiliatesService.changePassword(req.session.userId as string, body.currentPassword, body.newPassword);
-      res.render('professionals/portal/settings', { title: 'Account Settings', affiliate, passwordUpdated: true });
+      res.render('professionals/portal/settings', { ...base, passwordUpdated: true });
     } catch {
-      res.render('professionals/portal/settings', { title: 'Account Settings', affiliate, notice: 'Current password is incorrect.' });
+      res.render('professionals/portal/settings', { ...base, notice: 'Current password is incorrect.' });
     }
   }
 

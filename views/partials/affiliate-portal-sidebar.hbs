@@ -1,0 +1,11 @@
+<div>
+  <nav class="card flex flex-col divide-y divide-al-line overflow-hidden">
+    <a href="/professionals/portal" class="p-4 text-sm font-semibold {{#ifCond portalTab "dashboard"}}bg-al-navy text-white{{else}}text-al-navy hover:bg-al-panel{{/ifCond}}">Dashboard</a>
+    <a href="/professionals/portal/resources" class="p-4 text-sm font-semibold {{#ifCond portalTab "resources"}}bg-al-navy text-white{{else}}text-al-navy hover:bg-al-panel{{/ifCond}}">Marketing Resources</a>
+    <a href="/professionals/portal/settings" class="p-4 text-sm font-semibold {{#ifCond portalTab "settings"}}bg-al-navy text-white{{else}}text-al-navy hover:bg-al-panel{{/ifCond}}">Account Settings</a>
+    <a href="/professionals" class="p-4 text-sm font-semibold text-al-navy hover:bg-al-panel">Rewards Program</a>
+  </nav>
+  <form action="/professionals/logout" method="post" class="mt-4">
+    <button type="submit" class="w-full text-center text-xs font-semibold uppercase tracking-wide text-al-ink/50 hover:text-al-navy">Sign Out</button>
+  </form>
+</div>

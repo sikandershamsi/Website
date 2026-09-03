@@ -1,33 +1,37 @@
-<h1 class="font-display text-2xl font-medium text-al-navy">Account Settings</h1>
+{{> page-header eyebrow="Affiliate Portal" heading="Account Settings"}}
 
-<div class="mt-6 grid gap-6 lg:grid-cols-2">
-  <div class="rounded-none border border-al-line bg-white p-6">
-    <h2 class="font-display text-lg font-medium text-al-navy">Payout Email</h2>
-    <p class="mt-1 text-sm text-al-ink/60">Where should we send your commission payouts?</p>
-    <form action="/professionals/portal/settings/payout-email" method="post" class="mt-4 space-y-3">
-      <input name="payoutEmail" type="email" value="{{affiliate.payoutEmail}}" placeholder="you@example.com" required class="input-field" />
-      <button type="submit" class="btn-primary">Save Payout Email</button>
-    </form>
-  </div>
+<section class="section grid gap-8 lg:grid-cols-[240px_1fr]">
+  {{> affiliate-portal-sidebar}}
 
-  <div class="rounded-none border border-al-line bg-white p-6">
-    <h2 class="font-display text-lg font-medium text-al-navy">Change Password</h2>
-    {{#if passwordUpdated}}
-    <div class="mt-4 rounded-none bg-green-50 p-4 text-sm text-green-700">Password updated.</div>
-    {{/if}}
-    {{#if notice}}
-    <div class="mt-4 rounded-none bg-red-50 p-4 text-sm text-red-700">{{notice}}</div>
-    {{/if}}
-    <form action="/professionals/portal/settings/password" method="post" class="mt-4 space-y-3">
-      <div>
-        <label class="field-label" for="currentPassword">Current Password</label>
-        <input id="currentPassword" name="currentPassword" type="password" required class="input-field" />
-      </div>
-      <div>
-        <label class="field-label" for="newPassword">New Password</label>
-        <input id="newPassword" name="newPassword" type="password" minlength="8" required class="input-field" />
-      </div>
-      <button type="submit" class="btn-primary">Update Password</button>
-    </form>
+  <div class="grid gap-6 sm:grid-cols-2">
+    <div class="card p-6">
+      <p class="font-display text-base font-medium text-al-navy">Payout Email</p>
+      <p class="mt-1 text-sm text-al-ink/60">Where should we send your commission payouts?</p>
+      <form action="/professionals/portal/settings/payout-email" method="post" class="mt-5 space-y-3">
+        <input name="payoutEmail" type="email" value="{{affiliate.payoutEmail}}" placeholder="you@example.com" required class="input-field" />
+        <button type="submit" class="btn-primary">Save Payout Email</button>
+      </form>
+    </div>
+
+    <div class="card p-6">
+      <p class="font-display text-base font-medium text-al-navy">Change Password</p>
+      {{#if passwordUpdated}}
+      <div class="mt-4 rounded-none bg-green-50 p-4 text-sm text-green-700">Password updated.</div>
+      {{/if}}
+      {{#if notice}}
+      <div class="mt-4 rounded-none bg-red-50 p-4 text-sm text-red-700">{{notice}}</div>
+      {{/if}}
+      <form action="/professionals/portal/settings/password" method="post" class="mt-5 space-y-3">
+        <div>
+          <label class="field-label" for="currentPassword">Current Password</label>
+          <input id="currentPassword" name="currentPassword" type="password" required class="input-field" />
+        </div>
+        <div>
+          <label class="field-label" for="newPassword">New Password</label>
+          <input id="newPassword" name="newPassword" type="password" minlength="8" required class="input-field" />
+        </div>
+        <button type="submit" class="btn-primary">Update Password</button>
+      </form>
+    </div>
   </div>
-</div>
+</section>
