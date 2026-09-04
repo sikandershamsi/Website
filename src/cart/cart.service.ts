@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Cart, CartDocument, CartLine } from './schemas/cart.schema';
@@ -43,7 +43,7 @@ export class CartService {
 
   async add(key: CartKey, slug: string, qty: number, isSubscription = false): Promise<void> {
     const product = await this.productsService.findBySlug(slug);
-    if (!product) return;
+    if (!product) throw new NotFoundException(`No active product found for slug "${slug}".`);
     const cart = await this.ensure(key);
     const existing = cart.lines.find((l) => l.slug === slug && l.isSubscription === isSubscription);
     if (existing) {

@@ -48,7 +48,7 @@
     {{> section-head eyebrow="Product Selection" heading="Shop All Products" lede="Browse every formula below, or start with a category above."}}
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {{#each products}}
-      <div class="card product-card flex flex-col overflow-hidden">
+      <div class="card product-card flex flex-col overflow-hidden" id="product-{{this.slug}}">
         <a href="/shop/product/{{this.slug}}" class="product-card__media-link border-b border-al-line bg-white p-8">
           {{> product-media image=this.image alt=this.trademark tagline=this.tagline}}
         </a>
@@ -64,10 +64,13 @@
             <form action="/cart/add" method="post">
               <input type="hidden" name="slug" value="{{this.slug}}" />
               <input type="hidden" name="qty" value="1" />
-              <input type="hidden" name="redirectTo" value="/shop" />
+              <input type="hidden" name="redirectTo" value="/shop?added={{this.slug}}#product-{{this.slug}}" />
               <button type="submit" class="btn-outline !px-5 !py-2 text-xs">Add to Cart</button>
             </form>
           </div>
+          {{#if (eq ../addedSlug this.slug)}}
+          <p class="mt-3 text-right text-xs font-semibold uppercase tracking-wide text-al-navy">✓ Added to cart</p>
+          {{/if}}
         </div>
       </div>
       {{/each}}

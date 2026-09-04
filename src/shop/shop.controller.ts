@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundException, Param, Render } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param, Query, Render } from '@nestjs/common';
 import { testimonials, vetrofitTestimonials } from '../content/site.data';
 import { ProductsService } from '../products/products.service';
 import { CategoriesService } from '../products/categories.service';
@@ -12,7 +12,7 @@ export class ShopController {
 
   @Get()
   @Render('shop/index')
-  async index() {
+  async index(@Query('added') added?: string) {
     const [categories, products] = await Promise.all([
       this.categoriesService.findAll(),
       this.productsService.findAll(),
@@ -22,6 +22,7 @@ export class ShopController {
       activeNav: 'shop',
       categories,
       products,
+      addedSlug: added,
     };
   }
 
