@@ -226,6 +226,15 @@
       if (index > maxIndex()) index = maxIndex();
       var pct = (100 / perView()) * index;
       track.style.transform = 'translateX(-' + pct + '%)';
+      // Every slide carries the same trailing divider border so the pattern works
+      // regardless of which slot it's currently in; the last visible slide's own
+      // trailing border isn't a real divider (nothing follows it on screen), so hide it.
+      var lastVisible = index + perView() - 1;
+      Array.prototype.forEach.call(slides, function (slide, i) {
+        var divider = slide.firstElementChild;
+        if (!divider) return;
+        divider.style.borderRightColor = i === lastVisible ? 'transparent' : '';
+      });
       renderDots();
     }
     prev && prev.addEventListener('click', function () {

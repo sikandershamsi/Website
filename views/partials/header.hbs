@@ -54,11 +54,13 @@
             </ul>
           </div>
         </li>
+        <li class="site-nav__item">
+          <a href="/horse-iq" class="site-nav__link {{#ifCond activeNav "horseiq"}}is-active{{/ifCond}}">Horse IQ</a>
+        </li>
       </ul>
     </nav>
 
     <div class="flex shrink-0 items-center gap-4 text-al-navy lg:gap-5">
-      <a href="/horse-iq" class="hidden text-[13px] font-medium uppercase tracking-[0.08em] transition-colors hover:text-al-orange lg:inline {{#ifCond activeNav "horseiq"}}text-al-orange{{/ifCond}}">Horse IQ</a>
       <button type="button" data-search-toggle aria-label="Search" class="transition-colors hover:text-al-orange">{{{icon "search" "w-5 h-5"}}}</button>
       <a href="/account" aria-label="Account" class="transition-colors hover:text-al-orange">{{{icon "user" "w-5 h-5"}}}</a>
       <a href="/cart" aria-label="Cart" class="relative transition-colors hover:text-al-orange">

@@ -9,12 +9,12 @@
   />
 </section>
 
-<section class="panel-white">
+<section class="panel-grey">
   <div class="section">
     {{> section-head heading="Meet Our Animalife Ambassadors" lede="We are honored to partner with an exceptional group of riders, trainers, veterinarians, and equine professionals who share our passion for helping horses live healthier, happier, and more successful lives."}}
-    <p class="section-head__lede mx-auto">Our ambassadors are more than accomplished professionals&mdash;they are trusted educators, practitioners, advocates, and competitors who believe in treating the whole horse through science-backed nutrition and natural wellness. Their experience, dedication, and commitment to excellence help shape the future of Animalife while inspiring horse owners around the world.</p>
+    <p class="section-head__lede mx-auto max-w-4xl">Our ambassadors are more than accomplished professionals&mdash;they are trusted educators, practitioners, advocates, and competitors who believe in treating the whole horse through science-backed nutrition and natural wellness. Their experience, dedication, and commitment to excellence help shape the future of Animalife while inspiring horse owners around the world.</p>
 
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <a href="/ambassadors/jenni-mcallister" class="card group overflow-hidden">
         <div class="aspect-[4/5] overflow-hidden bg-al-panel">
           <img src="/images/ambassadors/jenni-mcallister.jpg" alt="Jenni McAllister competing in show jumping" class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
@@ -29,16 +29,17 @@
 </section>
 
 <section class="amb-feel">
-  <div class="amb-feel__banner">
+  <div class="home-feel-board relative w-full">
     <img
       src="/images/shared/feel-the-difference-panorama.jpg"
       alt="Equestrian athletes across polo, western reining, show jumping, and eventing"
       width="2172"
       height="724"
-      class="amb-feel__banner-img"
+      class="block h-auto w-full"
     />
-    <div class="amb-feel__overlay" aria-hidden="true"></div>
-    <p class="amb-feel__title">Feel the Difference</p>
+    <div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4">
+      <p style="font-family: Calibri, sans-serif;" class="text-center text-[clamp(2.5rem,8vw,6.25rem)] font-bold leading-none text-white sm:whitespace-nowrap">Feel The Difference</p>
+    </div>
   </div>
 
   <ul class="amb-feel__icons">
@@ -73,10 +74,10 @@
   </ul>
 </section>
 
-<section class="panel-white" id="become-ambassador">
+<section class="panel-white border-t border-al-line" id="become-ambassador">
   <div class="section">
     {{> section-head eyebrow="Become an Ambassador" heading="Ride with purpose. Partner with Animalife." lede="If you're a competitive rider, trainer, or equine professional who believes in root-cause, science-backed nutrition, we'd love to hear your story."}}
-    <div class="mt-12 grid gap-12 lg:grid-cols-2">
+    <div class="mx-auto mt-12 grid max-w-5xl gap-12 lg:grid-cols-2">
     <div>
       <ul class="space-y-3 text-sm text-al-ink/80">
         <li class="flex items-start gap-2">{{{icon "check" "w-4 h-4 mt-0.5 text-al-navy/55 shrink-0"}}}Complimentary product &amp; personalized feeding plans</li>

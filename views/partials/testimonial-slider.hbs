@@ -9,8 +9,8 @@
   <div class="mt-14 w-full overflow-hidden" data-testimonial-slider data-auto-slider>
     <div class="slider-track" data-testimonial-track>
       {{#each items}}
-      <div class="w-full shrink-0 px-1 md:w-1/2 md:px-6 lg:px-10" data-testimonial-slide>
-        <div class="h-full border-b border-al-line pb-8 text-left md:border-b-0 md:border-r md:pr-10">
+      <div class="w-full shrink-0 px-1 md:w-1/2" data-testimonial-slide>
+        <div class="h-full border-b border-al-line pb-8 text-left md:border-b-0 md:border-r md:px-10">
           <span class="font-display text-4xl font-medium text-al-navy/25 sm:text-5xl">{{pad2 (inc @index)}}</span>
           <p class="font-display mt-4 text-xl font-medium text-black sm:text-2xl">{{this.quote}}</p>
           <p class="mt-3 max-w-xl text-sm leading-relaxed text-al-ink/70 sm:text-base">{{this.author}}{{#if this.product}} &middot; {{this.product}}{{/if}}</p>

@@ -63,6 +63,12 @@
   .section-heading--sm {
     @apply mt-0 text-[clamp(1.5rem,2.6vw,2rem)];
   }
+  /* .section-heading's mt-5 exists to space it away from a preceding eyebrow label;
+     headings with no eyebrow (like this one) don't need it and end up with an
+     unintentionally larger gap above the section than below. */
+  #shop-by-category-title {
+    @apply mt-0;
+  }
   .section-head__lede {
     @apply mt-5 max-w-2xl text-sm leading-relaxed text-al-ink/70 sm:text-base;
   }
@@ -1428,7 +1434,10 @@
     @apply font-extrabold;
   }
   .race-cascade-board {
-    @apply relative isolate w-full overflow-hidden bg-white;
+    @apply relative isolate block w-full overflow-hidden border-y border-al-line bg-white;
+  }
+  .race-cascade-board__frame {
+    @apply mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8;
   }
   .race-cascade-board__img {
     display: block;
@@ -1437,7 +1446,10 @@
     height: auto;
   }
   .race-owners-board {
-    @apply relative isolate w-full overflow-hidden bg-white;
+    @apply relative isolate block w-full overflow-hidden border-y border-al-line bg-white;
+  }
+  .race-owners-board__frame {
+    @apply mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8;
   }
   .race-owners-board__img {
     display: block;
@@ -1449,7 +1461,10 @@
     @apply relative isolate overflow-hidden bg-[#f7f4ee];
   }
   .race-homeo--board {
-    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+    @apply block min-h-0 w-full overflow-hidden border-y border-al-line bg-white;
+  }
+  .race-homeo__frame {
+    @apply mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8;
   }
   .race-homeo__board {
     display: block;
@@ -1587,7 +1602,10 @@
     @apply bg-white py-16 sm:py-20 lg:py-24;
   }
   .race-regulator--board {
-    @apply block min-h-0 w-full overflow-hidden bg-white p-0 py-0 sm:py-0 lg:py-0;
+    @apply block min-h-0 w-full overflow-hidden border-y border-al-line bg-white p-0 py-0 sm:py-0 lg:py-0;
+  }
+  .race-regulator__frame {
+    @apply mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8;
   }
   .race-regulator__board-img {
     display: block;
@@ -1599,7 +1617,10 @@
     @apply bg-white py-16 sm:py-20 lg:py-24;
   }
   .race-oxygen--board {
-    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+    @apply block min-h-0 w-full overflow-hidden border-y border-al-line bg-white p-0 py-0 sm:py-0 lg:py-0;
+  }
+  .race-oxygen__frame {
+    @apply mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8;
   }
   .race-oxygen__board {
     display: block;
@@ -1608,7 +1629,10 @@
     height: auto;
   }
   .race-distress--board {
-    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+    @apply block min-h-0 w-full overflow-hidden border-y border-al-line bg-white;
+  }
+  .race-distress__frame {
+    @apply mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8;
   }
   .race-distress__board-img {
     display: block;
@@ -1617,7 +1641,10 @@
     height: auto;
   }
   .race-compare--board {
-    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+    @apply block min-h-0 w-full overflow-hidden border-y border-al-line bg-white;
+  }
+  .race-compare__frame {
+    @apply mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8;
   }
   .race-compare__board-img {
     display: block;
@@ -1626,7 +1653,10 @@
     height: auto;
   }
   .race-vetrofit--board {
-    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+    @apply block min-h-0 w-full overflow-hidden border-y border-al-line bg-white;
+  }
+  .race-vetrofit__frame {
+    @apply mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8;
   }
   .race-vetrofit__board-img {
     display: block;
@@ -1639,8 +1669,11 @@
     min-height: calc(100svh - 6.75rem);
   }
   .race-why--board {
-    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+    @apply block min-h-0 w-full overflow-hidden border-y border-al-line bg-al-panel;
     min-height: 0;
+  }
+  .race-why__frame {
+    @apply mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8;
   }
   .race-why__board-img {
     display: block;
@@ -1710,8 +1743,11 @@
     min-height: calc(100svh - 6.75rem);
   }
   .race-eval--board {
-    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+    @apply block min-h-0 w-full overflow-hidden border-y border-al-line bg-white;
     min-height: 0;
+  }
+  .race-eval__frame {
+    @apply mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8;
   }
   .race-eval__board-img {
     display: block;
@@ -1815,7 +1851,10 @@
     @apply bg-white;
   }
   .race-science--board {
-    @apply block min-h-0 w-full overflow-hidden bg-white p-0;
+    @apply block min-h-0 w-full overflow-hidden border-y border-al-line bg-white;
+  }
+  .race-science__frame {
+    @apply mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8;
   }
   .race-science__board-img {
     display: block;
@@ -1832,7 +1871,7 @@
     @apply relative isolate overflow-hidden bg-white;
   }
   .inspired-nature__media {
-    @apply relative block h-[42vh] min-h-[220px] w-full object-cover object-[72%_center] sm:h-[48vh];
+    @apply relative block h-[42vh] min-h-[220px] w-full object-cover object-[72%_top] sm:h-[48vh];
   }
   .inspired-nature__copy {
     @apply relative z-10 px-6 py-10 sm:px-8 sm:py-12;
@@ -1865,7 +1904,7 @@
       height: 100%;
       min-height: 0;
       object-fit: cover;
-      object-position: 68% center;
+      object-position: 68% top;
     }
     .inspired-nature__copy {
       position: relative;
@@ -2192,7 +2231,7 @@
     @apply w-full bg-white pb-10 sm:pb-12 lg:pb-14;
   }
   .amb-feel__banner {
-    @apply relative mx-auto w-full overflow-hidden;
+    @apply relative mx-auto aspect-[3/1] w-full overflow-hidden;
   }
   .amb-feel__banner-img {
     @apply block h-auto w-full;
@@ -2802,9 +2841,7 @@
   /* Designed boards: edge-to-edge, one screen tall, crop top if needed */
   @media (min-width: 1024px) {
     .science-hero,
-    .hiq-hero,
-    .race-why--board,
-    .race-eval--board {
+    .hiq-hero {
       height: calc(100svh - 5.5625rem);
       max-height: calc(100svh - 5.5625rem);
       min-height: 0;
