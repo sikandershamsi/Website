@@ -90,6 +90,25 @@ export class AffiliatesService {
     return this.affiliateModel.countDocuments({ status }).exec();
   }
 
+  /** Idempotent: creates an approved affiliate with a known password for seeding/dev use, or no-ops if the email already exists. */
+  async seedApproved(data: Record<string, unknown> & { email: string; fullName: string }, plaintextPassword: string) {
+    const email = data.email.toLowerCase().trim();
+    const existing = await this.affiliateModel.findOne({ email }).exec();
+    if (existing) return { affiliate: existing, created: false };
+
+    const passwordHash = await bcrypt.hash(plaintextPassword, SALT_ROUNDS);
+    const referralCode = await this.generateReferralCode(data.fullName);
+    const affiliate = await this.affiliateModel.create({
+      ...data,
+      email,
+      passwordHash,
+      referralCode,
+      status: 'approved',
+      approvedAt: new Date(),
+    });
+    return { affiliate, created: true };
+  }
+
   /** Fire-and-forget click tracking for a referral link visit; silently no-ops for unknown/unapproved codes. */
   async recordClick(code: string): Promise<void> {
     await this.affiliateModel.updateOne({ referralCode: code, status: 'approved' }, { $inc: { clickCount: 1 } }).exec();

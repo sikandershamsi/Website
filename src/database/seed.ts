@@ -6,6 +6,8 @@ import { ProductsService } from '../products/products.service';
 import { StripeService } from '../stripe/stripe.service';
 import { UsersService } from '../users/users.service';
 import { PagesService } from '../pages/pages.service';
+import { AffiliatesService } from '../affiliates/affiliates.service';
+import * as bcrypt from 'bcrypt';
 import { categories, products as staticProducts, type Product as StaticProduct } from '../content/products.data';
 import { horseTruths, standards, testimonials } from '../content/site.data';
 
@@ -69,6 +71,7 @@ async function seed() {
   const stripeService = app.get(StripeService);
   const usersService = app.get(UsersService);
   const pagesService = app.get(PagesService);
+  const affiliatesService = app.get(AffiliatesService);
 
   logger.log(`Seeding ${categories.length} categories...`);
   for (const category of categories) {
@@ -186,6 +189,28 @@ async function seed() {
     }
   } else {
     logger.log(`${adminCount} admin user(s) already exist — skipped admin seeding.`);
+  }
+
+  const affiliateEmail = process.env.AFFILIATE_SEED_EMAIL;
+  const affiliatePassword = process.env.AFFILIATE_SEED_PASSWORD;
+  if (affiliateEmail && affiliatePassword) {
+    const { affiliate, created } = await affiliatesService.seedApproved(
+      {
+        fullName: process.env.AFFILIATE_SEED_NAME || 'Affiliate Partner',
+        email: affiliateEmail,
+        profession: 'Trainer',
+        experience: '10+ years',
+        reach: 'Seeded demo account for local testing.',
+        currentlyRecommends: 'N/A',
+        salesGoal: 'N/A',
+        personalStatement: 'Seeded demo account for local testing.',
+        agree: true,
+      },
+      affiliatePassword,
+    );
+    logger.log(created ? `Created affiliate user: ${affiliateEmail}` : `Affiliate user already exists: ${affiliateEmail} — skipped.`);
+  } else {
+    logger.warn('AFFILIATE_SEED_EMAIL/AFFILIATE_SEED_PASSWORD are not set — skipped affiliate seeding.');
   }
 
   logger.log('Seed complete.');
