@@ -99,6 +99,9 @@
   .card {
     @apply rounded-none border border-al-line bg-white;
   }
+  .amb-grid-rule {
+    @apply mx-auto mt-8 h-px w-full max-w-5xl bg-al-line;
+  }
   .amb-slot {
     @apply flex flex-col overflow-hidden rounded-none border border-dashed border-al-line bg-transparent;
   }
@@ -1419,10 +1422,7 @@
     @apply text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 sm:text-xs;
   }
   .race-hero__title {
-    @apply font-display mt-5 max-w-3xl text-[clamp(2.5rem,7vw,5.5rem)] font-medium leading-[1.05] tracking-tight text-white;
-  }
-  .race-hero__lede {
-    @apply mt-6 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base;
+    @apply font-display mt-5 max-w-none whitespace-nowrap text-[clamp(1.25rem,6vw,5rem)] font-medium leading-[1.05] tracking-tight text-white;
   }
   /* Racing page text interludes — one consistent "separator band" design:
      warm panel bg, centered gold rule + serif title, regardless of variant */
@@ -1964,7 +1964,7 @@
     height: auto;
   }
   .about-story-layout {
-    @apply grid gap-10;
+    @apply mx-auto grid max-w-6xl gap-10;
   }
   .about-story-photo {
     @apply m-0 mx-auto w-full max-w-md;
@@ -1982,25 +1982,19 @@
     @apply max-w-3xl;
   }
   @media (min-width: 1024px) {
-    /* Photo scales to text height; column widens so the full image stays visible (no crop). */
+    /* Photo keeps a fixed, reasonable width and its own aspect ratio — it no
+       longer stretches to match the (often much taller) text column, so the
+       two columns stay visually balanced regardless of copy length. */
     .about-story-layout {
-      grid-template-columns: max-content minmax(0, 1fr);
-      align-items: stretch;
+      grid-template-columns: 22rem minmax(0, 1fr);
+      align-items: start;
     }
     .about-story-photo {
-      display: flex;
-      flex-direction: column;
-      width: max-content;
+      width: 100%;
       max-width: none;
-      height: 100%;
       margin: 0;
-      align-self: stretch;
     }
     .about-story-photo__frame {
-      flex: 1 1 0;
-      min-height: 0;
-      width: auto;
-      height: auto;
       aspect-ratio: 762 / 1024;
       background-color: transparent;
     }
@@ -2010,9 +2004,6 @@
       height: 100%;
       object-fit: contain;
       object-position: center top;
-    }
-    .about-story-photo__caption {
-      flex: 0 0 auto;
     }
   }
   .pro-hero {
