@@ -255,7 +255,7 @@
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
   }
   .vf-desc--board {
-    @apply border-0 bg-transparent p-0;
+    @apply border-0 bg-transparent;
   }
   .vf-desc__board {
     display: block;
@@ -265,15 +265,11 @@
     object-fit: contain;
     object-position: center;
   }
-  /* Full-bleed designed boards under product Description */
+  /* Designed boards under product Description: consistent max-width + padding so
+     boards with different baked-in artwork density still align and read at the
+     same visual size, rather than each bleeding full-viewport-width. */
   .product-board-bleed {
-    position: relative;
-    left: 50%;
-    right: 50%;
-    width: 100vw;
-    max-width: 100vw;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    @apply mx-auto w-full max-w-5xl p-4 sm:p-6 lg:p-8;
   }
   .product-board-bleed img {
     display: block;
@@ -397,7 +393,7 @@
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
   }
   .vf-kidney--board {
-    @apply border-0 bg-transparent p-0;
+    @apply border-0 bg-transparent;
   }
   .vf-kidney__board {
     display: block;
@@ -512,7 +508,7 @@
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
   }
   .vf-compare--board {
-    @apply border-0 bg-transparent p-0;
+    @apply border-0 bg-transparent;
   }
   .vf-compare__board {
     display: block;
@@ -634,7 +630,7 @@
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
   }
   .vfen-inflam--board {
-    @apply border-0 bg-transparent p-0;
+    @apply border-0 bg-transparent;
   }
   .vfen-inflam__board {
     display: block;
@@ -754,7 +750,7 @@
     @apply border border-al-line bg-white px-5 py-8 sm:px-8 sm:py-10;
   }
   .vfen-control--board {
-    @apply border-0 bg-transparent p-0;
+    @apply border-0 bg-transparent;
   }
   .vfen-control__board {
     display: block;
