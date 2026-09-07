@@ -2114,23 +2114,10 @@
     max-width: none;
     height: auto;
   }
-  /* Desktop: a fixed wide aspect ratio (not a viewport-height calc) so the crop is a
-     constant, safe percentage of the photo at any screen width — just enough sky above
-     the horse's ears to fit the section within one screen, never enough to reach the
-     ears themselves or the discipline photo strip at the bottom. */
-  @media (min-width: 1024px) {
-    .amb-hero--board {
-      aspect-ratio: 2.6;
-      height: auto;
-      min-height: 0;
-    }
-    .amb-hero__board {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center bottom;
-    }
-  }
+  /* Desktop: no forced aspect ratio — the full board (headline text at top,
+     discipline strip at bottom) always renders at its natural size with zero
+     cropping. This section may extend past the first screen on shorter
+     viewports; that's an accepted trade-off for never cropping the artwork. */
   .amb-hero__media {
     @apply absolute inset-0 h-full w-full object-cover object-center;
   }
