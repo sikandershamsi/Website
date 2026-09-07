@@ -1929,42 +1929,46 @@
   }
   @media (min-width: 1024px) {
     .inspired-nature {
+      height: auto;
+      min-height: 0;
+      display: flex;
+      justify-content: center;
+    }
+    .inspired-nature__inner {
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+      max-width: 90rem;
       height: calc(100svh - 9rem);
       min-height: 460px;
     }
     .inspired-nature__media-wrap {
-      position: absolute;
-      inset: 0;
+      position: relative;
+      inset: auto;
       height: 100%;
       min-height: 0;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
+      flex: 1 1 auto;
+      display: block;
+      order: 2;
     }
     .inspired-nature__media {
       display: block;
       height: 100%;
-      width: auto;
+      width: 100%;
       max-width: none;
-      object-fit: contain;
-      object-position: initial;
+      object-fit: cover;
+      object-position: 68% center;
     }
     .inspired-nature__veil {
-      background: linear-gradient(
-        90deg,
-        #ffffff 0%,
-        #ffffff 34%,
-        rgba(255, 255, 255, 0.92) 42%,
-        rgba(255, 255, 255, 0.55) 52%,
-        rgba(255, 255, 255, 0.18) 62%,
-        rgba(255, 255, 255, 0) 72%
-      );
+      display: none;
     }
     .inspired-nature__copy {
-      position: absolute;
-      inset: 0;
+      position: relative;
+      inset: auto;
       display: flex;
-      max-width: 46%;
+      order: 1;
+      flex: 0 0 clamp(22rem, 34vw, 28rem);
+      max-width: none;
       flex-direction: column;
       justify-content: center;
       padding-inline: clamp(2rem, 4vw, 4.5rem);
