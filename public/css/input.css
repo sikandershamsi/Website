@@ -1935,40 +1935,44 @@
       justify-content: center;
     }
     .inspired-nature__inner {
-      display: flex;
-      align-items: stretch;
+      position: relative;
       width: 100%;
       max-width: 90rem;
-      height: calc(100svh - 9rem);
-      min-height: 460px;
     }
     .inspired-nature__media-wrap {
-      position: relative;
+      position: static;
       inset: auto;
-      height: 100%;
+      height: auto;
       min-height: 0;
-      flex: 1 1 auto;
-      display: block;
       order: 2;
     }
     .inspired-nature__media {
       display: block;
-      height: 100%;
+      height: auto;
       width: 100%;
       max-width: none;
-      object-fit: cover;
-      object-position: 68% center;
+      object-fit: initial;
+      object-position: initial;
     }
     .inspired-nature__veil {
-      display: none;
+      display: block;
+      background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #ffffff 34%,
+        rgba(255, 255, 255, 0.92) 42%,
+        rgba(255, 255, 255, 0.55) 52%,
+        rgba(255, 255, 255, 0.18) 62%,
+        rgba(255, 255, 255, 0) 72%
+      );
     }
     .inspired-nature__copy {
-      position: relative;
-      inset: auto;
+      position: absolute;
+      inset: 0;
       display: flex;
       order: 1;
-      flex: 0 0 clamp(22rem, 34vw, 28rem);
-      max-width: none;
+      flex: 0 1 auto;
+      max-width: 46%;
       flex-direction: column;
       justify-content: center;
       padding-inline: clamp(2rem, 4vw, 4.5rem);
