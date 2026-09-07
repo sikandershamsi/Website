@@ -1895,7 +1895,7 @@
      scaled as a whole unit to fit within one screen on desktop with zero
      cropping — object-fit: contain guarantees the full graphic always shows. */
   .inspired-nature-flat {
-    @apply flex w-full items-center justify-center bg-white;
+    @apply flex w-full items-center justify-center bg-[#f8f7f5];
   }
   .inspired-nature-flat__img {
     @apply block h-auto w-full;
