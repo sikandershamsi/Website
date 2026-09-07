@@ -99,6 +99,18 @@
   .card {
     @apply rounded-none border border-al-line bg-white;
   }
+  .amb-slot {
+    @apply flex flex-col overflow-hidden rounded-none border border-dashed border-al-line bg-transparent;
+  }
+  .amb-slot__media {
+    @apply flex aspect-[4/5] items-center justify-center bg-al-panel/50;
+  }
+  .amb-slot__icon {
+    @apply flex h-14 w-14 items-center justify-center rounded-full bg-white text-al-navy/30;
+  }
+  .amb-slot__label {
+    @apply font-display text-lg font-medium text-al-navy/40;
+  }
   /* PDP gallery — thumbnail rail beside the main product image */
   .pdp-thumb {
     @apply flex aspect-[3/4] w-16 shrink-0 cursor-pointer items-center justify-center border border-al-line bg-white p-2 transition-colors hover:border-al-navy/50 sm:w-full;
