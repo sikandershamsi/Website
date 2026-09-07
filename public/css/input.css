@@ -2142,7 +2142,7 @@
      ears themselves or the discipline photo strip at the bottom. */
   @media (min-width: 1024px) {
     .amb-hero--board {
-      aspect-ratio: 1.8127;
+      aspect-ratio: 2.6;
       height: auto;
       min-height: 0;
     }
