@@ -1891,113 +1891,25 @@
   .race-science.panel-grey {
     @apply bg-al-panel;
   }
-  /* Inspired-by-nature soft blend (matches reference fade) */
-
-  .inspired-nature {
-    @apply relative isolate min-h-[460px] overflow-hidden bg-white sm:min-h-[520px] lg:min-h-0;
+  /* Inspired by Nature: single pre-composed image (text baked in by design),
+     scaled as a whole unit to fit within one screen on desktop with zero
+     cropping — object-fit: contain guarantees the full graphic always shows. */
+  .inspired-nature-flat {
+    @apply flex w-full items-center justify-center bg-white;
   }
-  .inspired-nature__media-wrap {
-    @apply relative block h-[42vh] min-h-[220px] w-full sm:h-[48vh];
-  }
-  .inspired-nature__media {
-    @apply h-full w-full object-cover object-[72%_center];
-  }
-  .inspired-nature__veil {
-    @apply pointer-events-none absolute inset-0 z-[1];
-    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 22%, rgba(255, 255, 255, 0) 55%);
-  }
-  .inspired-nature__copy {
-    @apply relative z-10 px-6 py-10 sm:px-8 sm:py-12;
-  }
-  .inspired-nature__eyebrow {
-    @apply flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-al-orange sm:text-xs;
-  }
-  .inspired-nature__title {
-    @apply font-display mt-4 text-[clamp(2.35rem,5.4vw,4.35rem)] font-medium leading-[1.05] tracking-[-0.02em] text-al-navy;
-  }
-  .inspired-nature__rule {
-    @apply mt-5 block h-px w-14 bg-al-navy/20;
-  }
-  .inspired-nature__rule--eyebrow {
-    @apply mt-0 h-0.5 w-6 shrink-0 bg-al-orange;
-  }
-  .inspired-nature__body {
-    @apply mt-5 max-w-md text-[15px] leading-relaxed text-al-ink/80 sm:text-base;
-  }
-  .inspired-nature__em {
-    @apply not-italic text-al-orange;
-  }
-  .inspired-nature__body strong {
-    @apply font-semibold text-al-navy;
+  .inspired-nature-flat__img {
+    @apply block h-auto w-full;
   }
   @media (min-width: 1024px) {
-    .inspired-nature {
+    .inspired-nature-flat {
       height: calc(100svh - 9rem);
-      min-height: 460px;
       max-height: 56.25rem;
-      display: flex;
-      justify-content: center;
     }
-    .inspired-nature__inner {
-      position: relative;
-      width: 100%;
+    .inspired-nature-flat__img {
+      height: 100%;
+      width: auto;
       max-width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: flex-end;
-    }
-    .inspired-nature__media-wrap {
-      position: static;
-      inset: auto;
-      height: 100%;
-      width: auto;
-      min-height: 0;
-      flex: 0 0 auto;
-      order: 2;
-    }
-    .inspired-nature__media {
-      display: block;
-      height: 100%;
-      width: auto;
-      max-width: none;
       object-fit: contain;
-      object-position: initial;
-    }
-    .inspired-nature__veil {
-      display: block;
-      background: linear-gradient(
-        90deg,
-        #ffffff 0%,
-        #ffffff 34%,
-        rgba(255, 255, 255, 0.92) 42%,
-        rgba(255, 255, 255, 0.55) 52%,
-        rgba(255, 255, 255, 0.18) 62%,
-        rgba(255, 255, 255, 0) 72%
-      );
-    }
-    .inspired-nature__copy {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      order: 1;
-      flex: 0 1 auto;
-      max-width: 46%;
-      flex-direction: column;
-      justify-content: center;
-      padding-inline: clamp(2rem, 4vw, 4.5rem);
-      padding-block: clamp(1.25rem, 3.5svh, 3.5rem);
-    }
-    .inspired-nature__title {
-      margin-top: clamp(0.65rem, 1.6svh, 1.25rem);
-    }
-    .inspired-nature__rule {
-      margin-top: clamp(0.75rem, 1.8svh, 1.25rem);
-    }
-    .inspired-nature__body {
-      margin-top: clamp(0.75rem, 1.8svh, 1.25rem);
-      max-width: 28rem;
-      font-size: clamp(0.875rem, 1.35svh, 1.05rem);
-      line-height: 1.65;
     }
   }
   .inspired-blend {
