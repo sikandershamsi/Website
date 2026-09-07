@@ -2103,7 +2103,7 @@
     @apply max-w-[14rem] text-[12px] leading-snug text-[#555555] sm:text-[13px];
   }
   .amb-hero {
-    @apply relative isolate flex min-h-[calc(100svh-6.75rem)] items-center overflow-hidden bg-white;
+    @apply relative isolate flex min-h-0 items-center justify-center overflow-hidden bg-white;
   }
   .amb-hero--board {
     @apply block min-h-0 w-full overflow-hidden bg-white p-0;
@@ -2114,10 +2114,21 @@
     max-width: none;
     height: auto;
   }
-  /* Desktop: no forced aspect ratio — the full board (headline text at top,
-     discipline strip at bottom) always renders at its natural size with zero
-     cropping. This section may extend past the first screen on shorter
-     viewports; that's an accepted trade-off for never cropping the artwork. */
+  /* Desktop: cap the section to one screen and scale the whole board by
+     height via object-fit: contain, so it always fits in a single view with
+     zero cropping (the board is scaled as a unit, never cut). */
+  @media (min-width: 1024px) {
+    .amb-hero {
+      height: calc(100svh - 9rem);
+      max-height: 50rem;
+    }
+    .amb-hero__board {
+      width: auto;
+      height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+  }
   .amb-hero__media {
     @apply absolute inset-0 h-full w-full object-cover object-center;
   }
