@@ -2114,21 +2114,9 @@
     max-width: none;
     height: auto;
   }
-  /* Desktop: cap the section to one screen and scale the whole board by
-     height via object-fit: contain, so it always fits in a single view with
-     zero cropping (the board is scaled as a unit, never cut). */
-  @media (min-width: 1024px) {
-    .amb-hero {
-      height: calc(100svh - 9rem);
-      max-height: 50rem;
-    }
-    .amb-hero__board {
-      width: auto;
-      height: 100%;
-      max-width: 100%;
-      object-fit: contain;
-    }
-  }
+  /* Full width, natural height — the board always spans edge-to-edge with
+     zero cropping. This section may run past the first screen on shorter
+     viewports as a trade-off for never gapping or cropping the artwork. */
   .amb-hero__media {
     @apply absolute inset-0 h-full w-full object-cover object-center;
   }
