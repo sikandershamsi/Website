@@ -1894,10 +1894,17 @@
   /* Inspired-by-nature soft blend (matches reference fade) */
 
   .inspired-nature {
-    @apply relative isolate overflow-hidden bg-white;
+    @apply relative isolate min-h-[460px] overflow-hidden bg-white sm:min-h-[520px] lg:min-h-0;
+  }
+  .inspired-nature__media-wrap {
+    @apply relative block h-[42vh] min-h-[220px] w-full sm:h-[48vh];
   }
   .inspired-nature__media {
-    @apply relative block h-[42vh] min-h-[220px] w-full object-cover object-[72%_top] sm:h-[48vh];
+    @apply h-full w-full object-cover object-[72%_center];
+  }
+  .inspired-nature__veil {
+    @apply pointer-events-none absolute inset-0 z-[1];
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 22%, rgba(255, 255, 255, 0) 55%);
   }
   .inspired-nature__copy {
     @apply relative z-10 px-6 py-10 sm:px-8 sm:py-12;
@@ -1921,21 +1928,33 @@
     @apply font-semibold text-al-navy;
   }
   @media (min-width: 1024px) {
-    .inspired-nature {
-      min-height: calc(100svh - 5.5625rem);
+    .inspired-nature__media-wrap {
+      position: static;
+      height: auto;
+      min-height: 0;
     }
     .inspired-nature__media {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-      min-height: 0;
-      object-fit: cover;
-      object-position: 68% top;
+      display: block;
+      height: auto;
+      width: 100%;
+      object-fit: initial;
+      object-position: initial;
+    }
+    .inspired-nature__veil {
+      background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #ffffff 34%,
+        rgba(255, 255, 255, 0.92) 42%,
+        rgba(255, 255, 255, 0.55) 52%,
+        rgba(255, 255, 255, 0.18) 62%,
+        rgba(255, 255, 255, 0) 72%
+      );
     }
     .inspired-nature__copy {
-      position: relative;
+      position: absolute;
+      inset: 0;
       display: flex;
-      min-height: calc(100svh - 5.5625rem);
       max-width: 46%;
       flex-direction: column;
       justify-content: center;
