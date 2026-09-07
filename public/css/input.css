@@ -1394,6 +1394,24 @@
   .race-hero__video {
     @apply absolute inset-0 h-full w-full object-cover object-center;
   }
+  .race-hero__veil {
+    @apply pointer-events-none absolute inset-0;
+    background:
+      linear-gradient(90deg, rgba(12, 14, 18, 0.78) 0%, rgba(12, 14, 18, 0.45) 42%, rgba(12, 14, 18, 0.18) 68%, rgba(12, 14, 18, 0.28) 100%),
+      linear-gradient(180deg, rgba(12, 14, 18, 0.2) 0%, transparent 28%, transparent 62%, rgba(12, 14, 18, 0.55) 100%);
+  }
+  .race-hero__copy {
+    @apply relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col justify-end px-6 py-16 sm:justify-center sm:px-8 sm:py-20 lg:px-10 lg:py-24;
+  }
+  .race-hero__eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 sm:text-xs;
+  }
+  .race-hero__title {
+    @apply font-display mt-5 max-w-3xl text-[clamp(2.5rem,7vw,5.5rem)] font-medium leading-[1.05] tracking-tight text-white;
+  }
+  .race-hero__lede {
+    @apply mt-6 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base;
+  }
   /* Racing page text interludes — one consistent "separator band" design:
      warm panel bg, centered gold rule + serif title, regardless of variant */
   .race-intro {
