@@ -231,9 +231,7 @@
       // trailing border isn't a real divider (nothing follows it on screen), so hide it.
       var lastVisible = index + perView() - 1;
       Array.prototype.forEach.call(slides, function (slide, i) {
-        var divider = slide.firstElementChild;
-        if (!divider) return;
-        divider.style.borderRightColor = i === lastVisible ? 'transparent' : '';
+        slide.style.borderRightColor = i === lastVisible ? 'transparent' : '';
       });
       renderDots();
     }
