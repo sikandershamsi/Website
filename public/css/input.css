@@ -121,6 +121,9 @@
   .pdp-thumb.is-active {
     @apply border-al-navy;
   }
+  .pdp-thumb--placeholder {
+    @apply cursor-default hover:border-al-line;
+  }
   .product-card__media-link {
     @apply block;
   }
