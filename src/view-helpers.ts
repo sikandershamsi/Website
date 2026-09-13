@@ -12,6 +12,13 @@ export function registerHelpers(hbsInstance: unknown) {
   );
   hbs.registerHelper('eq', (a: unknown, b: unknown) => a === b);
   hbs.registerHelper('eqId', (a: unknown, b: unknown) => a != null && b != null && String(a) === String(b));
+  /** True when the current admin nav section (set by AdminLayoutMiddleware, e.g. "affiliates.analytics")
+   * is exactly `key`, or belongs to the `key` group (key="affiliates" matches "affiliates.analytics"). */
+  hbs.registerHelper('navSectionIs', (navSection: unknown, key: unknown) => {
+    const section = String(navSection ?? '');
+    const k = String(key ?? '');
+    return section === k || section.startsWith(`${k}.`);
+  });
   hbs.registerHelper('gt', (a: number, b: number) => a > b);
   hbs.registerHelper('inc', (value: unknown) => Number(value) + 1);
   hbs.registerHelper('dec', (value: unknown) => Number(value) - 1);

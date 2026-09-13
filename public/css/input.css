@@ -2667,4 +2667,186 @@
       object-fit: contain;
     }
   }
+
+  /* ============================================================
+     WP-ADMIN — WordPress-style admin shell & components.
+     Everything here is scoped under body.wp-admin (set only by
+     layouts/admin.hbs) so none of it touches the public site.
+     ============================================================ */
+  .wp-admin {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--wp-bg);
+    color: var(--wp-text);
+    --wp-sidebar-bg: #1d2327;
+    --wp-sidebar-hover: #2c3338;
+    --wp-sidebar-sub-bg: #101316;
+    --wp-sidebar-text: #f0f0f1;
+    --wp-sidebar-muted: #a7aaad;
+    --wp-sidebar-active: #2271b1;
+    --wp-sidebar-accent-text: #72aee6;
+    --wp-topbar-bg: #1d2327;
+    --wp-bg: #f0f0f1;
+    --wp-card: #ffffff;
+    --wp-border: #c3c4c7;
+    --wp-text: #1d2327;
+    --wp-text-muted: #646970;
+    --wp-link: #2271b1;
+    --wp-link-hover: #135e96;
+    --wp-stripe: #f6f7f7;
+    --wp-row-hover: #f6fbfe;
+    --wp-success: #00a32a;
+    --wp-success-bg: #edfaef;
+    --wp-warning: #9a6700;
+    --wp-warning-bg: #fcf9e8;
+    --wp-error: #d63638;
+    --wp-error-bg: #fcf0f1;
+  }
+  /* :where() keeps this at zero specificity so any .wp-btn/.wp-sidebar__item/etc
+     color rule below (however plain) wins over this default link color. */
+  .wp-admin :where(a) { color: var(--wp-link); }
+  .wp-admin :where(a):hover { color: var(--wp-link-hover); }
+
+  /* ---- Shell: top bar + sidebar + content ---- */
+  .wp-topbar {
+    @apply flex items-center justify-between px-4 text-xs;
+    height: 32px;
+    background: var(--wp-topbar-bg);
+    color: var(--wp-sidebar-muted);
+  }
+  .wp-topbar a { color: var(--wp-sidebar-text); text-decoration: none; }
+  .wp-topbar a:hover { color: var(--wp-sidebar-accent-text); }
+  .wp-topbar__right { @apply flex items-center gap-4; }
+
+  .wp-shell { @apply flex items-start; min-height: calc(100svh - 32px); }
+
+  .wp-sidebar { @apply shrink-0 flex flex-col; width: 190px; background: var(--wp-sidebar-bg); position: sticky; top: 32px; height: calc(100svh - 32px); overflow-y: auto; }
+  @media (max-width: 900px) {
+    .wp-sidebar { width: 44px; }
+    .wp-sidebar .wp-sidebar__label,
+    .wp-sidebar .wp-sidebar__brand-text { display: none; }
+    .wp-sidebar__sub { display: none; }
+  }
+  .wp-sidebar__brand {
+    @apply flex items-center gap-2 px-4;
+    height: 46px; background: #000; color: #fff; font-size: 13px; font-weight: 600;
+    letter-spacing: .02em; text-decoration: none; flex: none;
+  }
+  .wp-sidebar__brand:hover { color: #fff; }
+  .wp-sidebar__nav { @apply flex flex-col py-2 flex-1; }
+  .wp-sidebar__item {
+    @apply flex items-center gap-3 px-4 text-[13px] font-medium;
+    padding-top: 9px; padding-bottom: 9px;
+    color: var(--wp-sidebar-text); border-left: 3px solid transparent; text-decoration: none;
+  }
+  .wp-sidebar__item svg { flex: none; width: 18px; height: 18px; opacity: .85; }
+  .wp-sidebar__item:hover { background: var(--wp-sidebar-hover); color: var(--wp-sidebar-accent-text); }
+  .wp-sidebar__item.is-active { background: var(--wp-sidebar-hover); border-left-color: var(--wp-sidebar-active); color: #fff; }
+  .wp-sidebar__sub { @apply flex flex-col; background: var(--wp-sidebar-sub-bg); }
+  .wp-sidebar__sub-item { @apply block text-[12.5px]; padding: 7px 16px 7px 39px; color: var(--wp-sidebar-muted); text-decoration: none; }
+  .wp-sidebar__sub-item:hover { color: var(--wp-sidebar-accent-text); }
+  .wp-sidebar__sub-item.is-active { color: var(--wp-sidebar-accent-text); font-weight: 600; }
+  .wp-sidebar__signout { @apply px-4 py-3 text-[12px]; border-top: 1px solid var(--wp-sidebar-hover); flex: none; }
+  .wp-sidebar__signout button { color: var(--wp-sidebar-muted); background: none; border: none; cursor: pointer; font: inherit; padding: 0; }
+  .wp-sidebar__signout button:hover { color: #fff; }
+
+  .wp-content { @apply flex-1 min-w-0; padding: 20px 24px 60px; }
+
+  /* ---- Page heading ---- */
+  .wp-heading-inline { @apply flex flex-wrap items-center gap-3 mb-5; }
+  .wp-heading-inline h1 { font-size: 23px; font-weight: 400; color: var(--wp-text); }
+
+  /* ---- Buttons ---- */
+  .wp-btn {
+    @apply inline-flex items-center gap-1.5 text-[13px] font-normal whitespace-nowrap;
+    padding: 0 10px; height: 30px; border-radius: 3px; border: 1px solid var(--wp-border);
+    background: #f6f7f7; color: var(--wp-text); text-decoration: none; cursor: pointer;
+  }
+  .wp-btn:hover { background: #f0f0f1; border-color: #8c8f94; color: var(--wp-text); }
+  .wp-btn-primary { background: var(--wp-link); border-color: #0a4b78; color: #fff; }
+  .wp-btn-primary:hover { background: var(--wp-link-hover); color: #fff; }
+  .wp-btn-danger { color: var(--wp-error); border-color: var(--wp-border); background: #fff; }
+  .wp-btn-danger:hover { background: var(--wp-error-bg); border-color: var(--wp-error); color: var(--wp-error); }
+  .wp-btn-sm { height: 24px; padding: 0 8px; font-size: 12px; }
+
+  /* ---- Postbox (titled card) ---- */
+  .wp-postbox { @apply mb-5; background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 4px; }
+  .wp-postbox__header { @apply flex items-center justify-between; padding: 10px 14px; border-bottom: 1px solid var(--wp-border); }
+  .wp-postbox__header h2, .wp-postbox__header h3 { font-size: 13.5px; font-weight: 600; color: var(--wp-text); }
+  .wp-postbox__body { padding: 16px 14px; }
+  .wp-postbox__body--flush { padding: 0; }
+
+  .wp-columns { @apply grid gap-5; grid-template-columns: minmax(0,1fr) 280px; align-items: start; }
+  @media (max-width: 880px) { .wp-columns { grid-template-columns: 1fr; } }
+
+  /* ---- List table ---- */
+  .wp-list-table-wrap { @apply overflow-x-auto; background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 4px; }
+  .wp-list-table { @apply w-full text-left border-collapse; font-size: 13.5px; }
+  .wp-list-table thead th { @apply text-left font-semibold; padding: 10px 12px; border-bottom: 1px solid var(--wp-border); color: var(--wp-text); font-size: 12.5px; }
+  .wp-list-table thead th.wp-col-check { width: 32px; }
+  .wp-list-table tbody tr { border-bottom: 1px solid var(--wp-border); }
+  .wp-list-table tbody tr:nth-child(odd) { background: var(--wp-stripe); }
+  .wp-list-table tbody tr:hover { background: var(--wp-row-hover); }
+  .wp-list-table td { padding: 10px 12px; vertical-align: middle; color: var(--wp-text); }
+  .wp-row-title { font-weight: 600; }
+  .wp-row-actions { @apply text-[12.5px]; margin-top: 3px; opacity: 0; transition: opacity .1s; color: var(--wp-text-muted); }
+  tr:hover .wp-row-actions, tr:focus-within .wp-row-actions { opacity: 1; }
+  .wp-row-actions a, .wp-row-actions button { color: var(--wp-link); background: none; border: none; padding: 0; font: inherit; cursor: pointer; }
+  .wp-row-actions a:hover, .wp-row-actions button:hover { color: var(--wp-link-hover); text-decoration: underline; }
+  .wp-row-actions .sep { color: var(--wp-border); margin: 0 4px; }
+  .wp-list-table-empty { padding: 40px 16px; text-align: center; color: var(--wp-text-muted); font-size: 13.5px; }
+
+  /* ---- Badges ---- */
+  .wp-badge { @apply inline-flex items-center; padding: 2px 9px; border-radius: 3px; font-size: 11.5px; font-weight: 600; line-height: 1.7; }
+  .wp-badge--success { background: var(--wp-success-bg); color: var(--wp-success); }
+  .wp-badge--warning { background: var(--wp-warning-bg); color: var(--wp-warning); }
+  .wp-badge--error { background: var(--wp-error-bg); color: var(--wp-error); }
+  .wp-badge--info { background: #e5f2fb; color: var(--wp-link); }
+  .wp-badge--neutral { background: #f0f0f1; color: var(--wp-text-muted); }
+
+  /* ---- Notices ---- */
+  .wp-notice { @apply mb-4 flex items-start justify-between gap-4; padding: 11px 14px; background: #fff; border-left: 4px solid var(--wp-link); box-shadow: 0 1px 1px rgba(0,0,0,.04); font-size: 13.5px; color: var(--wp-text); }
+  .wp-notice--success { border-left-color: var(--wp-success); }
+  .wp-notice--error { border-left-color: var(--wp-error); }
+  .wp-notice--warning { border-left-color: var(--wp-warning); }
+  .wp-notice p { margin: 0; }
+
+  /* ---- Status filter tabs ---- */
+  .wp-tabs { @apply flex flex-wrap gap-x-3 gap-y-1 mb-4; font-size: 13px; }
+  .wp-tabs a { color: var(--wp-text-muted); text-decoration: none; padding-right: 12px; border-right: 1px solid var(--wp-border); }
+  .wp-tabs a:last-child { border-right: none; padding-right: 0; }
+  .wp-tabs a.is-active { color: var(--wp-text); font-weight: 600; }
+  .wp-tabs a:hover { color: var(--wp-link); }
+
+  /* ---- Search box ---- */
+  .wp-search-box { @apply flex gap-1.5; }
+  .wp-search-box input[type="search"], .wp-search-box input[type="text"] {
+    height: 30px; padding: 0 8px; font-size: 13px; border: 1px solid var(--wp-border); border-radius: 3px; background: #fff; color: var(--wp-text);
+  }
+
+  /* ---- Bulk action bar ---- */
+  .wp-bulk-bar { @apply flex items-center gap-2 mb-3 flex-wrap; }
+  .wp-bulk-bar select { height: 30px; padding: 0 6px; font-size: 13px; border: 1px solid var(--wp-border); border-radius: 3px; background: #fff; color: var(--wp-text); }
+
+  /* ---- Pagination ---- */
+  .wp-pagination { @apply flex items-center gap-1 flex-wrap; font-size: 13px; color: var(--wp-text-muted); }
+  .wp-pagination a, .wp-pagination span.current {
+    display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; padding: 0 4px;
+    border: 1px solid var(--wp-border); border-radius: 3px; background: #fff; color: var(--wp-text); text-decoration: none;
+  }
+  .wp-pagination span.current { background: var(--wp-link); border-color: var(--wp-link); color: #fff; }
+  .wp-pagination a:hover { border-color: #8c8f94; }
+  .wp-pagination__count { margin-right: 8px; }
+
+  /* ---- Dashboard widgets ---- */
+  .wp-widgets { @apply grid gap-5; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  .wp-widget-number { font-size: 30px; font-weight: 300; color: var(--wp-text); line-height: 1.1; }
+  .wp-widget-label { font-size: 12.5px; color: var(--wp-text-muted); margin-top: 4px; }
+
+  /* ---- Form fields, scoped to admin only — overrides the public site's brand input styling ---- */
+  .wp-admin .field-label { @apply block mb-1.5 text-[13px] font-semibold normal-case tracking-normal; color: var(--wp-text); }
+  .wp-admin .input-field {
+    @apply w-full text-sm rounded; padding: 6px 8px; border: 1px solid var(--wp-border); background: #fff; color: var(--wp-text);
+  }
+  .wp-admin .input-field:focus { outline: 2px solid var(--wp-link); outline-offset: -1px; border-color: var(--wp-link); box-shadow: none; }
+  .wp-admin code { background: #f0f0f1; border: none; color: #d63384; }
 }

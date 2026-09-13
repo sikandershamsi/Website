@@ -4,38 +4,90 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{#if title}}{{title}} | Admin{{else}}Admin{{/if}} — Animalife USA</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e2662a' d='M12 2c4 3 6 7 6 11a6 6 0 0 1-12 0c0-4 2-8 6-11Z'/%3E%3C/svg%3E" />
-  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232271b1' d='M12 2c4 3 6 7 6 11a6 6 0 0 1-12 0c0-4 2-8 6-11Z'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="/css/tailwind.css" />
 </head>
-<body class="antialiased bg-al-panel text-al-ink">
-  {{#if loggedIn}}
-  <div class="flex min-h-screen">
-    <aside class="hidden w-56 shrink-0 border-r border-al-line bg-white sm:block">
-      <div class="border-b border-al-line px-5 py-5">
-        <a href="/admin" class="font-display text-lg font-medium text-al-navy">Animalife Admin</a>
-      </div>
-      <nav class="flex flex-col py-3 text-sm">
-        <a href="/admin" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Dashboard</a>
-        <a href="/admin/products" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Products</a>
-        <a href="/admin/categories" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Categories</a>
-        <a href="/admin/orders" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Orders</a>
-        <a href="/admin/subscriptions" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Subscriptions</a>
-        <a href="/admin/affiliates" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Affiliates</a>
-        <a href="/admin/pages/home" class="px-5 py-2.5 font-medium text-al-navy/80 hover:bg-al-panel hover:text-al-navy">Home Page</a>
-      </nav>
-      <form action="/admin/logout" method="post" class="border-t border-al-line px-5 py-4">
-        <button type="submit" class="text-xs font-semibold uppercase tracking-wide text-al-ink/50 hover:text-al-navy">Sign Out</button>
+{{#if loggedIn}}
+<body class="wp-admin">
+  <div class="wp-topbar">
+    <a href="/admin" class="font-semibold">Animalife Admin</a>
+    <div class="wp-topbar__right">
+      <a href="/" target="_blank" rel="noopener">View Site &#8599;</a>
+      {{#if adminEmail}}<span>{{adminEmail}}</span>{{/if}}
+      <form action="/admin/logout" method="post" class="m-0">
+        <button type="submit" style="background:none;border:none;color:#f0f0f1;cursor:pointer;font:inherit;padding:0;">Sign Out</button>
       </form>
+    </div>
+  </div>
+
+  <div class="wp-shell">
+    <aside class="wp-sidebar">
+      <a href="/admin" class="wp-sidebar__brand">
+        {{{icon "leaf" "w-4 h-4"}}}
+        <span class="wp-sidebar__brand-text">ANIMALIFE ADMIN</span>
+      </a>
+      <nav class="wp-sidebar__nav">
+        <a href="/admin" class="wp-sidebar__item {{#if (navSectionIs navSection "dashboard")}}is-active{{/if}}">
+          {{{icon "gauge" "w-[18px] h-[18px]"}}}<span class="wp-sidebar__label">Dashboard</span>
+        </a>
+
+        <a href="/admin/products" class="wp-sidebar__item {{#if (navSectionIs navSection "products")}}is-active{{/if}}">
+          {{{icon "cart" "w-[18px] h-[18px]"}}}<span class="wp-sidebar__label">Products</span>
+        </a>
+        {{#if (navSectionIs navSection "products")}}
+        <div class="wp-sidebar__sub">
+          <a href="/admin/products" class="wp-sidebar__sub-item {{#if (eq navSection "products.all")}}is-active{{/if}}">All Products</a>
+          <a href="/admin/products/new" class="wp-sidebar__sub-item">Add New</a>
+          <a href="/admin/categories" class="wp-sidebar__sub-item {{#if (eq navSection "products.categories")}}is-active{{/if}}">Categories</a>
+        </div>
+        {{/if}}
+
+        <a href="/admin/orders" class="wp-sidebar__item {{#if (navSectionIs navSection "orders")}}is-active{{/if}}">
+          {{{icon "chart-dollar" "w-[18px] h-[18px]"}}}<span class="wp-sidebar__label">Orders</span>
+        </a>
+
+        <a href="/admin/subscriptions" class="wp-sidebar__item {{#if (navSectionIs navSection "subscriptions")}}is-active{{/if}}">
+          {{{icon "refresh" "w-[18px] h-[18px]"}}}<span class="wp-sidebar__label">Subscriptions</span>
+        </a>
+
+        <a href="/admin/affiliates" class="wp-sidebar__item {{#if (navSectionIs navSection "affiliates")}}is-active{{/if}}">
+          {{{icon "handshake" "w-[18px] h-[18px]"}}}<span class="wp-sidebar__label">Affiliates</span>
+        </a>
+        {{#if (navSectionIs navSection "affiliates")}}
+        <div class="wp-sidebar__sub">
+          <a href="/admin/affiliates" class="wp-sidebar__sub-item {{#if (eq navSection "affiliates.all")}}is-active{{/if}}">All Affiliates</a>
+          <a href="/admin/affiliates/analytics" class="wp-sidebar__sub-item {{#if (eq navSection "affiliates.analytics")}}is-active{{/if}}">Analytics</a>
+          <a href="/admin/affiliates/commissions" class="wp-sidebar__sub-item {{#if (eq navSection "affiliates.commissions")}}is-active{{/if}}">Commissions</a>
+          <a href="/admin/affiliates/payouts" class="wp-sidebar__sub-item {{#if (eq navSection "affiliates.payouts")}}is-active{{/if}}">Payouts</a>
+          <a href="/admin/affiliates/groups" class="wp-sidebar__sub-item {{#if (eq navSection "affiliates.groups")}}is-active{{/if}}">Groups</a>
+        </div>
+        {{/if}}
+
+        <a href="/admin/marketing-assets" class="wp-sidebar__item {{#if (navSectionIs navSection "marketing-assets")}}is-active{{/if}}">
+          {{{icon "image" "w-[18px] h-[18px]"}}}<span class="wp-sidebar__label">Marketing Assets</span>
+        </a>
+
+        <a href="/admin/pages/home" class="wp-sidebar__item {{#if (navSectionIs navSection "pages")}}is-active{{/if}}">
+          {{{icon "file-text" "w-[18px] h-[18px]"}}}<span class="wp-sidebar__label">Pages</span>
+        </a>
+      </nav>
+      <div class="wp-sidebar__signout">
+        <form action="/admin/logout" method="post" class="m-0">
+          <button type="submit">Sign Out</button>
+        </form>
+      </div>
     </aside>
-    <main class="min-w-0 flex-1 px-6 py-8 sm:px-10">
+
+    <main class="wp-content">
       {{{body}}}
     </main>
   </div>
-  {{else}}
+</body>
+{{else}}
+<body class="wp-admin">
   <main class="flex min-h-screen items-center justify-center px-4">
     {{{body}}}
   </main>
-  {{/if}}
 </body>
+{{/if}}
 </html>

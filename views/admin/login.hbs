@@ -1,13 +1,13 @@
-<div class="w-full max-w-sm rounded-none border border-al-line bg-white p-8 shadow-sm">
-  <p class="font-display text-center text-xl font-medium text-al-navy">Animalife Admin</p>
+<div class="w-full max-w-sm rounded p-8" style="background:#fff;border:1px solid var(--wp-border);">
+  <p class="text-center text-lg font-semibold" style="color:var(--wp-text);">Animalife Admin</p>
   {{#if alreadyIn}}
-  <p class="mt-6 text-center text-sm text-al-ink/70">You're already signed in.</p>
-  <a href="/admin" class="btn-primary mt-6 block text-center">Go to Dashboard</a>
+  <p class="mt-6 text-center text-sm" style="color:var(--wp-text-muted);">You're already signed in.</p>
+  <a href="/admin" class="wp-btn wp-btn-primary mt-6 w-full justify-center">Go to Dashboard</a>
   {{else}}
   {{#if notice}}
-  <div class="mt-6 rounded-none bg-red-50 p-4 text-sm text-red-700">{{notice}}</div>
+  <div class="wp-notice wp-notice--error mt-6"><p>{{notice}}</p></div>
   {{/if}}
-  <form action="/admin/login" method="post" class="mt-6 space-y-5">
+  <form action="/admin/login" method="post" class="mt-6 space-y-4">
     <div>
       <label class="field-label" for="email">Email</label>
       <input id="email" name="email" type="email" required class="input-field" />
@@ -16,7 +16,7 @@
       <label class="field-label" for="password">Password</label>
       <input id="password" name="password" type="password" required class="input-field" />
     </div>
-    <button type="submit" class="btn-primary w-full">Sign In</button>
+    <button type="submit" class="wp-btn wp-btn-primary w-full justify-center">Sign In</button>
   </form>
   {{/if}}
 </div>
