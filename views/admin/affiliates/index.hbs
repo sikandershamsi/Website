@@ -1,6 +1,11 @@
 <div class="flex flex-wrap items-center justify-between gap-3">
   <h1 class="font-display text-2xl font-medium text-al-navy">Affiliates</h1>
-  <a href="/admin/affiliates/analytics" class="btn-outline !px-4 !py-2 text-xs">View Analytics</a>
+  <div class="flex gap-2">
+    <a href="/admin/affiliates/groups" class="btn-outline !px-4 !py-2 text-xs">Groups</a>
+    <a href="/admin/affiliates/commissions" class="btn-outline !px-4 !py-2 text-xs">Commissions</a>
+    <a href="/admin/affiliates/payouts" class="btn-outline !px-4 !py-2 text-xs">Payouts</a>
+    <a href="/admin/affiliates/analytics" class="btn-outline !px-4 !py-2 text-xs">Analytics</a>
+  </div>
 </div>
 
 <div class="mt-4 flex flex-wrap items-center justify-between gap-4">
@@ -8,6 +13,7 @@
     <a href="/admin/affiliates{{#if q}}?q={{q}}{{/if}}" class="{{#unless statusFilter}}text-al-navy underline{{else}}text-al-ink/50{{/unless}}">All</a>
     <a href="/admin/affiliates?status=pending{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "pending")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Pending</a>
     <a href="/admin/affiliates?status=approved{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "approved")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Approved</a>
+    <a href="/admin/affiliates?status=suspended{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "suspended")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Suspended</a>
     <a href="/admin/affiliates?status=rejected{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "rejected")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Rejected</a>
   </div>
   <form method="get" class="flex items-center gap-2">
@@ -17,11 +23,25 @@
   </form>
 </div>
 
-<div class="mt-6 overflow-hidden rounded-none border border-al-line bg-white">
+<form action="/admin/affiliates/bulk/approve" method="post" data-bulk-affiliates>
+{{#if (eq statusFilter "pending")}}
+<div class="mt-4 flex items-center justify-between">
+  <label class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+    <input type="checkbox" data-select-all class="accent-al-navy" /> Select All
+  </label>
+  <div class="flex gap-2">
+    <button type="submit" formaction="/admin/affiliates/bulk/reject" data-bulk-btn disabled class="btn-outline !px-4 !py-2 text-xs disabled:cursor-not-allowed disabled:opacity-40">Reject Selected</button>
+    <button type="submit" formaction="/admin/affiliates/bulk/approve" data-bulk-btn disabled class="btn-primary !px-4 !py-2 text-xs disabled:cursor-not-allowed disabled:opacity-40">Approve Selected</button>
+  </div>
+</div>
+{{/if}}
+
+<div class="mt-3 overflow-hidden rounded-none border border-al-line bg-white">
   {{#if affiliates.length}}
   <table class="w-full text-left text-sm">
     <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
       <tr>
+        {{#if (eq statusFilter "pending")}}<th class="w-10 px-4 py-3"></th>{{/if}}
         <th class="px-4 py-3">Name</th>
         <th class="px-4 py-3">Email</th>
         <th class="px-4 py-3">Profession</th>
@@ -33,6 +53,7 @@
     <tbody class="divide-y divide-al-line">
       {{#each affiliates}}
       <tr>
+        {{#if (eq ../statusFilter "pending")}}<td class="px-4 py-3"><input type="checkbox" name="ids" value="{{this._id}}" data-row-check class="accent-al-navy" /></td>{{/if}}
         <td class="px-4 py-3 font-semibold text-al-navy">{{this.fullName}}</td>
         <td class="px-4 py-3 text-al-ink/60">{{this.email}}</td>
         <td class="px-4 py-3 text-al-ink/60">{{this.profession}}</td>
@@ -61,3 +82,24 @@
   <p class="p-6 text-sm text-al-ink/60">No affiliates found.</p>
   {{/if}}
 </div>
+</form>
+
+<script>
+  (function () {
+    var form = document.querySelector('[data-bulk-affiliates]');
+    if (!form) return;
+    var selectAll = form.querySelector('[data-select-all]');
+    var rowChecks = form.querySelectorAll('[data-row-check]');
+    var btns = form.querySelectorAll('[data-bulk-btn]');
+    if (!selectAll || !rowChecks.length) return;
+    function update() {
+      var anyChecked = Array.prototype.some.call(rowChecks, function (c) { return c.checked; });
+      btns.forEach(function (b) { b.disabled = !anyChecked; });
+    }
+    selectAll.addEventListener('change', function () {
+      rowChecks.forEach(function (c) { c.checked = selectAll.checked; });
+      update();
+    });
+    rowChecks.forEach(function (c) { c.addEventListener('change', update); });
+  })();
+</script>

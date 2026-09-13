@@ -11,6 +11,7 @@ export function registerHelpers(hbsInstance: unknown) {
     new hbs.SafeString(renderIcon(name, typeof className === 'string' ? className : undefined)),
   );
   hbs.registerHelper('eq', (a: unknown, b: unknown) => a === b);
+  hbs.registerHelper('eqId', (a: unknown, b: unknown) => a != null && b != null && String(a) === String(b));
   hbs.registerHelper('gt', (a: number, b: number) => a > b);
   hbs.registerHelper('inc', (value: unknown) => Number(value) + 1);
   hbs.registerHelper('dec', (value: unknown) => Number(value) - 1);
@@ -24,6 +25,12 @@ export function registerHelpers(hbsInstance: unknown) {
   hbs.registerHelper('mul', (a: number, b: number) => Number(a) * Number(b));
   hbs.registerHelper('round', (value: number) => Math.round(Number(value)));
   hbs.registerHelper('year', () => new Date().getFullYear());
+  hbs.registerHelper('dateShort', (value: unknown) => {
+    if (!value) return '';
+    const date = value instanceof Date ? value : new Date(value as string);
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  });
   hbs.registerHelper('uriEncode', (value: unknown) => encodeURIComponent(String(value ?? '')));
   hbs.registerHelper('subscriptionFrequencies', () => SUBSCRIPTION_FREQUENCIES);
   hbs.registerHelper(

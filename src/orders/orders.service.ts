@@ -259,6 +259,14 @@ export class OrdersService {
     }>;
   }
 
+  /** Pending-commission orders by id — used to validate + total a payout batch selection. */
+  async findPendingCommissionOrdersByIds(orderIds: string[]) {
+    return this.orderModel
+      .find({ _id: { $in: orderIds.map((id) => new Types.ObjectId(id)) }, commissionStatus: 'pending' })
+      .lean()
+      .exec();
+  }
+
   /** All commission-bearing orders in a date range, optionally filtered — CSV export source. */
   async commissionExportRows(opts: { from?: Date; to?: Date; affiliateId?: string; status?: string }) {
     const match: Record<string, unknown> = { commissionStatus: { $exists: true } };

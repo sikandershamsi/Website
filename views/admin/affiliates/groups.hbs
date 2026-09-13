@@ -1,0 +1,55 @@
+<div class="flex items-center justify-between">
+  <h1 class="font-display text-2xl font-medium text-al-navy">Affiliate Groups</h1>
+  <a href="/admin/affiliates" class="text-xs font-semibold uppercase tracking-wide text-al-ink/50 hover:text-al-navy">&larr; All Affiliates</a>
+</div>
+<p class="mt-2 max-w-xl text-sm text-al-ink/60">Group affiliates &mdash; Ambassadors, Veterinary Partners, Influencers &mdash; and set a default commission rate for the whole group. Assigning a group to an affiliate applies its rate to them.</p>
+
+<div class="mt-6 grid gap-8 lg:grid-cols-[1fr_320px]">
+  <div class="overflow-hidden rounded-none border border-al-line bg-white">
+    {{#if groups.length}}
+    <table class="w-full text-left text-sm">
+      <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+        <tr>
+          <th class="px-4 py-3">Name</th>
+          <th class="px-4 py-3">Default Rate</th>
+          <th class="px-4 py-3">Members</th>
+          <th class="px-4 py-3"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-al-line">
+        {{#each groups}}
+        <tr>
+          <td class="px-4 py-3 font-semibold text-al-navy">{{this.name}}<span class="block text-xs font-normal text-al-ink/50">{{this.description}}</span></td>
+          <td class="px-4 py-3">{{pct this.defaultCommissionRate}}</td>
+          <td class="px-4 py-3 text-al-ink/60">{{this.memberCount}}</td>
+          <td class="px-4 py-3 text-right">
+            <form action="/admin/affiliates/groups/{{this._id}}/delete" method="post" onsubmit="return confirm('Delete this group? Members keep their current rate but lose the group assignment.');">
+              <button type="submit" class="text-xs font-semibold uppercase tracking-wide text-red-600 hover:underline">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    <p class="p-6 text-sm text-al-ink/60">No groups yet.</p>
+    {{/if}}
+  </div>
+
+  <form action="/admin/affiliates/groups" method="post" class="h-max space-y-3 rounded-none border border-al-line bg-white p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">New Group</p>
+    <div>
+      <label class="field-label" for="name">Name</label>
+      <input id="name" name="name" required class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="description">Description</label>
+      <input id="description" name="description" class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="defaultCommissionRate">Default Commission Rate (%)</label>
+      <input id="defaultCommissionRate" name="defaultCommissionRate" type="number" min="0" max="100" step="1" value="20" class="input-field" />
+    </div>
+    <button type="submit" class="btn-primary w-full !py-2 text-sm">Create Group</button>
+  </form>
+</div>

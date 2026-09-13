@@ -5,6 +5,7 @@ import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
 import { Affiliate, AffiliateDocument, AffiliateStatus } from './schemas/affiliate.schema';
 import { AffiliateClick, AffiliateClickDocument } from './schemas/affiliate-click.schema';
+import { AffiliateGroup, AffiliateGroupDocument } from './schemas/affiliate-group.schema';
 
 const SALT_ROUNDS = 12;
 
@@ -36,6 +37,7 @@ export class AffiliatesService {
   constructor(
     @InjectModel(Affiliate.name) private readonly affiliateModel: Model<AffiliateDocument>,
     @InjectModel(AffiliateClick.name) private readonly clickModel: Model<AffiliateClickDocument>,
+    @InjectModel(AffiliateGroup.name) private readonly groupModel: Model<AffiliateGroupDocument>,
   ) {}
 
   async createApplication(dto: Record<string, unknown> & { email: string; fullName: string }) {
@@ -118,6 +120,71 @@ export class AffiliatesService {
 
   async reject(id: string) {
     return this.affiliateModel.findByIdAndUpdate(id, { $set: { status: 'rejected' } }, { returnDocument: 'after' }).exec();
+  }
+
+  /** Approves every given pending application. Each gets its own referral code and one-time password;
+   * returns the list so the admin can hand off/download all the credentials from a single screen. */
+  async bulkApprove(ids: string[]): Promise<Array<{ affiliate: AffiliateDocument; plaintextPassword: string }>> {
+    const results: Array<{ affiliate: AffiliateDocument; plaintextPassword: string }> = [];
+    for (const id of ids) {
+      try {
+        results.push(await this.approve(id));
+      } catch {
+        // skip affiliates that no longer exist or were already handled
+      }
+    }
+    return results;
+  }
+
+  async bulkReject(ids: string[]): Promise<number> {
+    const res = await this.affiliateModel.updateMany({ _id: { $in: ids } }, { $set: { status: 'rejected' } }).exec();
+    return res.modifiedCount;
+  }
+
+  /** Pauses an approved affiliate: blocks login and new commissions while keeping all history intact. */
+  async suspend(id: string) {
+    const affiliate = await this.affiliateModel.findById(id).exec();
+    if (!affiliate) throw new NotFoundException('Affiliate not found');
+    if (affiliate.status !== 'approved') throw new ConflictException('Only an approved affiliate can be suspended.');
+    affiliate.statusBeforeSuspend = 'approved';
+    affiliate.status = 'suspended';
+    await affiliate.save();
+    return affiliate;
+  }
+
+  async reactivate(id: string) {
+    return this.affiliateModel
+      .findByIdAndUpdate(id, { $set: { status: 'approved' }, $unset: { statusBeforeSuspend: 1 } }, { returnDocument: 'after' })
+      .exec();
+  }
+
+  // ---- Groups ----
+
+  async createGroup(data: { name: string; description?: string; defaultCommissionRate: number }) {
+    return this.groupModel.create(data);
+  }
+
+  async listGroups() {
+    return this.groupModel.find().sort({ name: 1 }).lean().exec();
+  }
+
+  async deleteGroup(id: string) {
+    await this.affiliateModel.updateMany({ groupId: id }, { $unset: { groupId: 1 } }).exec();
+    await this.groupModel.findByIdAndDelete(id).exec();
+  }
+
+  /** Assigns (or clears, if groupId is empty) an affiliate's group. When a group is assigned, its default
+   * rate becomes the affiliate's commission rate unless keepOwnRate is set. */
+  async assignGroup(id: string, groupId: string | undefined, keepOwnRate = false) {
+    if (!groupId) {
+      return this.affiliateModel.findByIdAndUpdate(id, { $unset: { groupId: 1 } }, { returnDocument: 'after' }).exec();
+    }
+    const update: Record<string, unknown> = { groupId };
+    if (!keepOwnRate) {
+      const group = await this.groupModel.findById(groupId).lean().exec();
+      if (group) update.commissionRate = group.defaultCommissionRate;
+    }
+    return this.affiliateModel.findByIdAndUpdate(id, { $set: update }, { returnDocument: 'after' }).exec();
   }
 
   async setCommissionRate(id: string, rate: number) {

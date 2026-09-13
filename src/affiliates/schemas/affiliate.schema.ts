@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, SchemaTypes, Types } from 'mongoose';
 
 export type AffiliateDocument = HydratedDocument<Affiliate>;
-export type AffiliateStatus = 'pending' | 'approved' | 'rejected';
+export type AffiliateStatus = 'pending' | 'approved' | 'rejected' | 'suspended';
 
 @Schema({ timestamps: true })
 export class Affiliate {
@@ -39,8 +39,15 @@ export class Affiliate {
   @Prop({ default: false }) agree: boolean;
 
   // Portal / account fields
-  @Prop({ required: true, enum: ['pending', 'approved', 'rejected'], default: 'pending' })
+  @Prop({ required: true, enum: ['pending', 'approved', 'rejected', 'suspended'], default: 'pending' })
   status: AffiliateStatus;
+
+  /** Status the affiliate was in immediately before being suspended, so reactivate can restore it precisely. */
+  @Prop({ enum: ['approved'] })
+  statusBeforeSuspend?: 'approved';
+
+  @Prop({ type: SchemaTypes.ObjectId, ref: 'AffiliateGroup' })
+  groupId?: Types.ObjectId;
 
   @Prop() passwordHash?: string;
 

@@ -3,8 +3,11 @@ import { ConfigService } from '@nestjs/config';
 import type { Response } from 'express';
 import { AffiliatesService } from '../affiliates/affiliates.service';
 import { OrdersService } from '../orders/orders.service';
+import { PayoutsService } from '../payouts/payouts.service';
 import { AdminGuard } from '../auth/guards/admin.guard';
 import { AffiliateCommissionDto } from './dto/affiliate-commission.dto';
+import { BulkIdsDto } from './dto/bulk-ids.dto';
+import { AffiliateGroupDto, AssignGroupDto } from './dto/affiliate-group.dto';
 import type { AffiliateStatus } from '../affiliates/schemas/affiliate.schema';
 import type { AppConfig } from '../config/configuration';
 import { toCsv } from './csv.util';
@@ -15,6 +18,7 @@ export class AdminAffiliatesController {
   constructor(
     private readonly affiliatesService: AffiliatesService,
     private readonly ordersService: OrdersService,
+    private readonly payoutsService: PayoutsService,
     private readonly config: ConfigService<AppConfig>,
   ) {}
 
@@ -79,6 +83,94 @@ export class AdminAffiliatesController {
     res.send(csv);
   }
 
+  @Post('bulk/approve')
+  @Render('admin/affiliates/bulk-result')
+  async bulkApprove(@Body() body: BulkIdsDto) {
+    const results = await this.affiliatesService.bulkApprove(body.ids);
+    const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
+    return {
+      title: 'Bulk Approve',
+      results: results.map((r) => ({
+        fullName: r.affiliate.fullName,
+        email: r.affiliate.email,
+        password: r.plaintextPassword,
+        referralLink: `${baseUrl}/?ref=${r.affiliate.referralCode}`,
+      })),
+    };
+  }
+
+  @Post('bulk/reject')
+  async bulkReject(@Body() body: BulkIdsDto, @Res() res: Response) {
+    await this.affiliatesService.bulkReject(body.ids);
+    res.redirect(303, '/admin/affiliates?status=pending');
+  }
+
+  @Get('commissions')
+  @Render('admin/affiliates/commissions')
+  async commissions() {
+    const rows = await this.ordersService.commissionExportRows({ status: 'pending' });
+    return { title: 'Pending Commissions', rows };
+  }
+
+  @Post('commissions/bulk-mark-paid')
+  @Render('admin/affiliates/bulk-paid-result')
+  async bulkMarkPaid(@Body() body: BulkIdsDto) {
+    const batch = await this.payoutsService.createManualBatch(body.ids, 'Bulk-paid from admin commissions list');
+    return { title: 'Commissions Paid', batch };
+  }
+
+  @Get('payouts')
+  @Render('admin/affiliates/payouts')
+  async payouts() {
+    const batches = await this.payoutsService.findAll();
+    return { title: 'Payout History', batches };
+  }
+
+  @Get('groups')
+  @Render('admin/affiliates/groups')
+  async groups() {
+    const [groupList, affiliates] = await Promise.all([
+      this.affiliatesService.listGroups(),
+      this.affiliatesService.findAll('approved'),
+    ]);
+    const counts = new Map<string, number>();
+    for (const a of affiliates) {
+      if (a.groupId) counts.set(String(a.groupId), (counts.get(String(a.groupId)) ?? 0) + 1);
+    }
+    const groupsWithCounts = groupList.map((g) => ({ ...g, memberCount: counts.get(String(g._id)) ?? 0 }));
+    return { title: 'Affiliate Groups', groups: groupsWithCounts };
+  }
+
+  @Post('groups')
+  async createGroup(@Body() body: AffiliateGroupDto, @Res() res: Response) {
+    await this.affiliatesService.createGroup(body);
+    res.redirect(303, '/admin/affiliates/groups');
+  }
+
+  @Post('groups/:id/delete')
+  async deleteGroup(@Param('id') id: string, @Res() res: Response) {
+    await this.affiliatesService.deleteGroup(id);
+    res.redirect(303, '/admin/affiliates/groups');
+  }
+
+  @Post(':id/group')
+  async setGroup(@Param('id') id: string, @Body() body: AssignGroupDto, @Res() res: Response) {
+    await this.affiliatesService.assignGroup(id, body.groupId);
+    res.redirect(303, `/admin/affiliates/${id}`);
+  }
+
+  @Post(':id/suspend')
+  async suspend(@Param('id') id: string, @Res() res: Response) {
+    await this.affiliatesService.suspend(id);
+    res.redirect(303, `/admin/affiliates/${id}`);
+  }
+
+  @Post(':id/reactivate')
+  async reactivate(@Param('id') id: string, @Res() res: Response) {
+    await this.affiliatesService.reactivate(id);
+    res.redirect(303, `/admin/affiliates/${id}`);
+  }
+
   @Get(':id/export.csv')
   async exportAffiliateCsv(@Param('id') id: string, @Res() res: Response) {
     const affiliate = await this.affiliatesService.findById(id);
@@ -112,7 +204,9 @@ export class AdminAffiliatesController {
     if (!affiliate) throw new NotFoundException('Affiliate not found');
     const orders = await this.ordersService.findForAffiliate(id);
     const totals = await this.ordersService.commissionTotalsForAffiliate(id);
-    return { title: affiliate.fullName, affiliate, orders, totals };
+    const groups = await this.affiliatesService.listGroups();
+    const anomalies = affiliate.status === 'approved' ? await this.affiliatesService.clickAnomalies(id) : [];
+    return { title: affiliate.fullName, affiliate, orders, totals, groups, anomalies };
   }
 
   @Post(':id/approve')
