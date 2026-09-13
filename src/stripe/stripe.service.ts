@@ -339,7 +339,9 @@ export class StripeService {
       await this.cartService.clear(cartKey);
     }
 
-    void order;
+    if (affiliate && !isSelfReferral && commissionAmount) {
+      await this.affiliatesService.notifyNewReferral(affiliate._id as Types.ObjectId, order.orderNumber, commissionAmount);
+    }
   }
 
   private async handleInvoicePaid(invoice: Stripe.Invoice) {
@@ -363,7 +365,7 @@ export class StripeService {
     if (!sub) return;
     const price = (invoice.amount_paid ?? 0) / 100;
     const commissionAmount = sub.affiliateId && sub.commissionRate ? Math.round(price * sub.commissionRate * 100) / 100 : undefined;
-    await this.ordersService.createRenewalOrder({
+    const renewalOrder = await this.ordersService.createRenewalOrder({
       userId: String(sub.user),
       subscriptionId,
       customerId: sub.stripe.customerId,
@@ -373,6 +375,9 @@ export class StripeService {
       affiliateId: sub.affiliateId ? String(sub.affiliateId) : undefined,
       commissionAmount,
     });
+    if (sub.affiliateId && commissionAmount) {
+      await this.affiliatesService.notifyNewReferral(sub.affiliateId, renewalOrder.orderNumber, commissionAmount);
+    }
   }
 
   /** Reverses (or flags for manual clawback) the commission on an order whose charge was refunded. */

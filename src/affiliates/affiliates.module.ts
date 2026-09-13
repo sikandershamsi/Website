@@ -4,7 +4,9 @@ import { Affiliate, AffiliateSchema } from './schemas/affiliate.schema';
 import { AffiliateClick, AffiliateClickSchema } from './schemas/affiliate-click.schema';
 import { AffiliateGroup, AffiliateGroupSchema } from './schemas/affiliate-group.schema';
 import { AffiliateLink, AffiliateLinkSchema } from './schemas/affiliate-link.schema';
+import { AffiliateActivity, AffiliateActivitySchema } from './schemas/affiliate-activity.schema';
 import { AffiliatesService } from './affiliates.service';
+import { MailerModule } from '../mailer/mailer.module';
 
 @Module({
   imports: [
@@ -13,7 +15,9 @@ import { AffiliatesService } from './affiliates.service';
       { name: AffiliateClick.name, schema: AffiliateClickSchema },
       { name: AffiliateGroup.name, schema: AffiliateGroupSchema },
       { name: AffiliateLink.name, schema: AffiliateLinkSchema },
+      { name: AffiliateActivity.name, schema: AffiliateActivitySchema },
     ]),
+    MailerModule,
   ],
   providers: [AffiliatesService],
   exports: [AffiliatesService],

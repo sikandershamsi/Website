@@ -24,6 +24,13 @@ export interface AppConfig {
     minPayoutThreshold: number;
     attributionWindowDays: number;
   };
+  mail: {
+    host: string;
+    port: number;
+    user: string;
+    pass: string;
+    from: string;
+  };
 }
 
 export default (): AppConfig => ({
@@ -51,5 +58,12 @@ export default (): AppConfig => ({
   affiliates: {
     minPayoutThreshold: parseFloat(process.env.AFFILIATE_MIN_PAYOUT_THRESHOLD ?? '50'),
     attributionWindowDays: parseInt(process.env.AFFILIATE_ATTRIBUTION_WINDOW_DAYS ?? '30', 10),
+  },
+  mail: {
+    host: process.env.SMTP_HOST ?? '',
+    port: parseInt(process.env.SMTP_PORT ?? '587', 10),
+    user: process.env.SMTP_USER ?? '',
+    pass: process.env.SMTP_PASS ?? '',
+    from: process.env.MAIL_FROM ?? 'Animalife USA <no-reply@animalifeusa.com>',
   },
 });

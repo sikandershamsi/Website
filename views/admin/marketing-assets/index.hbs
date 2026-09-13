@@ -1,0 +1,59 @@
+<h1 class="font-display text-2xl font-medium text-al-navy">Marketing Assets</h1>
+<p class="mt-2 max-w-2xl text-sm text-al-ink/60">Manage the images and sample copy shown on the affiliate Marketing Resources page. Images reference an existing path under <code>/public</code> (e.g. <code>/images/products/vetroflex-tub.png</code>); copy can include <code>\{{shopLink}}</code> which is replaced with each affiliate's own link.</p>
+
+<div class="mt-6 grid gap-8 lg:grid-cols-[1fr_360px]">
+  <div class="overflow-hidden rounded-none border border-al-line bg-white">
+    {{#if assets.length}}
+    <table class="w-full text-left text-sm">
+      <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+        <tr>
+          <th class="px-4 py-3">Type</th>
+          <th class="px-4 py-3">Title</th>
+          <th class="px-4 py-3">Content</th>
+          <th class="px-4 py-3"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-al-line">
+        {{#each assets}}
+        <tr>
+          <td class="px-4 py-3 text-al-ink/60">{{this.type}}</td>
+          <td class="px-4 py-3 font-semibold text-al-navy">{{this.title}}</td>
+          <td class="px-4 py-3 max-w-xs truncate text-al-ink/60">{{this.content}}</td>
+          <td class="px-4 py-3 text-right">
+            <form action="/admin/marketing-assets/{{this._id}}/delete" method="post">
+              <button type="submit" class="text-xs font-semibold uppercase tracking-wide text-red-600 hover:underline">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    <p class="p-6 text-sm text-al-ink/60">No custom assets yet &mdash; affiliates are seeing the built-in defaults (3 product images + 2 sample copy blocks).</p>
+    {{/if}}
+  </div>
+
+  <form action="/admin/marketing-assets" method="post" class="h-max space-y-3 rounded-none border border-al-line bg-white p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">New Asset</p>
+    <div>
+      <label class="field-label" for="type">Type</label>
+      <select id="type" name="type" class="input-field">
+        <option value="image">Image</option>
+        <option value="copy">Copy</option>
+      </select>
+    </div>
+    <div>
+      <label class="field-label" for="title">Title</label>
+      <input id="title" name="title" required class="input-field" />
+    </div>
+    <div>
+      <label class="field-label" for="content">Content (image path or copy text)</label>
+      <textarea id="content" name="content" rows="4" required class="input-field"></textarea>
+    </div>
+    <div>
+      <label class="field-label" for="order">Display Order</label>
+      <input id="order" name="order" type="number" value="0" class="input-field" />
+    </div>
+    <button type="submit" class="btn-primary w-full !py-2 text-sm">Add Asset</button>
+  </form>
+</div>

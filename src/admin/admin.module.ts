@@ -7,6 +7,8 @@ import { StripeModule } from '../stripe/stripe.module';
 import { PagesModule } from '../pages/pages.module';
 import { AffiliatesModule } from '../affiliates/affiliates.module';
 import { PayoutsModule } from '../payouts/payouts.module';
+import { MarketingAssetsModule } from '../marketing-assets/marketing-assets.module';
+import { AdminMarketingAssetsController } from './admin-marketing-assets.controller';
 import { AdminLayoutMiddleware } from './admin-layout.middleware';
 import { AdminAuthController } from './admin-auth.controller';
 import { AdminDashboardController } from './admin-dashboard.controller';
@@ -18,7 +20,17 @@ import { AdminPagesController } from './admin-pages.controller';
 import { AdminAffiliatesController } from './admin-affiliates.controller';
 
 @Module({
-  imports: [AuthModule, ProductsModule, OrdersModule, SubscriptionsModule, StripeModule, PagesModule, AffiliatesModule, PayoutsModule],
+  imports: [
+    AuthModule,
+    ProductsModule,
+    OrdersModule,
+    SubscriptionsModule,
+    StripeModule,
+    PagesModule,
+    AffiliatesModule,
+    PayoutsModule,
+    MarketingAssetsModule,
+  ],
   controllers: [
     AdminAuthController,
     AdminDashboardController,
@@ -28,6 +40,7 @@ import { AdminAffiliatesController } from './admin-affiliates.controller';
     AdminSubscriptionsController,
     AdminPagesController,
     AdminAffiliatesController,
+    AdminMarketingAssetsController,
   ],
 })
 export class AdminModule implements NestModule {
@@ -43,6 +56,7 @@ export class AdminModule implements NestModule {
         AdminSubscriptionsController,
         AdminPagesController,
         AdminAffiliatesController,
+        AdminMarketingAssetsController,
       );
   }
 }

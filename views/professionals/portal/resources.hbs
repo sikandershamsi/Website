@@ -63,39 +63,33 @@
       </div>
     </div>
 
+    {{#if images.length}}
     <div class="mt-10">
       <h2 class="font-display text-lg font-medium text-al-navy">Product Images</h2>
       <div class="mt-4 grid gap-4 sm:grid-cols-3">
+        {{#each images}}
         <div class="card p-6 text-center">
-          <img src="/images/products/vetroflex-tub.png" alt="VetroFlex" class="mx-auto h-32 object-contain" />
-          <p class="font-display mt-3 text-sm font-medium text-al-navy">VetroFlex</p>
-          <a href="/images/products/vetroflex-tub.png" download class="mt-1 block text-xs font-semibold uppercase tracking-wide text-al-navy/60 hover:underline">Download</a>
+          <img src="{{this.content}}" alt="{{this.title}}" class="mx-auto h-32 object-contain" />
+          <p class="font-display mt-3 text-sm font-medium text-al-navy">{{this.title}}</p>
+          <a href="{{this.content}}" download class="mt-1 block text-xs font-semibold uppercase tracking-wide text-al-navy/60 hover:underline">Download</a>
         </div>
-        <div class="card p-6 text-center">
-          <img src="/images/products/vetrofen-tub.png" alt="VetroFen" class="mx-auto h-32 object-contain" />
-          <p class="font-display mt-3 text-sm font-medium text-al-navy">VetroFen</p>
-          <a href="/images/products/vetrofen-tub.png" download class="mt-1 block text-xs font-semibold uppercase tracking-wide text-al-navy/60 hover:underline">Download</a>
-        </div>
-        <div class="card p-6 text-center">
-          <img src="/images/products/vetrofit-syringe.png" alt="VetroFit" class="mx-auto h-32 object-contain" />
-          <p class="font-display mt-3 text-sm font-medium text-al-navy">VetroFit</p>
-          <a href="/images/products/vetrofit-syringe.png" download class="mt-1 block text-xs font-semibold uppercase tracking-wide text-al-navy/60 hover:underline">Download</a>
-        </div>
+        {{/each}}
       </div>
     </div>
+    {{/if}}
 
+    {{#if copyBlocks.length}}
     <div class="mt-10">
       <h2 class="font-display text-lg font-medium text-al-navy">Sample Messaging</h2>
       <div class="mt-4 space-y-4">
+        {{#each copyBlocks}}
         <div class="card p-6">
-          <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Social Caption</p>
-          <p class="mt-2 text-sm text-al-ink/80">I trust Animalife USA's root-cause, science-backed nutrition for the horses in my care &mdash; from joint support to recovery. Check them out: {{shopLink}}</p>
+          <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">{{this.title}}</p>
+          <p class="mt-2 text-sm text-al-ink/80">{{this.content}}</p>
         </div>
-        <div class="card p-6">
-          <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Email / Newsletter Blurb</p>
-          <p class="mt-2 text-sm text-al-ink/80">I've partnered with Animalife USA because their formulations target the physiological root causes of equine performance and recovery, not just symptoms. If you're looking to support your horse's joints, inflammation response, or long-term wellness, I recommend taking a look: {{shopLink}}</p>
-        </div>
+        {{/each}}
       </div>
     </div>
+    {{/if}}
   </div>
 </section>

@@ -52,5 +52,20 @@
         <button type="submit" class="btn-primary">Update Password</button>
       </form>
     </div>
+
+    <div class="card p-6 sm:col-span-2">
+      <p class="font-display text-base font-medium text-al-navy">Email Notifications</p>
+      <form action="/professionals/portal/settings/email-preferences" method="post" class="mt-4 space-y-3">
+        <label class="flex items-center gap-2 text-sm text-al-ink/75">
+          <input type="checkbox" name="emailOnNewReferral" value="true" {{#if affiliate.emailOnNewReferral}}checked{{/if}} class="accent-al-navy" />
+          Email me when I earn a new commission
+        </label>
+        <label class="flex items-center gap-2 text-sm text-al-ink/75">
+          <input type="checkbox" name="emailOnPayout" value="true" {{#if affiliate.emailOnPayout}}checked{{/if}} class="accent-al-navy" />
+          Email me when I get paid
+        </label>
+        <button type="submit" class="btn-outline">Save Preferences</button>
+      </form>
+    </div>
   </div>
 </section>

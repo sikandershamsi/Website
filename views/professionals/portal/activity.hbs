@@ -1,0 +1,23 @@
+{{> page-header eyebrow="Affiliate Portal" heading="Activity"}}
+
+<section class="section grid gap-8 lg:grid-cols-[240px_1fr]">
+  {{> affiliate-portal-sidebar}}
+
+  <div>
+    {{#if items.length}}
+    <div class="card divide-y divide-al-line overflow-hidden">
+      {{#each items}}
+      <div class="flex items-center justify-between gap-3 p-5">
+        <p class="text-sm text-al-navy">{{this.message}}</p>
+        <span class="shrink-0 text-xs text-al-ink/45">{{dateShort this.createdAt}}</span>
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <div class="card flex flex-col items-center px-8 py-16 text-center">
+      <div class="flex h-14 w-14 items-center justify-center rounded-none bg-al-navy/5 text-al-navy">{{{icon "check" "w-6 h-6"}}}</div>
+      <p class="mt-5 max-w-sm text-sm text-al-ink/65">Nothing yet &mdash; new referrals and payouts will show up here.</p>
+    </div>
+    {{/if}}
+  </div>
+</section>

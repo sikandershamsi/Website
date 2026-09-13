@@ -1,5 +1,6 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { ConfigService } from '@nestjs/config';
 import { Model, Types } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
@@ -7,6 +8,10 @@ import { Affiliate, AffiliateDocument, AffiliateStatus } from './schemas/affilia
 import { AffiliateClick, AffiliateClickDocument } from './schemas/affiliate-click.schema';
 import { AffiliateGroup, AffiliateGroupDocument } from './schemas/affiliate-group.schema';
 import { AffiliateLink, AffiliateLinkDocument } from './schemas/affiliate-link.schema';
+import { AffiliateActivity, AffiliateActivityDocument, AffiliateActivityType } from './schemas/affiliate-activity.schema';
+import { MailerService } from '../mailer/mailer.service';
+import { approvalEmail, newCommissionEmail, payoutSentEmail } from '../mailer/templates';
+import type { AppConfig } from '../config/configuration';
 
 const SALT_ROUNDS = 12;
 
@@ -40,7 +45,56 @@ export class AffiliatesService {
     @InjectModel(AffiliateClick.name) private readonly clickModel: Model<AffiliateClickDocument>,
     @InjectModel(AffiliateGroup.name) private readonly groupModel: Model<AffiliateGroupDocument>,
     @InjectModel(AffiliateLink.name) private readonly linkModel: Model<AffiliateLinkDocument>,
+    @InjectModel(AffiliateActivity.name) private readonly activityModel: Model<AffiliateActivityDocument>,
+    private readonly mailerService: MailerService,
+    private readonly config: ConfigService<AppConfig>,
   ) {}
+
+  async logActivity(affiliateId: string | Types.ObjectId, type: AffiliateActivityType, message: string) {
+    await this.activityModel.create({ affiliateId, type, message });
+  }
+
+  async listActivity(affiliateId: string, limit = 30) {
+    return this.activityModel.find({ affiliateId }).sort({ createdAt: -1 }).limit(limit).lean().exec();
+  }
+
+  async setEmailPreferences(id: string, prefs: { emailOnNewReferral?: boolean; emailOnPayout?: boolean }) {
+    return this.affiliateModel.findByIdAndUpdate(id, { $set: prefs }, { returnDocument: 'after' }).exec();
+  }
+
+  /** Always logs the activity-feed entry; emails only if the affiliate hasn't opted out. */
+  async notifyNewReferral(affiliateId: string | Types.ObjectId, orderNumber: string, commissionAmount: number): Promise<void> {
+    const affiliate = await this.affiliateModel.findById(affiliateId).exec();
+    if (!affiliate) return;
+    const formatted = `$${commissionAmount.toFixed(2)}`;
+    await this.logActivity(affiliate._id as Types.ObjectId, 'new_referral', `New referral: order ${orderNumber} earned you ${formatted}.`);
+    if (!affiliate.emailOnNewReferral) return;
+    const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
+    const { subject, html } = newCommissionEmail({
+      fullName: affiliate.fullName,
+      orderNumber,
+      commissionAmount: formatted,
+      dashboardUrl: `${baseUrl}/professionals/portal`,
+    });
+    await this.mailerService.send({ to: affiliate.email, subject, html });
+  }
+
+  async notifyPayoutSent(affiliateId: string | Types.ObjectId, amount: number, method: 'manual' | 'stripe_connect'): Promise<void> {
+    const affiliate = await this.affiliateModel.findById(affiliateId).exec();
+    if (!affiliate) return;
+    const formatted = `$${amount.toFixed(2)}`;
+    const methodLabel = method === 'stripe_connect' ? 'Stripe' : 'manual payout';
+    await this.logActivity(affiliate._id as Types.ObjectId, 'payout_sent', `Payout sent: ${formatted} via ${methodLabel}.`);
+    if (!affiliate.emailOnPayout) return;
+    const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
+    const { subject, html } = payoutSentEmail({
+      fullName: affiliate.fullName,
+      amount: formatted,
+      method,
+      dashboardUrl: `${baseUrl}/professionals/portal/payouts`,
+    });
+    await this.mailerService.send({ to: affiliate.email, subject, html });
+  }
 
   async createApplication(dto: Record<string, unknown> & { email: string; fullName: string }) {
     const email = dto.email.toLowerCase().trim();
@@ -143,6 +197,16 @@ export class AffiliatesService {
     affiliate.status = 'approved';
     affiliate.approvedAt = new Date();
     await affiliate.save();
+
+    const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
+    const { subject, html } = approvalEmail({
+      fullName: affiliate.fullName,
+      loginUrl: `${baseUrl}/professionals/login`,
+      tempPassword: plaintextPassword,
+      referralLink: `${baseUrl}/?ref=${affiliate.referralCode}`,
+    });
+    await this.mailerService.send({ to: affiliate.email, subject, html });
+    await this.logActivity(affiliate._id as Types.ObjectId, 'approved', 'Your affiliate application was approved.');
 
     return { affiliate, plaintextPassword };
   }

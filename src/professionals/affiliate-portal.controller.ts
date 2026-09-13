@@ -10,6 +10,7 @@ import { toCsv } from '../admin/csv.util';
 import { tierForLifetimeSales, nextTier } from '../affiliates/commission-tiers';
 import { PayoutsService } from '../payouts/payouts.service';
 import { StripeService } from '../stripe/stripe.service';
+import { MarketingAssetsService } from '../marketing-assets/marketing-assets.service';
 
 @Controller('professionals/portal')
 @UseGuards(AffiliateGuard)
@@ -19,6 +20,7 @@ export class AffiliatePortalController {
     private readonly ordersService: OrdersService,
     private readonly payoutsService: PayoutsService,
     private readonly stripeService: StripeService,
+    private readonly marketingAssetsService: MarketingAssetsService,
     private readonly config: ConfigService<AppConfig>,
   ) {}
 
@@ -95,15 +97,22 @@ export class AffiliatePortalController {
     const affiliate = await this.affiliatesService.findById(affiliateId);
     const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
     const links = await this.affiliatesService.listLinksForAffiliate(affiliateId);
+    const shopLink = `${baseUrl}/shop?ref=${affiliate?.referralCode}`;
+    const [images, copyBlocks] = await Promise.all([
+      this.marketingAssetsService.listByType('image', shopLink),
+      this.marketingAssetsService.listByType('copy', shopLink),
+    ]);
     return {
       title: 'Marketing Resources',
       activeNav: 'professionals',
       portalTab: 'resources',
       affiliate,
       referralLink: `${baseUrl}/?ref=${affiliate?.referralCode}`,
-      shopLink: `${baseUrl}/shop?ref=${affiliate?.referralCode}`,
+      shopLink,
       baseUrl,
       links: links.map((l) => ({ ...l, fullUrl: `${baseUrl}${l.destinationPath || '/'}?ref=${l.code}` })),
+      images,
+      copyBlocks,
     };
   }
 
@@ -174,5 +183,21 @@ export class AffiliatePortalController {
   async setPayoutEmail(@Req() req: Request, @Res() res: Response, @Body() body: SetPayoutEmailDto) {
     await this.affiliatesService.setPayoutEmail(req.session.userId as string, body.payoutEmail);
     res.redirect(303, '/professionals/portal/settings');
+  }
+
+  @Post('settings/email-preferences')
+  async setEmailPreferences(@Req() req: Request, @Res() res: Response, @Body() body: Record<string, unknown>) {
+    await this.affiliatesService.setEmailPreferences(req.session.userId as string, {
+      emailOnNewReferral: body.emailOnNewReferral === 'true',
+      emailOnPayout: body.emailOnPayout === 'true',
+    });
+    res.redirect(303, '/professionals/portal/settings');
+  }
+
+  @Get('activity')
+  @Render('professionals/portal/activity')
+  async activity(@Req() req: Request) {
+    const items = await this.affiliatesService.listActivity(req.session.userId as string);
+    return { title: 'Activity', activeNav: 'professionals', portalTab: 'activity', items };
   }
 }

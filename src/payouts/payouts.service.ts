@@ -24,16 +24,27 @@ export class PayoutsService {
     await this.ordersService.markCommissionsPaidBulk(selected.map((o) => String(o._id)));
 
     const totalAmount = selected.reduce((sum, o) => sum + (o.commissionAmount ?? 0), 0);
-    const affiliateIds = Array.from(new Set(selected.map((o) => String(o.affiliateId)).filter(Boolean)));
+    const perAffiliate = new Map<string, number>();
+    for (const o of selected) {
+      const key = String(o.affiliateId);
+      if (!key || key === 'undefined') continue;
+      perAffiliate.set(key, (perAffiliate.get(key) ?? 0) + (o.commissionAmount ?? 0));
+    }
 
-    return this.batchModel.create({
+    const batch = await this.batchModel.create({
       method: 'manual' as PayoutMethod,
       totalAmount,
       orderIds: selected.map((o) => new Types.ObjectId(String(o._id))),
-      affiliateIds: affiliateIds.map((id) => new Types.ObjectId(id)),
+      affiliateIds: Array.from(perAffiliate.keys()).map((id) => new Types.ObjectId(id)),
       status: 'completed',
       notes,
     });
+
+    for (const [affiliateId, amount] of perAffiliate) {
+      await this.affiliatesService.notifyPayoutSent(affiliateId, amount, 'manual');
+    }
+
+    return batch;
   }
 
   /** Pays one affiliate's entire pending balance via a real Stripe Connect transfer, then records the batch. */
@@ -69,7 +80,7 @@ export class PayoutsService {
 
     await this.ordersService.markCommissionsPaidBulk(pendingOrders.map((o) => String(o._id)));
 
-    return this.batchModel.create({
+    const batch = await this.batchModel.create({
       method: 'stripe_connect' as PayoutMethod,
       totalAmount,
       orderIds: pendingOrders.map((o) => new Types.ObjectId(String(o._id))),
@@ -77,6 +88,8 @@ export class PayoutsService {
       status: 'completed',
       notes: `Stripe transfer ${transferId}`,
     });
+    await this.affiliatesService.notifyPayoutSent(affiliateId, totalAmount, 'stripe_connect');
+    return batch;
   }
 
   async findAll(limit = 50) {

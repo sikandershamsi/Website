@@ -12,4 +12,9 @@ export const validationSchema = Joi.object({
   ADMIN_SEED_PASSWORD: Joi.string().min(8).required(),
   AFFILIATE_MIN_PAYOUT_THRESHOLD: Joi.number().min(0).default(50),
   AFFILIATE_ATTRIBUTION_WINDOW_DAYS: Joi.number().min(1).default(30),
+  SMTP_HOST: Joi.string().allow('').default(''),
+  SMTP_PORT: Joi.number().default(587),
+  SMTP_USER: Joi.string().allow('').default(''),
+  SMTP_PASS: Joi.string().allow('').default(''),
+  MAIL_FROM: Joi.string().allow('').default('Animalife USA <no-reply@animalifeusa.com>'),
 });
