@@ -16,31 +16,40 @@ export class AmbassadorsController {
     return {
       title: 'Jenni McAllister | Ambassadors',
       activeNav: 'ambassadors',
+      stats: [
+        { icon: 'horse', label: 'Discipline', value: 'Show Jumping' },
+        { icon: 'clock', label: 'Years Competing', value: '30+' },
+        { icon: 'globe', label: 'Country', value: 'USA' },
+        { icon: 'map-pin', label: 'Home Base', value: 'Ocala, FL' },
+      ],
       featuredProducts: [
         {
           slug: 'vetroflex',
           trademark: 'VetroFlex®',
-          category: 'Cartilage – Joint – Connective Tissue Repair',
-          tagline: 'Joint, Cartilage & Connective Tissue Support',
-          price: 79,
+          category: 'Joint Health & Connective Tissue',
           image: '/images/products/vetroflex-tub.webp',
         },
         {
           slug: 'vetrofen',
-          trademark: 'VetroFen®',
+          trademark: 'Vetrofen®',
           category: 'Inflammation & Pain Management',
-          tagline: 'Advanced Inflammation & Pain Management Support',
-          price: 69,
           image: '/images/products/vetrofen-tub.webp',
         },
         {
-          slug: 'vetrofit',
-          trademark: 'VetroFit®',
-          category: 'Kidney Homeostasis Management',
-          tagline: 'Oxygen Transport, Endurance & Recovery Support',
-          price: 59,
-          image: '/images/products/vetrofit-syringe.webp',
+          slug: 'vetrofen-syringe',
+          trademark: 'Vetrofen® Paste',
+          category: 'Targeted Support & Recovery',
+          image: '/images/products/vetrofen-syringe.webp',
         },
+      ],
+      usageCards: [
+        { icon: 'gauge', label: 'Performance & Stamina', image: '/images/ambassadors/jenni/hero.jpg' },
+        { icon: 'joint', label: 'Joint Mobility', image: '/images/ambassadors/disciplines/dressage.jpg' },
+        { icon: 'shield-check', label: 'Inflammation Response', image: '/images/racing/distress/horse.jpg' },
+        { icon: 'refresh', label: 'Recovery & Wellness', image: '/images/home/inspired-nature-horse.jpg' },
+        { icon: 'heart', label: 'Senior Wellness', image: '/images/ambassadors/hero-horse.jpg' },
+        { icon: 'leaf', label: 'Young Horse Development', image: '/images/ambassadors/disciplines/western.jpg' },
+        { icon: 'shield-plus', label: 'Preventative Daily Maintenance', image: '/images/ambassadors/disciplines/jumping.jpg' },
       ],
     };
   }
