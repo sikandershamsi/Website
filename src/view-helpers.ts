@@ -1,4 +1,5 @@
 import { renderIcon } from './icons';
+import { SUBSCRIPTION_FREQUENCIES, resolveSubscriptionFrequency } from './cart/subscription-frequency';
 
 type HbsLike = {
   registerHelper: (name: string, fn: (...args: any[]) => any) => void;
@@ -23,6 +24,8 @@ export function registerHelpers(hbsInstance: unknown) {
   hbs.registerHelper('round', (value: number) => Math.round(Number(value)));
   hbs.registerHelper('year', () => new Date().getFullYear());
   hbs.registerHelper('uriEncode', (value: unknown) => encodeURIComponent(String(value ?? '')));
+  hbs.registerHelper('subscriptionFrequencies', () => SUBSCRIPTION_FREQUENCIES);
+  hbs.registerHelper('subscriptionFrequencyLabel', (code: unknown) => resolveSubscriptionFrequency(String(code)).label);
   hbs.registerHelper('pick', (obj: Record<string, unknown>, key: string) => obj?.[key]);
   hbs.registerHelper('or', (...args: unknown[]) => args.slice(0, -1).find((v) => v) ?? null);
   hbs.registerHelper('array', (...args: unknown[]) => args.slice(0, -1));

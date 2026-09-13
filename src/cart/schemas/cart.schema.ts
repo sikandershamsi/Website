@@ -28,6 +28,9 @@ export class CartLine {
 
   @Prop({ default: false })
   isSubscription: boolean;
+
+  @Prop()
+  subscriptionFrequency?: string;
 }
 export const CartLineSchema = SchemaFactory.createForClass(CartLine);
 

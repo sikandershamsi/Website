@@ -8,6 +8,7 @@ import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 import { CartService, CartKey } from '../cart/cart.service';
 import { AffiliatesService } from '../affiliates/affiliates.service';
 import type { CartLine } from '../cart/schemas/cart.schema';
+import { resolveSubscriptionFrequency } from '../cart/subscription-frequency';
 
 function toCents(dollars: number): number {
   return Math.round(dollars * 100);
@@ -98,15 +99,18 @@ export class StripeService {
 
     // Built from each cart line's own snapshotted price (not a pre-synced per-product Price ID) so that
     // a size/variant selected at add-to-cart time is charged at its own price, not the product's base price.
-    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = params.lines.map((line) => ({
-      price_data: {
-        currency: 'usd',
-        unit_amount: toCents(line.price),
-        product_data: { name: line.size ? `${line.name} — ${line.size}` : line.name },
-        ...(line.isSubscription ? { recurring: { interval: 'month' as const } } : {}),
-      },
-      quantity: line.qty,
-    }));
+    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = params.lines.map((line) => {
+      const frequency = line.isSubscription ? resolveSubscriptionFrequency(line.subscriptionFrequency) : undefined;
+      return {
+        price_data: {
+          currency: 'usd',
+          unit_amount: toCents(line.price),
+          product_data: { name: line.size ? `${line.name} — ${line.size}` : line.name },
+          ...(frequency ? { recurring: { interval: frequency.interval, interval_count: frequency.intervalCount } } : {}),
+        },
+        quantity: line.qty,
+      };
+    });
 
     const cartKeyMetadata = 'userId' in params.key ? { userId: params.key.userId } : { guestCartId: params.key.guestCartId };
 
@@ -207,6 +211,7 @@ export class StripeService {
         image: l.image,
         qty: l.qty,
         isSubscription: l.isSubscription,
+        subscriptionFrequency: l.subscriptionFrequency,
       })),
       subtotal,
       shipping,
@@ -229,6 +234,7 @@ export class StripeService {
           subscriptionId: stripeSub.id,
           customerId: typeof stripeSub.customer === 'string' ? stripeSub.customer : '',
           priceId: firstItem.price.id,
+          interval: resolveSubscriptionFrequency(subLine.subscriptionFrequency).label,
           currentPeriodStart: new Date(firstItem.current_period_start * 1000),
           currentPeriodEnd: new Date(firstItem.current_period_end * 1000),
           affiliateId: affiliate ? String(affiliate._id) : undefined,

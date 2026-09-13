@@ -374,4 +374,17 @@
     select.addEventListener('change', update);
     update();
   });
+
+  // PDP subscription toggle — shows the delivery-frequency dropdown only when "Subscribe & Save" is picked
+  document.querySelectorAll('[data-subscription-toggle]').forEach(function (fieldset) {
+    var frequencyWrap = fieldset.parentElement && fieldset.parentElement.querySelector('[data-subscription-frequency-wrap]');
+    if (!frequencyWrap) return;
+    var radios = fieldset.querySelectorAll('input[name="isSubscription"]');
+    function update() {
+      var checked = fieldset.querySelector('input[name="isSubscription"]:checked');
+      frequencyWrap.hidden = !checked || checked.value !== 'true';
+    }
+    radios.forEach(function (radio) { radio.addEventListener('change', update); });
+    update();
+  });
 })();

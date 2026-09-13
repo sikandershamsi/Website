@@ -61,16 +61,24 @@
           </select>
         </div>
         {{/if}}
-        <fieldset class="flex flex-col gap-2 sm:flex-row sm:gap-3">
+        <fieldset class="flex flex-col gap-2 sm:flex-row sm:gap-3" data-subscription-toggle>
           <label class="flex flex-1 cursor-pointer items-center gap-2 rounded-none border border-al-line px-4 py-3 text-sm has-[:checked]:border-al-navy has-[:checked]:bg-al-panel">
             <input type="radio" name="isSubscription" value="false" checked class="accent-al-navy" />
             <span>Buy Once &mdash; <strong data-variant-price>{{currency product.price}}</strong></span>
           </label>
           <label class="flex flex-1 cursor-pointer items-center gap-2 rounded-none border border-al-line px-4 py-3 text-sm has-[:checked]:border-al-navy has-[:checked]:bg-al-panel">
             <input type="radio" name="isSubscription" value="true" class="accent-al-navy" />
-            <span>Subscribe Monthly &mdash; <strong data-variant-price>{{currency product.price}}</strong>/mo</span>
+            <span>Subscribe &amp; Save &mdash; <strong data-variant-price>{{currency product.price}}</strong></span>
           </label>
         </fieldset>
+        <div class="mt-3" data-subscription-frequency-wrap hidden>
+          <label class="field-label" for="pdp-frequency">Delivery Frequency</label>
+          <select id="pdp-frequency" name="subscriptionFrequency" class="input-field mt-1 max-w-xs">
+            {{#each (subscriptionFrequencies)}}
+            <option value="{{this.code}}" {{#ifCond this.code "1m"}}selected{{/ifCond}}>{{this.label}}</option>
+            {{/each}}
+          </select>
+        </div>
         <div class="mt-4 flex flex-wrap items-center gap-4">
           <label class="field-label sr-only" for="qty">Quantity</label>
           <input id="qty" type="number" name="qty" value="1" min="1" class="input-field w-20 text-center" />

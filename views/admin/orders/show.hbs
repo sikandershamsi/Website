@@ -7,7 +7,7 @@
     <div class="mt-4 space-y-3">
       {{#each order.lines}}
       <div class="flex justify-between border-b border-al-line pb-3 text-sm">
-        <span>{{this.name}} &times; {{this.qty}}{{#if this.isSubscription}} (subscription){{/if}}</span>
+        <span>{{this.name}} &times; {{this.qty}}{{#if this.isSubscription}} (subscription &mdash; {{subscriptionFrequencyLabel this.subscriptionFrequency}}){{/if}}</span>
         <span class="font-semibold text-al-navy">{{currency this.price}}</span>
       </div>
       {{/each}}

@@ -17,6 +17,7 @@ export class SubscriptionsService {
     subscriptionId: string;
     customerId: string;
     priceId: string;
+    interval?: string;
     currentPeriodStart: Date;
     currentPeriodEnd: Date;
     affiliateId?: string;
@@ -33,6 +34,7 @@ export class SubscriptionsService {
         priceId: data.priceId,
       },
       status: 'active',
+      interval: data.interval,
       currentPeriodStart: data.currentPeriodStart,
       currentPeriodEnd: data.currentPeriodEnd,
       affiliateId: data.affiliateId ? new Types.ObjectId(data.affiliateId) : undefined,

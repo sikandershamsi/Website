@@ -1,5 +1,8 @@
-import { IsBoolean, IsInt, IsOptional, IsString, Min } from 'class-validator';
+import { IsBoolean, IsIn, IsInt, IsOptional, IsString, Min } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
+import { SUBSCRIPTION_FREQUENCIES } from './subscription-frequency';
+
+const FREQUENCY_CODES = SUBSCRIPTION_FREQUENCIES.map((f) => f.code);
 
 /** Handles HTML form values ("true"/"false" strings) correctly, unlike the naive Boolean() cast. */
 function toBoolean({ value }: { value: unknown }): boolean | unknown {
@@ -29,6 +32,10 @@ export class AddToCartDto {
   @IsOptional()
   @IsString()
   size?: string;
+
+  @IsOptional()
+  @IsIn(FREQUENCY_CODES)
+  subscriptionFrequency?: string;
 }
 
 export class UpdateCartDto {
@@ -48,4 +55,8 @@ export class UpdateCartDto {
   @Transform(toBoolean)
   @IsBoolean()
   isSubscription?: boolean;
+
+  @IsOptional()
+  @IsIn(FREQUENCY_CODES)
+  subscriptionFrequency?: string;
 }

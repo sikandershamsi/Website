@@ -36,6 +36,7 @@ export class OrdersService {
       image?: string;
       qty: number;
       isSubscription: boolean;
+      subscriptionFrequency?: string;
     }>;
     subtotal: number;
     shipping?: Record<string, unknown>;

@@ -30,6 +30,9 @@ export class OrderLine {
 
   @Prop({ default: false })
   isSubscription: boolean;
+
+  @Prop()
+  subscriptionFrequency?: string;
 }
 const OrderLineSchema = SchemaFactory.createForClass(OrderLine);
 

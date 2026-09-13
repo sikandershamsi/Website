@@ -17,17 +17,20 @@
         </div>
         <div class="min-w-[160px] flex-1">
           <p class="font-display text-base font-medium text-al-navy">{{this.name}}</p>
-          <p class="text-xs uppercase tracking-wide text-al-ink/50">{{this.size}}</p>
+          <p class="text-xs uppercase tracking-wide text-al-ink/50">
+            {{this.size}}{{#if this.isSubscription}} &middot; Subscription ({{subscriptionFrequencyLabel this.subscriptionFrequency}}){{/if}}
+          </p>
         </div>
         <form action="/cart/update" method="post" class="flex items-center gap-2">
           <input type="hidden" name="slug" value="{{this.slug}}" />
           <input type="hidden" name="size" value="{{this.size}}" />
           <input type="hidden" name="isSubscription" value="{{this.isSubscription}}" />
+          <input type="hidden" name="subscriptionFrequency" value="{{this.subscriptionFrequency}}" />
           <input type="number" name="qty" value="{{this.qty}}" min="0" class="input-field w-20 text-center" />
           <button type="submit" class="btn-outline !px-4 !py-2 text-xs">Update</button>
         </form>
         <p class="w-24 text-right font-display text-base font-medium text-al-navy">{{currency this.price}}</p>
-        <form action="/cart/remove/{{this.slug}}?size={{uriEncode this.size}}&isSubscription={{this.isSubscription}}" method="post">
+        <form action="/cart/remove/{{this.slug}}?size={{uriEncode this.size}}&isSubscription={{this.isSubscription}}&subscriptionFrequency={{uriEncode this.subscriptionFrequency}}" method="post">
           <button type="submit" aria-label="Remove" class="text-al-ink/40 hover:text-al-navy">{{{icon "close" "w-4 h-4"}}}</button>
         </form>
       </div>

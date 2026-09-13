@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Cart, CartDocument, CartLine } from './schemas/cart.schema';
 import { ProductsService } from '../products/products.service';
+import { resolveSubscriptionFrequency } from './subscription-frequency';
 
 export type CartKey = { userId: string } | { guestCartId: string };
 
@@ -41,7 +42,14 @@ export class CartService {
     return lines.reduce((sum, line) => sum + line.qty * line.price, 0);
   }
 
-  async add(key: CartKey, slug: string, qty: number, isSubscription = false, size?: string): Promise<void> {
+  async add(
+    key: CartKey,
+    slug: string,
+    qty: number,
+    isSubscription = false,
+    size?: string,
+    subscriptionFrequency?: string,
+  ): Promise<void> {
     const product = await this.productsService.findBySlug(slug);
     if (!product) throw new NotFoundException(`No active product found for slug "${slug}".`);
     const variants = (product as { variants?: { size: string; price: number }[] }).variants;
@@ -49,10 +57,16 @@ export class CartService {
     const variant = variants?.length ? (variants.find((v) => v.size === size) ?? variants[0]) : undefined;
     const resolvedPrice = variant ? variant.price : product.price;
     const resolvedSize = variant ? variant.size : product.size;
+    // Frequency only means anything for a subscription line; resolve it server-side too.
+    const resolvedFrequency = isSubscription ? resolveSubscriptionFrequency(subscriptionFrequency).code : undefined;
 
     const cart = await this.ensure(key);
     const existing = cart.lines.find(
-      (l) => l.slug === slug && l.isSubscription === isSubscription && l.size === resolvedSize,
+      (l) =>
+        l.slug === slug &&
+        l.isSubscription === isSubscription &&
+        l.size === resolvedSize &&
+        l.subscriptionFrequency === resolvedFrequency,
     );
     if (existing) {
       existing.qty += qty;
@@ -66,31 +80,54 @@ export class CartService {
         image: product.image,
         qty,
         isSubscription,
+        subscriptionFrequency: resolvedFrequency,
       } as CartLine);
     }
     await cart.save();
   }
 
-  async updateQty(key: CartKey, slug: string, qty: number, size?: string, isSubscription?: boolean): Promise<void> {
-    if (qty <= 0) return this.remove(key, slug, size, isSubscription);
+  async updateQty(
+    key: CartKey,
+    slug: string,
+    qty: number,
+    size?: string,
+    isSubscription?: boolean,
+    subscriptionFrequency?: string,
+  ): Promise<void> {
+    if (qty <= 0) return this.remove(key, slug, size, isSubscription, subscriptionFrequency);
     const cart = await this.ensure(key);
-    const line = cart.lines.find((l) => this.matchesLine(l, slug, size, isSubscription));
+    const line = cart.lines.find((l) => this.matchesLine(l, slug, size, isSubscription, subscriptionFrequency));
     if (!line) return;
     line.qty = qty;
     await cart.save();
   }
 
-  async remove(key: CartKey, slug: string, size?: string, isSubscription?: boolean): Promise<void> {
+  async remove(
+    key: CartKey,
+    slug: string,
+    size?: string,
+    isSubscription?: boolean,
+    subscriptionFrequency?: string,
+  ): Promise<void> {
     const cart = await this.ensure(key);
-    cart.lines = cart.lines.filter((l) => !this.matchesLine(l, slug, size, isSubscription)) as CartLine[];
+    cart.lines = cart.lines.filter(
+      (l) => !this.matchesLine(l, slug, size, isSubscription, subscriptionFrequency),
+    ) as CartLine[];
     await cart.save();
   }
 
-  /** A cart can hold multiple lines for the same slug (different sizes and/or one-time vs. subscription). */
-  private matchesLine(line: CartLine, slug: string, size?: string, isSubscription?: boolean): boolean {
+  /** A cart can hold multiple lines for the same slug (different sizes, frequencies, and/or one-time vs. subscription). */
+  private matchesLine(
+    line: CartLine,
+    slug: string,
+    size?: string,
+    isSubscription?: boolean,
+    subscriptionFrequency?: string,
+  ): boolean {
     if (line.slug !== slug) return false;
     if (size !== undefined && line.size !== size) return false;
     if (isSubscription !== undefined && line.isSubscription !== isSubscription) return false;
+    if (subscriptionFrequency !== undefined && line.subscriptionFrequency !== subscriptionFrequency) return false;
     return true;
   }
 
