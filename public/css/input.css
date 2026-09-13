@@ -2701,6 +2701,10 @@
     --wp-error: #d63638;
     --wp-error-bg: #fcf0f1;
   }
+  /* The public site's global `h1, h2, h3 { font-family: var(--font-display) }` rule
+     directly targets these tags, which beats an inherited font-family regardless of
+     specificity — so admin headings need their own explicit override back to system UI. */
+  .wp-admin h1, .wp-admin h2, .wp-admin h3 { font-family: inherit; }
   /* :where() keeps this at zero specificity so any .wp-btn/.wp-sidebar__item/etc
      color rule below (however plain) wins over this default link color. */
   .wp-admin :where(a) { color: var(--wp-link); }
