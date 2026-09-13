@@ -12,6 +12,20 @@ function toStringArray({ value }: { value: unknown }): string[] {
   return [];
 }
 
+/** Parses "Size Label | Price" lines (one per row) into variant objects. Rows missing a valid price are dropped. */
+function toVariants({ value }: { value: unknown }): { size: string; price: number }[] {
+  if (typeof value !== 'string' || !value.trim()) return [];
+  return value
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [size, priceRaw] = line.split('|').map((v) => v.trim());
+      return { size, price: Number(priceRaw) };
+    })
+    .filter((v) => v.size && Number.isFinite(v.price));
+}
+
 export class ProductFormDto {
   @IsString() @MinLength(1)
   slug: string;
@@ -37,6 +51,10 @@ export class ProductFormDto {
 
   @IsOptional() @IsString()
   size?: string;
+
+  @Transform(toVariants)
+  @IsArray()
+  variants: { size: string; price: number }[];
 
   @IsOptional() @IsString()
   heroStat?: string;

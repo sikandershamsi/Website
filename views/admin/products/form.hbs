@@ -60,6 +60,13 @@
   </div>
 
   <div>
+    <label class="field-label" for="variants">Size Options (one per line, "Size Label | Price")</label>
+    <textarea id="variants" name="variants" rows="4" placeholder="600g (30 Days) | 74" class="input-field">{{#each product.variants}}{{this.size}} | {{this.price}}
+{{/each}}</textarea>
+    <p class="mt-1 text-xs text-al-ink/50">Leave blank to keep a single fixed price/size (above). When set, shoppers get a size dropdown on the product page and the price updates per selection.</p>
+  </div>
+
+  <div>
     <label class="field-label" for="keyIngredients">Key Ingredients (one per line)</label>
     <textarea id="keyIngredients" name="keyIngredients" rows="4" class="input-field">{{#each product.keyIngredients}}{{this}}
 {{/each}}</textarea>

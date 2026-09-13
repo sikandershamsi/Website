@@ -34,21 +34,27 @@ export class CartController {
   @Post('cart/add')
   async addToCart(@Req() req: Request, @Res() res: Response, @Body() body: AddToCartDto) {
     const key = cartKeyFromRequest(req);
-    await this.cartService.add(key, body.slug, Number(body.qty) || 1, Boolean(body.isSubscription));
+    await this.cartService.add(key, body.slug, Number(body.qty) || 1, Boolean(body.isSubscription), body.size);
     res.redirect(303, body.redirectTo || '/cart');
   }
 
   @Post('cart/update')
   async updateCart(@Req() req: Request, @Res() res: Response, @Body() body: UpdateCartDto) {
     const key = cartKeyFromRequest(req);
-    await this.cartService.updateQty(key, body.slug, Number(body.qty));
+    await this.cartService.updateQty(key, body.slug, Number(body.qty), body.size, body.isSubscription);
     res.redirect(303, '/cart');
   }
 
   @Post('cart/remove/:slug')
-  async removeFromCart(@Req() req: Request, @Res() res: Response, @Param('slug') slug: string) {
+  async removeFromCart(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Param('slug') slug: string,
+    @Query('size') size?: string,
+    @Query('isSubscription') isSubscription?: string,
+  ) {
     const key = cartKeyFromRequest(req);
-    await this.cartService.remove(key, slug);
+    await this.cartService.remove(key, slug, size, isSubscription === undefined ? undefined : isSubscription === 'true');
     res.redirect(303, '/cart');
   }
 

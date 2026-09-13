@@ -25,6 +25,10 @@ export class AddToCartDto {
   @Transform(toBoolean)
   @IsBoolean()
   isSubscription?: boolean;
+
+  @IsOptional()
+  @IsString()
+  size?: string;
 }
 
 export class UpdateCartDto {
@@ -35,4 +39,13 @@ export class UpdateCartDto {
   @IsInt()
   @Min(0)
   qty: number;
+
+  @IsOptional()
+  @IsString()
+  size?: string;
+
+  @IsOptional()
+  @Transform(toBoolean)
+  @IsBoolean()
+  isSubscription?: boolean;
 }

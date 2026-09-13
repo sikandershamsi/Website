@@ -56,6 +56,8 @@ export interface Product {
   tagline: string;
   price: number;
   size: string;
+  /** Selectable size/price options shown on the PDP; when present the shopper picks one and the price updates accordingly. */
+  variants?: { size: string; price: number }[];
   heroStat: string;
   image: string;
   /** Additional product shots for the PDP gallery; first entry is the default view */
@@ -249,8 +251,13 @@ export const products: Product[] = [
     category: 'Cartilage – Joint – Connective Tissue Repair',
     categorySlug: 'cartilage-joint-connective-tissue',
     tagline: 'Joint, Cartilage & Connective Tissue Support',
-    price: 79,
-    size: '500g / 25 Days',
+    price: 74,
+    size: '600g (30 Days)',
+    variants: [
+      { size: '600g (30 Days)', price: 74 },
+      { size: '1000g (60 Days)', price: 110 },
+      { size: '2000g (90 Days)', price: 183 },
+    ],
     heroStat: 'Hydrolyzed Collagen Type II',
     image: '/images/products/vetroflex-tub.webp',
     gallery: ['/images/products/vetroflex-tub.webp'],
@@ -703,8 +710,12 @@ export const products: Product[] = [
     category: 'Inflammation & Pain Management',
     categorySlug: 'inflammation-pain-management',
     tagline: 'Advanced Inflammation & Pain Management Support',
-    price: 69,
-    size: '105g / 30 Days',
+    price: 80,
+    size: '105g (30 Days)',
+    variants: [
+      { size: '105g (30 Days)', price: 80 },
+      { size: '315g (90 Days)', price: 208 },
+    ],
     heroStat: 'Scutellaria Baicalensis + Acacia Catechu',
     image: '/images/products/vetrofen-tub.webp',
     gallery: ['/images/products/vetrofen-tub.webp', '/images/products/vetrofen-syringe.webp'],
@@ -1150,8 +1161,12 @@ export const products: Product[] = [
     category: 'Inflammation & Pain Management',
     categorySlug: 'inflammation-pain-management',
     tagline: 'Advanced Inflammation & Pain Management Support',
-    price: 39,
-    size: '20ml Syringe / Single Dose',
+    price: 22,
+    size: '1 x 30ml Syringe',
+    variants: [
+      { size: '1 x 30ml Syringe', price: 22 },
+      { size: '20 x 30ml Syringes', price: 352 },
+    ],
     heroStat: 'Scutellaria Baicalensis + Acacia Catechu',
     image: '/images/products/vetrofen-syringe.webp',
     gallery: ['/images/products/vetrofen-syringe.webp', '/images/products/vetrofen-tub.webp'],
@@ -1597,8 +1612,12 @@ export const products: Product[] = [
     category: 'Kidney Homeostasis – Oxygen Transport & Recovery',
     categorySlug: 'kidney-homeostasis-oxygen-recovery',
     tagline: 'Oxygen Transport, Endurance & Recovery Support',
-    price: 59,
-    size: '20ml Syringe',
+    price: 37,
+    size: '1 x 60ml Syringe',
+    variants: [
+      { size: '1 x 60ml Syringe', price: 37 },
+      { size: '10 x 60ml Syringes', price: 295 },
+    ],
     heroStat: 'Omega-3 + Superoxide Dismutase',
     image: '/images/products/vetrofit-syringe.webp',
     gallery: ['/images/products/vetrofit-syringe.webp'],

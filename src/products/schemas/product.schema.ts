@@ -19,6 +19,13 @@ export class ProductFaq {
 const ProductFaqSchema = SchemaFactory.createForClass(ProductFaq);
 
 @Schema({ _id: false })
+export class ProductVariant {
+  @Prop({ required: true }) size: string;
+  @Prop({ required: true }) price: number;
+}
+const ProductVariantSchema = SchemaFactory.createForClass(ProductVariant);
+
+@Schema({ _id: false })
 export class ProductStripeLinks {
   @Prop() productId?: string;
   @Prop() oneTimePriceId?: string;
@@ -58,6 +65,9 @@ export class Product {
 
   @Prop()
   size?: string;
+
+  @Prop({ type: [ProductVariantSchema], default: [] })
+  variants: ProductVariant[];
 
   @Prop()
   heroStat?: string;

@@ -96,17 +96,17 @@ export class StripeService {
     const stripe = this.requireStripe();
     const hasSubscription = params.lines.some((l) => l.isSubscription);
 
-    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
-    for (const line of params.lines) {
-      const product = await this.productsService.findBySlug(line.slug, true);
-      const priceId = line.isSubscription
-        ? (product as { stripe?: { subscriptionPriceId?: string } })?.stripe?.subscriptionPriceId
-        : (product as { stripe?: { oneTimePriceId?: string } })?.stripe?.oneTimePriceId;
-      if (!priceId) {
-        throw new Error(`Product "${line.slug}" is not yet synced to Stripe (missing price id).`);
-      }
-      lineItems.push({ price: priceId, quantity: line.qty });
-    }
+    // Built from each cart line's own snapshotted price (not a pre-synced per-product Price ID) so that
+    // a size/variant selected at add-to-cart time is charged at its own price, not the product's base price.
+    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = params.lines.map((line) => ({
+      price_data: {
+        currency: 'usd',
+        unit_amount: toCents(line.price),
+        product_data: { name: line.size ? `${line.name} — ${line.size}` : line.name },
+        ...(line.isSubscription ? { recurring: { interval: 'month' as const } } : {}),
+      },
+      quantity: line.qty,
+    }));
 
     const cartKeyMetadata = 'userId' in params.key ? { userId: params.key.userId } : { guestCartId: params.key.guestCartId };
 

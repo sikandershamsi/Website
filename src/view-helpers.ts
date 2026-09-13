@@ -22,6 +22,7 @@ export function registerHelpers(hbsInstance: unknown) {
   hbs.registerHelper('mul', (a: number, b: number) => Number(a) * Number(b));
   hbs.registerHelper('round', (value: number) => Math.round(Number(value)));
   hbs.registerHelper('year', () => new Date().getFullYear());
+  hbs.registerHelper('uriEncode', (value: unknown) => encodeURIComponent(String(value ?? '')));
   hbs.registerHelper('pick', (obj: Record<string, unknown>, key: string) => obj?.[key]);
   hbs.registerHelper('or', (...args: unknown[]) => args.slice(0, -1).find((v) => v) ?? null);
   hbs.registerHelper('array', (...args: unknown[]) => args.slice(0, -1));

@@ -39,28 +39,43 @@
       {{/each}}
     </ul>
 
+    {{#unless product.variants.length}}
     <p class="mt-7 text-sm leading-relaxed text-al-ink/65">{{product.size}} &mdash; {{product.heroStat}}</p>
-    <p class="font-display mt-6 text-2xl text-al-navy">{{currency product.price}}</p>
+    {{/unless}}
 
-    <form action="/cart/add" method="post" class="mt-6">
-      <input type="hidden" name="slug" value="{{product.slug}}" />
-      <fieldset class="flex flex-col gap-2 sm:flex-row sm:gap-3">
-        <label class="flex flex-1 cursor-pointer items-center gap-2 rounded-none border border-al-line px-4 py-3 text-sm has-[:checked]:border-al-navy has-[:checked]:bg-al-panel">
-          <input type="radio" name="isSubscription" value="false" checked class="accent-al-navy" />
-          <span>Buy Once &mdash; <strong>{{currency product.price}}</strong></span>
-        </label>
-        <label class="flex flex-1 cursor-pointer items-center gap-2 rounded-none border border-al-line px-4 py-3 text-sm has-[:checked]:border-al-navy has-[:checked]:bg-al-panel">
-          <input type="radio" name="isSubscription" value="true" class="accent-al-navy" />
-          <span>Subscribe Monthly &mdash; <strong>{{currency product.price}}</strong>/mo</span>
-        </label>
-      </fieldset>
-      <div class="mt-4 flex flex-wrap items-center gap-4">
-        <label class="field-label sr-only" for="qty">Quantity</label>
-        <input id="qty" type="number" name="qty" value="1" min="1" class="input-field w-20 text-center" />
-        <button type="submit" class="btn-primary">Add to Cart</button>
-        <a href="/shop/product/{{product.slug}}#ingredients" class="btn-outline">Learn More</a>
-      </div>
-    </form>
+    <div data-pdp-variants>
+      <p class="font-display mt-6 text-2xl text-al-navy" data-variant-price>{{currency product.price}}</p>
+
+      <form action="/cart/add" method="post" class="mt-6">
+        <input type="hidden" name="slug" value="{{product.slug}}" />
+        {{#if product.variants.length}}
+        <div class="mb-4">
+          <label class="field-label" for="pdp-size">Size</label>
+          <select id="pdp-size" name="size" data-variant-select class="input-field mt-1 max-w-xs">
+            {{#each product.variants}}
+            <option value="{{this.size}}" data-price="{{this.price}}" {{#if @first}}selected{{/if}}>{{this.size}} &mdash; {{currency this.price}}</option>
+            {{/each}}
+          </select>
+        </div>
+        {{/if}}
+        <fieldset class="flex flex-col gap-2 sm:flex-row sm:gap-3">
+          <label class="flex flex-1 cursor-pointer items-center gap-2 rounded-none border border-al-line px-4 py-3 text-sm has-[:checked]:border-al-navy has-[:checked]:bg-al-panel">
+            <input type="radio" name="isSubscription" value="false" checked class="accent-al-navy" />
+            <span>Buy Once &mdash; <strong data-variant-price>{{currency product.price}}</strong></span>
+          </label>
+          <label class="flex flex-1 cursor-pointer items-center gap-2 rounded-none border border-al-line px-4 py-3 text-sm has-[:checked]:border-al-navy has-[:checked]:bg-al-panel">
+            <input type="radio" name="isSubscription" value="true" class="accent-al-navy" />
+            <span>Subscribe Monthly &mdash; <strong data-variant-price>{{currency product.price}}</strong>/mo</span>
+          </label>
+        </fieldset>
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <label class="field-label sr-only" for="qty">Quantity</label>
+          <input id="qty" type="number" name="qty" value="1" min="1" class="input-field w-20 text-center" />
+          <button type="submit" class="btn-primary">Add to Cart</button>
+          <a href="/shop/product/{{product.slug}}#ingredients" class="btn-outline">Learn More</a>
+        </div>
+      </form>
+    </div>
 
     <div class="mt-8">
       <p class="text-xs font-semibold uppercase tracking-wide text-al-navy">Key Ingredients</p>

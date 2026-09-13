@@ -358,4 +358,20 @@
       });
     });
   });
+
+  // PDP size/variant selector — updates the displayed price(s) to match the selected size
+  document.querySelectorAll('[data-pdp-variants]').forEach(function (wrap) {
+    var select = wrap.querySelector('[data-variant-select]');
+    if (!select) return;
+    var priceEls = wrap.querySelectorAll('[data-variant-price]');
+    function update() {
+      var option = select.options[select.selectedIndex];
+      var price = parseFloat(option && option.getAttribute('data-price'));
+      if (!isFinite(price)) return;
+      var formatted = '$' + price.toFixed(2);
+      priceEls.forEach(function (el) { el.textContent = formatted; });
+    }
+    select.addEventListener('change', update);
+    update();
+  });
 })();

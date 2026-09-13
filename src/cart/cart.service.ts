@@ -41,11 +41,19 @@ export class CartService {
     return lines.reduce((sum, line) => sum + line.qty * line.price, 0);
   }
 
-  async add(key: CartKey, slug: string, qty: number, isSubscription = false): Promise<void> {
+  async add(key: CartKey, slug: string, qty: number, isSubscription = false, size?: string): Promise<void> {
     const product = await this.productsService.findBySlug(slug);
     if (!product) throw new NotFoundException(`No active product found for slug "${slug}".`);
+    const variants = (product as { variants?: { size: string; price: number }[] }).variants;
+    // Never trust a client-submitted price — resolve the variant (or fall back to the default) server-side.
+    const variant = variants?.length ? (variants.find((v) => v.size === size) ?? variants[0]) : undefined;
+    const resolvedPrice = variant ? variant.price : product.price;
+    const resolvedSize = variant ? variant.size : product.size;
+
     const cart = await this.ensure(key);
-    const existing = cart.lines.find((l) => l.slug === slug && l.isSubscription === isSubscription);
+    const existing = cart.lines.find(
+      (l) => l.slug === slug && l.isSubscription === isSubscription && l.size === resolvedSize,
+    );
     if (existing) {
       existing.qty += qty;
     } else {
@@ -53,8 +61,8 @@ export class CartService {
         productId: new Types.ObjectId(product.id as string),
         slug,
         name: product.name,
-        price: product.price,
-        size: product.size,
+        price: resolvedPrice,
+        size: resolvedSize,
         image: product.image,
         qty,
         isSubscription,
@@ -63,19 +71,27 @@ export class CartService {
     await cart.save();
   }
 
-  async updateQty(key: CartKey, slug: string, qty: number): Promise<void> {
-    if (qty <= 0) return this.remove(key, slug);
+  async updateQty(key: CartKey, slug: string, qty: number, size?: string, isSubscription?: boolean): Promise<void> {
+    if (qty <= 0) return this.remove(key, slug, size, isSubscription);
     const cart = await this.ensure(key);
-    const line = cart.lines.find((l) => l.slug === slug);
+    const line = cart.lines.find((l) => this.matchesLine(l, slug, size, isSubscription));
     if (!line) return;
     line.qty = qty;
     await cart.save();
   }
 
-  async remove(key: CartKey, slug: string): Promise<void> {
+  async remove(key: CartKey, slug: string, size?: string, isSubscription?: boolean): Promise<void> {
     const cart = await this.ensure(key);
-    cart.lines = cart.lines.filter((l) => l.slug !== slug) as CartLine[];
+    cart.lines = cart.lines.filter((l) => !this.matchesLine(l, slug, size, isSubscription)) as CartLine[];
     await cart.save();
+  }
+
+  /** A cart can hold multiple lines for the same slug (different sizes and/or one-time vs. subscription). */
+  private matchesLine(line: CartLine, slug: string, size?: string, isSubscription?: boolean): boolean {
+    if (line.slug !== slug) return false;
+    if (size !== undefined && line.size !== size) return false;
+    if (isSubscription !== undefined && line.isSubscription !== isSubscription) return false;
+    return true;
   }
 
   async clear(key: CartKey): Promise<void> {
