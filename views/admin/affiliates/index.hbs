@@ -1,85 +1,84 @@
-<div class="flex flex-wrap items-center justify-between gap-3">
-  <h1 class="font-display text-2xl font-medium text-al-navy">Affiliates</h1>
-  <div class="flex gap-2">
-    <a href="/admin/affiliates/groups" class="btn-outline !px-4 !py-2 text-xs">Groups</a>
-    <a href="/admin/affiliates/commissions" class="btn-outline !px-4 !py-2 text-xs">Commissions</a>
-    <a href="/admin/affiliates/payouts" class="btn-outline !px-4 !py-2 text-xs">Payouts</a>
-    <a href="/admin/affiliates/analytics" class="btn-outline !px-4 !py-2 text-xs">Analytics</a>
-  </div>
+<div class="wp-heading-inline">
+  <h1>Affiliates</h1>
+  <a href="/admin/affiliates/groups" class="wp-btn wp-btn-sm">Groups</a>
+  <a href="/admin/affiliates/commissions" class="wp-btn wp-btn-sm">Commissions</a>
+  <a href="/admin/affiliates/payouts" class="wp-btn wp-btn-sm">Payouts</a>
+  <a href="/admin/affiliates/analytics" class="wp-btn wp-btn-sm">Analytics</a>
 </div>
 
-<div class="mt-4 flex flex-wrap items-center justify-between gap-4">
-  <div class="flex gap-4 text-xs font-semibold uppercase tracking-wide">
-    <a href="/admin/affiliates{{#if q}}?q={{q}}{{/if}}" class="{{#unless statusFilter}}text-al-navy underline{{else}}text-al-ink/50{{/unless}}">All</a>
-    <a href="/admin/affiliates?status=pending{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "pending")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Pending</a>
-    <a href="/admin/affiliates?status=approved{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "approved")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Approved</a>
-    <a href="/admin/affiliates?status=suspended{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "suspended")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Suspended</a>
-    <a href="/admin/affiliates?status=rejected{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "rejected")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Rejected</a>
+<div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+  <div class="wp-tabs">
+    <a href="/admin/affiliates{{#if q}}?q={{q}}{{/if}}" class="{{#unless statusFilter}}is-active{{/unless}}">All</a>
+    <a href="/admin/affiliates?status=pending{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "pending")}}is-active{{/if}}">Pending</a>
+    <a href="/admin/affiliates?status=approved{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "approved")}}is-active{{/if}}">Approved</a>
+    <a href="/admin/affiliates?status=suspended{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "suspended")}}is-active{{/if}}">Suspended</a>
+    <a href="/admin/affiliates?status=rejected{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "rejected")}}is-active{{/if}}">Rejected</a>
   </div>
-  <form method="get" class="flex items-center gap-2">
+  <form method="get" class="wp-search-box">
     {{#if statusFilter}}<input type="hidden" name="status" value="{{statusFilter}}" />{{/if}}
-    <input type="search" name="q" value="{{q}}" placeholder="Search name or email…" class="input-field !w-56 text-sm" />
-    <button type="submit" class="btn-outline !px-4 !py-2 text-xs">Search</button>
+    <input type="search" name="q" value="{{q}}" placeholder="Search name or email…" />
+    <button type="submit" class="wp-btn">Search</button>
   </form>
 </div>
 
 <form action="/admin/affiliates/bulk/approve" method="post" data-bulk-affiliates>
 {{#if (eq statusFilter "pending")}}
-<div class="mt-4 flex items-center justify-between">
-  <label class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-al-ink/60">
-    <input type="checkbox" data-select-all class="accent-al-navy" /> Select All
+<div class="wp-bulk-bar">
+  <label class="flex items-center gap-2 text-[13px]">
+    <input type="checkbox" data-select-all /> Select All
   </label>
-  <div class="flex gap-2">
-    <button type="submit" formaction="/admin/affiliates/bulk/reject" data-bulk-btn disabled class="btn-outline !px-4 !py-2 text-xs disabled:cursor-not-allowed disabled:opacity-40">Reject Selected</button>
-    <button type="submit" formaction="/admin/affiliates/bulk/approve" data-bulk-btn disabled class="btn-primary !px-4 !py-2 text-xs disabled:cursor-not-allowed disabled:opacity-40">Approve Selected</button>
-  </div>
+  <button type="submit" formaction="/admin/affiliates/bulk/reject" data-bulk-btn disabled class="wp-btn wp-btn-danger disabled:cursor-not-allowed disabled:opacity-40">Reject Selected</button>
+  <button type="submit" formaction="/admin/affiliates/bulk/approve" data-bulk-btn disabled class="wp-btn wp-btn-primary disabled:cursor-not-allowed disabled:opacity-40">Approve Selected</button>
 </div>
 {{/if}}
 
-<div class="mt-3 overflow-hidden rounded-none border border-al-line bg-white">
+<div class="wp-list-table-wrap">
   {{#if affiliates.length}}
-  <table class="w-full text-left text-sm">
-    <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+  <table class="wp-list-table">
+    <thead>
       <tr>
-        {{#if (eq statusFilter "pending")}}<th class="w-10 px-4 py-3"></th>{{/if}}
-        <th class="px-4 py-3">Name</th>
-        <th class="px-4 py-3">Email</th>
-        <th class="px-4 py-3">Profession</th>
-        <th class="px-4 py-3">Status</th>
-        <th class="px-4 py-3">Commission</th>
-        <th class="px-4 py-3"></th>
+        {{#if (eq statusFilter "pending")}}<th class="wp-col-check"></th>{{/if}}
+        <th>Name</th>
+        <th>Email</th>
+        <th>Profession</th>
+        <th>Status</th>
+        <th>Commission</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-al-line">
+    <tbody>
       {{#each affiliates}}
       <tr>
-        {{#if (eq ../statusFilter "pending")}}<td class="px-4 py-3"><input type="checkbox" name="ids" value="{{this._id}}" data-row-check class="accent-al-navy" /></td>{{/if}}
-        <td class="px-4 py-3 font-semibold text-al-navy">{{this.fullName}}</td>
-        <td class="px-4 py-3 text-al-ink/60">{{this.email}}</td>
-        <td class="px-4 py-3 text-al-ink/60">{{this.profession}}</td>
-        <td class="px-4 py-3">
-          {{#if (eq this.status "approved")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-green-100 text-green-700">Approved</span>{{/if}}
-          {{#if (eq this.status "pending")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-al-panel text-al-ink/60">Pending</span>{{/if}}
-          {{#if (eq this.status "rejected")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-red-100 text-red-700">Rejected</span>{{/if}}
-          {{#if (eq this.status "suspended")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-yellow-100 text-yellow-800">Suspended</span>{{/if}}
+        {{#if (eq ../statusFilter "pending")}}<td><input type="checkbox" name="ids" value="{{this._id}}" data-row-check /></td>{{/if}}
+        <td>
+          <a href="/admin/affiliates/{{this._id}}" class="wp-row-title">{{this.fullName}}</a>
+          <div class="wp-row-actions">
+            <a href="/admin/affiliates/{{this._id}}">View</a>
+          </div>
         </td>
-        <td class="px-4 py-3">{{pct this.commissionRate}}</td>
-        <td class="px-4 py-3 text-right"><a href="/admin/affiliates/{{this._id}}" class="text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">View</a></td>
+        <td>{{this.email}}</td>
+        <td>{{this.profession}}</td>
+        <td>
+          {{#if (eq this.status "approved")}}<span class="wp-badge wp-badge--success">Approved</span>{{/if}}
+          {{#if (eq this.status "pending")}}<span class="wp-badge wp-badge--warning">Pending</span>{{/if}}
+          {{#if (eq this.status "rejected")}}<span class="wp-badge wp-badge--error">Rejected</span>{{/if}}
+          {{#if (eq this.status "suspended")}}<span class="wp-badge wp-badge--neutral">Suspended</span>{{/if}}
+        </td>
+        <td>{{pct this.commissionRate}}</td>
       </tr>
       {{/each}}
     </tbody>
   </table>
   {{#if (gt pages 1)}}
-  <div class="flex items-center justify-between border-t border-al-line bg-al-panel px-4 py-3 text-xs text-al-ink/60">
-    <span>Page {{page}} of {{pages}} &middot; {{total}} affiliates</span>
-    <div class="flex gap-3">
-      {{#if (gt page 1)}}<a href="/admin/affiliates?page={{dec page}}{{#if statusFilter}}&status={{statusFilter}}{{/if}}{{#if q}}&q={{q}}{{/if}}" class="font-semibold text-al-navy hover:underline">&larr; Prev</a>{{/if}}
-      {{#if (gt pages page)}}<a href="/admin/affiliates?page={{inc page}}{{#if statusFilter}}&status={{statusFilter}}{{/if}}{{#if q}}&q={{q}}{{/if}}" class="font-semibold text-al-navy hover:underline">Next &rarr;</a>{{/if}}
+  <div class="flex items-center justify-between border-t px-3 py-2.5" style="border-color:var(--wp-border);">
+    <span class="text-[13px]" style="color:var(--wp-text-muted);">Page {{page}} of {{pages}} &middot; {{total}} affiliates</span>
+    <div class="wp-pagination">
+      {{#if (gt page 1)}}<a href="/admin/affiliates?page={{dec page}}{{#if statusFilter}}&status={{statusFilter}}{{/if}}{{#if q}}&q={{q}}{{/if}}">&larr; Prev</a>{{/if}}
+      {{#if (gt pages page)}}<a href="/admin/affiliates?page={{inc page}}{{#if statusFilter}}&status={{statusFilter}}{{/if}}{{#if q}}&q={{q}}{{/if}}">Next &rarr;</a>{{/if}}
     </div>
   </div>
   {{/if}}
   {{else}}
-  <p class="p-6 text-sm text-al-ink/60">No affiliates found.</p>
+  <p class="wp-list-table-empty">No affiliates found.</p>
   {{/if}}
 </div>
 </form>

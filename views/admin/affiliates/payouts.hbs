@@ -1,39 +1,39 @@
-<div class="flex items-center justify-between">
-  <h1 class="font-display text-2xl font-medium text-al-navy">Payout History</h1>
-  <a href="/admin/affiliates" class="text-xs font-semibold uppercase tracking-wide text-al-ink/50 hover:text-al-navy">&larr; All Affiliates</a>
+<div class="wp-heading-inline">
+  <h1>Payout History</h1>
+  <a href="/admin/affiliates" class="wp-btn wp-btn-sm">&larr; All Affiliates</a>
 </div>
 
-{{#if batches.length}}
-<div class="mt-6 overflow-hidden rounded-none border border-al-line bg-white">
-  <table class="w-full text-left text-sm">
-    <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+<div class="wp-list-table-wrap">
+  {{#if batches.length}}
+  <table class="wp-list-table">
+    <thead>
       <tr>
-        <th class="px-4 py-3">Date</th>
-        <th class="px-4 py-3">Method</th>
-        <th class="px-4 py-3">Orders</th>
-        <th class="px-4 py-3">Affiliates</th>
-        <th class="px-4 py-3">Total</th>
-        <th class="px-4 py-3">Status</th>
+        <th>Date</th>
+        <th>Method</th>
+        <th>Orders</th>
+        <th>Affiliates</th>
+        <th>Total</th>
+        <th>Status</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-al-line">
+    <tbody>
       {{#each batches}}
       <tr>
-        <td class="px-4 py-3 text-al-ink/60">{{dateShort this.createdAt}}</td>
-        <td class="px-4 py-3 text-al-ink/60">{{#if (eq this.method "stripe_connect")}}Stripe Connect{{else}}Manual{{/if}}</td>
-        <td class="px-4 py-3 text-al-ink/60">{{this.orderIds.length}}</td>
-        <td class="px-4 py-3 text-al-ink/60">{{this.affiliateIds.length}}</td>
-        <td class="px-4 py-3 font-semibold text-al-navy">{{currency this.totalAmount}}</td>
-        <td class="px-4 py-3">
-          {{#if (eq this.status "completed")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-green-100 text-green-700">Completed</span>{{/if}}
-          {{#if (eq this.status "partial")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-yellow-100 text-yellow-800">Partial</span>{{/if}}
-          {{#if (eq this.status "failed")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-red-100 text-red-700">Failed</span>{{/if}}
+        <td>{{dateShort this.createdAt}}</td>
+        <td>{{#if (eq this.method "stripe_connect")}}Stripe Connect{{else}}Manual{{/if}}</td>
+        <td>{{this.orderIds.length}}</td>
+        <td>{{this.affiliateIds.length}}</td>
+        <td class="wp-row-title">{{currency this.totalAmount}}</td>
+        <td>
+          {{#if (eq this.status "completed")}}<span class="wp-badge wp-badge--success">Completed</span>{{/if}}
+          {{#if (eq this.status "partial")}}<span class="wp-badge wp-badge--warning">Partial</span>{{/if}}
+          {{#if (eq this.status "failed")}}<span class="wp-badge wp-badge--error">Failed</span>{{/if}}
         </td>
       </tr>
       {{/each}}
     </tbody>
   </table>
+  {{else}}
+  <p class="wp-list-table-empty">No payouts have been processed yet.</p>
+  {{/if}}
 </div>
-{{else}}
-<p class="mt-6 text-sm text-al-ink/60">No payouts have been processed yet.</p>
-{{/if}}
