@@ -1,86 +1,98 @@
-<div class="flex flex-wrap items-center justify-between gap-3">
-  <h1 class="font-display text-2xl font-medium text-al-navy">Affiliate Analytics</h1>
-  <div class="flex items-center gap-3">
-    <form method="get" class="flex items-center gap-2">
-      <label class="text-xs font-semibold uppercase tracking-wide text-al-ink/50" for="days">Window</label>
-      <select id="days" name="days" onchange="this.form.submit()" class="input-field !w-auto text-sm">
-        <option value="30" {{#if (eq days 30)}}selected{{/if}}>Last 30 days</option>
-        <option value="90" {{#if (eq days 90)}}selected{{/if}}>Last 90 days</option>
-        <option value="180" {{#if (eq days 180)}}selected{{/if}}>Last 180 days</option>
-        <option value="365" {{#if (eq days 365)}}selected{{/if}}>Last 12 months</option>
-      </select>
-    </form>
-    <a href="/admin/affiliates" class="text-xs font-semibold uppercase tracking-wide text-al-ink/50 hover:text-al-navy">&larr; All Affiliates</a>
-  </div>
+<div class="wp-heading-inline">
+  <h1>Affiliate Analytics</h1>
+  <form method="get" class="flex items-center gap-2">
+    <label class="text-[13px]" for="days" style="color:var(--wp-text-muted);">Window</label>
+    <select id="days" name="days" onchange="this.form.submit()" class="input-field !w-auto text-sm">
+      <option value="30" {{#if (eq days 30)}}selected{{/if}}>Last 30 days</option>
+      <option value="90" {{#if (eq days 90)}}selected{{/if}}>Last 90 days</option>
+      <option value="180" {{#if (eq days 180)}}selected{{/if}}>Last 180 days</option>
+      <option value="365" {{#if (eq days 365)}}selected{{/if}}>Last 12 months</option>
+    </select>
+  </form>
+  <a href="/admin/affiliates" class="wp-btn wp-btn-sm">&larr; All Affiliates</a>
 </div>
 
-<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-  <div class="rounded-none border border-al-line bg-white p-5">
-    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Paid Commission</p>
-    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{currency summary.paid}}</p>
-  </div>
-  <div class="rounded-none border border-al-line bg-white p-5">
-    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Pending Commission</p>
-    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{currency summary.pending}}</p>
-  </div>
-  <div class="rounded-none border border-al-line bg-white p-5">
-    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Referred Orders</p>
-    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{summary.orderCount}}</p>
-  </div>
-  <div class="rounded-none border border-al-line bg-white p-5">
-    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Reversed / Rejected</p>
-    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{currency summary.reversed}}</p>
-  </div>
-</div>
-
-<div class="mt-6 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
-  <div class="rounded-none border border-al-line bg-white p-6">
-    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Commission — Pending vs. Paid</p>
-    <div class="mt-4" style="height:260px;"><canvas id="commissionChart"></canvas></div>
-  </div>
-  <div class="rounded-none border border-al-line bg-white p-6">
-    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Commission Split</p>
-    <div class="mt-4" style="height:260px;"><canvas id="splitChart"></canvas></div>
-  </div>
-</div>
-
-<div class="mt-6 grid gap-6 lg:grid-cols-[1fr_1.2fr]">
-  <div class="rounded-none border border-al-line bg-white p-6">
-    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Link Clicks</p>
-    <div class="mt-4" style="height:220px;"><canvas id="clicksChart"></canvas></div>
-  </div>
-  <div class="rounded-none border border-al-line bg-white p-6">
-    <div class="flex items-center justify-between">
-      <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Top Affiliates</p>
-      <a href="/admin/affiliates/export.csv" class="text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">Export CSV &darr;</a>
+<div class="wp-widgets mb-8">
+  <div class="wp-postbox">
+    <div class="wp-postbox__body">
+      <p class="wp-widget-number">{{currency summary.paid}}</p>
+      <p class="wp-widget-label">Paid Commission</p>
     </div>
-    {{#if leaderboard.length}}
-    <div class="mt-4 overflow-hidden rounded-none border border-al-line">
-      <table class="w-full text-left text-sm">
-        <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+  </div>
+  <div class="wp-postbox">
+    <div class="wp-postbox__body">
+      <p class="wp-widget-number">{{currency summary.pending}}</p>
+      <p class="wp-widget-label">Pending Commission</p>
+    </div>
+  </div>
+  <div class="wp-postbox">
+    <div class="wp-postbox__body">
+      <p class="wp-widget-number">{{summary.orderCount}}</p>
+      <p class="wp-widget-label">Referred Orders</p>
+    </div>
+  </div>
+  <div class="wp-postbox">
+    <div class="wp-postbox__body">
+      <p class="wp-widget-number">{{currency summary.reversed}}</p>
+      <p class="wp-widget-label">Reversed / Rejected</p>
+    </div>
+  </div>
+</div>
+
+<div class="mb-6 grid gap-5 lg:grid-cols-[1.6fr_1fr]">
+  <div class="wp-postbox">
+    <div class="wp-postbox__header"><h2>Commission — Pending vs. Paid</h2></div>
+    <div class="wp-postbox__body">
+      <div style="height:260px;"><canvas id="commissionChart"></canvas></div>
+    </div>
+  </div>
+  <div class="wp-postbox">
+    <div class="wp-postbox__header"><h2>Commission Split</h2></div>
+    <div class="wp-postbox__body">
+      <div style="height:260px;"><canvas id="splitChart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<div class="grid gap-5 lg:grid-cols-[1fr_1.2fr]">
+  <div class="wp-postbox">
+    <div class="wp-postbox__header"><h2>Link Clicks</h2></div>
+    <div class="wp-postbox__body">
+      <div style="height:220px;"><canvas id="clicksChart"></canvas></div>
+    </div>
+  </div>
+  <div class="wp-postbox">
+    <div class="wp-postbox__header">
+      <h2>Top Affiliates</h2>
+      <a href="/admin/affiliates/export.csv" class="wp-btn wp-btn-sm">Export CSV &darr;</a>
+    </div>
+    <div class="wp-postbox__body--flush">
+      {{#if leaderboard.length}}
+      <table class="wp-list-table">
+        <thead>
           <tr>
-            <th class="px-4 py-2.5">Affiliate</th>
-            <th class="px-4 py-2.5">Orders</th>
-            <th class="px-4 py-2.5">Lifetime</th>
+            <th>Affiliate</th>
+            <th>Orders</th>
+            <th>Lifetime</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-al-line">
+        <tbody>
           {{#each leaderboard}}
           <tr>
-            <td class="px-4 py-2.5">
-              <a href="/admin/affiliates/{{this.affiliateId}}" class="font-semibold text-al-navy hover:underline">{{this.fullName}}</a>
-              <span class="block text-xs text-al-ink/50">{{this.email}}</span>
+            <td>
+              <a href="/admin/affiliates/{{this.affiliateId}}" class="wp-row-title">{{this.fullName}}</a>
+              <span class="block text-xs" style="color:var(--wp-text-muted);">{{this.email}}</span>
             </td>
-            <td class="px-4 py-2.5 text-al-ink/70">{{this.orders}}</td>
-            <td class="px-4 py-2.5 font-semibold text-al-navy">{{currency this.lifetime}}</td>
+            <td>{{this.orders}}</td>
+            <td class="wp-row-title">{{currency this.lifetime}}</td>
           </tr>
           {{/each}}
         </tbody>
       </table>
+      {{else}}
+      <p class="wp-list-table-empty">No commission activity yet.</p>
+      {{/if}}
     </div>
-    {{else}}
-    <p class="mt-4 text-sm text-al-ink/60">No commission activity yet.</p>
-    {{/if}}
   </div>
 </div>
 
@@ -89,17 +101,26 @@
   (function () {
     var trend = {{{json trend}}};
     var clicks = {{{json clicks}}};
-    var navy = '#1a2b4c';
-    var orange = '#e2711d';
-    var grey = '#9aa0a6';
+
+    // Read the WP-admin theme tokens set on body.wp-admin so the charts always match
+    // the shell's live palette instead of a separately hardcoded set of hex values.
+    var style = getComputedStyle(document.body);
+    var link = style.getPropertyValue('--wp-link').trim() || '#2271b1';
+    var warning = style.getPropertyValue('--wp-warning').trim() || '#9a6700';
+    var muted = style.getPropertyValue('--wp-text-muted').trim() || '#646970';
+    function alpha(hex, a) {
+      var n = parseInt(hex.replace('#', ''), 16);
+      var r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+      return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+    }
 
     new Chart(document.getElementById('commissionChart'), {
       type: 'line',
       data: {
         labels: trend.map(function (r) { return r.date; }),
         datasets: [
-          { label: 'Paid', data: trend.map(function (r) { return r.paid; }), borderColor: navy, backgroundColor: navy + '22', fill: true, tension: .3, pointRadius: 0 },
-          { label: 'Pending', data: trend.map(function (r) { return r.pending; }), borderColor: orange, backgroundColor: orange + '22', fill: true, tension: .3, pointRadius: 0 }
+          { label: 'Paid', data: trend.map(function (r) { return r.paid; }), borderColor: link, backgroundColor: alpha(link, .13), fill: true, tension: .3, pointRadius: 0 },
+          { label: 'Pending', data: trend.map(function (r) { return r.pending; }), borderColor: warning, backgroundColor: alpha(warning, .13), fill: true, tension: .3, pointRadius: 0 }
         ]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } },
@@ -113,7 +134,7 @@
       type: 'doughnut',
       data: {
         labels: ['Paid', 'Pending', 'Reversed'],
-        datasets: [{ data: [totalPaid, totalPending, totalReversed], backgroundColor: [navy, orange, grey] }]
+        datasets: [{ data: [totalPaid, totalPending, totalReversed], backgroundColor: [link, warning, muted] }]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, cutout: '65%' }
     });
@@ -122,7 +143,7 @@
       type: 'bar',
       data: {
         labels: clicks.map(function (r) { return r.date; }),
-        datasets: [{ label: 'Clicks', data: clicks.map(function (r) { return r.clicks; }), backgroundColor: navy }]
+        datasets: [{ label: 'Clicks', data: clicks.map(function (r) { return r.clicks; }), backgroundColor: link }]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
     });
