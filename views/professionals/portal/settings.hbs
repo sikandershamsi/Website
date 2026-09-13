@@ -14,6 +14,25 @@
     </div>
 
     <div class="card p-6">
+      <p class="font-display text-base font-medium text-al-navy">Stripe Payouts</p>
+      {{#unless stripeConfigured}}
+      <p class="mt-1 text-sm text-al-ink/60">Automated payouts aren't available on this environment yet.</p>
+      {{else}}
+      {{#unless affiliate.stripeConnectAccountId}}
+      <p class="mt-1 text-sm text-al-ink/60">Connect a Stripe account to get paid automatically instead of waiting on a manual payout.</p>
+      <a href="/professionals/portal/connect/start" class="btn-primary mt-5 inline-block">Connect with Stripe</a>
+      {{else}}
+      {{#if connectStatus.payoutsEnabled}}
+      <p class="mt-2 text-sm text-green-700">Connected &middot; ready to receive payouts.</p>
+      {{else}}
+      <p class="mt-2 text-sm text-yellow-700">Onboarding started but not finished yet.</p>
+      <a href="/professionals/portal/connect/start" class="btn-outline mt-5 inline-block">Finish Onboarding</a>
+      {{/if}}
+      {{/unless}}
+      {{/unless}}
+    </div>
+
+    <div class="card p-6">
       <p class="font-display text-base font-medium text-al-navy">Change Password</p>
       {{#if passwordUpdated}}
       <div class="mt-4 rounded-none bg-green-50 p-4 text-sm text-green-700">Password updated.</div>

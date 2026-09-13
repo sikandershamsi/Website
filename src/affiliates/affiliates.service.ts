@@ -296,4 +296,8 @@ export class AffiliatesService {
   async setPayoutEmail(id: string, payoutEmail: string) {
     return this.affiliateModel.findByIdAndUpdate(id, { $set: { payoutEmail } }, { returnDocument: 'after' }).exec();
   }
+
+  async setStripeConnectAccountId(id: string, stripeConnectAccountId: string) {
+    return this.affiliateModel.findByIdAndUpdate(id, { $set: { stripeConnectAccountId } }, { returnDocument: 'after' }).exec();
+  }
 }

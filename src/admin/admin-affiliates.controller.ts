@@ -4,6 +4,7 @@ import type { Response } from 'express';
 import { AffiliatesService } from '../affiliates/affiliates.service';
 import { OrdersService } from '../orders/orders.service';
 import { PayoutsService } from '../payouts/payouts.service';
+import { StripeService } from '../stripe/stripe.service';
 import { AdminGuard } from '../auth/guards/admin.guard';
 import { AffiliateCommissionDto } from './dto/affiliate-commission.dto';
 import { BulkIdsDto } from './dto/bulk-ids.dto';
@@ -21,6 +22,7 @@ export class AdminAffiliatesController {
     private readonly affiliatesService: AffiliatesService,
     private readonly ordersService: OrdersService,
     private readonly payoutsService: PayoutsService,
+    private readonly stripeService: StripeService,
     private readonly config: ConfigService<AppConfig>,
   ) {}
 
@@ -238,6 +240,10 @@ export class AdminAffiliatesController {
     const currentTier = tierForLifetimeSales(lifetimeSales);
     const upcomingTier = nextTier(lifetimeSales);
     const minPayoutThreshold = this.config.get('affiliates.minPayoutThreshold', { infer: true }) as number;
+    let connectStatus: { chargesEnabled: boolean; payoutsEnabled: boolean; detailsSubmitted: boolean } | undefined;
+    if (affiliate.stripeConnectAccountId && this.stripeService.isConfigured()) {
+      connectStatus = await this.stripeService.getConnectStatus(affiliate.stripeConnectAccountId).catch(() => undefined);
+    }
     return {
       title: affiliate.fullName,
       affiliate,
@@ -249,7 +255,19 @@ export class AdminAffiliatesController {
       currentTier,
       upcomingTier,
       minPayoutThreshold,
+      connectStatus,
+      stripeConfigured: this.stripeService.isConfigured(),
     };
+  }
+
+  @Post(':id/stripe-payout')
+  async stripePayout(@Param('id') id: string, @Res() res: Response) {
+    try {
+      await this.payoutsService.createStripeConnectBatch(id);
+    } catch {
+      // surfaced via the batch's own 'failed' record and the affiliate detail page; nothing further to do here
+    }
+    res.redirect(303, `/admin/affiliates/${id}`);
   }
 
   @Post(':id/tiering')

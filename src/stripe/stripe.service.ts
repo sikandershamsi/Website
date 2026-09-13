@@ -52,6 +52,60 @@ export class StripeService {
     return this.stripe !== null;
   }
 
+  // ---- Stripe Connect (affiliate payouts) ----
+
+  /** Creates a Connect Express account for an affiliate if they don't have one yet, then returns an
+   * onboarding link URL to send them to. Safe to call repeatedly — reuses the existing account. */
+  async startConnectOnboarding(params: {
+    affiliateId: string;
+    existingAccountId?: string;
+    email: string;
+    returnUrl: string;
+    refreshUrl: string;
+  }): Promise<string> {
+    const stripe = this.requireStripe();
+    let accountId = params.existingAccountId;
+    if (!accountId) {
+      const account = await stripe.accounts.create({
+        type: 'express',
+        email: params.email,
+        capabilities: { transfers: { requested: true } },
+        metadata: { affiliateId: params.affiliateId },
+      });
+      accountId = account.id;
+      await this.affiliatesService.setStripeConnectAccountId(params.affiliateId, accountId);
+    }
+    const link = await stripe.accountLinks.create({
+      account: accountId,
+      type: 'account_onboarding',
+      return_url: params.returnUrl,
+      refresh_url: params.refreshUrl,
+    });
+    return link.url;
+  }
+
+  /** Live onboarding status for a Connect account — checked on demand rather than via webhook for simplicity. */
+  async getConnectStatus(accountId: string): Promise<{ chargesEnabled: boolean; payoutsEnabled: boolean; detailsSubmitted: boolean }> {
+    const stripe = this.requireStripe();
+    const account = await stripe.accounts.retrieve(accountId);
+    return {
+      chargesEnabled: Boolean(account.charges_enabled),
+      payoutsEnabled: Boolean(account.payouts_enabled),
+      detailsSubmitted: Boolean(account.details_submitted),
+    };
+  }
+
+  /** Moves money to an affiliate's Connect account. Throws if the account can't yet receive transfers. */
+  async transferToConnectAccount(accountId: string, amountDollars: number): Promise<string> {
+    const stripe = this.requireStripe();
+    const transfer = await stripe.transfers.create({
+      amount: toCents(amountDollars),
+      currency: 'usd',
+      destination: accountId,
+    });
+    return transfer.id;
+  }
+
   /** Creates/updates the Stripe Product + one-time & subscription Prices for a product, writing the IDs back. */
   async syncProductToStripe(productDocId: string): Promise<void> {
     const stripe = this.requireStripe();

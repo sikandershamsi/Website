@@ -8,6 +8,8 @@ import { ChangeAffiliatePasswordDto, SetPayoutEmailDto } from './dto/affiliate-s
 import type { AppConfig } from '../config/configuration';
 import { toCsv } from '../admin/csv.util';
 import { tierForLifetimeSales, nextTier } from '../affiliates/commission-tiers';
+import { PayoutsService } from '../payouts/payouts.service';
+import { StripeService } from '../stripe/stripe.service';
 
 @Controller('professionals/portal')
 @UseGuards(AffiliateGuard)
@@ -15,6 +17,8 @@ export class AffiliatePortalController {
   constructor(
     private readonly affiliatesService: AffiliatesService,
     private readonly ordersService: OrdersService,
+    private readonly payoutsService: PayoutsService,
+    private readonly stripeService: StripeService,
     private readonly config: ConfigService<AppConfig>,
   ) {}
 
@@ -103,7 +107,39 @@ export class AffiliatePortalController {
   @Render('professionals/portal/settings')
   async settingsForm(@Req() req: Request) {
     const affiliate = await this.affiliatesService.findById(req.session.userId as string);
-    return { title: 'Account Settings', activeNav: 'professionals', portalTab: 'settings', affiliate };
+    const stripeConfigured = this.stripeService.isConfigured();
+    let connectStatus: { chargesEnabled: boolean; payoutsEnabled: boolean; detailsSubmitted: boolean } | undefined;
+    if (affiliate?.stripeConnectAccountId && stripeConfigured) {
+      connectStatus = await this.stripeService.getConnectStatus(affiliate.stripeConnectAccountId).catch(() => undefined);
+    }
+    return { title: 'Account Settings', activeNav: 'professionals', portalTab: 'settings', affiliate, stripeConfigured, connectStatus };
+  }
+
+  @Get('connect/start')
+  async startConnect(@Req() req: Request, @Res() res: Response) {
+    const affiliate = await this.affiliatesService.findById(req.session.userId as string);
+    if (!affiliate || !this.stripeService.isConfigured()) return res.redirect(303, '/professionals/portal/settings');
+    const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
+    const url = await this.stripeService.startConnectOnboarding({
+      affiliateId: String(affiliate._id),
+      existingAccountId: affiliate.stripeConnectAccountId,
+      email: affiliate.email,
+      returnUrl: `${baseUrl}/professionals/portal/connect/return`,
+      refreshUrl: `${baseUrl}/professionals/portal/connect/start`,
+    });
+    res.redirect(303, url);
+  }
+
+  @Get('connect/return')
+  connectReturn(@Res() res: Response) {
+    res.redirect(303, '/professionals/portal/settings');
+  }
+
+  @Get('payouts')
+  @Render('professionals/portal/payouts')
+  async payoutHistory(@Req() req: Request) {
+    const batches = await this.payoutsService.findForAffiliate(req.session.userId as string);
+    return { title: 'Payout History', activeNav: 'professionals', portalTab: 'payouts', batches };
   }
 
   @Post('settings/password')

@@ -1,0 +1,26 @@
+{{> page-header eyebrow="Affiliate Portal" heading="Payout History"}}
+
+<section class="section grid gap-8 lg:grid-cols-[240px_1fr]">
+  {{> affiliate-portal-sidebar}}
+
+  <div>
+    {{#if batches.length}}
+    <div class="card divide-y divide-al-line overflow-hidden">
+      {{#each batches}}
+      <div class="flex flex-wrap items-center justify-between gap-3 p-6">
+        <div>
+          <p class="font-display text-base font-medium text-al-navy">{{dateShort this.createdAt}}</p>
+          <p class="text-xs text-al-ink/50">{{#if (eq this.method "stripe_connect")}}Stripe transfer{{else}}Manual payout{{/if}} &middot; {{this.orderIds.length}} order(s)</p>
+        </div>
+        <span class="font-display text-lg font-medium text-al-navy">{{currency this.totalAmount}}</span>
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <div class="card flex flex-col items-center px-8 py-16 text-center">
+      <div class="flex h-14 w-14 items-center justify-center rounded-none bg-al-navy/5 text-al-navy">{{{icon "check" "w-6 h-6"}}}</div>
+      <p class="mt-5 max-w-sm text-sm text-al-ink/65">No payouts yet &mdash; they'll show up here once you've been paid.</p>
+    </div>
+    {{/if}}
+  </div>
+</section>

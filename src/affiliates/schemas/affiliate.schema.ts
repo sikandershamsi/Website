@@ -73,6 +73,10 @@ export class Affiliate {
 
   @Prop()
   payoutEmail?: string;
+
+  /** Stripe Connect Express account used for automated payouts. */
+  @Prop()
+  stripeConnectAccountId?: string;
 }
 
 export const AffiliateSchema = SchemaFactory.createForClass(Affiliate);

@@ -165,7 +165,29 @@
         </div>
       </form>
 
-      <form action="/admin/affiliates/{{affiliate._id}}/suspend" method="post" class="mt-4" onsubmit="return confirm('Suspend this affiliate? They will not be able to log in or earn new commissions until reactivated.');">
+      <div class="mt-5 border-t border-al-line pt-4">
+        <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Stripe Connect Payouts</p>
+        {{#unless stripeConfigured}}
+        <p class="mt-1 text-xs text-al-ink/50">Stripe isn't configured on this environment yet.</p>
+        {{else}}
+        {{#unless affiliate.stripeConnectAccountId}}
+        <p class="mt-1 text-xs text-al-ink/50">Affiliate hasn't connected a Stripe account yet.</p>
+        {{else}}
+        {{#if connectStatus.payoutsEnabled}}
+        <p class="mt-1 text-xs text-green-700">Connected &middot; ready to receive payouts.</p>
+        {{#if (gt totals.pending 0)}}
+        <form action="/admin/affiliates/{{affiliate._id}}/stripe-payout" method="post" class="mt-2" onsubmit="return confirm('Transfer {{currency totals.pending}} to this affiliate via Stripe now? This moves real money.');">
+          <button type="submit" class="btn-primary w-full !py-2 text-sm">Pay {{currency totals.pending}} via Stripe</button>
+        </form>
+        {{/if}}
+        {{else}}
+        <p class="mt-1 text-xs text-yellow-700">Onboarding started but not finished &mdash; payouts aren't enabled yet.</p>
+        {{/if}}
+        {{/unless}}
+        {{/unless}}
+      </div>
+
+      <form action="/admin/affiliates/{{affiliate._id}}/suspend" method="post" class="mt-4 border-t border-al-line pt-4" onsubmit="return confirm('Suspend this affiliate? They will not be able to log in or earn new commissions until reactivated.');">
         <button type="submit" class="w-full text-center text-xs font-semibold uppercase tracking-wide text-yellow-700 hover:underline">Suspend Affiliate</button>
       </form>
     </div>
