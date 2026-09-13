@@ -106,6 +106,9 @@ export class Order {
 
   @Prop()
   commissionPaidAt?: Date;
+
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

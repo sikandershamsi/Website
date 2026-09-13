@@ -151,4 +151,129 @@ export class OrdersService {
       .findByIdAndUpdate(orderId, { $set: { commissionStatus: 'paid', commissionPaidAt: new Date() } }, { returnDocument: 'after' })
       .exec();
   }
+
+  /** Marks every given order's commission paid in one write — powers admin bulk-pay and payout batches. */
+  async markCommissionsPaidBulk(orderIds: string[]) {
+    return this.orderModel
+      .updateMany(
+        { _id: { $in: orderIds.map((id) => new Types.ObjectId(id)) } },
+        { $set: { commissionStatus: 'paid', commissionPaidAt: new Date() } },
+      )
+      .exec();
+  }
+
+  /** Per-day pending/paid commission totals for one affiliate — feeds the portal earnings-trend chart. */
+  async commissionTrendForAffiliate(affiliateId: string, days: number) {
+    return this.commissionTrend(days, new Types.ObjectId(affiliateId));
+  }
+
+  /** Per-day pending/paid commission totals, optionally scoped to one affiliate — feeds admin + portal charts. */
+  async commissionTrend(days: number, affiliateId?: Types.ObjectId) {
+    const since = new Date(Date.now() - days * 86400000);
+    const match: Record<string, unknown> = { createdAt: { $gte: since }, commissionStatus: { $exists: true } };
+    if (affiliateId) match.affiliateId = affiliateId;
+    const rows = await this.orderModel.aggregate([
+      { $match: match },
+      {
+        $group: {
+          _id: { date: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } }, status: '$commissionStatus' },
+          amount: { $sum: '$commissionAmount' },
+        },
+      },
+      { $sort: { '_id.date': 1 } },
+    ]);
+    const byDate = new Map<string, { date: string; pending: number; paid: number }>();
+    for (const row of rows) {
+      const date = row._id.date as string;
+      const status = row._id.status as string;
+      const entry = byDate.get(date) ?? { date, pending: 0, paid: 0 };
+      if (status === 'pending') entry.pending = row.amount as number;
+      if (status === 'paid') entry.paid = row.amount as number;
+      byDate.set(date, entry);
+    }
+    return Array.from(byDate.values()).sort((a, b) => a.date.localeCompare(b.date));
+  }
+
+  /** Program-wide paid/pending commission totals across every affiliate — admin dashboard headline numbers. */
+  async programCommissionSummary() {
+    const rows = await this.orderModel.aggregate([
+      { $match: { commissionStatus: { $exists: true } } },
+      { $group: { _id: '$commissionStatus', amount: { $sum: '$commissionAmount' }, count: { $sum: 1 } } },
+    ]);
+    const summary = { pending: 0, paid: 0, reversed: 0, orderCount: 0 };
+    for (const row of rows) {
+      const status = row._id as string;
+      if (status === 'pending') summary.pending = row.amount as number;
+      else if (status === 'paid') summary.paid = row.amount as number;
+      else if (status === 'reversed' || status === 'rejected') summary.reversed += row.amount as number;
+      summary.orderCount += row.count as number;
+    }
+    return summary;
+  }
+
+  /** Top affiliates by lifetime commission — admin dashboard leaderboard. */
+  async affiliateLeaderboard(limit = 10) {
+    const rows = await this.orderModel.aggregate([
+      { $match: { affiliateId: { $exists: true, $ne: null } } },
+      {
+        $group: {
+          _id: '$affiliateId',
+          lifetime: { $sum: '$commissionAmount' },
+          pending: { $sum: { $cond: [{ $eq: ['$commissionStatus', 'pending'] }, '$commissionAmount', 0] } },
+          paid: { $sum: { $cond: [{ $eq: ['$commissionStatus', 'paid'] }, '$commissionAmount', 0] } },
+          orders: { $sum: 1 },
+        },
+      },
+      { $sort: { lifetime: -1 } },
+      { $limit: limit },
+      {
+        $lookup: {
+          from: 'affiliates',
+          localField: '_id',
+          foreignField: '_id',
+          as: 'affiliate',
+        },
+      },
+      { $unwind: '$affiliate' },
+      {
+        $project: {
+          _id: 0,
+          affiliateId: '$_id',
+          fullName: '$affiliate.fullName',
+          email: '$affiliate.email',
+          lifetime: 1,
+          pending: 1,
+          paid: 1,
+          orders: 1,
+        },
+      },
+    ]);
+    return rows as Array<{
+      affiliateId: Types.ObjectId;
+      fullName: string;
+      email: string;
+      lifetime: number;
+      pending: number;
+      paid: number;
+      orders: number;
+    }>;
+  }
+
+  /** All commission-bearing orders in a date range, optionally filtered — CSV export source. */
+  async commissionExportRows(opts: { from?: Date; to?: Date; affiliateId?: string; status?: string }) {
+    const match: Record<string, unknown> = { commissionStatus: { $exists: true } };
+    if (opts.from || opts.to) {
+      match.createdAt = {};
+      if (opts.from) (match.createdAt as Record<string, Date>).$gte = opts.from;
+      if (opts.to) (match.createdAt as Record<string, Date>).$lte = opts.to;
+    }
+    if (opts.affiliateId) match.affiliateId = new Types.ObjectId(opts.affiliateId);
+    if (opts.status) match.commissionStatus = opts.status;
+    return this.orderModel
+      .find(match)
+      .populate('affiliateId', 'fullName email')
+      .sort({ createdAt: -1 })
+      .lean()
+      .exec();
+  }
 }

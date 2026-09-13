@@ -13,6 +13,7 @@ export function registerHelpers(hbsInstance: unknown) {
   hbs.registerHelper('eq', (a: unknown, b: unknown) => a === b);
   hbs.registerHelper('gt', (a: number, b: number) => a > b);
   hbs.registerHelper('inc', (value: unknown) => Number(value) + 1);
+  hbs.registerHelper('dec', (value: unknown) => Number(value) - 1);
   hbs.registerHelper('pad2', (value: unknown) => String(Number(value)).padStart(2, '0'));
   hbs.registerHelper('currency', (value: number) =>
     typeof value === 'number' ? `$${value.toFixed(2)}` : value,
@@ -25,6 +26,10 @@ export function registerHelpers(hbsInstance: unknown) {
   hbs.registerHelper('year', () => new Date().getFullYear());
   hbs.registerHelper('uriEncode', (value: unknown) => encodeURIComponent(String(value ?? '')));
   hbs.registerHelper('subscriptionFrequencies', () => SUBSCRIPTION_FREQUENCIES);
+  hbs.registerHelper(
+    'json',
+    (value: unknown) => new hbs.SafeString(JSON.stringify(value ?? null).replace(/</g, '\\u003c')),
+  );
   hbs.registerHelper('subscriptionFrequencyLabel', (code: unknown) => resolveSubscriptionFrequency(String(code)).label);
   hbs.registerHelper('pick', (obj: Record<string, unknown>, key: string) => obj?.[key]);
   hbs.registerHelper('or', (...args: unknown[]) => args.slice(0, -1).find((v) => v) ?? null);

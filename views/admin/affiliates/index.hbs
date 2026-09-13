@@ -1,12 +1,20 @@
-<div class="flex items-center justify-between">
+<div class="flex flex-wrap items-center justify-between gap-3">
   <h1 class="font-display text-2xl font-medium text-al-navy">Affiliates</h1>
+  <a href="/admin/affiliates/analytics" class="btn-outline !px-4 !py-2 text-xs">View Analytics</a>
 </div>
 
-<div class="mt-4 flex gap-4 text-xs font-semibold uppercase tracking-wide">
-  <a href="/admin/affiliates" class="{{#unless statusFilter}}text-al-navy underline{{else}}text-al-ink/50{{/unless}}">All</a>
-  <a href="/admin/affiliates?status=pending" class="{{#if (eq statusFilter "pending")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Pending</a>
-  <a href="/admin/affiliates?status=approved" class="{{#if (eq statusFilter "approved")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Approved</a>
-  <a href="/admin/affiliates?status=rejected" class="{{#if (eq statusFilter "rejected")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Rejected</a>
+<div class="mt-4 flex flex-wrap items-center justify-between gap-4">
+  <div class="flex gap-4 text-xs font-semibold uppercase tracking-wide">
+    <a href="/admin/affiliates{{#if q}}?q={{q}}{{/if}}" class="{{#unless statusFilter}}text-al-navy underline{{else}}text-al-ink/50{{/unless}}">All</a>
+    <a href="/admin/affiliates?status=pending{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "pending")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Pending</a>
+    <a href="/admin/affiliates?status=approved{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "approved")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Approved</a>
+    <a href="/admin/affiliates?status=rejected{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "rejected")}}text-al-navy underline{{else}}text-al-ink/50{{/if}}">Rejected</a>
+  </div>
+  <form method="get" class="flex items-center gap-2">
+    {{#if statusFilter}}<input type="hidden" name="status" value="{{statusFilter}}" />{{/if}}
+    <input type="search" name="q" value="{{q}}" placeholder="Search name or email…" class="input-field !w-56 text-sm" />
+    <button type="submit" class="btn-outline !px-4 !py-2 text-xs">Search</button>
+  </form>
 </div>
 
 <div class="mt-6 overflow-hidden rounded-none border border-al-line bg-white">
@@ -32,6 +40,7 @@
           {{#if (eq this.status "approved")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-green-100 text-green-700">Approved</span>{{/if}}
           {{#if (eq this.status "pending")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-al-panel text-al-ink/60">Pending</span>{{/if}}
           {{#if (eq this.status "rejected")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-red-100 text-red-700">Rejected</span>{{/if}}
+          {{#if (eq this.status "suspended")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-yellow-100 text-yellow-800">Suspended</span>{{/if}}
         </td>
         <td class="px-4 py-3">{{pct this.commissionRate}}</td>
         <td class="px-4 py-3 text-right"><a href="/admin/affiliates/{{this._id}}" class="text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">View</a></td>
@@ -39,7 +48,16 @@
       {{/each}}
     </tbody>
   </table>
+  {{#if (gt pages 1)}}
+  <div class="flex items-center justify-between border-t border-al-line bg-al-panel px-4 py-3 text-xs text-al-ink/60">
+    <span>Page {{page}} of {{pages}} &middot; {{total}} affiliates</span>
+    <div class="flex gap-3">
+      {{#if (gt page 1)}}<a href="/admin/affiliates?page={{dec page}}{{#if statusFilter}}&status={{statusFilter}}{{/if}}{{#if q}}&q={{q}}{{/if}}" class="font-semibold text-al-navy hover:underline">&larr; Prev</a>{{/if}}
+      {{#if (gt pages page)}}<a href="/admin/affiliates?page={{inc page}}{{#if statusFilter}}&status={{statusFilter}}{{/if}}{{#if q}}&q={{q}}{{/if}}" class="font-semibold text-al-navy hover:underline">Next &rarr;</a>{{/if}}
+    </div>
+  </div>
+  {{/if}}
   {{else}}
-  <p class="p-6 text-sm text-al-ink/60">No affiliates yet.</p>
+  <p class="p-6 text-sm text-al-ink/60">No affiliates found.</p>
   {{/if}}
 </div>

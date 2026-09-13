@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Render, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Render, Req, Res, UseGuards } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import type { Request, Response } from 'express';
 import { AffiliatesService } from '../affiliates/affiliates.service';
@@ -6,6 +6,7 @@ import { OrdersService } from '../orders/orders.service';
 import { AffiliateGuard } from '../auth/guards/affiliate.guard';
 import { ChangeAffiliatePasswordDto, SetPayoutEmailDto } from './dto/affiliate-settings.dto';
 import type { AppConfig } from '../config/configuration';
+import { toCsv } from '../admin/csv.util';
 
 @Controller('professionals/portal')
 @UseGuards(AffiliateGuard)
@@ -18,13 +19,19 @@ export class AffiliatePortalController {
 
   @Get()
   @Render('professionals/portal/dashboard')
-  async dashboard(@Req() req: Request) {
-    const affiliate = await this.affiliatesService.findById(req.session.userId as string);
-    const orders = await this.ordersService.findForAffiliate(req.session.userId as string);
-    const totals = await this.ordersService.commissionTotalsForAffiliate(req.session.userId as string);
+  async dashboard(@Req() req: Request, @Query('days') daysRaw?: string) {
+    const affiliateId = req.session.userId as string;
+    const days = Math.min(365, Math.max(7, Number(daysRaw) || 90));
+    const affiliate = await this.affiliatesService.findById(affiliateId);
+    const orders = await this.ordersService.findForAffiliate(affiliateId);
+    const totals = await this.ordersService.commissionTotalsForAffiliate(affiliateId);
     const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
     const clickCount = affiliate?.clickCount ?? 0;
     const conversionRate = clickCount > 0 ? (totals.orderCount / clickCount) * 100 : undefined;
+    const [commissionTrend, clickTrend] = await Promise.all([
+      this.ordersService.commissionTrendForAffiliate(affiliateId, days),
+      this.affiliatesService.clickTrend(affiliateId, days),
+    ]);
     return {
       title: 'Affiliate Portal',
       activeNav: 'professionals',
@@ -35,7 +42,35 @@ export class AffiliatePortalController {
       totals,
       clickCount,
       conversionRate,
+      commissionTrend,
+      clickTrend,
+      days,
     };
+  }
+
+  @Get('statement.csv')
+  async statementCsv(@Req() req: Request, @Res() res: Response) {
+    const affiliateId = req.session.userId as string;
+    const orders = await this.ordersService.findForAffiliate(affiliateId);
+    const csv = toCsv(
+      orders.map((o) => ({
+        orderNumber: o.orderNumber,
+        date: o.createdAt ? new Date(o.createdAt as unknown as string).toISOString().slice(0, 10) : '',
+        commissionAmount: o.commissionAmount ?? 0,
+        status: o.commissionStatus ?? '',
+        paidAt: o.commissionPaidAt ? new Date(o.commissionPaidAt as unknown as string).toISOString().slice(0, 10) : '',
+      })),
+      [
+        { key: 'orderNumber', header: 'Order #' },
+        { key: 'date', header: 'Date' },
+        { key: 'commissionAmount', header: 'Commission Amount' },
+        { key: 'status', header: 'Status' },
+        { key: 'paidAt', header: 'Paid At' },
+      ],
+    );
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="my-earnings-statement.csv"`);
+    res.send(csv);
   }
 
   @Get('resources')

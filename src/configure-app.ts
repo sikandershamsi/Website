@@ -6,7 +6,7 @@ import hbs = require('hbs');
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-import { randomUUID } from 'crypto';
+import { randomUUID, createHash } from 'crypto';
 import { registerHelpers } from './view-helpers';
 import { hbsLayoutEngine } from './hbs-layout-engine';
 import { CartService } from './cart/cart.service';
@@ -55,7 +55,9 @@ export function configureApp(app: NestExpressApplication) {
         httpOnly: true,
         sameSite: 'lax',
       });
-      affiliatesService.recordClick(ref).catch(() => undefined);
+      const ip = req.ip || req.socket?.remoteAddress || '';
+      const ipHash = ip ? createHash('sha256').update(ip).digest('hex').slice(0, 16) : undefined;
+      affiliatesService.recordClick(ref, { referrer: req.get('referer') || undefined, ipHash }).catch(() => undefined);
     }
     next();
   });

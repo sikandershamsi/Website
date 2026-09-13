@@ -7,6 +7,7 @@ import { AdminGuard } from '../auth/guards/admin.guard';
 import { AffiliateCommissionDto } from './dto/affiliate-commission.dto';
 import type { AffiliateStatus } from '../affiliates/schemas/affiliate.schema';
 import type { AppConfig } from '../config/configuration';
+import { toCsv } from './csv.util';
 
 @Controller('admin/affiliates')
 @UseGuards(AdminGuard)
@@ -19,9 +20,89 @@ export class AdminAffiliatesController {
 
   @Get()
   @Render('admin/affiliates/index')
-  async index(@Query('status') status?: AffiliateStatus) {
-    const affiliates = await this.affiliatesService.findAll(status);
-    return { title: 'Affiliates', affiliates, statusFilter: status || '' };
+  async index(@Query('status') status?: AffiliateStatus, @Query('q') q?: string, @Query('page') page?: string) {
+    const result = await this.affiliatesService.findAllPaged({ status, q, page: page ? Number(page) : 1 });
+    return {
+      title: 'Affiliates',
+      affiliates: result.items,
+      statusFilter: status || '',
+      q: q || '',
+      page: result.page,
+      pages: result.pages,
+      total: result.total,
+    };
+  }
+
+  @Get('analytics')
+  @Render('admin/affiliates/analytics')
+  async analytics(@Query('days') daysRaw?: string) {
+    const days = Math.min(365, Math.max(7, Number(daysRaw) || 90));
+    const [summary, trend, clicks, leaderboard] = await Promise.all([
+      this.ordersService.programCommissionSummary(),
+      this.ordersService.commissionTrend(days),
+      this.affiliatesService.programClickTrend(days),
+      this.ordersService.affiliateLeaderboard(10),
+    ]);
+    return { title: 'Affiliate Analytics', summary, trend, clicks, leaderboard, days };
+  }
+
+  @Get('export.csv')
+  async exportCsv(@Res() res: Response, @Query('from') fromRaw?: string, @Query('to') toRaw?: string, @Query('status') status?: string) {
+    const from = fromRaw ? new Date(fromRaw) : undefined;
+    const to = toRaw ? new Date(toRaw) : undefined;
+    const rows = await this.ordersService.commissionExportRows({ from, to, status });
+    const csv = toCsv(
+      rows.map((r) => {
+        const affiliate = r.affiliateId as unknown as { fullName?: string; email?: string } | undefined;
+        return {
+          orderNumber: r.orderNumber,
+          date: r.createdAt ? new Date(r.createdAt as unknown as string).toISOString().slice(0, 10) : '',
+          affiliate: affiliate?.fullName ?? '',
+          affiliateEmail: affiliate?.email ?? '',
+          commissionAmount: r.commissionAmount ?? 0,
+          status: r.commissionStatus ?? '',
+          paidAt: r.commissionPaidAt ? new Date(r.commissionPaidAt as unknown as string).toISOString().slice(0, 10) : '',
+        };
+      }),
+      [
+        { key: 'orderNumber', header: 'Order #' },
+        { key: 'date', header: 'Date' },
+        { key: 'affiliate', header: 'Affiliate' },
+        { key: 'affiliateEmail', header: 'Affiliate Email' },
+        { key: 'commissionAmount', header: 'Commission Amount' },
+        { key: 'status', header: 'Status' },
+        { key: 'paidAt', header: 'Paid At' },
+      ],
+    );
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="commissions-${new Date().toISOString().slice(0, 10)}.csv"`);
+    res.send(csv);
+  }
+
+  @Get(':id/export.csv')
+  async exportAffiliateCsv(@Param('id') id: string, @Res() res: Response) {
+    const affiliate = await this.affiliatesService.findById(id);
+    if (!affiliate) throw new NotFoundException('Affiliate not found');
+    const rows = await this.ordersService.commissionExportRows({ affiliateId: id });
+    const csv = toCsv(
+      rows.map((r) => ({
+        orderNumber: r.orderNumber,
+        date: r.createdAt ? new Date(r.createdAt as unknown as string).toISOString().slice(0, 10) : '',
+        commissionAmount: r.commissionAmount ?? 0,
+        status: r.commissionStatus ?? '',
+        paidAt: r.commissionPaidAt ? new Date(r.commissionPaidAt as unknown as string).toISOString().slice(0, 10) : '',
+      })),
+      [
+        { key: 'orderNumber', header: 'Order #' },
+        { key: 'date', header: 'Date' },
+        { key: 'commissionAmount', header: 'Commission Amount' },
+        { key: 'status', header: 'Status' },
+        { key: 'paidAt', header: 'Paid At' },
+      ],
+    );
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="${affiliate.fullName.replace(/[^a-z0-9]+/gi, '-')}-commissions.csv"`);
+    res.send(csv);
   }
 
   @Get(':id')

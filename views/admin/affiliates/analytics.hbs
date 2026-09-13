@@ -1,0 +1,130 @@
+<div class="flex flex-wrap items-center justify-between gap-3">
+  <h1 class="font-display text-2xl font-medium text-al-navy">Affiliate Analytics</h1>
+  <div class="flex items-center gap-3">
+    <form method="get" class="flex items-center gap-2">
+      <label class="text-xs font-semibold uppercase tracking-wide text-al-ink/50" for="days">Window</label>
+      <select id="days" name="days" onchange="this.form.submit()" class="input-field !w-auto text-sm">
+        <option value="30" {{#if (eq days 30)}}selected{{/if}}>Last 30 days</option>
+        <option value="90" {{#if (eq days 90)}}selected{{/if}}>Last 90 days</option>
+        <option value="180" {{#if (eq days 180)}}selected{{/if}}>Last 180 days</option>
+        <option value="365" {{#if (eq days 365)}}selected{{/if}}>Last 12 months</option>
+      </select>
+    </form>
+    <a href="/admin/affiliates" class="text-xs font-semibold uppercase tracking-wide text-al-ink/50 hover:text-al-navy">&larr; All Affiliates</a>
+  </div>
+</div>
+
+<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="rounded-none border border-al-line bg-white p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Paid Commission</p>
+    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{currency summary.paid}}</p>
+  </div>
+  <div class="rounded-none border border-al-line bg-white p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Pending Commission</p>
+    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{currency summary.pending}}</p>
+  </div>
+  <div class="rounded-none border border-al-line bg-white p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Referred Orders</p>
+    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{summary.orderCount}}</p>
+  </div>
+  <div class="rounded-none border border-al-line bg-white p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Reversed / Rejected</p>
+    <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{currency summary.reversed}}</p>
+  </div>
+</div>
+
+<div class="mt-6 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+  <div class="rounded-none border border-al-line bg-white p-6">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Commission — Pending vs. Paid</p>
+    <div class="mt-4" style="height:260px;"><canvas id="commissionChart"></canvas></div>
+  </div>
+  <div class="rounded-none border border-al-line bg-white p-6">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Commission Split</p>
+    <div class="mt-4" style="height:260px;"><canvas id="splitChart"></canvas></div>
+  </div>
+</div>
+
+<div class="mt-6 grid gap-6 lg:grid-cols-[1fr_1.2fr]">
+  <div class="rounded-none border border-al-line bg-white p-6">
+    <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Link Clicks</p>
+    <div class="mt-4" style="height:220px;"><canvas id="clicksChart"></canvas></div>
+  </div>
+  <div class="rounded-none border border-al-line bg-white p-6">
+    <div class="flex items-center justify-between">
+      <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Top Affiliates</p>
+      <a href="/admin/affiliates/export.csv" class="text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">Export CSV &darr;</a>
+    </div>
+    {{#if leaderboard.length}}
+    <div class="mt-4 overflow-hidden rounded-none border border-al-line">
+      <table class="w-full text-left text-sm">
+        <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+          <tr>
+            <th class="px-4 py-2.5">Affiliate</th>
+            <th class="px-4 py-2.5">Orders</th>
+            <th class="px-4 py-2.5">Lifetime</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-al-line">
+          {{#each leaderboard}}
+          <tr>
+            <td class="px-4 py-2.5">
+              <a href="/admin/affiliates/{{this.affiliateId}}" class="font-semibold text-al-navy hover:underline">{{this.fullName}}</a>
+              <span class="block text-xs text-al-ink/50">{{this.email}}</span>
+            </td>
+            <td class="px-4 py-2.5 text-al-ink/70">{{this.orders}}</td>
+            <td class="px-4 py-2.5 font-semibold text-al-navy">{{currency this.lifetime}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <p class="mt-4 text-sm text-al-ink/60">No commission activity yet.</p>
+    {{/if}}
+  </div>
+</div>
+
+<script src="/js/vendor/chart.umd.min.js"></script> <!-- Chart.js 4.5.1, vendored from npm -->
+<script>
+  (function () {
+    var trend = {{{json trend}}};
+    var clicks = {{{json clicks}}};
+    var navy = '#1a2b4c';
+    var orange = '#e2711d';
+    var grey = '#9aa0a6';
+
+    new Chart(document.getElementById('commissionChart'), {
+      type: 'line',
+      data: {
+        labels: trend.map(function (r) { return r.date; }),
+        datasets: [
+          { label: 'Paid', data: trend.map(function (r) { return r.paid; }), borderColor: navy, backgroundColor: navy + '22', fill: true, tension: .3, pointRadius: 0 },
+          { label: 'Pending', data: trend.map(function (r) { return r.pending; }), borderColor: orange, backgroundColor: orange + '22', fill: true, tension: .3, pointRadius: 0 }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } },
+        scales: { y: { ticks: { callback: function (v) { return '$' + v; } } } } }
+    });
+
+    var totalPaid = {{summary.paid}};
+    var totalPending = {{summary.pending}};
+    var totalReversed = {{summary.reversed}};
+    new Chart(document.getElementById('splitChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Paid', 'Pending', 'Reversed'],
+        datasets: [{ data: [totalPaid, totalPending, totalReversed], backgroundColor: [navy, orange, grey] }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, cutout: '65%' }
+    });
+
+    new Chart(document.getElementById('clicksChart'), {
+      type: 'bar',
+      data: {
+        labels: clicks.map(function (r) { return r.date; }),
+        datasets: [{ label: 'Clicks', data: clicks.map(function (r) { return r.clicks; }), backgroundColor: navy }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+    });
+  })();
+</script>

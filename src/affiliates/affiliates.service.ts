@@ -1,11 +1,25 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
 import { Affiliate, AffiliateDocument, AffiliateStatus } from './schemas/affiliate.schema';
+import { AffiliateClick, AffiliateClickDocument } from './schemas/affiliate-click.schema';
 
 const SALT_ROUNDS = 12;
+
+export interface DayCount {
+  date: string;
+  clicks: number;
+}
+
+export interface AffiliatePage {
+  items: AffiliateDocument[];
+  total: number;
+  page: number;
+  perPage: number;
+  pages: number;
+}
 
 function slugifyName(name: string): string {
   return (
@@ -19,7 +33,10 @@ function slugifyName(name: string): string {
 
 @Injectable()
 export class AffiliatesService {
-  constructor(@InjectModel(Affiliate.name) private readonly affiliateModel: Model<AffiliateDocument>) {}
+  constructor(
+    @InjectModel(Affiliate.name) private readonly affiliateModel: Model<AffiliateDocument>,
+    @InjectModel(AffiliateClick.name) private readonly clickModel: Model<AffiliateClickDocument>,
+  ) {}
 
   async createApplication(dto: Record<string, unknown> & { email: string; fullName: string }) {
     const email = dto.email.toLowerCase().trim();
@@ -33,6 +50,36 @@ export class AffiliatesService {
   async findAll(status?: AffiliateStatus) {
     const query = status ? { status } : {};
     return this.affiliateModel.find(query).sort({ createdAt: -1 }).lean().exec();
+  }
+
+  /** Searchable, paginated affiliate list for the admin index. */
+  async findAllPaged(opts: { status?: AffiliateStatus; q?: string; page?: number; perPage?: number }): Promise<AffiliatePage> {
+    const perPage = opts.perPage && opts.perPage > 0 ? opts.perPage : 25;
+    const page = opts.page && opts.page > 0 ? opts.page : 1;
+    const filter: Record<string, unknown> = {};
+    if (opts.status) filter.status = opts.status;
+    if (opts.q?.trim()) {
+      const escaped = opts.q.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const re = new RegExp(escaped, 'i');
+      filter.$or = [{ fullName: re }, { email: re }];
+    }
+    const [items, total] = await Promise.all([
+      this.affiliateModel
+        .find(filter)
+        .sort({ createdAt: -1 })
+        .skip((page - 1) * perPage)
+        .limit(perPage)
+        .lean()
+        .exec(),
+      this.affiliateModel.countDocuments(filter).exec(),
+    ]);
+    return { items: items as unknown as AffiliateDocument[], total, page, perPage, pages: Math.max(1, Math.ceil(total / perPage)) };
+  }
+
+  /** All affiliates matching a filter, unpaginated — for bulk actions and CSV export. */
+  async findAllIds(status?: AffiliateStatus) {
+    const query = status ? { status } : {};
+    return this.affiliateModel.find(query).select('_id').lean().exec();
   }
 
   async findById(id: string) {
@@ -109,9 +156,54 @@ export class AffiliatesService {
     return { affiliate, created: true };
   }
 
-  /** Fire-and-forget click tracking for a referral link visit; silently no-ops for unknown/unapproved codes. */
-  async recordClick(code: string): Promise<void> {
-    await this.affiliateModel.updateOne({ referralCode: code, status: 'approved' }, { $inc: { clickCount: 1 } }).exec();
+  /** Fire-and-forget click tracking for a referral link visit; silently no-ops for unknown/unapproved codes.
+   * Writes a timestamped event (source of truth for trend charts) and keeps the fast `clickCount` total in sync. */
+  async recordClick(code: string, meta?: { referrer?: string; ipHash?: string }): Promise<void> {
+    const affiliate = await this.affiliateModel
+      .findOneAndUpdate({ referralCode: code, status: 'approved' }, { $inc: { clickCount: 1 } })
+      .exec();
+    if (!affiliate) return;
+    await this.clickModel.create({
+      affiliateId: affiliate._id,
+      code,
+      referrer: meta?.referrer?.slice(0, 500),
+      ipHash: meta?.ipHash,
+    });
+  }
+
+  /** Per-day click counts for one affiliate over a trailing window — feeds the portal's click/conversion chart. */
+  async clickTrend(affiliateId: string, days: number): Promise<DayCount[]> {
+    const since = new Date(Date.now() - days * 86400000);
+    const rows = await this.clickModel.aggregate([
+      { $match: { affiliateId: new Types.ObjectId(affiliateId), createdAt: { $gte: since } } },
+      { $group: { _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } }, clicks: { $sum: 1 } } },
+      { $sort: { _id: 1 } },
+    ]);
+    return rows.map((r) => ({ date: r._id as string, clicks: r.clicks as number }));
+  }
+
+  /** Same as clickTrend but across every affiliate — feeds the admin program-wide dashboard. */
+  async programClickTrend(days: number): Promise<DayCount[]> {
+    const since = new Date(Date.now() - days * 86400000);
+    const rows = await this.clickModel.aggregate([
+      { $match: { createdAt: { $gte: since } } },
+      { $group: { _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } }, clicks: { $sum: 1 } } },
+      { $sort: { _id: 1 } },
+    ]);
+    return rows.map((r) => ({ date: r._id as string, clicks: r.clicks as number }));
+  }
+
+  /** Click bursts from a single hashed IP against one affiliate's link, trailing window — a fraud-review signal, not a block. */
+  async clickAnomalies(affiliateId: string, days = 7, minClicksFromSameIp = 20) {
+    const since = new Date(Date.now() - days * 86400000);
+    const rows = await this.clickModel.aggregate([
+      { $match: { affiliateId: new Types.ObjectId(affiliateId), createdAt: { $gte: since }, ipHash: { $ne: null } } },
+      { $group: { _id: '$ipHash', clicks: { $sum: 1 }, lastSeen: { $max: '$createdAt' } } },
+      { $match: { clicks: { $gte: minClicksFromSameIp } } },
+      { $sort: { clicks: -1 } },
+      { $limit: 10 },
+    ]);
+    return rows.map((r) => ({ ipHash: r._id as string, clicks: r.clicks as number, lastSeen: r.lastSeen as Date }));
   }
 
   async changePassword(id: string, currentPassword: string, newPassword: string) {
