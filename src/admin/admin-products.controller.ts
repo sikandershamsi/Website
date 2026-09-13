@@ -1,4 +1,4 @@
-import { Body, Controller, Get, NotFoundException, Param, Post, Render, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Post, Query, Render, Res, UseGuards } from '@nestjs/common';
 import type { Response } from 'express';
 import { AdminGuard } from '../auth/guards/admin.guard';
 import { ProductsService } from '../products/products.service';
@@ -17,9 +17,13 @@ export class AdminProductsController {
 
   @Get()
   @Render('admin/products/index')
-  async index() {
-    const products = await this.productsService.findAllRaw();
-    return { title: 'Products', products };
+  async index(@Query('q') q?: string) {
+    const all = await this.productsService.findAllRaw();
+    const query = q?.trim().toLowerCase();
+    const products = query
+      ? all.filter((p) => p.name.toLowerCase().includes(query) || p.slug.toLowerCase().includes(query))
+      : all;
+    return { title: 'Products', products, q: q || '' };
   }
 
   @Get('new')

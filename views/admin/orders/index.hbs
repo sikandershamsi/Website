@@ -1,28 +1,63 @@
-<h1 class="font-display text-2xl font-medium text-al-navy">Orders</h1>
+<div class="wp-heading-inline">
+  <h1>Orders</h1>
+</div>
 
-<div class="mt-6 overflow-hidden rounded-none border border-al-line bg-white">
+<div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+  <div class="wp-tabs">
+    <a href="/admin/orders{{#if q}}?q={{q}}{{/if}}" class="{{#unless statusFilter}}is-active{{/unless}}">All</a>
+    <a href="/admin/orders?status=pending{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "pending")}}is-active{{/if}}">Pending</a>
+    <a href="/admin/orders?status=paid{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "paid")}}is-active{{/if}}">Paid</a>
+    <a href="/admin/orders?status=fulfilled{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "fulfilled")}}is-active{{/if}}">Fulfilled</a>
+    <a href="/admin/orders?status=cancelled{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "cancelled")}}is-active{{/if}}">Cancelled</a>
+    <a href="/admin/orders?status=refunded{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "refunded")}}is-active{{/if}}">Refunded</a>
+  </div>
+  <form method="get" class="wp-search-box">
+    {{#if statusFilter}}<input type="hidden" name="status" value="{{statusFilter}}" />{{/if}}
+    <input type="search" name="q" value="{{q}}" placeholder="Search order # or email…" />
+    <button type="submit" class="wp-btn">Search</button>
+  </form>
+</div>
+
+<div class="wp-list-table-wrap">
   {{#if orders.length}}
-  <table class="w-full text-left text-sm">
-    <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+  <table class="wp-list-table">
+    <thead>
       <tr>
-        <th class="px-4 py-3">Order</th>
-        <th class="px-4 py-3">Source</th>
-        <th class="px-4 py-3">Status</th>
-        <th class="px-4 py-3">Subtotal</th>
+        <th>Order</th>
+        <th>Source</th>
+        <th>Status</th>
+        <th>Subtotal</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-al-line">
+    <tbody>
       {{#each orders}}
       <tr>
-        <td class="px-4 py-3"><a href="/admin/orders/{{this._id}}" class="font-semibold text-al-navy hover:underline">{{this.orderNumber}}</a></td>
-        <td class="px-4 py-3 text-al-ink/60">{{this.source}}</td>
-        <td class="px-4 py-3">{{this.status}}</td>
-        <td class="px-4 py-3">{{currency this.subtotal}}</td>
+        <td>
+          <a href="/admin/orders/{{this._id}}" class="wp-row-title">{{this.orderNumber}}</a>
+          <div class="wp-row-actions">
+            <a href="/admin/orders/{{this._id}}">View</a>
+          </div>
+        </td>
+        <td>{{this.source}}</td>
+        <td>
+          <span class="wp-badge {{#if (eq this.status "paid")}}wp-badge--success{{else if (eq this.status "fulfilled")}}wp-badge--success{{else if (eq this.status "cancelled")}}wp-badge--error{{else if (eq this.status "refunded")}}wp-badge--error{{else}}wp-badge--warning{{/if}}">{{this.status}}</span>
+        </td>
+        <td>{{currency this.subtotal}}</td>
       </tr>
       {{/each}}
     </tbody>
   </table>
   {{else}}
-  <p class="p-6 text-sm text-al-ink/60">No orders yet.</p>
+  <p class="wp-list-table-empty">No orders found.</p>
   {{/if}}
 </div>
+
+{{#if (gt pages 1)}}
+<div class="mt-4 flex items-center justify-between">
+  <span class="wp-pagination__count text-sm" style="color:var(--wp-text-muted);">Page {{page}} of {{pages}} &middot; {{total}} orders</span>
+  <div class="wp-pagination">
+    {{#if (gt page 1)}}<a href="/admin/orders?page={{dec page}}{{#if statusFilter}}&status={{statusFilter}}{{/if}}{{#if q}}&q={{q}}{{/if}}">&larr; Prev</a>{{/if}}
+    {{#if (gt pages page)}}<a href="/admin/orders?page={{inc page}}{{#if statusFilter}}&status={{statusFilter}}{{/if}}{{#if q}}&q={{q}}{{/if}}">Next &rarr;</a>{{/if}}
+  </div>
+</div>
+{{/if}}

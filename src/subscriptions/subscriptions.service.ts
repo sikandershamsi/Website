@@ -3,6 +3,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Subscription, SubscriptionDocument, SubscriptionStatus } from './schemas/subscription.schema';
 
+export interface SubscriptionPage {
+  items: SubscriptionDocument[];
+  total: number;
+  page: number;
+  perPage: number;
+  pages: number;
+}
+
 @Injectable()
 export class SubscriptionsService {
   constructor(
@@ -52,6 +60,29 @@ export class SubscriptionsService {
 
   async findAll(limit = 50) {
     return this.subscriptionModel.find().sort({ createdAt: -1 }).limit(limit).lean().exec();
+  }
+
+  /** Searchable, paginated subscription list for the admin index. */
+  async findAllPaged(opts: { status?: SubscriptionStatus; q?: string; page?: number; perPage?: number }): Promise<SubscriptionPage> {
+    const perPage = opts.perPage && opts.perPage > 0 ? opts.perPage : 25;
+    const page = opts.page && opts.page > 0 ? opts.page : 1;
+    const filter: Record<string, unknown> = {};
+    if (opts.status) filter.status = opts.status;
+    if (opts.q?.trim()) {
+      const escaped = opts.q.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      filter.productName = new RegExp(escaped, 'i');
+    }
+    const [items, total] = await Promise.all([
+      this.subscriptionModel
+        .find(filter)
+        .sort({ createdAt: -1 })
+        .skip((page - 1) * perPage)
+        .limit(perPage)
+        .lean()
+        .exec(),
+      this.subscriptionModel.countDocuments(filter).exec(),
+    ]);
+    return { items: items as unknown as SubscriptionDocument[], total, page, perPage, pages: Math.max(1, Math.ceil(total / perPage)) };
   }
 
   async findById(id: string) {

@@ -2724,12 +2724,6 @@
   .wp-shell { @apply flex items-start; min-height: calc(100svh - 32px); }
 
   .wp-sidebar { @apply shrink-0 flex flex-col; width: 190px; background: var(--wp-sidebar-bg); position: sticky; top: 32px; height: calc(100svh - 32px); overflow-y: auto; }
-  @media (max-width: 900px) {
-    .wp-sidebar { width: 44px; }
-    .wp-sidebar .wp-sidebar__label,
-    .wp-sidebar .wp-sidebar__brand-text { display: none; }
-    .wp-sidebar__sub { display: none; }
-  }
   .wp-sidebar__brand {
     @apply flex items-center gap-2 px-4;
     height: 46px; background: #000; color: #fff; font-size: 13px; font-weight: 600;
@@ -2752,6 +2746,16 @@
   .wp-sidebar__signout { @apply px-4 py-3 text-[12px]; border-top: 1px solid var(--wp-sidebar-hover); flex: none; }
   .wp-sidebar__signout button { color: var(--wp-sidebar-muted); background: none; border: none; cursor: pointer; font: inherit; padding: 0; }
   .wp-sidebar__signout button:hover { color: #fff; }
+
+  /* Icon-only collapse below 900px. Placed after all base .wp-sidebar* rules above so
+     these overrides win by source order at equal specificity (a media query alone
+     doesn't outrank a later plain rule of the same specificity). */
+  @media (max-width: 900px) {
+    .wp-sidebar { width: 44px; }
+    .wp-sidebar .wp-sidebar__label,
+    .wp-sidebar .wp-sidebar__brand-text { display: none; }
+    .wp-sidebar__sub { display: none; }
+  }
 
   .wp-content { @apply flex-1 min-w-0; padding: 20px 24px 60px; }
 

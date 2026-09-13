@@ -1,27 +1,32 @@
-<div class="flex items-center justify-between">
-  <h1 class="font-display text-2xl font-medium text-al-navy">Categories</h1>
-  <a href="/admin/categories/new" class="btn-primary !px-4 !py-2 text-sm">New Category</a>
+<div class="wp-heading-inline">
+  <h1>Categories</h1>
+  <a href="/admin/categories/new" class="wp-btn wp-btn-primary">Add New</a>
 </div>
 
-<div class="mt-6 overflow-hidden rounded-none border border-al-line bg-white">
-  <table class="w-full text-left text-sm">
-    <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+<div class="wp-list-table-wrap">
+  {{#if categories.length}}
+  <table class="wp-list-table">
+    <thead>
       <tr>
-        <th class="px-4 py-3">Name</th>
-        <th class="px-4 py-3">Slug</th>
-        <th class="px-4 py-3"></th>
+        <th>Name</th>
+        <th>Slug</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-al-line">
+    <tbody>
       {{#each categories}}
       <tr>
-        <td class="px-4 py-3 font-semibold text-al-navy">{{this.name}}</td>
-        <td class="px-4 py-3 text-al-ink/60">{{this.slug}}</td>
-        <td class="px-4 py-3 text-right">
-          <a href="/admin/categories/{{this.slug}}/edit" class="text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">Edit</a>
+        <td>
+          <a href="/admin/categories/{{this.slug}}/edit" class="wp-row-title">{{this.name}}</a>
+          <div class="wp-row-actions">
+            <a href="/admin/categories/{{this.slug}}/edit">Edit</a>
+          </div>
         </td>
+        <td>{{this.slug}}</td>
       </tr>
       {{/each}}
     </tbody>
   </table>
+  {{else}}
+  <p class="wp-list-table-empty">No categories found.</p>
+  {{/if}}
 </div>

@@ -1,28 +1,61 @@
-<h1 class="font-display text-2xl font-medium text-al-navy">Subscriptions</h1>
+<div class="wp-heading-inline">
+  <h1>Subscriptions</h1>
+</div>
 
-<div class="mt-6 overflow-hidden rounded-none border border-al-line bg-white">
+<div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+  <div class="wp-tabs">
+    <a href="/admin/subscriptions{{#if q}}?q={{q}}{{/if}}" class="{{#unless statusFilter}}is-active{{/unless}}">All</a>
+    <a href="/admin/subscriptions?status=active{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "active")}}is-active{{/if}}">Active</a>
+    <a href="/admin/subscriptions?status=trialing{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "trialing")}}is-active{{/if}}">Trialing</a>
+    <a href="/admin/subscriptions?status=past_due{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "past_due")}}is-active{{/if}}">Past Due</a>
+    <a href="/admin/subscriptions?status=canceled{{#if q}}&q={{q}}{{/if}}" class="{{#if (eq statusFilter "canceled")}}is-active{{/if}}">Canceled</a>
+  </div>
+  <form method="get" class="wp-search-box">
+    {{#if statusFilter}}<input type="hidden" name="status" value="{{statusFilter}}" />{{/if}}
+    <input type="search" name="q" value="{{q}}" placeholder="Search product…" />
+    <button type="submit" class="wp-btn">Search</button>
+  </form>
+</div>
+
+<div class="wp-list-table-wrap">
   {{#if subscriptions.length}}
-  <table class="w-full text-left text-sm">
-    <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+  <table class="wp-list-table">
+    <thead>
       <tr>
-        <th class="px-4 py-3">Product</th>
-        <th class="px-4 py-3">Status</th>
-        <th class="px-4 py-3">Renews</th>
-        <th class="px-4 py-3"></th>
+        <th>Product</th>
+        <th>Status</th>
+        <th>Renews</th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-al-line">
+    <tbody>
       {{#each subscriptions}}
       <tr>
-        <td class="px-4 py-3 font-semibold text-al-navy">{{this.productName}}</td>
-        <td class="px-4 py-3">{{this.status}}{{#if this.cancelAtPeriodEnd}} (cancelling){{/if}}</td>
-        <td class="px-4 py-3 text-al-ink/60">{{this.currentPeriodEnd}}</td>
-        <td class="px-4 py-3 text-right"><a href="/admin/subscriptions/{{this._id}}" class="text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">View</a></td>
+        <td>
+          <a href="/admin/subscriptions/{{this._id}}" class="wp-row-title">{{this.productName}}</a>
+          <div class="wp-row-actions">
+            <a href="/admin/subscriptions/{{this._id}}">View</a>
+          </div>
+        </td>
+        <td>
+          <span class="wp-badge {{#if (eq this.status "active")}}wp-badge--success{{else if (eq this.status "past_due")}}wp-badge--warning{{else if (eq this.status "canceled")}}wp-badge--error{{else}}wp-badge--info{{/if}}">{{this.status}}</span>
+          {{#if this.cancelAtPeriodEnd}}<span class="wp-badge wp-badge--neutral">cancelling</span>{{/if}}
+        </td>
+        <td>{{dateShort this.currentPeriodEnd}}</td>
       </tr>
       {{/each}}
     </tbody>
   </table>
   {{else}}
-  <p class="p-6 text-sm text-al-ink/60">No subscriptions yet.</p>
+  <p class="wp-list-table-empty">No subscriptions found.</p>
   {{/if}}
 </div>
+
+{{#if (gt pages 1)}}
+<div class="mt-4 flex items-center justify-between">
+  <span class="wp-pagination__count text-sm" style="color:var(--wp-text-muted);">Page {{page}} of {{pages}} &middot; {{total}} subscriptions</span>
+  <div class="wp-pagination">
+    {{#if (gt page 1)}}<a href="/admin/subscriptions?page={{dec page}}{{#if statusFilter}}&status={{statusFilter}}{{/if}}{{#if q}}&q={{q}}{{/if}}">&larr; Prev</a>{{/if}}
+    {{#if (gt pages page)}}<a href="/admin/subscriptions?page={{inc page}}{{#if statusFilter}}&status={{statusFilter}}{{/if}}{{#if q}}&q={{q}}{{/if}}">Next &rarr;</a>{{/if}}
+  </div>
+</div>
+{{/if}}

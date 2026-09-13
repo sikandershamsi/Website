@@ -1,8 +1,9 @@
-import { Controller, Get, NotFoundException, Param, Post, Render, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param, Post, Query, Render, Res, UseGuards } from '@nestjs/common';
 import type { Response } from 'express';
 import { AdminGuard } from '../auth/guards/admin.guard';
 import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 import { StripeService } from '../stripe/stripe.service';
+import type { SubscriptionStatus } from '../subscriptions/schemas/subscription.schema';
 
 @Controller('admin/subscriptions')
 @UseGuards(AdminGuard)
@@ -14,9 +15,17 @@ export class AdminSubscriptionsController {
 
   @Get()
   @Render('admin/subscriptions/index')
-  async index() {
-    const subscriptions = await this.subscriptionsService.findAll(200);
-    return { title: 'Subscriptions', subscriptions };
+  async index(@Query('status') status?: SubscriptionStatus, @Query('q') q?: string, @Query('page') page?: string) {
+    const result = await this.subscriptionsService.findAllPaged({ status, q, page: page ? Number(page) : 1 });
+    return {
+      title: 'Subscriptions',
+      subscriptions: result.items,
+      statusFilter: status || '',
+      q: q || '',
+      page: result.page,
+      pages: result.pages,
+      total: result.total,
+    };
   }
 
   @Get(':id')

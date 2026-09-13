@@ -1,4 +1,4 @@
-import { Body, Controller, Get, NotFoundException, Param, Post, Render, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Post, Query, Render, Res, UseGuards } from '@nestjs/common';
 import type { Response } from 'express';
 import { IsIn } from 'class-validator';
 import { AdminGuard } from '../auth/guards/admin.guard';
@@ -17,9 +17,17 @@ export class AdminOrdersController {
 
   @Get()
   @Render('admin/orders/index')
-  async index() {
-    const orders = await this.ordersService.findAll(200);
-    return { title: 'Orders', orders };
+  async index(@Query('status') status?: OrderStatus, @Query('q') q?: string, @Query('page') page?: string) {
+    const result = await this.ordersService.findAllPaged({ status, q, page: page ? Number(page) : 1 });
+    return {
+      title: 'Orders',
+      orders: result.items,
+      statusFilter: status || '',
+      q: q || '',
+      page: result.page,
+      pages: result.pages,
+      total: result.total,
+    };
   }
 
   @Get(':id')

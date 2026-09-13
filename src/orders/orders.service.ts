@@ -1,7 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { Order, OrderDocument } from './schemas/order.schema';
+import { Order, OrderDocument, OrderStatus } from './schemas/order.schema';
+
+export interface OrderPage {
+  items: OrderDocument[];
+  total: number;
+  page: number;
+  perPage: number;
+  pages: number;
+}
 
 @Injectable()
 export class OrdersService {
@@ -137,6 +145,34 @@ export class OrdersService {
 
   async findAll(limit = 50) {
     return this.orderModel.find().sort({ createdAt: -1 }).limit(limit).lean().exec();
+  }
+
+  /** Searchable, paginated order list for the admin index. */
+  async findAllPaged(opts: { status?: OrderStatus; q?: string; page?: number; perPage?: number }): Promise<OrderPage> {
+    const perPage = opts.perPage && opts.perPage > 0 ? opts.perPage : 25;
+    const page = opts.page && opts.page > 0 ? opts.page : 1;
+    const filter: Record<string, unknown> = {};
+    if (opts.status) filter.status = opts.status;
+    if (opts.q?.trim()) {
+      const escaped = opts.q.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const re = new RegExp(escaped, 'i');
+      filter.$or = [{ orderNumber: re }, { guestEmail: re }];
+    }
+    const [items, total] = await Promise.all([
+      this.orderModel
+        .find(filter)
+        .sort({ createdAt: -1 })
+        .skip((page - 1) * perPage)
+        .limit(perPage)
+        .lean()
+        .exec(),
+      this.orderModel.countDocuments(filter).exec(),
+    ]);
+    return { items: items as unknown as OrderDocument[], total, page, perPage, pages: Math.max(1, Math.ceil(total / perPage)) };
+  }
+
+  async countByStatus(status: OrderStatus) {
+    return this.orderModel.countDocuments({ status }).exec();
   }
 
   async findById(id: string) {
