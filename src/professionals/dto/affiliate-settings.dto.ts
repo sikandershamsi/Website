@@ -1,4 +1,4 @@
-import { IsEmail, IsString, MinLength } from 'class-validator';
+import { IsEmail, IsOptional, IsString, MinLength } from 'class-validator';
 
 export class ChangeAffiliatePasswordDto {
   @IsString()
@@ -12,4 +12,12 @@ export class ChangeAffiliatePasswordDto {
 export class SetPayoutEmailDto {
   @IsEmail()
   payoutEmail: string;
+}
+
+export class CreateAffiliateLinkDto {
+  @IsString() @MinLength(1)
+  name: string;
+
+  @IsOptional() @IsString()
+  destinationPath?: string;
 }

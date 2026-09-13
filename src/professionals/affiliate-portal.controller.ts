@@ -1,10 +1,10 @@
-import { Body, Controller, Get, Post, Query, Render, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Render, Req, Res, UseGuards } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import type { Request, Response } from 'express';
 import { AffiliatesService } from '../affiliates/affiliates.service';
 import { OrdersService } from '../orders/orders.service';
 import { AffiliateGuard } from '../auth/guards/affiliate.guard';
-import { ChangeAffiliatePasswordDto, SetPayoutEmailDto } from './dto/affiliate-settings.dto';
+import { ChangeAffiliatePasswordDto, SetPayoutEmailDto, CreateAffiliateLinkDto } from './dto/affiliate-settings.dto';
 import type { AppConfig } from '../config/configuration';
 import { toCsv } from '../admin/csv.util';
 import { tierForLifetimeSales, nextTier } from '../affiliates/commission-tiers';
@@ -91,8 +91,10 @@ export class AffiliatePortalController {
   @Get('resources')
   @Render('professionals/portal/resources')
   async resources(@Req() req: Request) {
-    const affiliate = await this.affiliatesService.findById(req.session.userId as string);
+    const affiliateId = req.session.userId as string;
+    const affiliate = await this.affiliatesService.findById(affiliateId);
     const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
+    const links = await this.affiliatesService.listLinksForAffiliate(affiliateId);
     return {
       title: 'Marketing Resources',
       activeNav: 'professionals',
@@ -100,7 +102,21 @@ export class AffiliatePortalController {
       affiliate,
       referralLink: `${baseUrl}/?ref=${affiliate?.referralCode}`,
       shopLink: `${baseUrl}/shop?ref=${affiliate?.referralCode}`,
+      baseUrl,
+      links: links.map((l) => ({ ...l, fullUrl: `${baseUrl}${l.destinationPath || '/'}?ref=${l.code}` })),
     };
+  }
+
+  @Post('links')
+  async createLink(@Req() req: Request, @Res() res: Response, @Body() body: CreateAffiliateLinkDto) {
+    await this.affiliatesService.createLink(req.session.userId as string, body.name, body.destinationPath);
+    res.redirect(303, '/professionals/portal/resources');
+  }
+
+  @Post('links/:id/delete')
+  async deleteLink(@Req() req: Request, @Res() res: Response, @Param('id') id: string) {
+    await this.affiliatesService.deleteLink(id, req.session.userId as string);
+    res.redirect(303, '/professionals/portal/resources');
   }
 
   @Get('settings')

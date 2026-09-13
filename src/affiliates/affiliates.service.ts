@@ -6,6 +6,7 @@ import { randomBytes } from 'crypto';
 import { Affiliate, AffiliateDocument, AffiliateStatus } from './schemas/affiliate.schema';
 import { AffiliateClick, AffiliateClickDocument } from './schemas/affiliate-click.schema';
 import { AffiliateGroup, AffiliateGroupDocument } from './schemas/affiliate-group.schema';
+import { AffiliateLink, AffiliateLinkDocument } from './schemas/affiliate-link.schema';
 
 const SALT_ROUNDS = 12;
 
@@ -38,6 +39,7 @@ export class AffiliatesService {
     @InjectModel(Affiliate.name) private readonly affiliateModel: Model<AffiliateDocument>,
     @InjectModel(AffiliateClick.name) private readonly clickModel: Model<AffiliateClickDocument>,
     @InjectModel(AffiliateGroup.name) private readonly groupModel: Model<AffiliateGroupDocument>,
+    @InjectModel(AffiliateLink.name) private readonly linkModel: Model<AffiliateLinkDocument>,
   ) {}
 
   async createApplication(dto: Record<string, unknown> & { email: string; fullName: string }) {
@@ -90,6 +92,33 @@ export class AffiliatesService {
 
   async findByReferralCode(code: string) {
     return this.affiliateModel.findOne({ referralCode: code, status: 'approved' }).lean().exec();
+  }
+
+  /** Resolves a `?ref=` code that could be either an affiliate's default referralCode or one of their
+   * named campaign links, returning the owning (approved) affiliate either way. */
+  async resolveReferralCode(code: string) {
+    const affiliate = await this.affiliateModel.findOne({ referralCode: code, status: 'approved' }).lean().exec();
+    if (affiliate) return { affiliate, linkId: undefined as string | undefined };
+    const link = await this.linkModel.findOne({ code }).lean().exec();
+    if (!link) return null;
+    const linkAffiliate = await this.affiliateModel.findOne({ _id: link.affiliateId, status: 'approved' }).lean().exec();
+    if (!linkAffiliate) return null;
+    return { affiliate: linkAffiliate, linkId: String(link._id) };
+  }
+
+  // ---- Campaign links ----
+
+  async createLink(affiliateId: string, name: string, destinationPath?: string) {
+    const code = await this.generateReferralCode(name || 'link');
+    return this.linkModel.create({ affiliateId, name, code, destinationPath: destinationPath?.trim() || undefined });
+  }
+
+  async listLinksForAffiliate(affiliateId: string) {
+    return this.linkModel.find({ affiliateId }).sort({ createdAt: -1 }).lean().exec();
+  }
+
+  async deleteLink(id: string, affiliateId: string) {
+    await this.linkModel.deleteOne({ _id: id, affiliateId }).exec();
   }
 
   private async generateReferralCode(fullName: string): Promise<string> {
@@ -237,12 +266,14 @@ export class AffiliatesService {
   /** Fire-and-forget click tracking for a referral link visit; silently no-ops for unknown/unapproved codes.
    * Writes a timestamped event (source of truth for trend charts) and keeps the fast `clickCount` total in sync. */
   async recordClick(code: string, meta?: { referrer?: string; ipHash?: string }): Promise<void> {
-    const affiliate = await this.affiliateModel
-      .findOneAndUpdate({ referralCode: code, status: 'approved' }, { $inc: { clickCount: 1 } })
-      .exec();
-    if (!affiliate) return;
+    const resolved = await this.resolveReferralCode(code);
+    if (!resolved) return;
+    await this.affiliateModel.updateOne({ _id: resolved.affiliate._id }, { $inc: { clickCount: 1 } }).exec();
+    if (resolved.linkId) {
+      await this.linkModel.updateOne({ _id: resolved.linkId }, { $inc: { clickCount: 1 } }).exec();
+    }
     await this.clickModel.create({
-      affiliateId: affiliate._id,
+      affiliateId: resolved.affiliate._id,
       code,
       referrer: meta?.referrer?.slice(0, 500),
       ipHash: meta?.ipHash,

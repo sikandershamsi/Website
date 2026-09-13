@@ -11,4 +11,5 @@ export const validationSchema = Joi.object({
   ADMIN_SEED_EMAIL: Joi.string().email().required(),
   ADMIN_SEED_PASSWORD: Joi.string().min(8).required(),
   AFFILIATE_MIN_PAYOUT_THRESHOLD: Joi.number().min(0).default(50),
+  AFFILIATE_ATTRIBUTION_WINDOW_DAYS: Joi.number().min(1).default(30),
 });

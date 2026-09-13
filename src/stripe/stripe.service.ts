@@ -259,7 +259,8 @@ export class StripeService {
     const subtotal = lines.reduce((sum, l) => sum + l.price * l.qty, 0);
 
     const referralCode = session.metadata?.referralCode || undefined;
-    const affiliate = referralCode ? await this.affiliatesService.findByReferralCode(referralCode) : null;
+    const resolvedReferral = referralCode ? await this.affiliatesService.resolveReferralCode(referralCode) : null;
+    const affiliate = resolvedReferral?.affiliate ?? null;
     const commissionAmount = affiliate ? await this.computeCommission(affiliate, lines) : undefined;
 
     const shipping = session.customer_details

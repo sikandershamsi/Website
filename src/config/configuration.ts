@@ -22,6 +22,7 @@ export interface AppConfig {
   };
   affiliates: {
     minPayoutThreshold: number;
+    attributionWindowDays: number;
   };
 }
 
@@ -49,5 +50,6 @@ export default (): AppConfig => ({
   },
   affiliates: {
     minPayoutThreshold: parseFloat(process.env.AFFILIATE_MIN_PAYOUT_THRESHOLD ?? '50'),
+    attributionWindowDays: parseInt(process.env.AFFILIATE_ATTRIBUTION_WINDOW_DAYS ?? '30', 10),
   },
 });

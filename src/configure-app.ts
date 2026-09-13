@@ -47,11 +47,12 @@ export function configureApp(app: NestExpressApplication) {
   );
 
   const affiliatesService = app.get(AffiliatesService);
+  const attributionWindowMs = (config.get('affiliates.attributionWindowDays', { infer: true }) as number) * 24 * 60 * 60 * 1000;
   app.use((req: any, res: any, next: any) => {
     const ref = typeof req.query?.ref === 'string' ? req.query.ref.trim() : '';
     if (ref && req.cookies?.[REF_COOKIE] !== ref) {
       res.cookie(REF_COOKIE, ref, {
-        maxAge: 1000 * 60 * 60 * 24 * 30,
+        maxAge: attributionWindowMs,
         httpOnly: true,
         sameSite: 'lax',
       });
