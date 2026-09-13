@@ -1,21 +1,28 @@
-<h1 class="font-display text-2xl font-medium text-al-navy">Home Page</h1>
-<p class="mt-1 text-sm text-al-ink/60">Edit the content-driven sections of the homepage below.</p>
+<div class="wp-heading-inline">
+  <h1>Home Page</h1>
+</div>
+<p class="mb-4 text-sm" style="color:var(--wp-text-muted);">Edit the content-driven sections of the homepage below.</p>
 
-<div class="mt-6 overflow-hidden rounded-none border border-al-line bg-white">
-  <table class="w-full text-left text-sm">
-    <thead class="bg-al-panel text-xs font-semibold uppercase tracking-wide text-al-ink/60">
+<div class="wp-list-table-wrap">
+  <table class="wp-list-table">
+    <thead>
       <tr>
-        <th class="px-4 py-3">Section</th>
-        <th class="px-4 py-3">Type</th>
-        <th class="px-4 py-3"></th>
+        <th>Section</th>
+        <th>Type</th>
+        <th></th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-al-line">
+    <tbody>
       {{#each sections}}
       <tr>
-        <td class="px-4 py-3 font-semibold text-al-navy">{{this.key}}</td>
-        <td class="px-4 py-3 text-al-ink/60">{{this.type}}</td>
-        <td class="px-4 py-3 text-right"><a href="/admin/pages/home/sections/{{this.key}}" class="text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">Edit</a></td>
+        <td>
+          <a href="/admin/pages/home/sections/{{this.key}}" class="wp-row-title">{{this.key}}</a>
+          <div class="wp-row-actions">
+            <a href="/admin/pages/home/sections/{{this.key}}">Edit</a>
+          </div>
+        </td>
+        <td>{{this.type}}</td>
+        <td></td>
       </tr>
       {{/each}}
     </tbody>
