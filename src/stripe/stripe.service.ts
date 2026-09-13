@@ -210,6 +210,9 @@ export class StripeService {
       case 'customer.subscription.deleted':
         await this.handleSubscriptionDeleted(event.data.object as Stripe.Subscription);
         break;
+      case 'charge.refunded':
+        await this.handleChargeRefunded(event.data.object as Stripe.Charge);
+        break;
       default:
         break;
     }
@@ -275,6 +278,11 @@ export class StripeService {
         }
       : undefined;
 
+    // Self-referral: an affiliate earning commission on their own purchase. The order is still recorded
+    // for visibility, but the commission is rejected up front rather than paid out and clawed back later.
+    const isSelfReferral =
+      Boolean(affiliate) && Boolean(shipping?.email) && shipping!.email!.toLowerCase() === affiliate!.email.toLowerCase();
+
     const order = await this.ordersService.createFromCheckoutSession({
       checkoutSessionId: session.id,
       paymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : undefined,
@@ -295,6 +303,8 @@ export class StripeService {
       })),
       subtotal,
       shipping,
+      commissionRejected: isSelfReferral,
+      commissionNote: isSelfReferral ? 'Rejected: affiliate purchased through their own referral link.' : undefined,
       referralCode: affiliate ? referralCode : undefined,
       affiliateId: affiliate ? String(affiliate._id) : undefined,
       commissionAmount,
@@ -317,8 +327,10 @@ export class StripeService {
           interval: resolveSubscriptionFrequency(subLine.subscriptionFrequency).label,
           currentPeriodStart: new Date(firstItem.current_period_start * 1000),
           currentPeriodEnd: new Date(firstItem.current_period_end * 1000),
-          affiliateId: affiliate ? String(affiliate._id) : undefined,
-          commissionRate: affiliate ? affiliate.commissionRate : undefined,
+          // A self-referral doesn't earn commission on the first invoice, and mustn't attach the affiliate
+          // to the subscription either — otherwise every renewal would keep paying them regardless.
+          affiliateId: affiliate && !isSelfReferral ? String(affiliate._id) : undefined,
+          commissionRate: affiliate && !isSelfReferral ? affiliate.commissionRate : undefined,
         });
       }
     }
@@ -361,6 +373,15 @@ export class StripeService {
       affiliateId: sub.affiliateId ? String(sub.affiliateId) : undefined,
       commissionAmount,
     });
+  }
+
+  /** Reverses (or flags for manual clawback) the commission on an order whose charge was refunded. */
+  private async handleChargeRefunded(charge: Stripe.Charge) {
+    const paymentIntentId = typeof charge.payment_intent === 'string' ? charge.payment_intent : undefined;
+    if (!paymentIntentId) return;
+    const order = await this.ordersService.findByPaymentIntentId(paymentIntentId);
+    if (!order) return;
+    await this.ordersService.handleRefund(order._id as Types.ObjectId);
   }
 
   private async handleInvoicePaymentFailed(invoice: Stripe.Invoice) {

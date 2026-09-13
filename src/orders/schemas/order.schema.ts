@@ -101,11 +101,19 @@ export class Order {
   @Prop()
   commissionAmount?: number;
 
-  @Prop({ enum: ['pending', 'paid'] })
-  commissionStatus?: 'pending' | 'paid';
+  @Prop({ enum: ['pending', 'paid', 'rejected', 'reversed'] })
+  commissionStatus?: 'pending' | 'paid' | 'rejected' | 'reversed';
 
   @Prop()
   commissionPaidAt?: Date;
+
+  /** Why a commission was rejected/reversed (e.g. "self-referral", "order refunded") — shown to admins. */
+  @Prop()
+  commissionNote?: string;
+
+  /** Set when a refund lands on an order whose commission was already paid — needs a manual clawback, not automatic. */
+  @Prop({ default: false })
+  refundFlaggedForClawback: boolean;
 
   createdAt?: Date;
   updatedAt?: Date;

@@ -63,14 +63,17 @@
               <td class="px-4 py-3">{{currency this.subtotal}}</td>
               <td class="px-4 py-3">{{currency this.commissionAmount}}</td>
               <td class="px-4 py-3">
-                {{#if (eq this.commissionStatus "paid")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-green-100 text-green-700">Paid</span>{{else}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-al-panel text-al-ink/60">Pending</span>{{/if}}
+                {{#if (eq this.commissionStatus "paid")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-green-100 text-green-700">Paid{{#if this.refundFlaggedForClawback}} &middot; Refunded{{/if}}</span>{{/if}}
+                {{#if (eq this.commissionStatus "pending")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-al-panel text-al-ink/60">Pending</span>{{/if}}
+                {{#if (eq this.commissionStatus "rejected")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-red-100 text-red-700" title="{{this.commissionNote}}">Rejected</span>{{/if}}
+                {{#if (eq this.commissionStatus "reversed")}}<span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-red-100 text-red-700" title="{{this.commissionNote}}">Reversed</span>{{/if}}
               </td>
               <td class="px-4 py-3 text-right">
-                {{#unless (eq this.commissionStatus "paid")}}
+                {{#if (eq this.commissionStatus "pending")}}
                 <form action="/admin/affiliates/{{../affiliate._id}}/orders/{{this._id}}/mark-paid" method="post">
                   <button type="submit" class="text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">Mark Paid</button>
                 </form>
-                {{/unless}}
+                {{/if}}
               </td>
             </tr>
             {{/each}}

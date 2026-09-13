@@ -87,8 +87,15 @@
             <p class="font-display text-base font-medium text-al-navy">Order #{{this.orderNumber}}</p>
             {{#if (eq this.commissionStatus "paid")}}
             <span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-green-100 text-green-700">Paid</span>
-            {{else}}
+            {{/if}}
+            {{#if (eq this.commissionStatus "pending")}}
             <span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-al-panel text-al-ink/60">Pending</span>
+            {{/if}}
+            {{#if (eq this.commissionStatus "rejected")}}
+            <span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-red-100 text-red-700">Not Eligible</span>
+            {{/if}}
+            {{#if (eq this.commissionStatus "reversed")}}
+            <span class="inline-block rounded-none px-4 py-1.5 text-xs font-semibold uppercase tracking-wider bg-red-100 text-red-700">Reversed</span>
             {{/if}}
           </div>
           <div class="mt-4 space-y-2">

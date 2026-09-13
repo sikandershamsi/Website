@@ -20,6 +20,26 @@ export class OrdersService {
     return this.orderModel.findOne({ 'stripe.checkoutSessionId': checkoutSessionId }).exec();
   }
 
+  async findByPaymentIntentId(paymentIntentId: string) {
+    return this.orderModel.findOne({ 'stripe.paymentIntentId': paymentIntentId }).exec();
+  }
+
+  /** Refund clawback: an unpaid commission is reversed automatically; an already-paid one is flagged
+   * for a human to claw back manually rather than silently ignored. */
+  async handleRefund(orderId: Types.ObjectId): Promise<void> {
+    const order = await this.orderModel.findById(orderId).exec();
+    if (!order || !order.commissionStatus) return;
+    if (order.commissionStatus === 'pending') {
+      order.commissionStatus = 'reversed';
+      order.commissionNote = 'Order refunded before commission was paid.';
+      await order.save();
+    } else if (order.commissionStatus === 'paid') {
+      order.refundFlaggedForClawback = true;
+      order.commissionNote = 'Order refunded after commission was already paid — needs manual clawback.';
+      await order.save();
+    }
+  }
+
   async createFromCheckoutSession(data: {
     checkoutSessionId: string;
     paymentIntentId?: string;
@@ -43,6 +63,10 @@ export class OrdersService {
     referralCode?: string;
     affiliateId?: string;
     commissionAmount?: number;
+    /** Set by the caller when the referral is disqualified (e.g. self-referral) — the order still records
+     * the attribution for visibility, but no payable commission is created. */
+    commissionRejected?: boolean;
+    commissionNote?: string;
   }) {
     const orderNumber = await this.generateOrderNumber();
     return this.orderModel.create({
@@ -64,7 +88,8 @@ export class OrdersService {
       referralCode: data.referralCode,
       affiliateId: data.affiliateId ? new Types.ObjectId(data.affiliateId) : undefined,
       commissionAmount: data.commissionAmount,
-      commissionStatus: data.affiliateId ? 'pending' : undefined,
+      commissionStatus: data.affiliateId ? (data.commissionRejected ? 'rejected' : 'pending') : undefined,
+      commissionNote: data.commissionNote,
     });
   }
 
