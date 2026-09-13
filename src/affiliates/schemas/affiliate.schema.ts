@@ -57,6 +57,15 @@ export class Affiliate {
   @Prop({ required: true, default: 0.2 })
   commissionRate: number;
 
+  /** When true, the affiliate's rate is auto-computed from performance tiers (commission-tiers.ts) instead
+   * of the flat `commissionRate` above. Opt-in so enabling it never silently changes an existing arrangement. */
+  @Prop({ default: false })
+  tieringEnabled: boolean;
+
+  /** Per-affiliate override of the program-wide minimum payout threshold. Unset = use the program default. */
+  @Prop()
+  minPayoutThreshold?: number;
+
   @Prop() approvedAt?: Date;
 
   @Prop({ default: 0 })

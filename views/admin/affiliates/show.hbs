@@ -145,6 +145,26 @@
         </div>
       </form>
 
+      <div class="mt-5 border-t border-al-line pt-4">
+        <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Performance Tier</p>
+        <p class="mt-1 text-sm text-al-navy">{{currentTier.label}} &middot; {{pct currentTier.rate}}{{#if upcomingTier}} <span class="text-al-ink/50">&middot; {{currency upcomingTier.minLifetimeSales}} for {{upcomingTier.label}}</span>{{/if}}</p>
+        <p class="mt-1 text-xs text-al-ink/50">Lifetime sales driven: {{currency lifetimeSales}}</p>
+        <form action="/admin/affiliates/{{affiliate._id}}/tiering" method="post" class="mt-2">
+          <input type="hidden" name="tieringEnabled" value="{{#if affiliate.tieringEnabled}}false{{else}}true{{/if}}" />
+          <button type="submit" class="text-xs font-semibold uppercase tracking-wide text-al-navy hover:underline">
+            {{#if affiliate.tieringEnabled}}Disable tiering (use flat rate){{else}}Enable performance tiering{{/if}}
+          </button>
+        </form>
+      </div>
+
+      <form action="/admin/affiliates/{{affiliate._id}}/min-payout-threshold" method="post" class="mt-5 space-y-2 border-t border-al-line pt-4">
+        <label class="field-label" for="minPayoutThreshold">Payout Threshold Override</label>
+        <div class="flex gap-2">
+          <input id="minPayoutThreshold" name="minPayoutThreshold" type="number" min="0" step="1" value="{{affiliate.minPayoutThreshold}}" placeholder="{{currency minPayoutThreshold}} (default)" class="input-field" />
+          <button type="submit" class="btn-outline !px-4 text-sm">Save</button>
+        </div>
+      </form>
+
       <form action="/admin/affiliates/{{affiliate._id}}/suspend" method="post" class="mt-4" onsubmit="return confirm('Suspend this affiliate? They will not be able to log in or earn new commissions until reactivated.');">
         <button type="submit" class="w-full text-center text-xs font-semibold uppercase tracking-wide text-yellow-700 hover:underline">Suspend Affiliate</button>
       </form>

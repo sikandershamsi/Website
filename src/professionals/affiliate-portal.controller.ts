@@ -7,6 +7,7 @@ import { AffiliateGuard } from '../auth/guards/affiliate.guard';
 import { ChangeAffiliatePasswordDto, SetPayoutEmailDto } from './dto/affiliate-settings.dto';
 import type { AppConfig } from '../config/configuration';
 import { toCsv } from '../admin/csv.util';
+import { tierForLifetimeSales, nextTier } from '../affiliates/commission-tiers';
 
 @Controller('professionals/portal')
 @UseGuards(AffiliateGuard)
@@ -28,10 +29,15 @@ export class AffiliatePortalController {
     const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
     const clickCount = affiliate?.clickCount ?? 0;
     const conversionRate = clickCount > 0 ? (totals.orderCount / clickCount) * 100 : undefined;
-    const [commissionTrend, clickTrend] = await Promise.all([
+    const [commissionTrend, clickTrend, lifetimeSales] = await Promise.all([
       this.ordersService.commissionTrendForAffiliate(affiliateId, days),
       this.affiliatesService.clickTrend(affiliateId, days),
+      this.ordersService.lifetimeSalesForAffiliate(affiliateId),
     ]);
+    const currentTier = tierForLifetimeSales(lifetimeSales);
+    const upcomingTier = nextTier(lifetimeSales);
+    const minPayoutThreshold = affiliate?.minPayoutThreshold ?? (this.config.get('affiliates.minPayoutThreshold', { infer: true }) as number);
+    const thresholdProgressPct = minPayoutThreshold > 0 ? Math.min(100, Math.round((totals.pending / minPayoutThreshold) * 100)) : 100;
     return {
       title: 'Affiliate Portal',
       activeNav: 'professionals',
@@ -45,6 +51,11 @@ export class AffiliatePortalController {
       commissionTrend,
       clickTrend,
       days,
+      lifetimeSales,
+      currentTier,
+      upcomingTier,
+      minPayoutThreshold,
+      thresholdProgressPct,
     };
   }
 

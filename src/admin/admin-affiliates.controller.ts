@@ -8,6 +8,8 @@ import { AdminGuard } from '../auth/guards/admin.guard';
 import { AffiliateCommissionDto } from './dto/affiliate-commission.dto';
 import { BulkIdsDto } from './dto/bulk-ids.dto';
 import { AffiliateGroupDto, AssignGroupDto } from './dto/affiliate-group.dto';
+import { SetTieringDto, SetMinPayoutThresholdDto } from './dto/affiliate-tiering.dto';
+import { tierForLifetimeSales, nextTier } from '../affiliates/commission-tiers';
 import type { AffiliateStatus } from '../affiliates/schemas/affiliate.schema';
 import type { AppConfig } from '../config/configuration';
 import { toCsv } from './csv.util';
@@ -109,7 +111,33 @@ export class AdminAffiliatesController {
   @Render('admin/affiliates/commissions')
   async commissions() {
     const rows = await this.ordersService.commissionExportRows({ status: 'pending' });
-    return { title: 'Pending Commissions', rows };
+    const defaultThreshold = this.config.get('affiliates.minPayoutThreshold', { infer: true }) as number;
+
+    // Group pending rows by affiliate so we can hide affiliates who haven't crossed their payout threshold yet.
+    const byAffiliate = new Map<string, { affiliate: unknown; rows: typeof rows; pending: number }>();
+    for (const row of rows) {
+      const affiliate = row.affiliateId as unknown as { _id?: unknown; fullName?: string; minPayoutThreshold?: number } | undefined;
+      if (!affiliate?._id) continue;
+      const key = String(affiliate._id);
+      const entry = byAffiliate.get(key) ?? { affiliate, rows: [], pending: 0 };
+      entry.rows.push(row);
+      entry.pending += row.commissionAmount ?? 0;
+      byAffiliate.set(key, entry);
+    }
+
+    const payableRows: typeof rows = [];
+    const belowThreshold: { fullName: string; pending: number; threshold: number }[] = [];
+    for (const entry of byAffiliate.values()) {
+      const affiliate = entry.affiliate as { fullName?: string; minPayoutThreshold?: number };
+      const threshold = affiliate.minPayoutThreshold ?? defaultThreshold;
+      if (entry.pending >= threshold) {
+        payableRows.push(...entry.rows);
+      } else {
+        belowThreshold.push({ fullName: affiliate.fullName ?? 'Unknown', pending: entry.pending, threshold });
+      }
+    }
+
+    return { title: 'Pending Commissions', rows: payableRows, belowThreshold, defaultThreshold };
   }
 
   @Post('commissions/bulk-mark-paid')
@@ -206,7 +234,34 @@ export class AdminAffiliatesController {
     const totals = await this.ordersService.commissionTotalsForAffiliate(id);
     const groups = await this.affiliatesService.listGroups();
     const anomalies = affiliate.status === 'approved' ? await this.affiliatesService.clickAnomalies(id) : [];
-    return { title: affiliate.fullName, affiliate, orders, totals, groups, anomalies };
+    const lifetimeSales = await this.ordersService.lifetimeSalesForAffiliate(id);
+    const currentTier = tierForLifetimeSales(lifetimeSales);
+    const upcomingTier = nextTier(lifetimeSales);
+    const minPayoutThreshold = this.config.get('affiliates.minPayoutThreshold', { infer: true }) as number;
+    return {
+      title: affiliate.fullName,
+      affiliate,
+      orders,
+      totals,
+      groups,
+      anomalies,
+      lifetimeSales,
+      currentTier,
+      upcomingTier,
+      minPayoutThreshold,
+    };
+  }
+
+  @Post(':id/tiering')
+  async setTiering(@Param('id') id: string, @Body() body: SetTieringDto, @Res() res: Response) {
+    await this.affiliatesService.setTieringEnabled(id, body.tieringEnabled);
+    res.redirect(303, `/admin/affiliates/${id}`);
+  }
+
+  @Post(':id/min-payout-threshold')
+  async setMinPayoutThreshold(@Param('id') id: string, @Body() body: SetMinPayoutThresholdDto, @Res() res: Response) {
+    await this.affiliatesService.setMinPayoutThreshold(id, body.minPayoutThreshold);
+    res.redirect(303, `/admin/affiliates/${id}`);
   }
 
   @Post(':id/approve')

@@ -99,6 +99,10 @@ export class Product {
   @Prop({ default: true })
   active: boolean;
 
+  /** Overrides an affiliate's own commission rate for referrals of this product specifically. Unset = use the affiliate's rate. */
+  @Prop()
+  affiliateCommissionRate?: number;
+
   @Prop({ type: ProductStripeLinksSchema, default: () => ({}) })
   stripe: ProductStripeLinks;
 

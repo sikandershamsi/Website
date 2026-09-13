@@ -135,6 +135,12 @@ export class OrdersService {
       .exec();
   }
 
+  /** Total order value (not commission) an affiliate has driven, lifetime — the basis for performance tiers. */
+  async lifetimeSalesForAffiliate(affiliateId: string): Promise<number> {
+    const orders = await this.findForAffiliate(affiliateId);
+    return orders.reduce((sum, o) => sum + o.subtotal, 0);
+  }
+
   async commissionTotalsForAffiliate(affiliateId: string) {
     const orders = await this.findForAffiliate(affiliateId);
     const pending = orders

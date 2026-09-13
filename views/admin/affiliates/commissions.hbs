@@ -5,6 +5,18 @@
     <a href="/admin/affiliates" class="text-al-ink/50 hover:text-al-navy">&larr; All Affiliates</a>
   </div>
 </div>
+<p class="mt-1 text-xs text-al-ink/50">Only affiliates whose pending balance has crossed their payout threshold (default {{currency defaultThreshold}}) are listed below and payable in bulk.</p>
+
+{{#if belowThreshold.length}}
+<div class="mt-4 rounded-none border border-al-line bg-al-panel p-4 text-xs text-al-ink/60">
+  <p class="font-semibold uppercase tracking-wide text-al-ink/50">Below Payout Threshold</p>
+  <ul class="mt-2 space-y-1">
+    {{#each belowThreshold}}
+    <li>{{this.fullName}} &mdash; {{currency this.pending}} pending (needs {{currency this.threshold}})</li>
+    {{/each}}
+  </ul>
+</div>
+{{/if}}
 
 {{#if rows.length}}
 <form action="/admin/affiliates/commissions/bulk-mark-paid" method="post" data-bulk-commissions>

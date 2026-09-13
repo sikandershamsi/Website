@@ -13,7 +13,24 @@
       <p class="mt-3 text-xs text-al-ink/55">Share this link &mdash; any purchase made after a visitor clicks it is automatically credited to you at your current commission rate of <span class="font-semibold text-al-navy">{{pct affiliate.commissionRate}}</span>.</p>
     </div>
 
-    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+      {{#if affiliate.tieringEnabled}}
+      <div class="card p-5">
+        <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Performance Tier</p>
+        <p class="font-display mt-2 text-lg font-medium text-al-navy">{{currentTier.label}} &middot; {{pct currentTier.rate}}</p>
+        {{#if upcomingTier}}<p class="mt-1 text-xs text-al-ink/55">{{currency upcomingTier.minLifetimeSales}} in lifetime sales unlocks {{upcomingTier.label}} ({{pct upcomingTier.rate}})</p>{{/if}}
+      </div>
+      {{/if}}
+      <div class="card p-5">
+        <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Payout Progress</p>
+        <p class="font-display mt-2 text-lg font-medium text-al-navy">{{currency totals.pending}} / {{currency minPayoutThreshold}}</p>
+        <div class="mt-2 h-1.5 w-full overflow-hidden rounded-none bg-al-panel">
+          <div class="h-full bg-al-navy" style="width:{{thresholdProgressPct}}%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
       <div class="card p-5">
         <p class="text-xs font-semibold uppercase tracking-wide text-al-ink/50">Lifetime Commission</p>
         <p class="font-display mt-2 text-2xl font-medium text-al-navy">{{currency totals.lifetime}}</p>

@@ -9,6 +9,7 @@ import { CartService, CartKey } from '../cart/cart.service';
 import { AffiliatesService } from '../affiliates/affiliates.service';
 import type { CartLine } from '../cart/schemas/cart.schema';
 import { resolveSubscriptionFrequency } from '../cart/subscription-frequency';
+import { tierForLifetimeSales } from '../affiliates/commission-tiers';
 
 function toCents(dollars: number): number {
   return Math.round(dollars * 100);
@@ -160,6 +161,30 @@ export class StripeService {
     }
   }
 
+  /** Sums commission per cart line so a product-specific rate override (set on the Product) wins over the
+   * affiliate's own rate, which itself may come from a performance tier if the affiliate has opted in. */
+  private async computeCommission(
+    affiliate: { _id: unknown; commissionRate: number; tieringEnabled?: boolean },
+    lines: CartLine[],
+  ): Promise<number> {
+    let baseRate = affiliate.commissionRate;
+    if (affiliate.tieringEnabled) {
+      const lifetimeSales = await this.ordersService.lifetimeSalesForAffiliate(String(affiliate._id));
+      baseRate = tierForLifetimeSales(lifetimeSales).rate;
+    }
+    let total = 0;
+    for (const line of lines) {
+      let rate = baseRate;
+      if (line.productId) {
+        const product = await this.productsService.findByIdRaw(String(line.productId));
+        const override = (product as { affiliateCommissionRate?: number } | null)?.affiliateCommissionRate;
+        if (override !== undefined && override !== null) rate = override;
+      }
+      total += line.price * line.qty * rate;
+    }
+    return Math.round(total * 100) / 100;
+  }
+
   private async handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     const existing = await this.ordersService.findByCheckoutSessionId(session.id);
     if (existing) return; // idempotent — Stripe retries webhook deliveries
@@ -181,7 +206,7 @@ export class StripeService {
 
     const referralCode = session.metadata?.referralCode || undefined;
     const affiliate = referralCode ? await this.affiliatesService.findByReferralCode(referralCode) : null;
-    const commissionAmount = affiliate ? Math.round(subtotal * affiliate.commissionRate * 100) / 100 : undefined;
+    const commissionAmount = affiliate ? await this.computeCommission(affiliate, lines) : undefined;
 
     const shipping = session.customer_details
       ? {

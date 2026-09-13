@@ -68,6 +68,12 @@ export class ProductFormDto {
   @IsOptional() @IsString()
   accent?: string;
 
+  /** Whole-number percent in the form (e.g. 30); stored as a decimal. Blank = use the affiliate's own rate. */
+  @IsOptional()
+  @Transform(({ value }) => (value === '' || value === undefined ? undefined : Number(value) / 100))
+  @IsNumber()
+  affiliateCommissionRate?: number;
+
   @Transform(toStringArray)
   @IsArray()
   keyIngredients: string[];

@@ -20,6 +20,9 @@ export interface AppConfig {
     adminEmail: string;
     adminPassword: string;
   };
+  affiliates: {
+    minPayoutThreshold: number;
+  };
 }
 
 export default (): AppConfig => ({
@@ -43,5 +46,8 @@ export default (): AppConfig => ({
   seed: {
     adminEmail: process.env.ADMIN_SEED_EMAIL ?? '',
     adminPassword: process.env.ADMIN_SEED_PASSWORD ?? '',
+  },
+  affiliates: {
+    minPayoutThreshold: parseFloat(process.env.AFFILIATE_MIN_PAYOUT_THRESHOLD ?? '50'),
   },
 });

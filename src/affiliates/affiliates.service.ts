@@ -191,6 +191,17 @@ export class AffiliatesService {
     return this.affiliateModel.findByIdAndUpdate(id, { $set: { commissionRate: rate } }, { returnDocument: 'after' }).exec();
   }
 
+  async setTieringEnabled(id: string, enabled: boolean) {
+    return this.affiliateModel.findByIdAndUpdate(id, { $set: { tieringEnabled: enabled } }, { returnDocument: 'after' }).exec();
+  }
+
+  async setMinPayoutThreshold(id: string, threshold?: number) {
+    if (threshold === undefined) {
+      return this.affiliateModel.findByIdAndUpdate(id, { $unset: { minPayoutThreshold: 1 } }, { returnDocument: 'after' }).exec();
+    }
+    return this.affiliateModel.findByIdAndUpdate(id, { $set: { minPayoutThreshold: threshold } }, { returnDocument: 'after' }).exec();
+  }
+
   async validateLogin(email: string, password: string) {
     const affiliate = await this.affiliateModel.findOne({ email: email.toLowerCase().trim() }).exec();
     if (!affiliate || !affiliate.passwordHash) throw new UnauthorizedException('Invalid email or password.');

@@ -47,6 +47,10 @@
       <label class="field-label" for="accent">Accent color key</label>
       <input id="accent" name="accent" value="{{product.accent}}" class="input-field" />
     </div>
+    <div>
+      <label class="field-label" for="affiliateCommissionRate">Affiliate Commission Override (%)</label>
+      <input id="affiliateCommissionRate" name="affiliateCommissionRate" type="number" min="0" max="100" step="1" value="{{#if product.affiliateCommissionRate}}{{mul product.affiliateCommissionRate 100}}{{/if}}" placeholder="Use affiliate's own rate" class="input-field" />
+    </div>
   </div>
 
   <div>
