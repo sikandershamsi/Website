@@ -18,7 +18,14 @@
 <div class="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
   <div class="space-y-6">
     <div class="rounded-none border border-al-line bg-white p-6">
-      <h2 class="font-display text-lg font-medium text-al-navy">Application</h2>
+      <div class="flex items-center gap-3">
+        <h2 class="font-display text-lg font-medium text-al-navy">Application</h2>
+        {{#if affiliate.emailVerified}}
+        <span class="inline-block rounded-none px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-green-100 text-green-700">Email Verified</span>
+        {{else}}
+        <span class="inline-block rounded-none px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-yellow-100 text-yellow-800">Email Not Verified</span>
+        {{/if}}
+      </div>
       <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
         <div><dt class="text-al-ink/50">Business</dt><dd class="text-al-navy">{{or affiliate.businessName "—"}}</dd></div>
         <div><dt class="text-al-ink/50">Title</dt><dd class="text-al-navy">{{or affiliate.title "—"}}</dd></div>

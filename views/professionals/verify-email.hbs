@@ -1,0 +1,12 @@
+{{> page-header eyebrow="Professionals" heading="Verify Email"}}
+
+<section class="section flex justify-center">
+  <div class="card w-full max-w-md p-8 text-center">
+    {{#if verified}}
+    <p class="text-sm text-al-ink/70">Your email is confirmed. Our team will be in touch about your application.</p>
+    {{else}}
+    <p class="text-sm text-al-ink/70">This verification link is invalid or has already been used.</p>
+    {{/if}}
+    <a href="/professionals" class="btn-outline mt-6 inline-block">Back to Professionals</a>
+  </div>
+</section>

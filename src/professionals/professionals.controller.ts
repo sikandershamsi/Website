@@ -3,6 +3,7 @@ import type { Request, Response } from 'express';
 import { affiliateAudiences } from '../content/site.data';
 import { AffiliateApplicationDto } from './affiliate-application.dto';
 import { AffiliatesService } from '../affiliates/affiliates.service';
+import { RequestPasswordResetDto, ResetPasswordDto } from './dto/password-reset.dto';
 
 /** Matches the earnings calculator's own slider bounds (5-40%) on the professionals page. */
 function clampRatePercent(raw?: string): number | undefined {
@@ -79,5 +80,41 @@ export class ProfessionalsController {
   @Post('logout')
   logout(@Req() req: Request, @Res() res: Response) {
     req.session.destroy(() => res.redirect(303, '/professionals/login'));
+  }
+
+  @Get('verify-email')
+  @Render('professionals/verify-email')
+  async verifyEmail(@Query('token') token?: string) {
+    const verified = token ? await this.affiliatesService.verifyEmail(token) : false;
+    return { title: 'Verify Email', activeNav: 'professionals', verified };
+  }
+
+  @Get('forgot-password')
+  @Render('professionals/forgot-password')
+  forgotPasswordForm() {
+    return { title: 'Forgot Password', activeNav: 'professionals' };
+  }
+
+  @Post('forgot-password')
+  @Render('professionals/forgot-password')
+  async submitForgotPassword(@Body() body: RequestPasswordResetDto) {
+    await this.affiliatesService.requestPasswordReset(body.email);
+    return { title: 'Forgot Password', activeNav: 'professionals', submitted: true };
+  }
+
+  @Get('reset-password')
+  @Render('professionals/reset-password')
+  resetPasswordForm(@Query('token') token?: string) {
+    return { title: 'Reset Password', activeNav: 'professionals', token };
+  }
+
+  @Post('reset-password')
+  @Render('professionals/reset-password')
+  async submitResetPassword(@Body() body: ResetPasswordDto) {
+    const ok = await this.affiliatesService.resetPassword(body.token, body.newPassword);
+    if (!ok) {
+      return { title: 'Reset Password', activeNav: 'professionals', token: body.token, notice: 'This reset link is invalid or has expired.' };
+    }
+    return { title: 'Reset Password', activeNav: 'professionals', success: true };
   }
 }

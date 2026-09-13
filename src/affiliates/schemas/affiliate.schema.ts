@@ -83,6 +83,20 @@ export class Affiliate {
 
   @Prop({ default: true })
   emailOnPayout: boolean;
+
+  // ---- Self-service account security ----
+
+  @Prop()
+  resetTokenHash?: string;
+
+  @Prop()
+  resetTokenExpiresAt?: Date;
+
+  @Prop({ default: false })
+  emailVerified: boolean;
+
+  @Prop()
+  verificationTokenHash?: string;
 }
 
 export const AffiliateSchema = SchemaFactory.createForClass(Affiliate);

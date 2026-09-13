@@ -3,14 +3,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
 import { Model, Types } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import { randomBytes } from 'crypto';
+import { randomBytes, createHash } from 'crypto';
 import { Affiliate, AffiliateDocument, AffiliateStatus } from './schemas/affiliate.schema';
 import { AffiliateClick, AffiliateClickDocument } from './schemas/affiliate-click.schema';
 import { AffiliateGroup, AffiliateGroupDocument } from './schemas/affiliate-group.schema';
 import { AffiliateLink, AffiliateLinkDocument } from './schemas/affiliate-link.schema';
 import { AffiliateActivity, AffiliateActivityDocument, AffiliateActivityType } from './schemas/affiliate-activity.schema';
 import { MailerService } from '../mailer/mailer.service';
-import { approvalEmail, newCommissionEmail, payoutSentEmail } from '../mailer/templates';
+import { approvalEmail, newCommissionEmail, payoutSentEmail, passwordResetEmail, verificationEmail } from '../mailer/templates';
 import type { AppConfig } from '../config/configuration';
 
 const SALT_ROUNDS = 12;
@@ -102,7 +102,66 @@ export class AffiliatesService {
     if (existing) {
       throw new ConflictException('An application with this email already exists.');
     }
-    return this.affiliateModel.create({ ...dto, email, status: 'pending' });
+    const verificationToken = randomBytes(24).toString('hex');
+    const affiliate = await this.affiliateModel.create({
+      ...dto,
+      email,
+      status: 'pending',
+      verificationTokenHash: this.hashToken(verificationToken),
+    });
+
+    const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
+    const { subject, html } = verificationEmail({
+      fullName: affiliate.fullName,
+      verifyUrl: `${baseUrl}/professionals/verify-email?token=${verificationToken}`,
+    });
+    await this.mailerService.send({ to: affiliate.email, subject, html });
+    await this.logActivity(affiliate._id as Types.ObjectId, 'signup', 'Application submitted.');
+
+    return affiliate;
+  }
+
+  private hashToken(token: string): string {
+    return createHash('sha256').update(token).digest('hex');
+  }
+
+  async verifyEmail(token: string): Promise<boolean> {
+    const affiliate = await this.affiliateModel.findOne({ verificationTokenHash: this.hashToken(token) }).exec();
+    if (!affiliate) return false;
+    affiliate.emailVerified = true;
+    affiliate.verificationTokenHash = undefined;
+    await affiliate.save();
+    return true;
+  }
+
+  /** Always succeeds from the caller's point of view (no email enumeration) — only actually emails a
+   * reset link when the address belongs to an approved affiliate. */
+  async requestPasswordReset(email: string): Promise<void> {
+    const affiliate = await this.affiliateModel.findOne({ email: email.toLowerCase().trim(), status: 'approved' }).exec();
+    if (!affiliate) return;
+    const token = randomBytes(24).toString('hex');
+    affiliate.resetTokenHash = this.hashToken(token);
+    affiliate.resetTokenExpiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+    await affiliate.save();
+
+    const baseUrl = this.config.get('app.baseUrl', { infer: true }) as string;
+    const { subject, html } = passwordResetEmail({
+      fullName: affiliate.fullName,
+      resetUrl: `${baseUrl}/professionals/reset-password?token=${token}`,
+    });
+    await this.mailerService.send({ to: affiliate.email, subject, html });
+  }
+
+  async resetPassword(token: string, newPassword: string): Promise<boolean> {
+    const affiliate = await this.affiliateModel
+      .findOne({ resetTokenHash: this.hashToken(token), resetTokenExpiresAt: { $gt: new Date() } })
+      .exec();
+    if (!affiliate) return false;
+    affiliate.passwordHash = await bcrypt.hash(newPassword, SALT_ROUNDS);
+    affiliate.resetTokenHash = undefined;
+    affiliate.resetTokenExpiresAt = undefined;
+    await affiliate.save();
+    return true;
   }
 
   async findAll(status?: AffiliateStatus) {

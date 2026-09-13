@@ -44,6 +44,17 @@ export function payoutSentEmail(params: { fullName: string; amount: string; meth
   };
 }
 
+export function verificationEmail(params: { fullName: string; verifyUrl: string }) {
+  return {
+    subject: 'Confirm your email for the Animalife affiliate program',
+    html: wrapper(`
+      <h1 style="font-size:20px;">One more step, ${params.fullName}</h1>
+      <p>Please confirm this is your email address so we can reach you about your application and, if approved, your account.</p>
+      <p><a href="${params.verifyUrl}">${params.verifyUrl}</a></p>
+    `),
+  };
+}
+
 export function passwordResetEmail(params: { fullName: string; resetUrl: string }) {
   return {
     subject: 'Reset your Animalife affiliate password',
