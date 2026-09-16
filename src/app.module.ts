@@ -21,6 +21,7 @@ import { ProfessionalsModule } from './professionals/professionals.module';
 import { HorseIqModule } from './horse-iq/horse-iq.module';
 import { AccountModule } from './account/account.module';
 import { RacingModule } from './racing/racing.module';
+import { LegalModule } from './legal/legal.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { RacingModule } from './racing/racing.module';
     HorseIqModule,
     AccountModule,
     RacingModule,
+    LegalModule,
   ],
 })
 export class AppModule {}
