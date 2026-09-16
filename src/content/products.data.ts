@@ -1581,7 +1581,7 @@ export const products: Product[] = [
       },
       {
         question: 'What is Vetrofen Intense and how is it given?',
-        answer: 'Vetrofen Intense is a natural horse supplement with Scutellaria baicalensis and Acacia catechu that targets joint inflammation, recovery, comfort and wellbeing. It is a fine powder administered orally, best mixed with your horse’s feed.',
+        answer: 'Vetrofen Intense is a natural horse supplement with Scutellaria baicalensis and Acacia catechu that targets joint inflammation, recovery, comfort and wellbeing. It is a paste that is administered orally.',
       },
       {
         question: 'How soon will my horse feel an effect from Vetrofen Intense?',
