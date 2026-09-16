@@ -280,7 +280,7 @@
           />
         </article>
         {{else}}
-        {{#ifCond product.slug "vetrofen"}}
+        {{#if (or (eq product.slug "vetrofen") (eq product.slug "vetrofen-syringe"))}}
         <article class="vfen-control vfen-control--board product-board-bleed mt-10" aria-label="VetroFen natural inflammation and pain management">
           <img
             src="/images/vetrofen/control-board.jpg?v=20260913a"
@@ -362,7 +362,7 @@
             </div>
           </div>
         </article>
-        {{/ifCond}}
+        {{/if}}
         {{/ifCond}}
         {{/if}}
 
@@ -396,7 +396,7 @@
           />
         </article>
         {{else}}
-        {{#ifCond product.slug "vetrofen"}}
+        {{#if (or (eq product.slug "vetrofen") (eq product.slug "vetrofen-syringe"))}}
         <article class="vf-compare vf-compare--board product-board-bleed mt-10" aria-label="VetroFen feel the difference comparison">
           <img
             src="/images/vetrofen/compare-board.jpg?v=20260821a"
@@ -494,7 +494,7 @@
           </div>
         </article>
         {{/ifCond}}
-        {{/ifCond}}
+        {{/if}}
         {{/ifCond}}
         {{/if}}
 
