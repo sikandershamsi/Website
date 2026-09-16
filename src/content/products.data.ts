@@ -1571,11 +1571,8 @@ export const products: Product[] = [
       { size: 'All Sizes', weight: 'Ponies: ½ amount', nightBefore: '1 Syringe', preActivity: '1 Syringe' },
     ],
     feedingNotes: [
-      'How to use: Administer orally 1 syringe the night before and 1 syringe 2–3 hours prior to activity (½ amount for small ponies).',
-      'Not to be used in conjunction with NSAIDs such as Bute (Phenylbutazone) as this could lead to side effects.',
-      'For animal use only. Serve provided as a guide only; exact serve is dependent on the individual animal.',
-      'Store in a cool dry place out of direct sunlight. Replace lid after use.',
-      'This product is not a Veterinary medicine which is subject to authorisation.',
+      'How to use: Administer orally 1 syringe the night before and 1 syringe 2–3 hours prior to activity (½ amount for small ponies). Not to be used in conjunction with NSAIDs such as Bute (Phenylbutazone) as this could lead to side effects.',
+      'For animal use only. Serve provided as a guide only; exact serve is dependent on the individual animal. Store in a cool dry place out of direct sunlight. Replace lid after use. This product is not a Veterinary medicine which is subject to authorization.',
     ],
     faqs: [
       {
