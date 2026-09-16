@@ -40,7 +40,7 @@
       </thead>
       <tbody>
         {{#each rows}}
-        <tr>
+        <tr style="animation-delay:{{mul @index 30}}ms">
           <td><input type="checkbox" name="ids" value="{{this._id}}" data-row-check /></td>
           <td class="wp-row-title">{{this.orderNumber}}</td>
           <td>{{dateShort this.createdAt}}</td>

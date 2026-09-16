@@ -13,40 +13,40 @@
 </div>
 
 <div class="wp-widgets mb-8">
-  <div class="wp-postbox">
+  <div class="wp-postbox" data-reveal data-reveal-group="wp-stats">
     <div class="wp-postbox__body">
-      <p class="wp-widget-number">{{currency summary.paid}}</p>
+      <p class="wp-widget-number" data-countup="{{summary.paid}}" data-countup-prefix="$" data-countup-decimals="2">$0.00</p>
       <p class="wp-widget-label">Paid Commission</p>
     </div>
   </div>
-  <div class="wp-postbox">
+  <div class="wp-postbox" data-reveal data-reveal-group="wp-stats">
     <div class="wp-postbox__body">
-      <p class="wp-widget-number">{{currency summary.pending}}</p>
+      <p class="wp-widget-number" data-countup="{{summary.pending}}" data-countup-prefix="$" data-countup-decimals="2">$0.00</p>
       <p class="wp-widget-label">Pending Commission</p>
     </div>
   </div>
-  <div class="wp-postbox">
+  <div class="wp-postbox" data-reveal data-reveal-group="wp-stats">
     <div class="wp-postbox__body">
-      <p class="wp-widget-number">{{summary.orderCount}}</p>
+      <p class="wp-widget-number" data-countup="{{summary.orderCount}}">0</p>
       <p class="wp-widget-label">Referred Orders</p>
     </div>
   </div>
-  <div class="wp-postbox">
+  <div class="wp-postbox" data-reveal data-reveal-group="wp-stats">
     <div class="wp-postbox__body">
-      <p class="wp-widget-number">{{currency summary.reversed}}</p>
+      <p class="wp-widget-number" data-countup="{{summary.reversed}}" data-countup-prefix="$" data-countup-decimals="2">$0.00</p>
       <p class="wp-widget-label">Reversed / Rejected</p>
     </div>
   </div>
 </div>
 
 <div class="mb-6 grid gap-5 lg:grid-cols-[1.6fr_1fr]">
-  <div class="wp-postbox">
+  <div class="wp-postbox" data-reveal>
     <div class="wp-postbox__header"><h2>Commission — Pending vs. Paid</h2></div>
     <div class="wp-postbox__body">
       <div style="height:260px;"><canvas id="commissionChart"></canvas></div>
     </div>
   </div>
-  <div class="wp-postbox">
+  <div class="wp-postbox" data-reveal>
     <div class="wp-postbox__header"><h2>Commission Split</h2></div>
     <div class="wp-postbox__body">
       <div style="height:260px;"><canvas id="splitChart"></canvas></div>

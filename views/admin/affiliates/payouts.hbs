@@ -18,7 +18,7 @@
     </thead>
     <tbody>
       {{#each batches}}
-      <tr>
+      <tr style="animation-delay:{{mul @index 30}}ms">
         <td>{{dateShort this.createdAt}}</td>
         <td>{{#if (eq this.method "stripe_connect")}}Stripe Connect{{else}}Manual{{/if}}</td>
         <td>{{this.orderIds.length}}</td>

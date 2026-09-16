@@ -17,7 +17,7 @@
       </thead>
       <tbody>
         {{#each assets}}
-        <tr>
+        <tr style="animation-delay:{{mul @index 30}}ms">
           <td>{{this.type}}</td>
           <td class="wp-row-title">{{this.title}}</td>
           <td class="max-w-xs truncate">{{this.content}}</td>

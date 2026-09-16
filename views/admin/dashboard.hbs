@@ -3,34 +3,34 @@
 </div>
 
 <div class="wp-widgets">
-  <div class="wp-postbox">
+  <div class="wp-postbox" data-reveal data-reveal-group="wp-stats">
     <div class="wp-postbox__body">
-      <p class="wp-widget-number">{{productCount}}</p>
+      <p class="wp-widget-number" data-countup="{{productCount}}">0</p>
       <p class="wp-widget-label">Products</p>
     </div>
   </div>
-  <div class="wp-postbox">
+  <div class="wp-postbox" data-reveal data-reveal-group="wp-stats">
     <div class="wp-postbox__body">
-      <p class="wp-widget-number">{{ordersThisWeek}}</p>
+      <p class="wp-widget-number" data-countup="{{ordersThisWeek}}">0</p>
       <p class="wp-widget-label">Orders (7 days)</p>
     </div>
   </div>
-  <div class="wp-postbox">
+  <div class="wp-postbox" data-reveal data-reveal-group="wp-stats">
     <div class="wp-postbox__body">
-      <p class="wp-widget-number">{{activeSubscriptions}}</p>
+      <p class="wp-widget-number" data-countup="{{activeSubscriptions}}">0</p>
       <p class="wp-widget-label">Active Subscriptions</p>
     </div>
   </div>
-  <div class="wp-postbox">
+  <div class="wp-postbox" data-reveal data-reveal-group="wp-stats">
     <div class="wp-postbox__body">
-      <p class="wp-widget-number">{{pendingAffiliates}}</p>
+      <p class="wp-widget-number" data-countup="{{pendingAffiliates}}">0</p>
       <p class="wp-widget-label"><a href="/admin/affiliates?status=pending">Pending Affiliate Applications</a></p>
     </div>
   </div>
 </div>
 
 <div class="mt-8">
-  <div class="wp-postbox">
+  <div class="wp-postbox" data-reveal>
     <div class="wp-postbox__header">
       <h2>Recent Orders</h2>
       <a href="/admin/orders" class="wp-btn wp-btn-sm">View All</a>
@@ -48,7 +48,7 @@
           </thead>
           <tbody>
             {{#each recentOrders}}
-            <tr>
+            <tr style="animation-delay:{{mul @index 40}}ms">
               <td><a href="/admin/orders/{{this._id}}" class="wp-row-title">{{this.orderNumber}}</a></td>
               <td>
                 <span class="wp-badge {{#if (eq this.status "paid")}}wp-badge--success{{else if (eq this.status "fulfilled")}}wp-badge--success{{else if (eq this.status "cancelled")}}wp-badge--error{{else if (eq this.status "refunded")}}wp-badge--error{{else}}wp-badge--warning{{/if}}">{{this.status}}</span>

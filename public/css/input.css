@@ -2857,4 +2857,84 @@
   }
   .wp-admin .input-field:focus { outline: 2px solid var(--wp-link); outline-offset: -1px; border-color: var(--wp-link); box-shadow: none; }
   .wp-admin code { background: #f0f0f1; border: none; color: #d63384; }
+
+  /* ============================================================
+     MOTION SYSTEM — shared across the public site, admin portal,
+     and affiliate portal. Driven by public/js/animate.js toggling
+     [data-reveal].is-in and animating [data-countup] text content.
+     Everything here is disabled under prefers-reduced-motion.
+     ============================================================ */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .55s cubic-bezier(.16,.84,.44,1), transform .55s cubic-bezier(.16,.84,.44,1);
+    }
+    [data-reveal].is-in { opacity: 1; transform: translateY(0); }
+
+    /* Hover lift on the card-shaped building blocks used everywhere (public site cards,
+       admin postboxes/widgets, portal stat tiles) — one rule instead of repeating per component. */
+    .card, .wp-postbox {
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .card:hover, .wp-postbox:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px -12px rgba(0,0,0,.18);
+    }
+
+    /* Buttons: quick press feedback everywhere a .btn- or .wp-btn class is used. */
+    .btn-primary, .btn-outline, .wp-btn, .portal-nav__link, button[type="submit"] {
+      transition: transform .15s ease, background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .btn-primary:active, .btn-outline:active, .wp-btn:active { transform: scale(.96); }
+
+    /* Admin sidebar: slide the active/hovered item in slightly instead of a hard color snap. */
+    .wp-sidebar__item, .wp-sidebar__sub-item { transition: background-color .18s ease, color .18s ease, border-color .18s ease, padding-left .18s ease; }
+    .wp-sidebar__item:hover { padding-left: 20px; }
+
+    /* Admin list-table rows: staggered fade-up as the page settles (delay set inline per row). */
+    .wp-list-table tbody tr { animation: row-in .45s cubic-bezier(.16,.84,.44,1) backwards; }
+
+    /* Portal/table row hover: gentle background transition instead of an instant swap. */
+    .wp-list-table tbody tr, table.tests tr { transition: background-color .15s ease; }
+
+    /* Badges: pending/warning badges get a slow, soft breathing pulse to draw the eye. */
+    .wp-badge--warning { animation: badge-pulse 2.4s ease-in-out infinite; }
+
+    /* Payout-progress and other "fill" bars animate their width in from zero on load. */
+    .progress-fill { width: 0; animation: fill-in 1s cubic-bezier(.16,.84,.44,1) .15s forwards; }
+
+    /* Copy-link buttons: a small confirmation "pop" the instant the copied state lands. */
+    .copy-btn.is-copied { animation: copy-pop .35s ease; background: var(--wp-success, #1f8a3d); color: #fff; border-color: transparent; }
+
+    /* Admin content eases in with the rest of the page — skipped on anything already handled
+       by [data-reveal] so the two entrance effects never both fire. Scoped to .wp-content
+       (admin-only) rather than the whole site, since only the admin/affiliate portals were
+       asked for this treatment. */
+    .wp-content > *:not([data-reveal]) {
+      animation: page-in .5s cubic-bezier(.16,.84,.44,1) backwards;
+    }
+  }
+
+  @keyframes row-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes badge-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .62; }
+  }
+  @keyframes fill-in {
+    from { width: 0; }
+    to { width: var(--target-width, 100%); }
+  }
+  @keyframes copy-pop {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+  }
+  @keyframes page-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }

@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       {{#each categories}}
-      <tr>
+      <tr style="animation-delay:{{mul @index 30}}ms">
         <td>
           <a href="/admin/categories/{{this.slug}}/edit" class="wp-row-title">{{this.name}}</a>
           <div class="wp-row-actions">

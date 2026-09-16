@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       {{#each sections}}
-      <tr>
+      <tr style="animation-delay:{{mul @index 30}}ms">
         <td>
           <a href="/admin/pages/home/sections/{{this.key}}" class="wp-row-title">{{this.key}}</a>
           <div class="wp-row-actions">

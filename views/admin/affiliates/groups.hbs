@@ -18,7 +18,7 @@
       </thead>
       <tbody>
         {{#each groups}}
-        <tr>
+        <tr style="animation-delay:{{mul @index 30}}ms">
           <td>
             <span class="wp-row-title">{{this.name}}</span>
             {{#if this.description}}<div class="text-xs" style="color:var(--wp-text-muted);">{{this.description}}</div>{{/if}}

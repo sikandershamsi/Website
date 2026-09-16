@@ -47,7 +47,7 @@
     </thead>
     <tbody>
       {{#each affiliates}}
-      <tr>
+      <tr style="animation-delay:{{mul @index 30}}ms">
         {{#if (eq ../statusFilter "pending")}}<td><input type="checkbox" name="ids" value="{{this._id}}" data-row-check /></td>{{/if}}
         <td>
           <a href="/admin/affiliates/{{this._id}}" class="wp-row-title">{{this.fullName}}</a>
