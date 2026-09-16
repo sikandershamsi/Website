@@ -1422,11 +1422,11 @@
     @apply absolute inset-0 z-10 flex items-center justify-center px-6 sm:px-8 lg:px-10;
   }
   .race-hero__eyebrow {
-    @apply text-[11px] font-semibold uppercase leading-relaxed tracking-[0.22em] text-white sm:text-xs;
+    @apply text-center text-[11px] font-semibold uppercase leading-relaxed tracking-[0.22em] text-white sm:text-xs;
   }
   .race-hero__title {
     font-family: Calibri, sans-serif;
-    @apply mt-5 max-w-none whitespace-nowrap text-[clamp(1.25rem,6vw,5rem)] font-bold leading-none text-white;
+    @apply mt-5 max-w-none text-center text-[clamp(2.5rem,7vw,6.5rem)] font-bold leading-[0.95] text-white;
   }
   /* Racing page text interludes — one consistent "separator band" design:
      warm panel bg, centered gold rule + serif title, regardless of variant */
